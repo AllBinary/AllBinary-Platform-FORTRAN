@@ -1,0 +1,76 @@
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.hardware
+module HardwareFactory_m
+  use JR_m
+  use OperatingSystemInterface_m
+  use NoHardware_m
+  use HardwareInterface_m
+  implicit none
+
+  type, extends(JObject) :: HardwareFactory
+    class(HardwareInterface), pointer :: f_SINGLETON => null()
+  contains
+    procedure :: jm_getInstance_1 => HardwareFactory_jm_getInstance_1
+  end type
+
+  class(HardwareFactory), pointer, save :: HardwareFactory_jcell_instance => null()
+  logical, save :: HardwareFactory_jset_instance = .false.
+
+contains
+
+  function HardwareFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HardwareFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HardwareFactory)
+      jresult => object
+    end select
+  end function
+
+  function HardwareFactory_jstatic_instance() result(jresult)
+    class(HardwareFactory), pointer :: jresult
+    if (.not. HardwareFactory_jset_instance) then
+      HardwareFactory_jset_instance = .true.
+      HardwareFactory_jcell_instance => HardwareFactory_jnew_0()
+    end if
+    jresult => HardwareFactory_jcell_instance
+  end function
+
+  recursive function HardwareFactory_jnew_0() result(this)
+    class(HardwareFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'HardwareFactory'
+    this%f_SINGLETON => NoHardware_jm_getInstance_0()
+        continue
+  end function
+
+  recursive function HardwareFactory_jm_getInstance_0() result(jresult)
+    class(HardwareFactory), pointer :: jresult
+        jresult => HardwareFactory_jstatic_instance()
+        return
+  end function
+
+  recursive function HardwareFactory_jm_getInstance_1(this, j_os) result(jresult)
+    class(HardwareFactory), target :: this
+    class(OperatingSystemInterface), target, optional :: j_os
+    class(HardwareInterface), pointer :: jresult
+        continue ! try
+            jresult => this%f_SINGLETON
+            return
+  end function
+end module HardwareFactory_m
+

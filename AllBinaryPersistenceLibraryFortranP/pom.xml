@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>AllBinaryPersistenceLibraryPFortran</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>AllBinaryPersistenceLibraryPFortran</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        
+        <!--
+        -->
+        <module>../allbinary_src/cache/AllBinaryCacheLibraryFortranM</module>
+        <module>../allbinary_src/PermutationsJavaLibraryFortranM</module>
+        <module>../allbinary_src/logic/BasePreloaderFileJavaLibraryFortranM</module>
+        <module>../allbinary_src/logic/data/file/FileJavaLibraryFortranM</module>
+        <module>../allbinary_src/logic/data/file/FileJ2SEJavaLibraryFortranM</module>
+        <!--<module>../allbinary_src/data/DataJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/logic/data/file/FileUnamedJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/logic/data/file/FileAdvancedJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/PreLoaderJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/FileInitInfoJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/PreLoaderFileJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/PreLoaderLicenseJavaLibraryFortranM</module>-->
+        <module>../j2me/PCResourceLibraryFortranM</module>
+        <module>../j2me/ProgressJ2MEJavaLibraryFortranM</module>
+        <module>../allbinary_src/licensing/ClientInfoBaseJavaLibraryFortranM</module>
+        <!--<module>../allbinary_src/licensing/RemoteXmlRpcJavaLibraryFortranM</module>-->
+        <!--<module>../allbinary_src/licensing/LicenseClientJavaLibraryFortranM</module>-->
+
+        <!--
+        <module>../allbinary_src/PreLoaderLicenseJavaLibraryFortranM</module>
+        -->
+    </modules>
+
+</project>
+

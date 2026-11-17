@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.business</groupId>
+    <artifactId>BlisketJavaLibraryPFortran</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>BlisketJavaLibraryPFortran</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <modules>
+
+        <!--
+        <module>../../j2me/AllBinaryJ2MELibraryFortranP</module>
+        -->
+        <!--
+        <module>../data/DataJavaLibraryFortranM</module>
+        -->
+
+        <module>../licensing/TestServiceClientInfoJavaLibraryFortranM</module>        
+
+        <module>../data/DataTableInterfacesFortranM</module>
+        
+        <module>../QueueJavaLibraryFortranM</module>
+        
+        <!--
+        <module>../TokenizerJavaLibraryFortranM</module>
+        -->
+
+        <module>../logging/LogConfigTypeFreeblisketJavaLibraryFortranM</module>
+
+        <module>../JavaUtilLibraryFortranM</module>
+        <module>../NullInitInfoJavaLibraryFortranM</module>        
+        <module>../InitInfoJavaLibraryFortranM</module>
+        <module>../PreLoaderHttpJavaLibraryFortranM</module>
+        
+        <module>../TagsBaseJavaLibraryFortranM</module>
+        <module>../CustomLoaderJavaLibraryFortranM</module>
+        
+        <!--
+        <module>../logic/data/file/FileJ2SEJavaLibraryFortranM</module>
+        <module>../logic/data/file/FileJavaLibraryFortranM</module>
+        -->
+
+        <module>../data/SQLAllBinaryJavaLibraryFortranM</module>
+
+        <!--
+        <module>../licensing/FileLicenseInitInfoJavaLibraryFortranM</module>
+        -->
+
+        <module>../DocumentObjectModelJavaLibraryFortranM</module>
+
+        <module>../VisualStyleJavaLibraryFortranM</module>
+
+        <module>../ConfigurationJavaLibraryFortranM</module>
+
+        <module>../VisualTransformBaseJavaLibraryFortranM</module>
+
+        <module>../CategoryBaseJavaLibraryFortranM</module>
+        <module>../CategoryJavaLibraryFortranM</module>
+
+        <module>../UserJavaLibraryFortranM</module>
+
+        <module>../PaymentGatewayBaseJavaLibraryFortranM</module>
+
+        <module>../data/vo/EntitiesBlisketVOJavaLibraryFortranM</module>
+        <module>../PaymentGatewayJavaLibraryFortranM</module>
+        <module>../data/vo/EntitiesOrderHistoryVOJavaLibraryFortranM</module>
+        <module>../data/vo/EntityPaymentGatewayVOJavaLibraryFortranM</module>
+        <module>../data/vo/EntityStoreFrontVOJavaLibraryFortranM</module>
+
+        <module>../data/EntitiesBlisketBaseInterfacesJavaLibraryFortranM</module>
+        <module>../data/EntitiesBlisketBaseJavaLibraryFortranM</module>
+        
+        <module>../data/EntitiesAdvertisementBaseJavaLibraryFortranM</module>
+        <module>../data/EntityOrderHistoryJavaLibraryFortranM</module>
+        <module>../data/EntityPaymentGatewayJavaLibraryFortranM</module>
+        <module>../data/EntityVisualTransformJavaLibraryFortranM</module>
+        <module>../data/EntityUserJavaLibraryFortranM</module>
+        <module>../data/EntityWorkflowJavaLibraryFortranM</module>
+
+        <module>../SMTPConfigurationJavaLibraryFortranM</module>
+        <module>../SMTPBaseJavaLibraryFortranM</module>
+
+        <module>../VisualTransformJavaLibraryFortranM</module>
+
+        <module>../../replace_these_stub_projects/allbinary_src/YourRuntimeEnvironmentJavaLibraryFortranM</module>
+        <module>../GatewayJavaLibraryFortranM</module>
+        
+        <module>../WorkflowBaseJavaLibraryFortranM</module>
+        <module>../WorkflowJavaLibraryFortranM</module>
+
+        <module>../IdGeneratorUsingFilesJavaLibraryFortranM</module>
+        <module>../BlisketPreVOJavaLibraryFortranM</module>
+
+        <!-- 
+        EntitiesOrderHistoryVOJavaLibrary
+        UserJavaLibrary
+        -->
+        
+        <module>../BlisketVOJavaLibraryFortranM</module>
+
+        <module>../UserCommerceJavaLibraryFortranM</module>
+
+        <module>../CustomizerValidatorsJavaLibraryFortranM</module>
+
+        <!-- 
+        AllBinaryCacheForShiftOneJavaLibrary
+        AllBinaryJSECacheJavaLibrary
+        ColorJavaLibrary
+        ImageJavaLibrary
+        -->
+        
+        <module>../logic/data/file/FileMediaJ2SEJavaLibraryFortranM</module>
+        <module>../BlisketBaseJavaLibraryFortranM</module>
+
+        <module>../logging/LoggingGAEAllFortranM</module>
+        <module>../BlisketJavaLibraryFortranM</module>
+        
+    </modules>
+
+</project>
+

@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>GameJ2MELibraryPOMFortran</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GameJ2MELibraryPOMFortran</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        NoGyroSensorLibrary
+
+        -->
+        <!--<module>../../android/AndroidUtilJavaLibraryFortranM</module>-->
+
+        <module>../../../allbinary_src/security/SimpleCryptLibraryFortranM</module>
+        <!--
+        <module>../../../../working_thirdpartyfortran/security/BouncyCastleDESJavaLibraryFortranM</module>
+        <module>../../../../working_thirdpartyfortran/communication/XmlRpc/XmlRpcJavaLibraryFortranM</module>
+        -->
+        <module>../../../allbinary_src/TokenizerJavaLibraryFortranM</module>
+        <module>../../../allbinary_src/security/BasicSecurityJavaLibraryFortranM</module>
+        <!--<module>../../../replace_these_stub_projects/security/YourCryptFileJavaLibraryFortranM</module>-->
+        <module>../../../replace_these_stub_projects/security/YourSecurityJavaLibraryFortranM</module>
+        <module>../../../replace_these_stub_projects/communication/YourXmlRpcJavaLibraryFortranM</module>
+        <!--<module>../../../replace_these_stub_projects/allbinary_src/J2MEOnlyJavaLibraryFortranM</module>-->
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MECompatibilityJavaLibraryFortranM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryFortranM</module>
+
+        <module>../../DebugJavaLibraryFortranM</module>             
+        <module>../../ResourceLibraryFortranM</module>
+        <module>../../ResourceJ2MEJavaLibraryFortranM</module>
+        <!--<module>../../AndroidResourceLibraryFortranM</module>-->
+        <!--<module>../../../allbinary_src/hardware/AndroidSystemJavaLibraryFortranM</module>-->
+
+        <module>../../../game/behavior/ArtificialIntelligenceLibraryFortranM</module>
+
+        <module>../../media/graphics/PlatformNullImageJavaLibraryFortranM</module>
+        <module>../../media/graphics/ImageCacheBaseJ2MEJavaLibraryFortranM</module>
+        <module>../../media/graphics/ImageCacheJ2MEJavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/OpenGLJ2MENoneJavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/OpenGLNoneJavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOtherJavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOther2JavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/OpenGLESBaseJ2MEJavaLibraryFortranM</module>
+
+        <module>../../media/graphics/animation/AnimationLibraryFortranM</module>
+        <module>../../media/graphics/animation/RotationAnimationJavaLibraryFortranM</module>
+
+        <module>../../games/GameInputLibraryFortranM</module>
+
+        <module>../../games/GameScoresBaseJavaLibraryFortranM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryFortranM</module>
+
+        <module>../../statistics/ApplicationStatisticsHTMLLibraryFortranM</module>
+        <!--
+        <module>../../games/GameConfigurationHTMLJavaLibraryFortranM</module>
+        -->
+        <module>../../games/GameConfigurationJ2MEJavaLibraryFortranM</module>   
+        <module>../../games/GameConfigurationJavaLibraryFortranM</module>
+
+        <module>../../games/GameIntermissionLibraryFortranM</module>
+
+        <module>../../GroupLibraryFortranM</module>
+
+        <module>../../input/NoSensorJavaLibraryFortranM</module>
+
+        <module>../../input/AllBinarySensorJavaLibraryFortranM</module>
+
+        <module>../../input/platform/me/GameInputMEJavaLibraryFortranM</module>
+        <module>../../input/platform/me/GameInputMEKeyOnlyJavaLibraryFortranM</module>
+        <module>../../input/platform/me/GameInputMEMotionJavaLibraryFortranM</module>
+        <module>../../input/platform/pc/GameInputPCBaseJavaLibraryFortranM</module>
+        <module>../../input/platform/pc/GameInputPCJavaLibraryFortranM</module>
+        <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryFortranM</module>
+        <module>../../input/platform/pc/GameInputPCMotionJavaLibraryFortranM</module>
+        <module>../../input/platform/pc/GameInputSwtJavaLibraryFortranM</module>
+
+        <module>../../input/AllBinaryGyroSensorJavaLibraryFortranM</module>
+        <module>../../input/MotionGestureJavaLibraryFortranM</module>
+        
+        <module>../../input/MotionGestureBaseJavaLibraryFortranM</module>
+
+        <module>../../games/GameInputPersistanceLibraryFortranM</module>
+        <module>../../games/GameInputNoPersistanceLibraryFortranM</module>
+        
+        <module>../../lib/VectorThreeDimensionalLibraryFortranM</module>
+        <module>../../input/AllBinaryAccelerometerSensorJavaLibraryFortranM</module>
+        <module>../../input/NoGyroSensorJavaLibraryFortranM</module>
+        <module>../../input/JSEGyroSensorJavaLibraryFortranM</module>
+        <!--
+        <module>../../input/android/</module>
+        <module>../../input/platform/android/GameInputAndroidBaseJavaLibraryFortranM</module>
+        -->
+
+        <module>../../media/sound/BasicPlayerJavaLibraryFortranM</module>
+        <module>../../media/sound/BasicPlayerMIDP2JavaLibraryFortranM</module>
+        <module>../../media/sound/NoPlayerJavaLibraryFortranM</module>
+        <module>../../media/sound/SoundJ2MELibraryFortranM</module>
+
+        <module>../../media/motion/AllBinaryVibrationJavaLibraryFortranM</module>
+        <module>../../media/motion/NoVibrateJavaLibraryFortranM</module>
+        <!--<module>../../media/motion/VibrateAndroidJavaLibraryFortranM</module>-->
+
+        <module>../../media/graphics/NullCustomUIJavaLibraryFortranM</module>
+        <module>../../media/graphics/NullCustomUIBaseJavaLibraryFortranM</module>
+
+        <module>../../media/graphics/FormValidationJavaLibraryFortranM</module>
+        
+        <module>../../media/graphics/FormJavaLibraryFortranM</module>
+        <module>../../media/graphics/FormBaseJavaLibraryFortranM</module>
+        <!--
+        <module>../../media/graphics/FormJMEJavaLibraryFortranM</module>
+        -->
+        <module>../../../j2me/media/graphics/FormJMEJavaLibraryFortranM</module>
+
+        <module>../../media/graphics/animation/AnimationResourceJavaLibraryFortranM</module>
+        <module>../../media/graphics/animation/TransitionAnimationJavaLibraryFortranM</module>
+        <module>../../media/graphics/animation/NoTransitionAnimationJavaLibraryFortranM</module>
+        <!--
+        AndroidTransitionAnimationJavaLibraryM
+        -->
+        <module>../../media/graphics/animation/GameAnimationJavaLibraryFortranM</module>
+        <module>../../games/GameResourceJavaLibraryFortranM</module>
+        <module>../../games/GameSoundsJavaLibraryFortranM</module>
+
+        <module>../../input/TouchInputLibraryFortranP</module>
+
+        <module>../../media/MediaDataFortranM</module>
+        <module>../../media/sound/NotDeviceSpecificNoMediaMIDP1LibraryFortranM</module>
+
+        <module>../../../allbinary_src/content/ContentNoneJavaLibraryFortranM</module>
+        <!--<module>../../../allbinary_src/content/ContentAndroidJavaLibraryFortranM</module>-->
+
+        <module>../../games/GameConfigurationFormJavaLibraryFortranM</module>
+
+        <module>../../FullScreenNoneJavaLibraryFortranM</module>
+        <!--
+        <module>../../FullScreenJavaLibraryFortranM</module>
+        -->
+
+        <module>../../../physics/VelocityLibraryFortranM</module>
+
+        <module>../../games/weapon/SoundsBasicWeaponsJavaLibraryFortranM</module>
+
+        <module>../../lib/TrigJ2MELibraryFortranM</module>
+
+        <module>../../media/graphics/geography/map/LayerPlacementLibraryFortranM</module>
+        <module>../../media/graphics/layer/AllBinaryLayerJavaLibraryFortranM</module>
+
+        <module>../../ScreenCaptureNoneJavaLibraryFortranM</module>
+        
+        <module>../licensing/GameLicensingNullJavaLibraryFortranM</module>
+        
+        <module>../../business/advertisement/AllBinaryAdvertisementClientJavaLibraryFortranM</module>
+        <module>../../business/advertisement/AdvertisementClientNoneJavaLibraryFortranM</module>
+
+        <module>../GameNotificationJavaLibraryFortranM</module>
+
+        <module>../../../graphics/opengl/NoSWTJavaLibraryFortranM</module>
+        <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryFortranM</module>
+        <module>../SWTJavaLibraryFortranM</module>
+        <module>../GameJ2MELibraryFortranM</module>
+        
+        <!--
+        <module>../GameJ2MEOptionalLibraryPOFortranM</module>
+        -->
+    
+    </modules>
+
+</project>
+

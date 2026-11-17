@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>CombatGameJavaLibraryPOMFortran</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>CombatGameJavaLibraryPOMFortran</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+
+        -->
+
+        <module>../../games/TickableJavaLibraryFortranM</module>
+
+        <module>../../games/CommonHeadsUpDisplayLibraryFortranM</module>
+
+        <module>../../../physics/MovementJavaLibraryFortranM</module>
+        <!--        -->
+        <module>../../games/PartsJavaLibraryFortranM</module>
+        <module>../../games/PickupGameJavaLibraryFortranM</module>
+
+        <module>../../../allbinary_src/licensing/HardCodedLicenseInitInfoJavaLibraryFortranM</module>
+        <module>../../../allbinary_src/licensing/FileLicenseInitInfoJavaLibraryFortranM</module>
+        <module>../../../allbinary_src/licensing/ClientInfoLicensingJavaLibraryFortranM</module>
+
+        <module>../../games/licensing/PartnerJ2MEJavaLibraryFortranM</module>
+        <!--<module>../../games/licensing/PartnerHTMLJavaLibraryFortranM</module>-->
+        <!--<module>../../games/licensing/PartnerAndroidJavaLibraryFortranM</module>-->
+        <module>../../games/licensing/NoGameLicensingJavaLibraryFortranM</module>
+        <module>../../games/licensing/GameLicensingOnlyDemoJavaLibraryFortranM</module>
+        <!--<module>../../games/licensing/GameLicensingOnlyNormalJavaLibraryFortranM</module>-->
+        <module>../../games/licensing/GameLicensingBaseJavaLibraryFortranM</module>
+
+        <!--
+        <module>../../games/GameScoresBaseLibraryFortranM</module>
+        <module>../../games/GameScoresBaseHTMLLibraryFortranM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryFortranM</module>
+        -->
+        <module>../../games/GameScoresLocalJavaLibraryFortranM</module>
+        <!--<module>../../games/GameScoresRemoteAndLocalJavaLibraryFortranM</module>-->
+
+        <module>../../../store/ThirdPartyStoreJavaLibraryFortranM</module>
+        <module>../../../store/NoThirdPartyStoreJavaLibraryFortranM</module>
+
+        <module>../../media/graphics/layer/CollisionLayerJavaLibraryFortranM</module>
+        <module>../../games/CollisionLibraryFortranM</module>
+
+        <module>../../games/multiplayer/AllBinaryGameClientBaseNullJavaLibraryFortranM</module>
+
+        <module>../../games/PickupLayerJavaLibraryFortranM</module>
+
+        <module>../../games/DamageGameJavaLibraryFortranM</module>
+        <module>../../games/DropJavaLibraryFortranM</module>
+        <module>../../games/WeaponLayerJavaLibraryFortranM</module>
+
+        <module>../../games/CombatGameJavaLibraryFortranM</module>
+        <module>../../games/LifeJavaLibraryFortranM</module>
+
+        <module>../../games/CommonHeadsUpDisplayCombatGameLibraryFortranM</module>
+        <module>../../games/LifeOrDeathDataJavaLibraryFortranM</module>
+
+        <module>../../games/BasicWeaponPartsJavaLibraryFortranM</module>
+        <module>../../games/weapon/WeaponPropertiesJavaLibraryFortranM</module>
+
+        <module>../../games/weapon/WeaponMineJavaLibraryFortranM</module>
+
+        <!--
+        <module>../../media/graphics/effects/fireworks/FireworksJavaLibraryFortranM</module>
+        -->
+
+        <module>../../media/graphics/geography/map/TerrainEventJavaLibraryFortranM</module>
+
+<!--
+        <module>../../media/graphics/geography/map/BasicPlatformGeographicMapJavaLibraryFortranM</module>
+        -->
+
+        <!--
+        <module>../../media/graphics/geography/map/RaceTrackFortranP</module>
+        -->
+
+        <!--
+        XmlRpcJavaLibrary
+        RemoteXmlRpcJavaLibrary
+
+        Since POMs are built before the other libs is it best to handle this differently
+        ../../
+        <module>../../../../workfortran/j2me/games/strategy/rts/RTSGameJavaLibraryFortranP</module>
+        -->
+
+        <module>../../media/graphics/OtherGraphicsMediaLibraryFortranP</module>
+
+        <module>../../input/NoTouchButtonResourceAnimationJavaLibraryFortranM</module>
+        <module>../../input/TouchButtonResourceAnimationJavaLibraryFortranM</module>
+        <module>../../input/TouchButtonResourceOpenGLESAnimationJavaLibraryFortranM</module>
+
+        <module>../../input/TrackingEventJavaLibraryFortranM</module>
+        <module>../../../game/behavior/BehaviorLibraryFortranP</module>
+
+        <module>../../media/sound/OtherSoundMediaLibraryFortranP</module>
+
+        <module>../../../allbinary_src/licensing/ApplicationConfigurationJavaLibraryFortranM</module>
+        <module>../../../allbinary_src/licensing/ApplicationConfigurationNoFSJavaLibraryFortranM</module>
+        <module>../../input/AllBinaryMagneticFieldSensorJavaLibraryFortranM</module>
+        <!--<module>../../android/VirtualKeyboardJavaLibraryFortranM</module>-->
+
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
+
