@@ -1,35 +1,30 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit TextFieldItemHelper;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module TextFieldItemHelper_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: TextFieldItemHelper
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TTextFieldItemHelper = class(TObject)
-  public
-    constructor Create;
-  end;
+  function TextFieldItemHelper_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TextFieldItemHelper), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TextFieldItemHelper)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TTextFieldItemHelper.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function TextFieldItemHelper_jnew_0() result(this)
+    class(TextFieldItemHelper), pointer :: this
+    allocate(this)
+    this%jclass = 'TextFieldItemHelper'
+  end function
+end module TextFieldItemHelper_m
 

@@ -49,6 +49,16 @@ contains
     jresult => LogConfigTypeFactory_jcell_instance
   end function
 
+  subroutine LogConfigTypeFactory_jsetstatic_instance(jvalue)
+    class(LogConfigTypeFactory), target, optional :: jvalue
+    LogConfigTypeFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      LogConfigTypeFactory_jcell_instance => jvalue
+    else
+      LogConfigTypeFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function LogConfigTypeFactory_jnew_0() result(this)
     class(LogConfigTypeFactory), pointer :: this
     class(JObject), pointer :: jdiscardRef

@@ -1,93 +1,102 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.math
+module RectangleCollisionPointUtil_m
+  use JR_m
+  use GPoint_m
+  use BasicArrayList_m
+  use RectangleCollisionUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.math
-unit RectangleCollisionPointUtil;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList;
-
-type
-  {AB:TYPES}
-  TRectangleCollisionPointUtil = class(TObject)
-  public
-        constructor Create;
-        class function allPointsInside(rectX1: Integer; rectY1: Integer; rectX2: Integer; rectY2: Integer; list: TBasicArrayList): Boolean; static;
-        class function allPointsInsideCell(rectX1: Integer; rectY1: Integer; rectX2: Integer; rectY2: Integer; list: TBasicArrayList; xCellSize: Integer; yCellSize: Integer): Boolean; static;
-  end;
-
-implementation
-uses
-  RectangleCollisionUtil, GPoint;
+  type, extends(JObject) :: RectangleCollisionPointUtil
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TRectangleCollisionPointUtil.Create;
-begin
-    inherited Create;
-end;
-    
+  function RectangleCollisionPointUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RectangleCollisionPointUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RectangleCollisionPointUtil)
+      jresult => object
+    end select
+  end function
 
-class function TRectangleCollisionPointUtil.allPointsInside(rectX1: Integer; rectY1: Integer; rectX2: Integer; rectY2: Integer; list: TBasicArrayList): Boolean;
-var
-  rectangleCollisionUtil_: TRectangleCollisionUtil;
-  point: TGPoint;
-  index: Integer;
-begin
-        rectangleCollisionUtil_ := TRectangleCollisionUtil.getInstance();
-        
-        index := list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            point := TGPoint(TJava.ToObject(list.objectArray[index]));
-            if not (rectangleCollisionUtil_.isInside(rectX1, rectY1, rectX2, rectY2, point.getX(), point.getY())) then begin
-                Exit(False);
-            end;
-        end;
-        Exit(True);
-end;
-    
+  recursive function RectangleCollisionPointUtil_jnew_0() result(this)
+    class(RectangleCollisionPointUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'RectangleCollisionPointUtil'
+        continue
+  end function
 
-class function TRectangleCollisionPointUtil.allPointsInsideCell(rectX1: Integer; rectY1: Integer; rectX2: Integer; rectY2: Integer; list: TBasicArrayList; xCellSize: Integer; yCellSize: Integer): Boolean;
-var
-  rectangleCollisionUtil_: TRectangleCollisionUtil;
-  point: TGPoint;
-  index: Integer;
-begin
-        rectangleCollisionUtil_ := TRectangleCollisionUtil.getInstance();
-        
-        index := list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            point := TGPoint(TJava.ToObject(list.objectArray[index]));
-            if not (rectangleCollisionUtil_.isInside(rectX1, rectY1, rectX2, rectY2, (point.getX()) * (xCellSize), (point.getY()) * (yCellSize))) then begin
-                Exit(False);
-            end;
-        end;
-        Exit(True);
-end;
+  recursive function RectangleCollisionPointUtil_jm_allPointsInside_5(j_rectX1, j_rectY1, j_rectX2, j_rectY2, j_list) result(jresult)
+    integer(4), value :: j_rectX1
+    integer(4), value :: j_rectY1
+    integer(4), value :: j_rectX2
+    integer(4), value :: j_rectY2
+    class(BasicArrayList), target, optional :: j_list
+    logical :: jresult
+    class(RectangleCollisionUtil), pointer :: j_rectangleCollisionUtil
+    class(GPoint), pointer :: j_point
+    integer(4) :: j_index
+    integer(4) :: jtemp1
+        j_rectangleCollisionUtil => RectangleCollisionUtil_jm_getInstance_0()
+        continue
+        j_index = j_index - 1
+        jtemp1 = j_index
+        j_index = j_list%jm_size_0()
+        do while ((jtemp1 >= 0))
+            j_point => GPoint_jcast(j_list%f_objectArray((j_index) + 1)%v)
+            if ((.not. j_rectangleCollisionUtil%jm_isInside_6(j_rectX1, j_rectY1, j_rectX2, j_rectY2, j_point%jm_getX_0(), j_point%jm_getY_0()))) then
+                jresult = .false.
+                return
+            end if
+        end do
+        jresult = .true.
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function RectangleCollisionPointUtil_jm_allPointsInsideCell_7(j_rectX1, j_rectY1, j_rectX2, j_rectY2, j_list, j_xCellSize, j_yCellSize) result(jresult)
+    integer(4), value :: j_rectX1
+    integer(4), value :: j_rectY1
+    integer(4), value :: j_rectX2
+    integer(4), value :: j_rectY2
+    class(BasicArrayList), target, optional :: j_list
+    integer(4), value :: j_xCellSize
+    integer(4), value :: j_yCellSize
+    logical :: jresult
+    class(RectangleCollisionUtil), pointer :: j_rectangleCollisionUtil
+    class(GPoint), pointer :: j_point
+    integer(4) :: j_index
+    integer(4) :: jtemp2
+        j_rectangleCollisionUtil => RectangleCollisionUtil_jm_getInstance_0()
+        continue
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = j_list%jm_size_0()
+        do while ((jtemp2 >= 0))
+            j_point => GPoint_jcast(j_list%f_objectArray((j_index) + 1)%v)
+            if ((.not. j_rectangleCollisionUtil%jm_isInside_6(j_rectX1, j_rectY1, j_rectX2, j_rectY2, (j_point%jm_getX_0() * j_xCellSize), (j_point%jm_getY_0() * j_yCellSize)))) then
+                jresult = .false.
+                return
+            end if
+        end do
+        jresult = .true.
+        return
+  end function
+end module RectangleCollisionPointUtil_m
 

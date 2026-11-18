@@ -1,85 +1,97 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.platform.graphics
-unit PlatformBitmapBase;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.platform.graphics
+module PlatformBitmapBase_m
+  use JR_m
+  use NullImage_m
+  use BasicColor_m
+  use BasicColorFactory_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: PlatformBitmapBase
+    integer(4) :: f_alpha = 0
+    class(BasicColor), pointer :: f_basicColor => null()
+  contains
+    procedure :: jm_getWidth_0 => PlatformBitmapBase_jm_getWidth_0
+    procedure :: jm_getHeight_0 => PlatformBitmapBase_jm_getHeight_0
+    procedure :: jm_getImage_0 => PlatformBitmapBase_jm_getImage_0
+  end type
 
-interface
+  class(PlatformBitmapBase), pointer, save :: PlatformBitmapBase_jcell_NULL_PLATFORM_BITMAP_BASE => null()
+  logical, save :: PlatformBitmapBase_jset_NULL_PLATFORM_BITMAP_BASE = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, BasicColor;
+contains
 
-type
-  {AB:TYPES}
-  TPlatformBitmapBase = class(TObject)
-  public
-    alpha: Integer;
-    basicColor: TBasicColor;
-    class var NULL_PLATFORM_BITMAP_BASE: TPlatformBitmapBase;
-    procedure InitFields;
-    constructor Create;
-        function getWidth: Integer; virtual;
-        function getHeight: Integer; virtual;
-        function getImage: TImage; virtual;
-  end;
+  function PlatformBitmapBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlatformBitmapBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlatformBitmapBase)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullImage, BasicColorFactory;
+  function PlatformBitmapBase_jstatic_NULL_PLATFORM_BITMAP_BASE() result(jresult)
+    class(PlatformBitmapBase), pointer :: jresult
+    if (.not. PlatformBitmapBase_jset_NULL_PLATFORM_BITMAP_BASE) then
+      PlatformBitmapBase_jset_NULL_PLATFORM_BITMAP_BASE = .true.
+      PlatformBitmapBase_jcell_NULL_PLATFORM_BITMAP_BASE => PlatformBitmapBase_jnew_0()
+    end if
+    jresult => PlatformBitmapBase_jcell_NULL_PLATFORM_BITMAP_BASE
+  end function
 
+  subroutine PlatformBitmapBase_jsetstatic_NULL_PLATFORM_BITMAP_BASE(jvalue)
+    class(PlatformBitmapBase), target, optional :: jvalue
+    PlatformBitmapBase_jset_NULL_PLATFORM_BITMAP_BASE = .true.
+    if (present(jvalue)) then
+      PlatformBitmapBase_jcell_NULL_PLATFORM_BITMAP_BASE => jvalue
+    else
+      PlatformBitmapBase_jcell_NULL_PLATFORM_BITMAP_BASE => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function PlatformBitmapBase_jnew_0() result(this)
+    class(PlatformBitmapBase), pointer :: this
+    class(BasicColorFactory), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'PlatformBitmapBase'
+    this%f_alpha = 255
+    jtemp1 => BasicColorFactory_jm_getInstance_0()
+    this%f_basicColor => jtemp1%f_NULL_COLOR
+  end function
 
-procedure TPlatformBitmapBase.InitFields;
-begin
-  Self.alpha := 255;
-  Self.basicColor := TBasicColorFactory.getInstance().NULL_COLOR;
-end;
+  recursive function PlatformBitmapBase_jm_getWidth_0(this) result(jresult)
+    class(PlatformBitmapBase), target :: this
+    integer(4) :: jresult
+        jresult = 0
+        return
+  end function
 
-constructor TPlatformBitmapBase.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function PlatformBitmapBase_jm_getHeight_0(this) result(jresult)
+    class(PlatformBitmapBase), target :: this
+    integer(4) :: jresult
+        jresult = 0
+        return
+  end function
 
-function TPlatformBitmapBase.getWidth: Integer;
-begin
-        Exit(0);
-end;
-    
-
-function TPlatformBitmapBase.getHeight: Integer;
-begin
-        Exit(0);
-end;
-    
-
-function TPlatformBitmapBase.getImage: TImage;
-begin
-        Exit(TNullImage.NULL_IMAGE);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPlatformBitmapBase.NULL_PLATFORM_BITMAP_BASE := TPlatformBitmapBase.Create();
-  {AB:END}
-
-end.
+  recursive function PlatformBitmapBase_jm_getImage_0(this) result(jresult)
+    class(PlatformBitmapBase), target :: this
+    class(Image), pointer :: jresult
+        jresult => NullImage_jstatic_NULL_IMAGE()
+        return
+  end function
+end module PlatformBitmapBase_m
 

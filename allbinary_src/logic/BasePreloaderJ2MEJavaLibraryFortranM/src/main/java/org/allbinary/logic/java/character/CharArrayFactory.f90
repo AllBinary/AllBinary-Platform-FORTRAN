@@ -47,6 +47,16 @@ contains
     jresult => CharArrayFactory_jcell_instance
   end function
 
+  subroutine CharArrayFactory_jsetstatic_instance(jvalue)
+    class(CharArrayFactory), target, optional :: jvalue
+    CharArrayFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      CharArrayFactory_jcell_instance => jvalue
+    else
+      CharArrayFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function CharArrayFactory_jnew_0() result(this)
     class(CharArrayFactory), pointer :: this
     allocate(this)

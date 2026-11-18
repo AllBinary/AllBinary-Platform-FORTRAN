@@ -1,95 +1,115 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.graphics.hud
+module HudGraphicsPosition_m
+  use JR_m
+  use GPoint_m
+  use PointFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.graphics.hud
-unit HudGraphicsPosition;
+  type, extends(JObject) :: HudGraphicsPosition
+    integer(4) :: f_anchor = 0
+    class(GPoint), pointer :: f_point => null()
+  contains
+    procedure :: jm_getAnchor_0 => HudGraphicsPosition_jm_getAnchor_0
+    procedure :: jm_setAnchor_1 => HudGraphicsPosition_jm_setAnchor_1
+    procedure :: jm_getPoint_0 => HudGraphicsPosition_jm_getPoint_0
+    procedure :: jm_setPoint_1 => HudGraphicsPosition_jm_setPoint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(HudGraphicsPosition), pointer, save :: HudGraphicsPosition_jcell_NULL_HUD_GRAPHICS_POSITION => null()
+  logical, save :: HudGraphicsPosition_jset_NULL_HUD_GRAPHICS_POSITION = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GPoint;
+  function HudGraphicsPosition_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HudGraphicsPosition), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HudGraphicsPosition)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  THudGraphicsPosition = class(TObject)
-  public
-    anchor: Integer;
-    point: TGPoint;
-    class var NULL_HUD_GRAPHICS_POSITION: THudGraphicsPosition;
-    procedure InitFields;
-        constructor Create(point: TGPoint; anchor: Integer);
-        function getAnchor: Integer; virtual;
-        procedure setAnchor(anchor: Integer);
-        function getPoint: TGPoint; virtual;
-        procedure setPoint(point: TGPoint); virtual;
-  end;
+  function HudGraphicsPosition_jstatic_NULL_HUD_GRAPHICS_POSITION() result(jresult)
+    class(HudGraphicsPosition), pointer :: jresult
+    class(PointFactory), pointer :: jtemp1
+    if (.not. HudGraphicsPosition_jset_NULL_HUD_GRAPHICS_POSITION) then
+      HudGraphicsPosition_jset_NULL_HUD_GRAPHICS_POSITION = .true.
+      jtemp1 => PointFactory_jm_getInstance_0()
+    HudGraphicsPosition_jcell_NULL_HUD_GRAPHICS_POSITION => HudGraphicsPosition_jnew_2(jtemp1%f_ZERO_ZERO, 9)
+    end if
+    jresult => HudGraphicsPosition_jcell_NULL_HUD_GRAPHICS_POSITION
+  end function
 
-implementation
-uses
-  PointFactory;
+  subroutine HudGraphicsPosition_jsetstatic_NULL_HUD_GRAPHICS_POSITION(jvalue)
+    class(HudGraphicsPosition), target, optional :: jvalue
+    HudGraphicsPosition_jset_NULL_HUD_GRAPHICS_POSITION = .true.
+    if (present(jvalue)) then
+      HudGraphicsPosition_jcell_NULL_HUD_GRAPHICS_POSITION => jvalue
+    else
+      HudGraphicsPosition_jcell_NULL_HUD_GRAPHICS_POSITION => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure THudGraphicsPosition.InitFields;
-begin
-  
-  Self.point := TPointFactory.getInstance().ZERO_ZERO;
-end;
+  recursive function HudGraphicsPosition_jnew_2(j_point, j_anchor) result(this)
+    class(GPoint), target, optional :: j_point
+    integer(4), value :: j_anchor
+    class(HudGraphicsPosition), pointer :: this
+    class(PointFactory), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'HudGraphicsPosition'
     
+    jtemp2 => PointFactory_jm_getInstance_0()
+    this%f_point => jtemp2%f_ZERO_ZERO
+        call this%jm_setAnchor_1(j_anchor)
+        call this%jm_setPoint_1(j_point)
+  end function
 
-constructor THudGraphicsPosition.Create(point: TGPoint; anchor: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.setAnchor(anchor);
-        Self.setPoint(point);
-end;
-    
+  recursive function HudGraphicsPosition_jm_getAnchor_0(this) result(jresult)
+    class(HudGraphicsPosition), target :: this
+    integer(4) :: jresult
+        jresult = this%f_anchor
+        return
+  end function
 
-function THudGraphicsPosition.getAnchor: Integer;
-begin
-        Exit(Self.anchor);
-end;
-    
+  recursive subroutine HudGraphicsPosition_jm_setAnchor_1(this, j_anchor)
+    class(HudGraphicsPosition), target :: this
+    integer(4), value :: j_anchor
+        this%f_anchor = j_anchor
+  end subroutine
 
-procedure THudGraphicsPosition.setAnchor(anchor: Integer);
-begin
-        Self.anchor := anchor;
-end;
-    
+  recursive function HudGraphicsPosition_jm_getPoint_0(this) result(jresult)
+    class(HudGraphicsPosition), target :: this
+    class(GPoint), pointer :: jresult
+        jresult => this%f_point
+        return
+  end function
 
-function THudGraphicsPosition.getPoint: TGPoint;
-begin
-        Exit(Self.point);
-end;
-    
-
-procedure THudGraphicsPosition.setPoint(point: TGPoint);
-begin
-        Self.point := point;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  THudGraphicsPosition.NULL_HUD_GRAPHICS_POSITION := THudGraphicsPosition.Create(TPointFactory.getInstance().ZERO_ZERO, 9);
-  {AB:END}
-
-end.
+  recursive subroutine HudGraphicsPosition_jm_setPoint_1(this, j_point)
+    class(HudGraphicsPosition), target :: this
+    class(GPoint), target, optional :: j_point
+        this%f_point => j_point
+  end subroutine
+end module HudGraphicsPosition_m
 

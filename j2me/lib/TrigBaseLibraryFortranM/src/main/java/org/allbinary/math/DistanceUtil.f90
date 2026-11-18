@@ -48,6 +48,16 @@ contains
     jresult => DistanceUtil_jcell_instance
   end function
 
+  subroutine DistanceUtil_jsetstatic_instance(jvalue)
+    class(DistanceUtil), target, optional :: jvalue
+    DistanceUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      DistanceUtil_jcell_instance => jvalue
+    else
+      DistanceUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function DistanceUtil_jnew_0() result(this)
     class(DistanceUtil), pointer :: this
     allocate(this)

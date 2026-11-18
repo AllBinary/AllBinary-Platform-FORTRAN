@@ -48,6 +48,16 @@ contains
     jresult => ABSystemWrapper_jcell_instance
   end function
 
+  subroutine ABSystemWrapper_jsetstatic_instance(jvalue)
+    class(ABSystemWrapper), target, optional :: jvalue
+    ABSystemWrapper_jset_instance = .true.
+    if (present(jvalue)) then
+      ABSystemWrapper_jcell_instance => jvalue
+    else
+      ABSystemWrapper_jcell_instance => null()
+    end if
+  end subroutine
+
   function ABSystemWrapper_jnew_0() result(this)
     class(ABSystemWrapper), pointer :: this
     allocate(this)

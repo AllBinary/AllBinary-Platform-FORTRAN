@@ -1,67 +1,72 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.ai.scroller
+module TerrainPatrolAIFactory_m
+  use JR_m
+  use ArtificialIntelligenceInterface_m
+  use ArtificialIntelligenceInterfaceFactoryInterface_m
+  use GameInput_m
+  use AllBinaryLayer_m
+  use SmallIntegerSingletonFactory_m
+  use ABHashtable_m
+  use BasePatrolAI_m
+  use TerrainPatrolAI_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.ai.scroller
-unit TerrainPatrolAIFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ArtificialIntelligenceInterface, ArtificialIntelligenceInterfaceFactoryInterface, GameInput, AllBinaryLayer, ABHashtable;
-
-type
-  {AB:TYPES}
-  TTerrainPatrolAIFactory = class(TInterfacedObject, IArtificialIntelligenceInterfaceFactoryInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        function getInstance(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput): IArtificialIntelligenceInterface; virtual;
-  end;
-
-implementation
-uses
-  BasePatrolAI, TerrainPatrolAI, SmallIntegerSingletonFactory;
+  type, extends(ArtificialIntelligenceInterfaceFactoryInterface) :: TerrainPatrolAIFactory
+  contains
+    procedure :: jm_getInstance_3 => TerrainPatrolAIFactory_jm_getInstance_3
+  end type
 
 
-{AB:CODE}
+contains
 
-function TTerrainPatrolAIFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function TerrainPatrolAIFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TerrainPatrolAIFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TerrainPatrolAIFactory)
+      jresult => object
+    end select
+  end function
 
-constructor TTerrainPatrolAIFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function TerrainPatrolAIFactory_jnew_0() result(this)
+    class(TerrainPatrolAIFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'TerrainPatrolAIFactory'
+  end function
 
-// throws Exception
-function TTerrainPatrolAIFactory.getInstance(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput): IArtificialIntelligenceInterface;
-begin
-        hashtable.put(TJava.Box(TBasePatrolAI.MAX_DISTANCE), TJava.Box(TSmallIntegerSingletonFactory.getInstance().getAt(220)));
-        Exit(TTerrainPatrolAI.Create(hashtable, ownerLayerInterface, gameInput_));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function TerrainPatrolAIFactory_jm_getInstance_3(this, j_hashtable, j_ownerLayerInterface, j_gameInput) result(jresult)
+    class(TerrainPatrolAIFactory), target :: this
+    class(ABHashtable), target, optional :: j_hashtable
+    class(AllBinaryLayer), target, optional :: j_ownerLayerInterface
+    class(GameInput), target, optional :: j_gameInput
+    class(ArtificialIntelligenceInterface), pointer :: jresult
+    class(SmallIntegerSingletonFactory), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => SmallIntegerSingletonFactory_jm_getInstance_0()
+        jdiscardRef => j_hashtable%jm_put_2(BasePatrolAI_jstatic_MAX_DISTANCE(), jtemp1%jm_getAt_1(220))
+        jresult => TerrainPatrolAI_jnew_3(j_hashtable, j_ownerLayerInterface, j_gameInput)
+        return
+  end function
+end module TerrainPatrolAIFactory_m
 

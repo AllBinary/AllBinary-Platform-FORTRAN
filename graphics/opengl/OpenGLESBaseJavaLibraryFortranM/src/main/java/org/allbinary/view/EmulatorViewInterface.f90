@@ -1,32 +1,52 @@
-// Generated Code Do Not Modify
-// package org.allbinary.view
-unit EmulatorViewInterface;
+! Generated Code Do Not Modify
+! package org.allbinary.view
+module EmulatorViewInterface_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: EmulatorViewInterface
+  contains
+    procedure :: jm_setMidlet_1 => EmulatorViewInterface_jm_setMidlet_1
+    procedure :: jm_onEmulatorInitComplete_1 => EmulatorViewInterface_jm_onEmulatorInitComplete_1
+    procedure :: jm_onSetDisplayable_1 => EmulatorViewInterface_jm_onSetDisplayable_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Displayable, MIDlet;
+contains
 
-type
-  {AB:TYPES}
-  IEmulatorViewInterface = interface(IJavaObject) ['IEmulatorViewInterface']
-        procedure setMidlet(midlet_: TMIDlet);
-        procedure onEmulatorInitComplete(midletActivity: TObject);
-        procedure onSetDisplayable(displayable_: TDisplayable);
-  end;
-  TEmulatorViewInterface = IEmulatorViewInterface;
+  function EmulatorViewInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(EmulatorViewInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (EmulatorViewInterface)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function EmulatorViewInterface_jnew_0() result(this)
+    class(EmulatorViewInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'EmulatorViewInterface'
+  end function
 
-{AB:CODE}
+  recursive subroutine EmulatorViewInterface_jm_setMidlet_1(this, j_midlet)
+    class(EmulatorViewInterface), target :: this
+    class(MIDlet), target, optional :: j_midlet
+    error stop 'AbstractMethodError: EmulatorViewInterface.setMidlet'
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine EmulatorViewInterface_jm_onEmulatorInitComplete_1(this, j_midletActivity)
+    class(EmulatorViewInterface), target :: this
+    class(JObject), target, optional :: j_midletActivity
+    error stop 'AbstractMethodError: EmulatorViewInterface.onEmulatorInitComplete'
+  end subroutine
 
-end.
+  recursive subroutine EmulatorViewInterface_jm_onSetDisplayable_1(this, j_displayable)
+    class(EmulatorViewInterface), target :: this
+    class(Displayable), target, optional :: j_displayable
+    error stop 'AbstractMethodError: EmulatorViewInterface.onSetDisplayable'
+  end subroutine
+end module EmulatorViewInterface_m
 

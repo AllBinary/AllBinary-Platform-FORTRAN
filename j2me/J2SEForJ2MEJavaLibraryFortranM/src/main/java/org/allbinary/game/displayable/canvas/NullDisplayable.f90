@@ -1,64 +1,84 @@
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit NullDisplayable;
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module NullDisplayable_m
+  use JR_m
+  use BaseGameStatistics_m
+  use GameStatisticsFactory_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(Canvas) :: NullDisplayable
+    class(BaseGameStatistics), pointer :: f_baseGameStatistics => null()
+  contains
+    procedure :: jm_paint_1 => NullDisplayable_jm_paint_1
+  end type
 
-interface
+  class(NullDisplayable), pointer, save :: NullDisplayable_jcell_SINGLETON => null()
+  logical, save :: NullDisplayable_jset_SINGLETON = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Canvas, Graphics, BaseGameStatistics;
+contains
 
-type
-  {AB:TYPES}
-  // J2SEForJ2ME
-  TNullDisplayable = class(TCanvas)
-  public
-    baseGameStatistics: TBaseGameStatistics;
-    class var SINGLETON: TNullDisplayable;
-    procedure InitFields;
-        class function getInstance: TNullDisplayable; static;
-        constructor Create;
-        procedure paint(graphics_: TGraphics); override;
-  end;
+  function NullDisplayable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullDisplayable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullDisplayable)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  GameStatisticsFactory;
+  function NullDisplayable_jstatic_SINGLETON() result(jresult)
+    class(NullDisplayable), pointer :: jresult
+    if (.not. NullDisplayable_jset_SINGLETON) then
+      NullDisplayable_jset_SINGLETON = .true.
+      NullDisplayable_jcell_SINGLETON => NullDisplayable_jnew_0()
+    end if
+    jresult => NullDisplayable_jcell_SINGLETON
+  end function
 
+  subroutine NullDisplayable_jsetstatic_SINGLETON(jvalue)
+    class(NullDisplayable), target, optional :: jvalue
+    NullDisplayable_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      NullDisplayable_jcell_SINGLETON => jvalue
+    else
+      NullDisplayable_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function NullDisplayable_jnew_0() result(this)
+    class(NullDisplayable), pointer :: this
+    allocate(this)
+    this%jclass = 'NullDisplayable'
+    this%f_baseGameStatistics => GameStatisticsFactory_jm_getInstance_0()
+        continue
+  end function
 
-procedure TNullDisplayable.InitFields;
-begin
-  Self.baseGameStatistics := TGameStatisticsFactory.getInstance();
-end;
-    
+  recursive function NullDisplayable_jm_getInstance_0() result(jresult)
+    class(NullDisplayable), pointer :: jresult
+        jresult => NullDisplayable_jstatic_SINGLETON()
+        return
+  end function
 
-class function TNullDisplayable.getInstance: TNullDisplayable;
-begin
-        Exit(TNullDisplayable.SINGLETON);
-end;
-    
+  recursive subroutine NullDisplayable_jm_paint_1(this, j_graphics)
+    class(NullDisplayable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_baseGameStatistics%jm_nextRefresh_0()
+  end subroutine
+end module NullDisplayable_m
 
-constructor TNullDisplayable.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-procedure TNullDisplayable.paint(graphics_: TGraphics);
-begin
-        Self.baseGameStatistics.nextRefresh();
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullDisplayable.SINGLETON := TNullDisplayable.Create();
-  {AB:END}
-
-end.
+function NullDisplayable_jnew_0_jext() result(this)
+  use NullDisplayable_m, only: JObject, NullDisplayable_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NullDisplayable_jnew_0()
+end function
 

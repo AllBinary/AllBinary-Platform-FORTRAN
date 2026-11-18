@@ -1,175 +1,238 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module UpKeyEventHandlerBase_m
+  use JR_m
+  use PlayerGameInput_m
+  use StringMaker_m
+  use EventListenerInterface_m
+  use EventStrings_m
+  use BasicEventHandler_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use Integer_m
+  use UpKeyEventListenerInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit UpKeyEventHandlerBase;
+  type, extends(BasicEventHandler) :: UpKeyEventHandlerBase
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_addListener_1 => UpKeyEventHandlerBase_jm_addListener_1
+    procedure :: jm_removeAllListeners_0 => UpKeyEventHandlerBase_jm_removeAllListeners_0
+    procedure :: jm_removeListenerSingleThreaded_1 => UpKeyEventHandlerBase_jm_removeListenerSingleThreaded_1
+    procedure :: jm_removeListener_1 => UpKeyEventHandlerBase_jm_removeListener_1
+    procedure :: jm_fireEventForInteger_1 => UpKeyEventHandlerBase_jm_fireEventForInteger_1
+    procedure :: jm_processForInteger_2 => UpKeyEventHandlerBase_jm_processForInteger_2
+    procedure :: jm_toString_0 => UpKeyEventHandlerBase_jm_toString_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  character(len=:), allocatable, save :: UpKeyEventHandlerBase_jcell_TOTAL_LISTENERS
+  logical, save :: UpKeyEventHandlerBase_jset_TOTAL_LISTENERS = .false.
+  character(len=:), allocatable, save :: UpKeyEventHandlerBase_jcell_LISTENER_LABEL
+  logical, save :: UpKeyEventHandlerBase_jset_LISTENER_LABEL = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PlayerGameInput, EventListenerInterface, BasicEventHandler, BasicArrayList;
+  function UpKeyEventHandlerBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(UpKeyEventHandlerBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (UpKeyEventHandlerBase)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TUpKeyEventHandlerBase = class(TBasicEventHandler)
-  public
-    list: TBasicArrayList;
-    class var TOTAL_LISTENERS: string;
-    class var LISTENER_LABEL: string;
-    procedure InitFields;
-        constructor Create;
-        procedure addListener(playerGameInput_: TPlayerGameInput); virtual;
-        procedure removeAllListeners; override;
-        procedure removeListenerSingleThreaded(eventListenerInterface_: IEventListenerInterface); override;
-        procedure removeListener(eventListenerInterface_: IEventListenerInterface); override;
-        procedure fireEventForInteger(eventObject: Integer); virtual;
-        procedure processForInteger(eventObject: Integer; eventListenerInterface_: IEventListenerInterface); virtual;
-        function toString: string; override;
-  end;
+  function UpKeyEventHandlerBase_jstatic_TOTAL_LISTENERS() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. UpKeyEventHandlerBase_jset_TOTAL_LISTENERS) then
+      UpKeyEventHandlerBase_jset_TOTAL_LISTENERS = .true.
+      UpKeyEventHandlerBase_jcell_TOTAL_LISTENERS = ' Total PlayerGameInput Listeners: '
+    end if
+    jresult = UpKeyEventHandlerBase_jcell_TOTAL_LISTENERS
+  end function
 
-implementation
-uses
-  UpKeyEventListenerInterface, StringMaker, EventStrings, BasicArrayListD;
+  subroutine UpKeyEventHandlerBase_jsetstatic_TOTAL_LISTENERS(jvalue)
+    character(len=*), intent(in) :: jvalue
+    UpKeyEventHandlerBase_jset_TOTAL_LISTENERS = .true.
+    UpKeyEventHandlerBase_jcell_TOTAL_LISTENERS = jvalue
+  end subroutine
 
+  function UpKeyEventHandlerBase_jstatic_LISTENER_LABEL() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. UpKeyEventHandlerBase_jset_LISTENER_LABEL) then
+      UpKeyEventHandlerBase_jset_LISTENER_LABEL = .true.
+      UpKeyEventHandlerBase_jcell_LISTENER_LABEL = ' PlayerGameInput Listener: '
+    end if
+    jresult = UpKeyEventHandlerBase_jcell_LISTENER_LABEL
+  end function
 
-{AB:CODE}
+  subroutine UpKeyEventHandlerBase_jsetstatic_LISTENER_LABEL(jvalue)
+    character(len=*), intent(in) :: jvalue
+    UpKeyEventHandlerBase_jset_LISTENER_LABEL = .true.
+    UpKeyEventHandlerBase_jcell_LISTENER_LABEL = jvalue
+  end subroutine
 
-procedure TUpKeyEventHandlerBase.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
-    
+  recursive function UpKeyEventHandlerBase_jnew_0() result(this)
+    class(UpKeyEventHandlerBase), pointer :: this
+    allocate(this)
+    this%jclass = 'UpKeyEventHandlerBase'
+    this%f_list => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-constructor TUpKeyEventHandlerBase.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_addListener_1(this, j_playerGameInput)
+    class(UpKeyEventHandlerBase), target :: this
+    class(PlayerGameInput), target, optional :: j_playerGameInput
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_list%jm_contains_1(j_playerGameInput))) then
+            jdiscardBoolean = this%f_list%jm_add_1(j_playerGameInput)
+        end if
+  end subroutine
 
-procedure TUpKeyEventHandlerBase.addListener(playerGameInput_: TPlayerGameInput);
-begin
-        if not (Self.list.contains(TJava.Box(playerGameInput_))) then begin
-            Self.list.add(TJava.Box(playerGameInput_));
-        end;
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_removeAllListeners_0(this)
+    class(UpKeyEventHandlerBase), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_list%jm_clear_0()
+        call this%BasicEventHandler%jm_removeAllListeners_0()
+  end subroutine
 
-procedure TUpKeyEventHandlerBase.removeAllListeners;
-begin
-        Self.list.clear();
-        inherited removeAllListeners();
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_removeListenerSingleThreaded_1(this, j_eventListenerInterface)
+    class(UpKeyEventHandlerBase), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListenerSingleThreaded_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TUpKeyEventHandlerBase.removeListenerSingleThreaded(eventListenerInterface_: IEventListenerInterface);
-begin
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListenerSingleThreaded(eventListenerInterface_);
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_removeListener_1(this, j_eventListenerInterface)
+    class(UpKeyEventHandlerBase), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListener_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TUpKeyEventHandlerBase.removeListener(eventListenerInterface_: IEventListenerInterface);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListener(eventListenerInterface_);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_fireEventForInteger_1(this, j_eventObject)
+    class(UpKeyEventHandlerBase), target :: this
+    integer(4), value :: j_eventObject
+    class(PlayerGameInput), pointer :: j_playerGameInput
+    integer(4) :: j_index
+    class(EventListenerInterface), pointer :: j_eventListenerInterface
+    class(EventStrings), pointer :: jtemp1
+    integer(4) :: jtemp2
+    class(EventStrings), pointer :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = this%f_list%jm_size_0()
+        do while ((jtemp2 >= 0))
+            continue ! try
+                j_playerGameInput => PlayerGameInput_jcast(this%f_list%f_objectArray((j_index) + 1)%v)
+                call j_playerGameInput%jm_onUpKeyEvent_1(j_eventObject)
+        end do
+        j_index = 0
+        continue
+        do while ((j_index < this%f_eventListenerInterfaceList%jm_size_0()))
+            continue ! try
+                j_eventListenerInterface => EventListenerInterface_jcast(this%f_eventListenerInterfaceList%jm_get_1(j_index))
+                call this%jm_processForInteger_2(j_eventObject, j_eventListenerInterface)
+            j_index = j_index + 1
+        end do
+  end subroutine
 
-// throws Exception
-procedure TUpKeyEventHandlerBase.fireEventForInteger(eventObject: Integer);
-var
-  playerGameInput_: TPlayerGameInput;
-  index: Integer;
-  eventListenerInterface_: IEventListenerInterface;
-begin
-        index := Self.list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            try
-                playerGameInput_ := TPlayerGameInput(TJava.ToObject(Self.list.objectArray[index]));
-                playerGameInput_.onUpKeyEvent(eventObject);
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-        end;
-        index := 0;
-        
-        while (index) < (Self.eventListenerInterfaceList.size()) do begin
-            try
-                eventListenerInterface_ := (TJava.ToObject(Self.eventListenerInterfaceList.get(index)) as IEventListenerInterface);
-                Self.processForInteger(eventObject, eventListenerInterface_);
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-            Inc(index);
-        end;
-end;
-    
+  recursive subroutine UpKeyEventHandlerBase_jm_processForInteger_2(this, j_eventObject, j_eventListenerInterface)
+    class(UpKeyEventHandlerBase), target :: this
+    integer(4), value :: j_eventObject
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(UpKeyEventListenerInterface), pointer :: j_upKeyEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_upKeyEventListenerInterface => UpKeyEventListenerInterface_jcast(j_eventListenerInterface)
+        call j_upKeyEventListenerInterface%jm_onUpKeyEvent_1(j_eventObject)
+  end subroutine
 
-// throws Exception
-procedure TUpKeyEventHandlerBase.processForInteger(eventObject: Integer; eventListenerInterface_: IEventListenerInterface);
-var
-  upKeyEventListenerInterface_: IUpKeyEventListenerInterface;
-begin
-        upKeyEventListenerInterface_ := (TJava.ToObject(eventListenerInterface_) as IUpKeyEventListenerInterface);
-        upKeyEventListenerInterface_.onUpKeyEvent(eventObject);
-end;
-    
+  recursive function UpKeyEventHandlerBase_jm_toString_0(this) result(jresult)
+    class(UpKeyEventHandlerBase), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(EventListenerInterface), pointer :: j_eventListenerInterface
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(this%BasicEventHandler%jm_toString_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(UpKeyEventHandlerBase_jstatic_TOTAL_LISTENERS())
+        jdiscardRef => j_stringBuffer%jm_appendint_1(this%f_list%jm_size_0())
+        j_index = 0
+        do while ((j_index < this%f_list%jm_size_0()))
+            continue ! try
+                j_eventListenerInterface => EventListenerInterface_jcast(this%f_list%jm_get_1(j_index))
+                jdiscardRef => j_stringBuffer%jm_append_1(UpKeyEventHandlerBase_jstatic_LISTENER_LABEL())
+                jdiscardRef => j_stringBuffer%jm_append_1(j_eventListenerInterface%jm_toString_0())
+            j_index = j_index + 1
+        end do
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module UpKeyEventHandlerBase_m
 
-function TUpKeyEventHandlerBase.toString: string;
-var
-  stringBuffer: TStringMaker;
-  eventListenerInterface_: IEventListenerInterface;
-  index: Integer;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append(inherited toString());
-        stringBuffer.append(TUpKeyEventHandlerBase.TOTAL_LISTENERS);
-        stringBuffer.appendint(Self.list.size());
-        for index := 0 to Self.list.size() - 1 do begin
-            try
-                eventListenerInterface_ := (TJava.ToObject(Self.list.get(index)) as IEventListenerInterface);
-                stringBuffer.append(TUpKeyEventHandlerBase.LISTENER_LABEL);
-                stringBuffer.append(TJava.ToString(TJava.ToObject(eventListenerInterface_)));
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), Self.commonStrings.TOSTRING, TJava.Box(e));
-                end;
-            end;
-        end;
-        Exit(stringBuffer.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TUpKeyEventHandlerBase.TOTAL_LISTENERS := ' Total PlayerGameInput Listeners: ';
-  TUpKeyEventHandlerBase.LISTENER_LABEL := ' PlayerGameInput Listener: ';
-  {AB:END}
-
-end.
+function UpKeyEventHandlerBase_jnew_0_jext() result(this)
+  use UpKeyEventHandlerBase_m, only: JObject, UpKeyEventHandlerBase_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => UpKeyEventHandlerBase_jnew_0()
+end function
 

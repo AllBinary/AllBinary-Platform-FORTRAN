@@ -1,44 +1,51 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.health
+module HealthVisitorInterface_m
+  use JR_m
+  use HealthInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.health
-unit HealthVisitorInterface;
+  type, extends(JObject) :: HealthVisitorInterface
+  contains
+    procedure :: jm_visit_1 => HealthVisitorInterface_jm_visit_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, HealthInterface;
+  function HealthVisitorInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HealthVisitorInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HealthVisitorInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IHealthVisitorInterface = interface(IJavaObject) ['IHealthVisitorInterface']
-        procedure visit(healthInterface_: IHealthInterface);
-  end;
-  THealthVisitorInterface = IHealthVisitorInterface;
+  function HealthVisitorInterface_jnew_0() result(this)
+    class(HealthVisitorInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'HealthVisitorInterface'
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine HealthVisitorInterface_jm_visit_1(this, j_healthInterface)
+    class(HealthVisitorInterface), target :: this
+    class(HealthInterface), target, optional :: j_healthInterface
+    error stop 'AbstractMethodError: HealthVisitorInterface.visit'
+  end subroutine
+end module HealthVisitorInterface_m
 

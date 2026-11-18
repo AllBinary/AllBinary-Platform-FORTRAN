@@ -1,243 +1,435 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.physics.velocity
+module VelocityProperties_m
+  use JR_m
+  use BasicVelocityProperties_m
+  use VelocityInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.physics.velocity
-unit VelocityProperties;
+  type, extends(BasicVelocityProperties) :: VelocityProperties
+    integer(4) :: f_maxForwardVelocity = 0
+    integer(4) :: f_maxReverseVelocity = 0
+  contains
+    procedure :: jm_getMaxForwardVelocity_0 => VelocityProperties_jm_getMaxForwardVelocity_0
+    procedure :: jm_setMaxForwardVelocity_1 => VelocityProperties_jm_setMaxForwardVelocity_1
+    procedure :: jm_getMaxReverseVelocity_0 => VelocityProperties_jm_getMaxReverseVelocity_0
+    procedure :: jm_setMaxReverseVelocity_1 => VelocityProperties_jm_setMaxReverseVelocity_1
+    procedure :: jm_limitMaxXYForwardVelocity_0 => VelocityProperties_jm_limitMaxXYForwardVelocity_0
+    procedure :: jm_limitMaxXYReverseVelocity_0 => VelocityProperties_jm_limitMaxXYReverseVelocity_0
+    procedure :: jm_limitMaxYForwardVelocity_0 => VelocityProperties_jm_limitMaxYForwardVelocity_0
+    procedure :: jm_limitMaxYReverseVelocity_0 => VelocityProperties_jm_limitMaxYReverseVelocity_0
+    procedure :: jm_limitMaxXForwardVelocity_0 => VelocityProperties_jm_limitMaxXForwardVelocity_0
+    procedure :: jm_limitMaxXReverseVelocity_0 => VelocityProperties_jm_limitMaxXReverseVelocity_0
+    procedure :: jm_isOverXYMaxForwardVelocity_0 => VelocityProperties_jm_isOverXYMaxForwardVelocity_0
+    procedure :: jm_isOverXYMaxReverseVelocity_0 => VelocityProperties_jm_isOverXYMaxReverseVelocity_0
+    procedure :: jm_limitXYToForwardAndReverseMaxVelocity_0 => VelocityProperties_jm_limitXYToForwardAndReverseMaxVelocity_0
+    procedure :: jm_limitMaxXYVelocity_1 => VelocityProperties_jm_limitMaxXYVelocity_1
+    procedure :: jm_limitMaxPositiveYVelocity_1 => VelocityProperties_jm_limitMaxPositiveYVelocity_1
+    procedure :: jm_limitMaxNegativeYVelocity_1 => VelocityProperties_jm_limitMaxNegativeYVelocity_1
+    procedure :: jm_limitMaxYVelocity_1 => VelocityProperties_jm_limitMaxYVelocity_1
+    procedure :: jm_limitMaxXVelocity_1 => VelocityProperties_jm_limitMaxXVelocity_1
+    procedure :: jm_isOverXYMaxVelocity_1 => VelocityProperties_jm_isOverXYMaxVelocity_1
+    procedure :: jm_setVelocityi_3 => VelocityProperties_jm_setVelocityi_3
+    procedure :: jm_addVelocityi_3 => VelocityProperties_jm_addVelocityi_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! VelocityProperties used as a VelocityInterface
+  type, extends(VelocityInterface) :: VelocityProperties_jas_VelocityInterface
+    class(VelocityProperties), pointer :: jtarget => null()
+  contains
+    procedure :: jm_getMaxForwardVelocity_0 => VelocityProperties_jas_VelocityInterface_jm_getMaxForwardVelocity_0
+    procedure :: jm_setMaxForwardVelocity_1 => VelocityProperties_jas_VelocityInterface_jm_setMaxForwardVelocity_1
+    procedure :: jm_getMaxReverseVelocity_0 => VelocityProperties_jas_VelocityInterface_jm_getMaxReverseVelocity_0
+    procedure :: jm_setMaxReverseVelocity_1 => VelocityProperties_jas_VelocityInterface_jm_setMaxReverseVelocity_1
+    procedure :: jm_limitMaxXYForwardVelocity_0 => VelocityProperties_jas_VelocityInterface_jm_limitMaxXYForwardVelocity_0
+    procedure :: jm_limitMaxXYReverseVelocity_0 => VelocityProperties_jas_VelocityInterface_jm_limitMaxXYReverseVelocity_0
+    procedure :: jm_limitXYToForwardAndReverseMaxVelocity_0 => VelocityProperties_jas_VelocityInterface_jm_limitXYToForwardAndReverseMaxVelocity_0
+    procedure :: jm_limitMaxXYVelocity_1 => VelocityProperties_jas_VelocityInterface_jm_limitMaxXYVelocity_1
+  end type
 
-interface
+  class(VelocityProperties), pointer, save :: VelocityProperties_jcell_NULL_VELOCITY_PROPERTIES => null()
+  logical, save :: VelocityProperties_jset_NULL_VELOCITY_PROPERTIES = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicVelocityProperties, VelocityInterface, BasicVelocityInterface;
+contains
 
-type
-  {AB:TYPES}
-  TVelocityProperties = class(TBasicVelocityProperties, IVelocityInterface, IBasicVelocityInterface)
-  public
-    maxForwardVelocity: Integer;
-    maxReverseVelocity: Integer;
-    class var NULL_VELOCITY_PROPERTIES: TVelocityProperties;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(maxForwardVelocity: Integer; maxReverseVelocity: Integer);
-        function getMaxForwardVelocity: Integer; virtual;
-        procedure setMaxForwardVelocity(maxForwardVelocity: Integer); virtual;
-        function getMaxReverseVelocity: Integer; virtual;
-        procedure setMaxReverseVelocity(maxReverseVelocity: Integer); virtual;
-        procedure limitMaxXYForwardVelocity; virtual;
-        procedure limitMaxXYReverseVelocity; virtual;
-        procedure limitMaxYForwardVelocity; virtual;
-        procedure limitMaxYReverseVelocity; virtual;
-        procedure limitMaxXForwardVelocity; virtual;
-        procedure limitMaxXReverseVelocity; virtual;
-        function isOverXYMaxForwardVelocity: Boolean; virtual;
-        function isOverXYMaxReverseVelocity: Boolean; virtual;
-        procedure limitXYToForwardAndReverseMaxVelocity; virtual;
-        procedure limitMaxXYVelocity(maxVelocity: Integer); virtual;
-        procedure limitMaxPositiveYVelocity(maxVelocity: Integer); virtual;
-        procedure limitMaxNegativeYVelocity(maxVelocity: Integer); virtual;
-        procedure limitMaxYVelocity(maxVelocity: Integer); virtual;
-        procedure limitMaxXVelocity(maxVelocity: Integer); virtual;
-        function isOverXYMaxVelocity(maxVelocity: Integer): Boolean; virtual;
-        procedure setVelocityi(magnitude: Int64; angle: Integer; otherAngle: Integer); virtual;
-        procedure addVelocityi(magnitude: Int64; angle: Integer; otherAngle: Integer); virtual;
-  end;
+  function VelocityProperties_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(VelocityProperties), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (VelocityProperties)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function VelocityProperties_jas_VelocityInterface_jnew(object) result(jresult)
+    class(VelocityProperties), target :: object
+    class(VelocityProperties_jas_VelocityInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'VelocityProperties'
+    jresult%jtarget => object
+  end function
 
-{AB:CODE}
+  recursive function VelocityProperties_jas_VelocityInterface_jm_getMaxForwardVelocity_0(this) result(jresult)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    integer(4) :: jresult
+    jresult = this%jtarget%jm_getMaxForwardVelocity_0()
+  end function
 
-procedure TVelocityProperties.InitFields;
-begin
-  
-  
-end;
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_setMaxForwardVelocity_1(this, j_maxForwardVelocity)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    integer(4), value :: j_maxForwardVelocity
+    call this%jtarget%jm_setMaxForwardVelocity_1(j_maxForwardVelocity)
+  end subroutine
 
-function TVelocityProperties.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function VelocityProperties_jas_VelocityInterface_jm_getMaxReverseVelocity_0(this) result(jresult)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    integer(4) :: jresult
+    jresult = this%jtarget%jm_getMaxReverseVelocity_0()
+  end function
+
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_setMaxReverseVelocity_1(this, j_maxReverseVelocity)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    integer(4), value :: j_maxReverseVelocity
+    call this%jtarget%jm_setMaxReverseVelocity_1(j_maxReverseVelocity)
+  end subroutine
+
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_limitMaxXYForwardVelocity_0(this)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    call this%jtarget%jm_limitMaxXYForwardVelocity_0()
+  end subroutine
+
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_limitMaxXYReverseVelocity_0(this)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    call this%jtarget%jm_limitMaxXYReverseVelocity_0()
+  end subroutine
+
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_limitXYToForwardAndReverseMaxVelocity_0(this)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    call this%jtarget%jm_limitXYToForwardAndReverseMaxVelocity_0()
+  end subroutine
+
+  recursive subroutine VelocityProperties_jas_VelocityInterface_jm_limitMaxXYVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties_jas_VelocityInterface), target :: this
+    integer(4), value :: j_maxVelocity
+    call this%jtarget%jm_limitMaxXYVelocity_1(j_maxVelocity)
+  end subroutine
+
+  function VelocityProperties_jstatic_NULL_VELOCITY_PROPERTIES() result(jresult)
+    class(VelocityProperties), pointer :: jresult
+    if (.not. VelocityProperties_jset_NULL_VELOCITY_PROPERTIES) then
+      VelocityProperties_jset_NULL_VELOCITY_PROPERTIES = .true.
+      VelocityProperties_jcell_NULL_VELOCITY_PROPERTIES => VelocityProperties_jnew_2(0, 0)
+    end if
+    jresult => VelocityProperties_jcell_NULL_VELOCITY_PROPERTIES
+  end function
+
+  subroutine VelocityProperties_jsetstatic_NULL_VELOCITY_PROPERTIES(jvalue)
+    class(VelocityProperties), target, optional :: jvalue
+    VelocityProperties_jset_NULL_VELOCITY_PROPERTIES = .true.
+    if (present(jvalue)) then
+      VelocityProperties_jcell_NULL_VELOCITY_PROPERTIES => jvalue
+    else
+      VelocityProperties_jcell_NULL_VELOCITY_PROPERTIES => null()
+    end if
+  end subroutine
+
+  recursive function VelocityProperties_jnew_2(j_maxForwardVelocity, j_maxReverseVelocity) result(this)
+    integer(4), value :: j_maxForwardVelocity
+    integer(4), value :: j_maxReverseVelocity
+    class(VelocityProperties), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'VelocityProperties'
     
-
-constructor TVelocityProperties.Create(maxForwardVelocity: Integer; maxReverseVelocity: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.setMaxForwardVelocity(maxForwardVelocity);
-        Self.setMaxReverseVelocity(maxReverseVelocity);
-end;
     
+        call this%jm_setMaxForwardVelocity_1(j_maxForwardVelocity)
+        call this%jm_setMaxReverseVelocity_1(j_maxReverseVelocity)
+  end function
 
-function TVelocityProperties.getMaxForwardVelocity: Integer;
-begin
-        Exit(Self.maxForwardVelocity);
-end;
-    
+  recursive function VelocityProperties_jm_getMaxForwardVelocity_0(this) result(jresult)
+    class(VelocityProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_maxForwardVelocity
+        return
+  end function
 
-procedure TVelocityProperties.setMaxForwardVelocity(maxForwardVelocity: Integer);
-begin
-        Self.maxForwardVelocity := maxForwardVelocity;
-end;
-    
+  recursive subroutine VelocityProperties_jm_setMaxForwardVelocity_1(this, j_maxForwardVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxForwardVelocity
+        this%f_maxForwardVelocity = j_maxForwardVelocity
+  end subroutine
 
-function TVelocityProperties.getMaxReverseVelocity: Integer;
-begin
-        Exit(Self.maxReverseVelocity);
-end;
-    
+  recursive function VelocityProperties_jm_getMaxReverseVelocity_0(this) result(jresult)
+    class(VelocityProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_maxReverseVelocity
+        return
+  end function
 
-procedure TVelocityProperties.setMaxReverseVelocity(maxReverseVelocity: Integer);
-begin
-        Self.maxReverseVelocity := maxReverseVelocity;
-end;
-    
+  recursive subroutine VelocityProperties_jm_setMaxReverseVelocity_1(this, j_maxReverseVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxReverseVelocity
+        this%f_maxReverseVelocity = j_maxReverseVelocity
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXYForwardVelocity;
-begin
-        Self.limitMaxXYVelocity(Self.getMaxForwardVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXYForwardVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXYVelocity_1(this%jm_getMaxForwardVelocity_0())
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXYReverseVelocity;
-begin
-        Self.limitMaxXYVelocity(Self.getMaxReverseVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXYReverseVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXYVelocity_1(this%jm_getMaxReverseVelocity_0())
+  end subroutine
 
-procedure TVelocityProperties.limitMaxYForwardVelocity;
-begin
-        Self.limitMaxYVelocity(Self.getMaxForwardVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxYForwardVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxYVelocity_1(this%jm_getMaxForwardVelocity_0())
+  end subroutine
 
-procedure TVelocityProperties.limitMaxYReverseVelocity;
-begin
-        Self.limitMaxYVelocity(Self.getMaxReverseVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxYReverseVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxYVelocity_1(this%jm_getMaxReverseVelocity_0())
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXForwardVelocity;
-begin
-        Self.limitMaxXVelocity(Self.getMaxForwardVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXForwardVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXVelocity_1(this%jm_getMaxForwardVelocity_0())
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXReverseVelocity;
-begin
-        Self.limitMaxXVelocity(Self.getMaxReverseVelocity());
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXReverseVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXVelocity_1(this%jm_getMaxReverseVelocity_0())
+  end subroutine
 
-function TVelocityProperties.isOverXYMaxForwardVelocity: Boolean;
-begin
-        Exit(Self.isOverXYMaxVelocity(Self.getMaxForwardVelocity()));
-end;
-    
+  recursive function VelocityProperties_jm_isOverXYMaxForwardVelocity_0(this) result(jresult)
+    class(VelocityProperties), target :: this
+    logical :: jresult
+        jresult = this%jm_isOverXYMaxVelocity_1(this%jm_getMaxForwardVelocity_0())
+        return
+  end function
 
-function TVelocityProperties.isOverXYMaxReverseVelocity: Boolean;
-begin
-        Exit(Self.isOverXYMaxVelocity(Self.getMaxReverseVelocity()));
-end;
-    
+  recursive function VelocityProperties_jm_isOverXYMaxReverseVelocity_0(this) result(jresult)
+    class(VelocityProperties), target :: this
+    logical :: jresult
+        jresult = this%jm_isOverXYMaxVelocity_1(this%jm_getMaxReverseVelocity_0())
+        return
+  end function
 
-procedure TVelocityProperties.limitXYToForwardAndReverseMaxVelocity;
-begin
-        Self.limitMaxXYForwardVelocity();
-        Self.limitMaxXYReverseVelocity();
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitXYToForwardAndReverseMaxVelocity_0(this)
+    class(VelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXYForwardVelocity_0()
+        call this%jm_limitMaxXYReverseVelocity_0()
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXYVelocity(maxVelocity: Integer);
-begin
-        Self.limitMaxXVelocity(maxVelocity);
-        Self.limitMaxYVelocity(maxVelocity);
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXYVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxXVelocity_1(j_maxVelocity)
+        call this%jm_limitMaxYVelocity_1(j_maxVelocity)
+  end subroutine
 
-procedure TVelocityProperties.limitMaxPositiveYVelocity(maxVelocity: Integer);
-begin
-        if (Self.velocityYBasicDecimal.getUnscaled()) > (maxVelocity) then begin
-            Self.velocityYBasicDecimal.setint(maxVelocity);
-        end;
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxPositiveYVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_velocityYBasicDecimal%jm_getUnscaled_0() > int(j_maxVelocity, 8))) then
+            call this%f_velocityYBasicDecimal%jm_setint_1(j_maxVelocity)
+        end if
+  end subroutine
 
-procedure TVelocityProperties.limitMaxNegativeYVelocity(maxVelocity: Integer);
-begin
-        if (Self.velocityYBasicDecimal.getUnscaled()) < (-maxVelocity) then begin
-            Self.velocityYBasicDecimal.setint(-maxVelocity);
-        end;
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxNegativeYVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_velocityYBasicDecimal%jm_getUnscaled_0() < int((-j_maxVelocity), 8))) then
+            call this%f_velocityYBasicDecimal%jm_setint_1((-j_maxVelocity))
+        end if
+  end subroutine
 
-procedure TVelocityProperties.limitMaxYVelocity(maxVelocity: Integer);
-begin
-        Self.limitMaxPositiveYVelocity(maxVelocity);
-        Self.limitMaxNegativeYVelocity(maxVelocity);
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxYVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_limitMaxPositiveYVelocity_1(j_maxVelocity)
+        call this%jm_limitMaxNegativeYVelocity_1(j_maxVelocity)
+  end subroutine
 
-procedure TVelocityProperties.limitMaxXVelocity(maxVelocity: Integer);
-begin
-        if (Self.velocityXBasicDecimal.getUnscaled()) > (maxVelocity) then begin
-            Self.velocityXBasicDecimal.setint(maxVelocity);
-        end;
-        if (Self.velocityXBasicDecimal.getUnscaled()) < (-maxVelocity) then begin
-            Self.velocityXBasicDecimal.setint(-maxVelocity);
-        end;
-end;
-    
+  recursive subroutine VelocityProperties_jm_limitMaxXVelocity_1(this, j_maxVelocity)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_velocityXBasicDecimal%jm_getUnscaled_0() > int(j_maxVelocity, 8))) then
+            call this%f_velocityXBasicDecimal%jm_setint_1(j_maxVelocity)
+        end if
+        if ((this%f_velocityXBasicDecimal%jm_getUnscaled_0() < int((-j_maxVelocity), 8))) then
+            call this%f_velocityXBasicDecimal%jm_setint_1((-j_maxVelocity))
+        end if
+  end subroutine
 
-function TVelocityProperties.isOverXYMaxVelocity(maxVelocity: Integer): Boolean;
-begin
-        if (Self.velocityXBasicDecimal.getUnscaled()) > (maxVelocity) then begin
-            Exit(True);
-        end;
-        if (Self.velocityXBasicDecimal.getUnscaled()) < (-maxVelocity) then begin
-            Exit(True);
-        end;
-        if (Self.velocityYBasicDecimal.getUnscaled()) > (maxVelocity) then begin
-            Exit(True);
-        end;
-        if (Self.velocityYBasicDecimal.getUnscaled()) < (-maxVelocity) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
+  recursive function VelocityProperties_jm_isOverXYMaxVelocity_1(this, j_maxVelocity) result(jresult)
+    class(VelocityProperties), target :: this
+    integer(4), value :: j_maxVelocity
+    logical :: jresult
+        if ((this%f_velocityXBasicDecimal%jm_getUnscaled_0() > int(j_maxVelocity, 8))) then
+            jresult = .true.
+            return
+        end if
+        if ((this%f_velocityXBasicDecimal%jm_getUnscaled_0() < int((-j_maxVelocity), 8))) then
+            jresult = .true.
+            return
+        end if
+        if ((this%f_velocityYBasicDecimal%jm_getUnscaled_0() > int(j_maxVelocity, 8))) then
+            jresult = .true.
+            return
+        end if
+        if ((this%f_velocityYBasicDecimal%jm_getUnscaled_0() < int((-j_maxVelocity), 8))) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-procedure TVelocityProperties.setVelocityi(magnitude: Int64; angle: Integer; otherAngle: Integer);
-begin
-        inherited setVelocityi(magnitude, angle, otherAngle);
-        Self.limitXYToForwardAndReverseMaxVelocity();
-end;
-    
+  recursive subroutine VelocityProperties_jm_setVelocityi_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(VelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%BasicVelocityProperties%jm_setVelocityi_3(j_magnitude, j_angle, j_otherAngle)
+        call this%jm_limitXYToForwardAndReverseMaxVelocity_0()
+  end subroutine
 
-procedure TVelocityProperties.addVelocityi(magnitude: Int64; angle: Integer; otherAngle: Integer);
-begin
-        inherited addVelocityi(magnitude, angle, otherAngle);
-        Self.limitXYToForwardAndReverseMaxVelocity();
-end;
+  recursive subroutine VelocityProperties_jm_addVelocityi_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(VelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%BasicVelocityProperties%jm_addVelocityi_3(j_magnitude, j_angle, j_otherAngle)
+        call this%jm_limitXYToForwardAndReverseMaxVelocity_0()
+  end subroutine
+end module VelocityProperties_m
 
-initialization
-  {AB:INITIALIZATION}
-  TVelocityProperties.NULL_VELOCITY_PROPERTIES := TVelocityProperties.Create(0, 0);
-  {AB:END}
-
-end.
+function VelocityProperties_jnew_2_jext(p1, p2) result(this)
+  use VelocityProperties_m, only: JObject, VelocityProperties_jnew_2
+  implicit none
+      integer(4), value :: p1
+      integer(4), value :: p2
+  class(JObject), pointer :: this
+  this => VelocityProperties_jnew_2(p1, p2)
+end function
 

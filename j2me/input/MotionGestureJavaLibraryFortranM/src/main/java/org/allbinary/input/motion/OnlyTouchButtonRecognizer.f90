@@ -1,94 +1,103 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion
+module OnlyTouchButtonRecognizer_m
+  use JR_m
+  use TouchButtonRecognizer_m
+  use MotionRecognizer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion
-unit OnlyTouchButtonRecognizer;
+  type, extends(MotionRecognizer) :: OnlyTouchButtonRecognizer
+    class(TouchButtonRecognizer), pointer :: f_touchButtonRecognizer => null()
+    logical :: f_touchButtonProcessing = .false.
+  contains
+    procedure :: jm_processStartMotionEvent_4 => OnlyTouchButtonRecognizer_jm_processStartMotionEvent_4
+    procedure :: jm_processEndMotionEvent_4 => OnlyTouchButtonRecognizer_jm_processEndMotionEvent_4
+    procedure :: jm_processDraggedMotionEvent_4 => OnlyTouchButtonRecognizer_jm_processDraggedMotionEvent_4
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TouchButtonRecognizer, MotionRecognizer;
+  function OnlyTouchButtonRecognizer_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OnlyTouchButtonRecognizer), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OnlyTouchButtonRecognizer)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TOnlyTouchButtonRecognizer = class(TMotionRecognizer)
-  public
-    touchButtonRecognizer: TTouchButtonRecognizer;
-    touchButtonProcessing: Boolean;
-    procedure InitFields;
-        constructor Create;
-        procedure processStartMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); override;
-        procedure processEndMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); override;
-        procedure processDraggedMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); override;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TOnlyTouchButtonRecognizer.InitFields;
-begin
-  
-  Self.touchButtonProcessing := False;
-end;
+  recursive function OnlyTouchButtonRecognizer_jnew_0() result(this)
+    class(OnlyTouchButtonRecognizer), pointer :: this
+    allocate(this)
+    this%jclass = 'OnlyTouchButtonRecognizer'
     
+    this%f_touchButtonProcessing = .false.
+        this%f_touchButtonRecognizer => TouchButtonRecognizer_jnew_0()
+  end function
 
-constructor TOnlyTouchButtonRecognizer.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.touchButtonRecognizer := TTouchButtonRecognizer.Create();
-end;
-    
+  recursive subroutine OnlyTouchButtonRecognizer_jm_processStartMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(OnlyTouchButtonRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+        if (this%f_touchButtonRecognizer%jm_pressTouchButtonInput_3(j_x, j_y, j_deviceId)) then
+            this%f_touchButtonProcessing = .true.
+        end if
+  end subroutine
 
-// throws Exception
-procedure TOnlyTouchButtonRecognizer.processStartMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-        if Self.touchButtonRecognizer.pressTouchButtonInput(x, y, deviceId) then begin
-            Self.touchButtonProcessing := True;
-        end;
-end;
-    
+  recursive subroutine OnlyTouchButtonRecognizer_jm_processEndMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(OnlyTouchButtonRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+        if (this%f_touchButtonProcessing) then
+            this%f_touchButtonProcessing = .false.
+        end if
+        if (this%f_touchButtonRecognizer%jm_releaseTouchButtonInput_3(j_x, j_y, j_deviceId)) then
+            return
+        end if
+  end subroutine
 
-// throws Exception
-procedure TOnlyTouchButtonRecognizer.processEndMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-        if Self.touchButtonProcessing then begin
-            Self.touchButtonProcessing := False;
-        end;
-        if Self.touchButtonRecognizer.releaseTouchButtonInput(x, y, deviceId) then begin
-            Exit;
-        end;
-end;
-    
+  recursive subroutine OnlyTouchButtonRecognizer_jm_processDraggedMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(OnlyTouchButtonRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if (this%f_touchButtonProcessing) then
+            jdiscardBoolean = this%f_touchButtonRecognizer%jm_pressTouchButtonInput_3(j_x, j_y, j_deviceId)
+        end if
+  end subroutine
+end module OnlyTouchButtonRecognizer_m
 
-// throws Exception
-procedure TOnlyTouchButtonRecognizer.processDraggedMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-        if Self.touchButtonProcessing then begin
-            Self.touchButtonRecognizer.pressTouchButtonInput(x, y, deviceId);
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function OnlyTouchButtonRecognizer_jnew_0_jext() result(this)
+  use OnlyTouchButtonRecognizer_m, only: JObject, OnlyTouchButtonRecognizer_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => OnlyTouchButtonRecognizer_jnew_0()
+end function
 

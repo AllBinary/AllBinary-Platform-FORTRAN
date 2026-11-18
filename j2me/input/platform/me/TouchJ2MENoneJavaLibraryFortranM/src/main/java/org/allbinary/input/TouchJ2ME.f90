@@ -1,69 +1,68 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input
+module TouchJ2ME_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input
-unit TouchJ2ME;
+  type, extends(JObject) :: TouchJ2ME
+  contains
+    procedure :: jm_pointerDragged_2 => TouchJ2ME_jm_pointerDragged_2
+    procedure :: jm_pointerPressed_2 => TouchJ2ME_jm_pointerPressed_2
+    procedure :: jm_pointerReleased_2 => TouchJ2ME_jm_pointerReleased_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function TouchJ2ME_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchJ2ME), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchJ2ME)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  // TouchJ2MENone
-  TTouchJ2ME = class(TObject)
-  public
-        constructor Create;
-        procedure pointerDragged(x: Integer; y: Integer); virtual;
-        procedure pointerPressed(x: Integer; y: Integer); virtual;
-        procedure pointerReleased(x: Integer; y: Integer); virtual;
-  end;
+  recursive function TouchJ2ME_jnew_0() result(this)
+    class(TouchJ2ME), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchJ2ME'
+        continue
+  end function
 
-implementation
+  recursive subroutine TouchJ2ME_jm_pointerDragged_2(this, j_x, j_y)
+    class(TouchJ2ME), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    continue
+  end subroutine
 
-{AB:CODE}
-    
+  recursive subroutine TouchJ2ME_jm_pointerPressed_2(this, j_x, j_y)
+    class(TouchJ2ME), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    continue
+  end subroutine
 
-constructor TTouchJ2ME.Create;
-begin
-    inherited Create;
-end;
-    
-
-procedure TTouchJ2ME.pointerDragged(x: Integer; y: Integer);
-begin
-end;
-    
-
-procedure TTouchJ2ME.pointerPressed(x: Integer; y: Integer);
-begin
-end;
-    
-
-procedure TTouchJ2ME.pointerReleased(x: Integer; y: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine TouchJ2ME_jm_pointerReleased_2(this, j_x, j_y)
+    class(TouchJ2ME), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    continue
+  end subroutine
+end module TouchJ2ME_m
 

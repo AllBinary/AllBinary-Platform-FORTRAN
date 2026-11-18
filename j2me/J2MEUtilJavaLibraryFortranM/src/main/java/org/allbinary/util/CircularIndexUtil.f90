@@ -57,6 +57,16 @@ contains
     jresult => CircularIndexUtil_jcell_NULL_CIRCULAR_INDEX_UTIL
   end function
 
+  subroutine CircularIndexUtil_jsetstatic_NULL_CIRCULAR_INDEX_UTIL(jvalue)
+    class(CircularIndexUtil), target, optional :: jvalue
+    CircularIndexUtil_jset_NULL_CIRCULAR_INDEX_UTIL = .true.
+    if (present(jvalue)) then
+      CircularIndexUtil_jcell_NULL_CIRCULAR_INDEX_UTIL => jvalue
+    else
+      CircularIndexUtil_jcell_NULL_CIRCULAR_INDEX_UTIL => null()
+    end if
+  end subroutine
+
   recursive function CircularIndexUtil_jnew_2(j_index, j_size) result(this)
     integer(4), value :: j_index
     integer(4), value :: j_size

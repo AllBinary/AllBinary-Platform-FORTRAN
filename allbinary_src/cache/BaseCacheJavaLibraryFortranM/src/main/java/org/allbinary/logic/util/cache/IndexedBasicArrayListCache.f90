@@ -34,6 +34,15 @@ module IndexedBasicArrayListCache_m
     procedure :: jm_clear_0 => IndexedBasicArrayListCache_jm_clear_0
   end type
 
+  ! IndexedBasicArrayListCache used as a CacheInterface
+  type, extends(CacheInterface) :: IndexedBasicArrayListCache_jas_CacheInterface
+    class(IndexedBasicArrayListCache), pointer :: jtarget => null()
+  contains
+    procedure :: jm_add_1 => IndexedBasicArrayListCache_jas_CacheInterface_jm_add_1
+    procedure :: jm_addArray_1 => IndexedBasicArrayListCache_jas_CacheInterface_jm_addArray_1
+    procedure :: jm_clear_0 => IndexedBasicArrayListCache_jas_CacheInterface_jm_clear_0
+  end type
+
 
 contains
 
@@ -47,6 +56,31 @@ contains
       jresult => object
     end select
   end function
+
+  function IndexedBasicArrayListCache_jas_CacheInterface_jnew(object) result(jresult)
+    class(IndexedBasicArrayListCache), target :: object
+    class(IndexedBasicArrayListCache_jas_CacheInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'IndexedBasicArrayListCache'
+    jresult%jtarget => object
+  end function
+
+  recursive subroutine IndexedBasicArrayListCache_jas_CacheInterface_jm_add_1(this, j_cacheableInterface)
+    class(IndexedBasicArrayListCache_jas_CacheInterface), target :: this
+    class(CacheableInterface), target, optional :: j_cacheableInterface
+    call this%jtarget%jm_add_1(j_cacheableInterface)
+  end subroutine
+
+  recursive subroutine IndexedBasicArrayListCache_jas_CacheInterface_jm_addArray_1(this, j_cacheableInterfaces)
+    class(IndexedBasicArrayListCache_jas_CacheInterface), target :: this
+    type(JRef) :: j_cacheableInterfaces(:)
+    call this%jtarget%jm_addArray_1(j_cacheableInterfaces)
+  end subroutine
+
+  recursive subroutine IndexedBasicArrayListCache_jas_CacheInterface_jm_clear_0(this)
+    class(IndexedBasicArrayListCache_jas_CacheInterface), target :: this
+    call this%jtarget%jm_clear_0()
+  end subroutine
 
   recursive function IndexedBasicArrayListCache_jnew_0() result(this)
     class(IndexedBasicArrayListCache), pointer :: this

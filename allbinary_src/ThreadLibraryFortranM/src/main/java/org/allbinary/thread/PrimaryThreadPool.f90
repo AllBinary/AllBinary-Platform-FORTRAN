@@ -52,6 +52,16 @@ contains
     jresult => PrimaryThreadPool_jcell_THREAD_POOL
   end function
 
+  subroutine PrimaryThreadPool_jsetstatic_THREAD_POOL(jvalue)
+    class(ThreadPool), target, optional :: jvalue
+    PrimaryThreadPool_jset_THREAD_POOL = .true.
+    if (present(jvalue)) then
+      PrimaryThreadPool_jcell_THREAD_POOL => jvalue
+    else
+      PrimaryThreadPool_jcell_THREAD_POOL => null()
+    end if
+  end subroutine
+
   recursive function PrimaryThreadPool_jnew_3(j_poolName, j_numThreads, j_priority) result(this)
     character(len=*), intent(in) :: j_poolName
     integer(4), value :: j_numThreads
@@ -85,7 +95,7 @@ contains
         jtemp4 => StringUtil_jm_getInstance_0()
         jtemp3 => StringMaker_jnew_0()
         jtemp2 => jtemp3%jm_append_1(jtemp4%jm_toString_1(j_task))
-        jtemp1 => jtemp2%jm_appendlong_1(int(JR_currentTimeMillis(), 8))
+        jtemp1 => jtemp2%jm_appendlong_1(JR_currentTimeMillis())
         call this%f_logUtil%jm_putF_3(jtemp1%jm_toString_0(), this, this%f_threadPoolStrings%f_ADD_TASK)
         call this%ThreadPool%jm_runTask_1(j_task)
   end subroutine

@@ -1,79 +1,102 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media
+module AllBinaryVibration_m
+  use JR_m
+  use GameConfigurationCentral_m
+  use AllBinaryVibrationME_m
+  use AllBinaryNoVibration_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media
-unit AllBinaryVibration;
+  type, extends(AllBinaryVibrationME) :: AllBinaryVibration
+  contains
+    procedure :: jm_vibrate_3 => AllBinaryVibration_jm_vibrate_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AllBinaryVibrationME), pointer, save :: AllBinaryVibration_jcell_VIBRATION => null()
+  logical, save :: AllBinaryVibration_jset_VIBRATION = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryVibrationME;
+  function AllBinaryVibration_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinaryVibration), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinaryVibration)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinaryVibration = class(TAllBinaryVibrationME)
-  public
-    class var VIBRATION: TAllBinaryVibrationME;
-        constructor Create;
-        class function getInstance: TAllBinaryVibrationME; static;
-        class procedure init; static;
-        procedure vibrate(duration: Integer; type_: Integer; volume: Integer); override;
-  end;
+  function AllBinaryVibration_jstatic_VIBRATION() result(jresult)
+    class(AllBinaryVibrationME), pointer :: jresult
+    if (.not. AllBinaryVibration_jset_VIBRATION) then
+      AllBinaryVibration_jset_VIBRATION = .true.
+      AllBinaryVibration_jcell_VIBRATION => AllBinaryNoVibration_jstatic_NO_VIBRATION()
+    end if
+    jresult => AllBinaryVibration_jcell_VIBRATION
+  end function
 
-implementation
-uses
-  AllBinaryNoVibration, GameConfigurationCentral;
+  subroutine AllBinaryVibration_jsetstatic_VIBRATION(jvalue)
+    class(AllBinaryVibrationME), target, optional :: jvalue
+    AllBinaryVibration_jset_VIBRATION = .true.
+    if (present(jvalue)) then
+      AllBinaryVibration_jcell_VIBRATION => jvalue
+    else
+      AllBinaryVibration_jcell_VIBRATION => null()
+    end if
+  end subroutine
 
+  recursive function AllBinaryVibration_jnew_0() result(this)
+    class(AllBinaryVibration), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinaryVibration'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive function AllBinaryVibration_jm_getInstance_0() result(jresult)
+    class(AllBinaryVibrationME), pointer :: jresult
+        jresult => AllBinaryVibration_jstatic_VIBRATION()
+        return
+  end function
 
-constructor TAllBinaryVibration.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive subroutine AllBinaryVibration_jm_init_0()
+    class(JObject), pointer :: jtemp1
+    class(GameConfigurationCentral), pointer :: jtemp2
+        jtemp2 => GameConfigurationCentral_jm_getInstance_0()
+        jtemp1 => jtemp2%f_VIBRATION%jm_getValue_0()
+        if ((jtemp1%jm_intValue_0() == 0)) then
+            call AllBinaryVibration_jsetstatic_VIBRATION(AllBinaryNoVibration_jstatic_NO_VIBRATION())
+        else
+            call AllBinaryVibration_jsetstatic_VIBRATION(AllBinaryVibration_jnew_0())
+        end if
+  end subroutine
 
-class function TAllBinaryVibration.getInstance: TAllBinaryVibrationME;
-begin
-        Exit(TAllBinaryVibration.VIBRATION);
-end;
-    
+  recursive subroutine AllBinaryVibration_jm_vibrate_3(this, j_duration, j_type, j_volume)
+    class(AllBinaryVibration), target :: this
+    integer(4), value :: j_duration
+    integer(4), value :: j_type
+    integer(4), value :: j_volume
+    continue
+  end subroutine
+end module AllBinaryVibration_m
 
-class procedure TAllBinaryVibration.init;
-begin
-        if (TGameConfigurationCentral.getInstance().VIBRATION.getValue().intValue()) = (0) then begin
-            TAllBinaryVibration.VIBRATION := TAllBinaryNoVibration.NO_VIBRATION;
-        end else begin
-            TAllBinaryVibration.VIBRATION := TAllBinaryVibration.Create();
-        end;
-end;
-    
-
-procedure TAllBinaryVibration.vibrate(duration: Integer; type_: Integer; volume: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinaryVibration.VIBRATION := TAllBinaryNoVibration.NO_VIBRATION;
-  {AB:END}
-
-end.
+function AllBinaryVibration_jnew_0_jext() result(this)
+  use AllBinaryVibration_m, only: JObject, AllBinaryVibration_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => AllBinaryVibration_jnew_0()
+end function
 

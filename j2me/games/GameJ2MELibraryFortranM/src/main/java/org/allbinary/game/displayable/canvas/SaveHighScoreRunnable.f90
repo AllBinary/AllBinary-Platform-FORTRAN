@@ -1,96 +1,79 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+!
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+!
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+!
+! Created By: Travis Berthelot
+! 
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module SaveHighScoreRunnable_m
+  use JR_m
+  use HighScoreTextBox_m
+  use ProgressCanvas_m
+  use ProgressCanvasFactory_m
+  use LogUtil_m
+  use CommonStrings_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
- 
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
- 
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
- 
-  Created By: Travis Berthelot
-  
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit SaveHighScoreRunnable;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, HighScoreTextBox, ProgressCanvas;
-
-type
-  {AB:TYPES}
-  TSaveHighScoreRunnable = class(TInterfacedObject, IRunnable)
-  public
-    progressCanvas: TProgressCanvas;
-    isLast: Boolean;
-    textBox: THighScoreTextBox;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(isLast: Boolean; textBox: THighScoreTextBox);
-        procedure run; virtual;
-  end;
-
-implementation
-uses
-  ProgressCanvasFactory, LogUtil, CommonStrings;
+  type, extends(JObject) :: SaveHighScoreRunnable
+    class(ProgressCanvas), pointer :: f_progressCanvas => null()
+    logical :: f_isLast = .false.
+    class(HighScoreTextBox), pointer :: f_textBox => null()
+  contains
+    procedure :: jm_run_0 => SaveHighScoreRunnable_jm_run_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TSaveHighScoreRunnable.InitFields;
-begin
-  Self.progressCanvas := TProgressCanvasFactory.getInstance();
-  
-  
-end;
+  function SaveHighScoreRunnable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SaveHighScoreRunnable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SaveHighScoreRunnable)
+      jresult => object
+    end select
+  end function
 
-function TSaveHighScoreRunnable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function SaveHighScoreRunnable_jnew_2(j_isLast, j_textBox) result(this)
+    logical, value :: j_isLast
+    class(HighScoreTextBox), target, optional :: j_textBox
+    class(SaveHighScoreRunnable), pointer :: this
+    allocate(this)
+    this%jclass = 'SaveHighScoreRunnable'
+    this%f_progressCanvas => ProgressCanvasFactory_jm_getInstance_0()
     
-
-constructor TSaveHighScoreRunnable.Create(isLast: Boolean; textBox: THighScoreTextBox);
-begin
-    inherited Create;
-    InitFields;
-        Self.isLast := isLast;
-        Self.textBox := textBox;
-end;
     
+        this%f_isLast = j_isLast
+        this%f_textBox => j_textBox
+  end function
 
-procedure TSaveHighScoreRunnable.run;
-var
-  logUtil_: TLogUtil;
-  commonStrings_: TCommonStrings;
-begin
-        logUtil_ := TLogUtil.getInstance();
-        try
-            if Self.isLast then begin
-                Self.textBox.submit();
-            end else begin
-                Self.textBox.saveHighScore();
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            logUtil_.put(commonStrings_.EXCEPTION, TJava.Box(Self), 'run', TJava.Box(e));
-            Self.progressCanvas.end_();
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine SaveHighScoreRunnable_jm_run_0(this)
+    class(SaveHighScoreRunnable), target :: this
+    class(LogUtil), pointer :: j_logUtil
+    class(CommonStrings), pointer :: j_commonStrings
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_logUtil => LogUtil_jm_getInstance_0()
+        continue ! try
+            if (this%f_isLast) then
+                call this%f_textBox%jm_submit_0()
+            else
+                call this%f_textBox%jm_saveHighScore_0()
+            end if
+  end subroutine
+end module SaveHighScoreRunnable_m
 

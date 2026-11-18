@@ -49,6 +49,16 @@ contains
     jresult => NoHardwareComponent_jcell_instance
   end function
 
+  subroutine NoHardwareComponent_jsetstatic_instance(jvalue)
+    class(NoHardwareComponent), target, optional :: jvalue
+    NoHardwareComponent_jset_instance = .true.
+    if (present(jvalue)) then
+      NoHardwareComponent_jcell_instance => jvalue
+    else
+      NoHardwareComponent_jcell_instance => null()
+    end if
+  end subroutine
+
   function NoHardwareComponent_jnew_0() result(this)
     class(NoHardwareComponent), pointer :: this
     allocate(this)

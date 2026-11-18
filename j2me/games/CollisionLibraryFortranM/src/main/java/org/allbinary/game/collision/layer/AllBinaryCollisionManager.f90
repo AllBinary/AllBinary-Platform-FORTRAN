@@ -1,96 +1,125 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.collision.layer
+module AllBinaryCollisionManager_m
+  use JR_m
+  use CollidableBaseBehavior_m
+  use CollidableInterfaceCompositeInterface_m
+  use CollidableCompositeLayer_m
+  use ABLayerManager_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.collision.layer
-unit AllBinaryCollisionManager;
+  type, extends(JObject) :: AllBinaryCollisionManager
+  contains
+    procedure :: jm_process_3 => AllBinaryCollisionManager_jm_process_3
+    procedure :: jm_collide_3 => AllBinaryCollisionManager_jm_collide_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AllBinaryCollisionManager), pointer, save :: AllBinaryCollisionManager_jcell_allBinaryCollisionManager => null()
+  logical, save :: AllBinaryCollisionManager_jset_allBinaryCollisionManager = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CollidableInterfaceCompositeInterface, ABLayerManager;
+  function AllBinaryCollisionManager_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinaryCollisionManager), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinaryCollisionManager)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinaryCollisionManager = class(TObject)
-  public
-    class var allBinaryCollisionManager: TAllBinaryCollisionManager;
-        constructor Create;
-        class function getInstance: TAllBinaryCollisionManager; static;
-        procedure process(layerManager: TABLayerManager; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface; startIndex: Integer); virtual;
-        procedure collide(layerManager: TABLayerManager; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface; collidableInterfaceCompositeInterface2: ICollidableInterfaceCompositeInterface);
-  end;
+  function AllBinaryCollisionManager_jstatic_allBinaryCollisionManager() result(jresult)
+    class(AllBinaryCollisionManager), pointer :: jresult
+    if (.not. AllBinaryCollisionManager_jset_allBinaryCollisionManager) then
+      AllBinaryCollisionManager_jset_allBinaryCollisionManager = .true.
+      AllBinaryCollisionManager_jcell_allBinaryCollisionManager => AllBinaryCollisionManager_jnew_0()
+    end if
+    jresult => AllBinaryCollisionManager_jcell_allBinaryCollisionManager
+  end function
 
-implementation
-uses
-  CollidableBaseBehavior, CollidableCompositeLayer;
+  subroutine AllBinaryCollisionManager_jsetstatic_allBinaryCollisionManager(jvalue)
+    class(AllBinaryCollisionManager), target, optional :: jvalue
+    AllBinaryCollisionManager_jset_allBinaryCollisionManager = .true.
+    if (present(jvalue)) then
+      AllBinaryCollisionManager_jcell_allBinaryCollisionManager => jvalue
+    else
+      AllBinaryCollisionManager_jcell_allBinaryCollisionManager => null()
+    end if
+  end subroutine
 
+  recursive function AllBinaryCollisionManager_jnew_0() result(this)
+    class(AllBinaryCollisionManager), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinaryCollisionManager'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive function AllBinaryCollisionManager_jm_getInstance_0() result(jresult)
+    class(AllBinaryCollisionManager), pointer :: jresult
+        jresult => AllBinaryCollisionManager_jstatic_allBinaryCollisionManager()
+        return
+  end function
 
-constructor TAllBinaryCollisionManager.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive subroutine AllBinaryCollisionManager_jm_process_3(this, j_layerManager, j_collidableInterfaceCompositeInterface, j_startIndex)
+    class(AllBinaryCollisionManager), target :: this
+    class(ABLayerManager), target, optional :: j_layerManager
+    class(CollidableInterfaceCompositeInterface), target, optional :: j_collidableInterfaceCompositeInterface
+    integer(4), value :: j_startIndex
+    integer(4) :: j_size
+    class(CollidableInterfaceCompositeInterface), pointer :: j_collidableInterfaceCompositeInterface2
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_size = j_layerManager%jm_getSize_0()
+        j_index = (j_startIndex + 1)
+        do while ((j_index < j_size))
+            j_collidableInterfaceCompositeInterface2 => CollidableInterfaceCompositeInterface_jcast(j_layerManager%jm_getLayerAt_1(j_index))
+            call this%jm_collide_3(j_layerManager, j_collidableInterfaceCompositeInterface, j_collidableInterfaceCompositeInterface2)
+            j_index = j_index + 1
+        end do
+  end subroutine
 
-class function TAllBinaryCollisionManager.getInstance: TAllBinaryCollisionManager;
-begin
-        Exit(TAllBinaryCollisionManager.allBinaryCollisionManager);
-end;
-    
-
-// throws Exception
-procedure TAllBinaryCollisionManager.process(layerManager: TABLayerManager; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface; startIndex: Integer);
-var
-  size: Integer;
-  collidableInterfaceCompositeInterface2: ICollidableInterfaceCompositeInterface;
-  index: Integer;
-begin
-        size := layerManager.getSize();
-        for index := (startIndex) + (1) to size - 1 do begin
-            collidableInterfaceCompositeInterface2 := (TJava.ToObject(layerManager.getLayerAt(index)) as ICollidableInterfaceCompositeInterface);
-            Self.collide(layerManager, collidableInterfaceCompositeInterface_, collidableInterfaceCompositeInterface2);
-        end;
-end;
-    
-
-// throws Exception
-procedure TAllBinaryCollisionManager.collide(layerManager: TABLayerManager; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface; collidableInterfaceCompositeInterface2: ICollidableInterfaceCompositeInterface);
-var
-  collidableBase2: TCollidableBaseBehavior;
-  collidableBase: TCollidableBaseBehavior;
-begin
-        collidableBase2 := collidableInterfaceCompositeInterface2.getCollidableInferface();
-        collidableBase := collidableInterfaceCompositeInterface_.getCollidableInferface();
-        if collidableBase2.isCollidable(TCollidableCompositeLayer(TJava.ToObject(collidableInterfaceCompositeInterface_))) then begin
-            if collidableBase.isCollisionInterface(TCollidableCompositeLayer(TJava.ToObject(collidableInterfaceCompositeInterface_)), collidableInterfaceCompositeInterface2) then begin
-                collidableBase.collideInterface(TCollidableCompositeLayer(TJava.ToObject(collidableInterfaceCompositeInterface_)), collidableInterfaceCompositeInterface2);
-                collidableBase2.collideInterface(TCollidableCompositeLayer(TJava.ToObject(collidableInterfaceCompositeInterface_)), collidableInterfaceCompositeInterface_);
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinaryCollisionManager.allBinaryCollisionManager := TAllBinaryCollisionManager.Create();
-  {AB:END}
-
-end.
+  recursive subroutine AllBinaryCollisionManager_jm_collide_3(this, j_layerManager, j_collidableInterfaceCompositeInterface, j_collidableInterfaceCompositeInterface2)
+    class(AllBinaryCollisionManager), target :: this
+    class(ABLayerManager), target, optional :: j_layerManager
+    class(CollidableInterfaceCompositeInterface), target, optional :: j_collidableInterfaceCompositeInterface
+    class(CollidableInterfaceCompositeInterface), target, optional :: j_collidableInterfaceCompositeInterface2
+    class(CollidableBaseBehavior), pointer :: j_collidableBase2
+    class(CollidableBaseBehavior), pointer :: j_collidableBase
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_collidableBase2 => j_collidableInterfaceCompositeInterface2%jm_getCollidableInferface_0()
+        j_collidableBase => j_collidableInterfaceCompositeInterface%jm_getCollidableInferface_0()
+        if (j_collidableBase2%jm_isCollidable_1(CollidableCompositeLayer_jcast(j_collidableInterfaceCompositeInterface))) then
+            if (j_collidableBase%jm_isCollisionInterface_2(CollidableCompositeLayer_jcast(j_collidableInterfaceCompositeInterface), j_collidableInterfaceCompositeInterface2)) then
+                call j_collidableBase%jm_collideInterface_2(CollidableCompositeLayer_jcast(j_collidableInterfaceCompositeInterface), j_collidableInterfaceCompositeInterface2)
+                call j_collidableBase2%jm_collideInterface_2(CollidableCompositeLayer_jcast(j_collidableInterfaceCompositeInterface), j_collidableInterfaceCompositeInterface)
+            end if
+        end if
+  end subroutine
+end module AllBinaryCollisionManager_m
 

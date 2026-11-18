@@ -1,196 +1,204 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module GameInput_m
+  use JR_m
+  use Features_m
+  use InputFeatureFactory_m
+  use GameKeyEvent_m
+  use LogUtil_m
+  use CommonStrings_m
+  use BasicArrayList_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit GameInput;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameKeyEvent, LogUtil, CommonStrings, BasicArrayList;
-
-type
-  {AB:TYPES}
-  TGameInput = class(TObject)
-  public
-    logUtil: TLogUtil;
-    commonStrings: TCommonStrings;
-    gameKeyEventList: TBasicArrayList;
-    removalGameKeyEventList: TBasicArrayList;
-    isRemoveDuplicateKeyPresses: Boolean;
-    procedure InitFields;
-        constructor Create(gameKeyEventList: TBasicArrayList; removalGameKeyEventList: TBasicArrayList);
-        procedure add(gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure addForRemoval(gameKeyEvent_: TGameKeyEvent); virtual;
-        function isForRemoval(gameKeyEvent_: TGameKeyEvent): Boolean; virtual;
-        procedure clear; virtual;
-        procedure removeNonAIInputGameKeyEvents; virtual;
-        procedure update; virtual;
-        function getRemovalGameKeyEventList: TBasicArrayList; virtual;
-        function getGameKeyEventList: TBasicArrayList; virtual;
-  end;
-
-implementation
-uses
-  Features, InputFeatureFactory;
+  type, extends(JObject) :: GameInput
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(CommonStrings), pointer :: f_commonStrings => null()
+    class(BasicArrayList), pointer :: f_gameKeyEventList => null()
+    class(BasicArrayList), pointer :: f_removalGameKeyEventList => null()
+    logical :: f_isRemoveDuplicateKeyPresses = .false.
+  contains
+    procedure :: jm_add_1 => GameInput_jm_add_1
+    procedure :: jm_addForRemoval_1 => GameInput_jm_addForRemoval_1
+    procedure :: jm_isForRemoval_1 => GameInput_jm_isForRemoval_1
+    procedure :: jm_clear_0 => GameInput_jm_clear_0
+    procedure :: jm_removeNonAIInputGameKeyEvents_0 => GameInput_jm_removeNonAIInputGameKeyEvents_0
+    procedure :: jm_update_0 => GameInput_jm_update_0
+    procedure :: jm_getRemovalGameKeyEventList_0 => GameInput_jm_getRemovalGameKeyEventList_0
+    procedure :: jm_getGameKeyEventList_0 => GameInput_jm_getGameKeyEventList_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TGameInput.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.commonStrings := TCommonStrings.getInstance();
-  
-  
-  
-end;
+  function GameInput_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameInput), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameInput)
+      jresult => object
+    end select
+  end function
+
+  recursive function GameInput_jnew_2(j_gameKeyEventList, j_removalGameKeyEventList) result(this)
+    class(BasicArrayList), target, optional :: j_gameKeyEventList
+    class(BasicArrayList), target, optional :: j_removalGameKeyEventList
+    class(GameInput), pointer :: this
+    class(Features), pointer :: jtemp1
+    class(InputFeatureFactory), pointer :: jtemp2
+    allocate(this)
+    this%jclass = 'GameInput'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
     
-
-constructor TGameInput.Create(gameKeyEventList: TBasicArrayList; removalGameKeyEventList: TBasicArrayList);
-begin
-    inherited Create;
-    InitFields;
-        Self.gameKeyEventList := gameKeyEventList;
-        Self.removalGameKeyEventList := removalGameKeyEventList;
-        Self.isRemoveDuplicateKeyPresses := TFeatures.getInstance().isFeature(TInputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES);
-end;
     
-
-procedure TGameInput.add(gameKeyEvent_: TGameKeyEvent);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        if (Self.isRemoveDuplicateKeyPresses) and (Self.gameKeyEventList.contains(TJava.Box(gameKeyEvent_))) then begin
-            Exit;
-        end;
-        if (gameKeyEvent_) <> (nil) then begin
-            Self.gameKeyEventList.add(TJava.Box(gameKeyEvent_));
-        end else begin
-            Self.logUtil.putF('Danger Passed Null GameKeyEvent', TJava.Box(Self), Self.commonStrings.ADD);
-        end;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
     
+        this%f_gameKeyEventList => j_gameKeyEventList
+        this%f_removalGameKeyEventList => j_removalGameKeyEventList
+        jtemp2 => InputFeatureFactory_jm_getInstance_0()
+        jtemp1 => Features_jm_getInstance_0()
+        this%f_isRemoveDuplicateKeyPresses = jtemp1%jm_isFeature_1(jtemp2%f_REMOVE_DUPLICATE_KEY_PRESSES)
+  end function
 
-procedure TGameInput.addForRemoval(gameKeyEvent_: TGameKeyEvent);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.removalGameKeyEventList.add(TJava.Box(gameKeyEvent_));
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine GameInput_jm_add_1(this, j_gameKeyEvent)
+    class(GameInput), target :: this
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_isRemoveDuplicateKeyPresses .and. this%f_gameKeyEventList%jm_contains_1(j_gameKeyEvent))) then
+            return
+        end if
+        if (present(j_gameKeyEvent)) then
+            jdiscardBoolean = this%f_gameKeyEventList%jm_add_1(j_gameKeyEvent)
+        else
+            call this%f_logUtil%jm_putF_3('Danger Passed Null GameKeyEvent', this, this%f_commonStrings%f_ADD)
+        end if
+  end subroutine
 
-function TGameInput.isForRemoval(gameKeyEvent_: TGameKeyEvent): Boolean;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Exit(Self.removalGameKeyEventList.contains(TJava.Box(gameKeyEvent_)));
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine GameInput_jm_addForRemoval_1(this, j_gameKeyEvent)
+    class(GameInput), target :: this
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_removalGameKeyEventList%jm_add_1(j_gameKeyEvent)
+  end subroutine
 
-procedure TGameInput.clear;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.gameKeyEventList.clear();
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive function GameInput_jm_isForRemoval_1(this, j_gameKeyEvent) result(jresult)
+    class(GameInput), target :: this
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    logical :: jresult
+        jresult = this%f_removalGameKeyEventList%jm_contains_1(j_gameKeyEvent)
+        return
+  end function
 
-procedure TGameInput.removeNonAIInputGameKeyEvents;
-var
-  list: TBasicArrayList;
-  gameKeyEvent_: TGameKeyEvent;
-  index: Integer;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        list := Self.gameKeyEventList;
-        
-        index := list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            gameKeyEvent_ := TGameKeyEvent(TJava.ToObject(list.objectArray[index]));
-            if (gameKeyEvent_.getSourceId()) <> (1) then begin
-                list.removeAt(index);
-            end;
-        end;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine GameInput_jm_clear_0(this)
+    class(GameInput), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_gameKeyEventList%jm_clear_0()
+  end subroutine
 
-procedure TGameInput.update;
-var
-  removeList: TBasicArrayList;
-  list: TBasicArrayList;
-  size: Integer;
-  anyType: TObject;
-  index2: Integer;
-  index: Integer;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        removeList := Self.removalGameKeyEventList;
-        list := Self.gameKeyEventList;
-        size := removeList.size();
-        for index := 0 to size - 1 do begin
-            anyType := TJava.Box(removeList.objectArray[index]);
-            index2 := list.size();
-            while (TJava.PreDec(index2)) >= (0) do begin
-                if (list.objectArray[index2]) = (anyType) then begin
-                    list.removeAt(index2);
-                end;
-            end;
-        end;
-        removeList.clear();
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine GameInput_jm_removeNonAIInputGameKeyEvents_0(this)
+    class(GameInput), target :: this
+    class(BasicArrayList), pointer :: j_list
+    class(GameKeyEvent), pointer :: j_gameKeyEvent
+    integer(4) :: j_index
+    integer(4) :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_list => this%f_gameKeyEventList
+        continue
+        j_index = j_index - 1
+        jtemp3 = j_index
+        j_index = j_list%jm_size_0()
+        do while ((jtemp3 >= 0))
+            j_gameKeyEvent => GameKeyEvent_jcast(j_list%f_objectArray((j_index) + 1)%v)
+            if ((j_gameKeyEvent%jm_getSourceId_0() /= 1)) then
+                jdiscardRef => j_list%jm_removeAt_1(j_index)
+            end if
+        end do
+  end subroutine
 
-function TGameInput.getRemovalGameKeyEventList: TBasicArrayList;
-begin
-        Exit(Self.removalGameKeyEventList);
-end;
-    
+  recursive subroutine GameInput_jm_update_0(this)
+    class(GameInput), target :: this
+    class(BasicArrayList), pointer :: j_removeList
+    class(BasicArrayList), pointer :: j_list
+    integer(4) :: j_size
+    class(JObject), pointer :: j_anyType
+    integer(4) :: j_index2
+    integer(4) :: j_index
+    integer(4) :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_removeList => this%f_removalGameKeyEventList
+        j_list => this%f_gameKeyEventList
+        j_size = j_removeList%jm_size_0()
+        j_index = 0
+        do while ((j_index < j_size))
+            j_anyType => j_removeList%f_objectArray((j_index) + 1)%v
+            j_index2 = j_index2 - 1
+            jtemp4 = j_index2
+            j_index2 = j_list%jm_size_0()
+            do while ((jtemp4 >= 0))
+                if (JR_same(j_list%f_objectArray((j_index2) + 1)%v, j_anyType)) then
+                    jdiscardRef => j_list%jm_removeAt_1(j_index2)
+                end if
+            end do
+            j_index = j_index + 1
+        end do
+        call j_removeList%jm_clear_0()
+  end subroutine
 
-function TGameInput.getGameKeyEventList: TBasicArrayList;
-begin
-        Exit(Self.gameKeyEventList);
-end;
+  recursive function GameInput_jm_getRemovalGameKeyEventList_0(this) result(jresult)
+    class(GameInput), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_removalGameKeyEventList
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function GameInput_jm_getGameKeyEventList_0(this) result(jresult)
+    class(GameInput), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_gameKeyEventList
+        return
+  end function
+end module GameInput_m
 

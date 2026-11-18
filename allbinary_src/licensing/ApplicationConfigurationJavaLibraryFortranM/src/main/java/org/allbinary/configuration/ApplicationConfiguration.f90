@@ -1,248 +1,299 @@
-// Generated Code Do Not Modify
-// package org.allbinary.configuration
-unit ApplicationConfiguration;
+! Generated Code Do Not Modify
+! package org.allbinary.configuration
+module ApplicationConfiguration_m
+  use JR_m
+  use Closeable_m
+  use InputStream_m
+  use OutputStream_m
+  use Feature_m
+  use Features_m
+  use MainFeatureFactory_m
+  use NullUtil_m
+  use LogUtil_m
+  use AbDataInputStream_m
+  use AbDataOutputStream_m
+  use FileStreamFactory_m
+  use NullCloseable_m
+  use StreamUtil_m
+  use FileFactory_m
+  use StringMaker_m
+  use StringUtil_m
+  use CommonStrings_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ApplicationConfiguration
+    class(LogUtil), pointer :: f_logUtil => null()
+    logical :: f_fullscreen = .false.
+    logical :: f_showTitleBar = .false.
+    logical :: f_progressBarView = .false.
+    character(len=:), allocatable :: f_FILE
+  contains
+    procedure :: jm_read_0 => ApplicationConfiguration_jm_read_0
+    procedure :: jm_write_0 => ApplicationConfiguration_jm_write_0
+    procedure :: jm_update_1 => ApplicationConfiguration_jm_update_1
+    procedure :: jm_setFullscreen_1 => ApplicationConfiguration_jm_setFullscreen_1
+    procedure :: jm_isFullscreen_0 => ApplicationConfiguration_jm_isFullscreen_0
+    procedure :: jm_setShowTitleBar_1 => ApplicationConfiguration_jm_setShowTitleBar_1
+    procedure :: jm_isShowTitleBar_0 => ApplicationConfiguration_jm_isShowTitleBar_0
+    procedure :: jm_setProgressBarView_1 => ApplicationConfiguration_jm_setProgressBarView_1
+    procedure :: jm_isProgressBarView_0 => ApplicationConfiguration_jm_isProgressBarView_0
+    procedure :: jm_toString_0 => ApplicationConfiguration_jm_toString_0
+  end type
 
-interface
+  class(JObject), pointer, save :: ApplicationConfiguration_jcell_instance => null()
+  logical, save :: ApplicationConfiguration_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Feature, LogUtil;
+contains
 
-type
-  {AB:TYPES}
-  TApplicationConfiguration = class(TObject)
-  public
-    logUtil: TLogUtil;
-    fullscreen: Boolean;
-    showTitleBar: Boolean;
-    progressBarView: Boolean;
-    FILE_: string;
-    class var instance: TObject;
-    procedure InitFields;
-        class function getInstance: TApplicationConfiguration; static;
-        constructor Create;
-        procedure read;
-        procedure write; virtual;
-        procedure update(gameFeature: TFeature); virtual;
-        procedure setFullscreen(fullscreen: Boolean); virtual;
-        function isFullscreen: Boolean; virtual;
-        procedure setShowTitleBar(showTitleBar: Boolean); virtual;
-        function isShowTitleBar: Boolean; virtual;
-        procedure setProgressBarView(progressBarView: Boolean); virtual;
-        function isProgressBarView: Boolean; virtual;
-        function toString: string; virtual;
-  end;
+  function ApplicationConfiguration_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ApplicationConfiguration), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ApplicationConfiguration)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  Features, MainFeatureFactory, NullUtil, AbDataInputStream, AbDataOutputStream, FileStreamFactory, NullCloseable, StreamUtil, FileFactory, StringMaker, StringUtil, CommonStrings;
+  function ApplicationConfiguration_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. ApplicationConfiguration_jset_instance) then
+      ApplicationConfiguration_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    ApplicationConfiguration_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => ApplicationConfiguration_jcell_instance
+  end function
 
+  subroutine ApplicationConfiguration_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    ApplicationConfiguration_jset_instance = .true.
+    if (present(jvalue)) then
+      ApplicationConfiguration_jcell_instance => jvalue
+    else
+      ApplicationConfiguration_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function ApplicationConfiguration_jnew_0() result(this)
+    class(ApplicationConfiguration), pointer :: this
+    class(CommonStrings), pointer :: j_commonStrings
+    class(FileFactory), pointer :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'ApplicationConfiguration'
+    this%f_FILE = ''
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_fullscreen = .true.
+    this%f_showTitleBar = .false.
+    this%f_progressBarView = .false.
+    this%f_FILE = 'ReloadConfiguration.dat'
+        continue ! try
+            jtemp3 => FileFactory_jm_getInstance_0()
+            if (jtemp3%jm_isFile_1(this%f_FILE)) then
+                call this%jm_read_0()
+            else
+                call this%jm_write_0()
+            end if
+  end function
 
-procedure TApplicationConfiguration.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.fullscreen := True;
-  Self.showTitleBar := False;
-  Self.progressBarView := False;
-  Self.FILE_ := 'ReloadConfiguration.dat';
-end;
-    
+  recursive function ApplicationConfiguration_jm_getInstance_0() result(jresult)
+    class(ApplicationConfiguration), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(ApplicationConfiguration_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call ApplicationConfiguration_jsetstatic_instance(ApplicationConfiguration_jnew_0())
+        end if
+        jresult => ApplicationConfiguration_jcast(ApplicationConfiguration_jstatic_instance())
+        return
+  end function
 
-class function TApplicationConfiguration.getInstance: TApplicationConfiguration;
-begin
-        if (TApplicationConfiguration.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TApplicationConfiguration.instance := TApplicationConfiguration.Create();
-        end;
-        Exit(TApplicationConfiguration(TJava.ToObject(TApplicationConfiguration.instance)));
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_read_0(this)
+    class(ApplicationConfiguration), target :: this
+    class(FileStreamFactory), pointer :: j_fileInputStreamFactory
+    class(InputStream), pointer :: j_fileInputStream
+    class(AbDataInputStream), pointer :: j_dataInputStream
+    integer(4) :: j_fullScreen
+    integer(4) :: j_progressBarView
+    integer(4) :: j_showTitleBar
+    class(StringUtil), pointer :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_fileInputStreamFactory => FileStreamFactory_jm_getInstance_0()
+        jtemp4 => StringUtil_jm_getInstance_0()
+        j_fileInputStream => j_fileInputStreamFactory%jm_getFileInputStreamInstance_2(jtemp4%f_EMPTY_STRING, this%f_FILE)
+        j_dataInputStream => AbDataInputStream_jnew_1(j_fileInputStream)
+        j_fullScreen = j_dataInputStream%jm_readInt_0()
+        if ((j_fullScreen == 0)) then
+            call this%jm_setFullscreen_1(.false.)
+        else if ((j_fullScreen == 1)) then
+            call this%jm_setFullscreen_1(.true.)
+        else
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        j_progressBarView = j_dataInputStream%jm_readInt_0()
+        if ((j_progressBarView == 0)) then
+            call this%jm_setProgressBarView_1(.false.)
+        else if ((j_progressBarView == 1)) then
+            call this%jm_setProgressBarView_1(.true.)
+        else
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        j_showTitleBar = j_dataInputStream%jm_readInt_0()
+        if ((j_showTitleBar == 0)) then
+            call this%jm_setShowTitleBar_1(.false.)
+        else if ((j_showTitleBar == 1)) then
+            call this%jm_setShowTitleBar_1(.true.)
+        else
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        call this%f_logUtil%jm_putF_3(('Read Configuration: ' // this%jm_toString_0()), this, 'read')
+  end subroutine
 
-constructor TApplicationConfiguration.Create;
-var
-  commonStrings_: TCommonStrings;
-begin
-    inherited Create;
-    InitFields;
-        try
-            if TFileFactory.getInstance().isFile(Self.FILE_) then begin
-                Self.read();
-            end else begin
-                Self.write();
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.CONSTRUCTOR_, TJava.Box(e));
-            end;
-        end;
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_write_0(this)
+    class(ApplicationConfiguration), target :: this
+    class(JObject), pointer :: j_closeable
+    class(FileStreamFactory), pointer :: j_fileInputStreamFactory
+    class(OutputStream), pointer :: j_fileOutputStream
+    class(AbDataOutputStream), pointer :: j_dataOutputStream
+    class(StreamUtil), pointer :: jtemp5
+    class(StringUtil), pointer :: jtemp6
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_closeable => NullCloseable_jstatic_NULL_CLOSEABLE()
+        continue ! try
+            call this%f_logUtil%jm_putF_3(('Write Configuration: ' // this%jm_toString_0()), this, 'write')
+            j_fileInputStreamFactory => FileStreamFactory_jm_getInstance_0()
+            jtemp6 => StringUtil_jm_getInstance_0()
+            j_fileOutputStream => j_fileInputStreamFactory%jm_getFileOutputStreamInstance_2(jtemp6%f_EMPTY_STRING, this%f_FILE)
+            j_dataOutputStream => AbDataOutputStream_jnew_1(j_fileOutputStream)
+            j_closeable => j_dataOutputStream
+            if (this%jm_isFullscreen_0()) then
+                call j_dataOutputStream%jm_writeInt_1(1)
+            else
+                call j_dataOutputStream%jm_writeInt_1(0)
+            end if
+            if (this%jm_isProgressBarView_0()) then
+                call j_dataOutputStream%jm_writeInt_1(1)
+            else
+                call j_dataOutputStream%jm_writeInt_1(0)
+            end if
+            if (this%jm_isShowTitleBar_0()) then
+                call j_dataOutputStream%jm_writeInt_1(1)
+            else
+                call j_dataOutputStream%jm_writeInt_1(0)
+            end if
+            call j_dataOutputStream%jm_flush_0()
+            jtemp5 => StreamUtil_jm_getInstance_0()
+            jdiscardBoolean = jtemp5%jm_close_1(j_closeable)
+  end subroutine
 
-// throws Exception
-procedure TApplicationConfiguration.read;
-var
-  fileInputStreamFactory: TFileStreamFactory;
-  fileInputStream: TInputStream;
-  dataInputStream: TAbDataInputStream;
-  fullScreen: Integer;
-  progressBarView: Integer;
-  showTitleBar: Integer;
-begin
-        fileInputStreamFactory := TFileStreamFactory.getInstance();
-        fileInputStream := fileInputStreamFactory.getFileInputStreamInstance(TStringUtil.getInstance().EMPTY_STRING, Self.FILE_);
-        dataInputStream := TAbDataInputStream.Create(fileInputStream);
-        fullScreen := dataInputStream.readInt();
-        if (fullScreen) = (0) then begin
-            Self.setFullscreen(False);
-        end else if (fullScreen) = (1) then begin
-            Self.setFullscreen(True);
-        end else begin
-            raise SysUtils.Exception.Create('Invalid FullScreen ActivityConfiguration');
-        end;
-        progressBarView := dataInputStream.readInt();
-        if (progressBarView) = (0) then begin
-            Self.setProgressBarView(False);
-        end else if (progressBarView) = (1) then begin
-            Self.setProgressBarView(True);
-        end else begin
-            raise SysUtils.Exception.Create('Invalid ProgressBarView ActivityConfiguration');
-        end;
-        showTitleBar := dataInputStream.readInt();
-        if (showTitleBar) = (0) then begin
-            Self.setShowTitleBar(False);
-        end else if (showTitleBar) = (1) then begin
-            Self.setShowTitleBar(True);
-        end else begin
-            raise SysUtils.Exception.Create('Invalid ShowTitleBar ActivityConfiguration');
-        end;
-        Self.logUtil.putF('Read Configuration: ' + Self.toString(), TJava.Box(Self), 'read');
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_update_1(this, j_gameFeature)
+    class(ApplicationConfiguration), target :: this
+    class(Feature), target, optional :: j_gameFeature
+    class(Features), pointer :: j_features
+    class(MainFeatureFactory), pointer :: jtemp7
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp7 => MainFeatureFactory_jm_getInstance_0()
+        if (JR_same(j_gameFeature, jtemp7%f_FULL_SCREEN)) then
+            j_features => Features_jm_getInstance_0()
+            if (j_features%jm_isFeature_1(j_gameFeature)) then
+                if ((.not. this%jm_isFullscreen_0())) then
+                    call this%jm_setFullscreen_1(.true.)
+                    call this%jm_write_0()
+                end if
+            else
+                if (this%jm_isFullscreen_0()) then
+                    call this%jm_setFullscreen_1(.false.)
+                    call this%jm_write_0()
+                end if
+            end if
+        end if
+  end subroutine
 
-// throws Exception
-procedure TApplicationConfiguration.write;
-var
-  closeable_: ICloseable;
-  fileInputStreamFactory: TFileStreamFactory;
-  fileOutputStream: TOutputStream;
-  dataOutputStream: TAbDataOutputStream;
-begin
-        closeable_ := TNullCloseable.NULL_CLOSEABLE;
-        try
-        try
-            Self.logUtil.putF('Write Configuration: ' + Self.toString(), TJava.Box(Self), 'write');
-            fileInputStreamFactory := TFileStreamFactory.getInstance();
-            fileOutputStream := fileInputStreamFactory.getFileOutputStreamInstance(TStringUtil.getInstance().EMPTY_STRING, Self.FILE_);
-            dataOutputStream := TAbDataOutputStream.Create(fileOutputStream);
-            closeable_ := dataOutputStream;
-            if Self.isFullscreen() then begin
-                dataOutputStream.writeInt(1);
-            end else begin
-                dataOutputStream.writeInt(0);
-            end;
-            if Self.isProgressBarView() then begin
-                dataOutputStream.writeInt(1);
-            end else begin
-                dataOutputStream.writeInt(0);
-            end;
-            if Self.isShowTitleBar() then begin
-                dataOutputStream.writeInt(1);
-            end else begin
-                dataOutputStream.writeInt(0);
-            end;
-            dataOutputStream.flush();
-        except
-            on e: SysUtils.Exception do begin
-            raise e;
-            end;
-        end;
-        finally
-            TStreamUtil.getInstance().close(closeable_);
-        end;
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_setFullscreen_1(this, j_fullscreen)
+    class(ApplicationConfiguration), target :: this
+    logical, value :: j_fullscreen
+        this%f_fullscreen = j_fullscreen
+  end subroutine
 
-// throws Exception
-procedure TApplicationConfiguration.update(gameFeature: TFeature);
-var
-  features_: TFeatures;
-begin
-        if (gameFeature) = (TMainFeatureFactory.getInstance().FULL_SCREEN) then begin
-            features_ := TFeatures.getInstance();
-            if features_.isFeature(gameFeature) then begin
-                if not (Self.isFullscreen()) then begin
-                    Self.setFullscreen(True);
-                    Self.write();
-                end;
-            end else begin
-                if Self.isFullscreen() then begin
-                    Self.setFullscreen(False);
-                    Self.write();
-                end;
-            end;
-        end;
-end;
-    
+  recursive function ApplicationConfiguration_jm_isFullscreen_0(this) result(jresult)
+    class(ApplicationConfiguration), target :: this
+    logical :: jresult
+        jresult = this%f_fullscreen
+        return
+  end function
 
-procedure TApplicationConfiguration.setFullscreen(fullscreen: Boolean);
-begin
-        Self.fullscreen := fullscreen;
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_setShowTitleBar_1(this, j_showTitleBar)
+    class(ApplicationConfiguration), target :: this
+    logical, value :: j_showTitleBar
+        this%f_showTitleBar = j_showTitleBar
+  end subroutine
 
-function TApplicationConfiguration.isFullscreen: Boolean;
-begin
-        Exit(Self.fullscreen);
-end;
-    
+  recursive function ApplicationConfiguration_jm_isShowTitleBar_0(this) result(jresult)
+    class(ApplicationConfiguration), target :: this
+    logical :: jresult
+        jresult = this%f_showTitleBar
+        return
+  end function
 
-procedure TApplicationConfiguration.setShowTitleBar(showTitleBar: Boolean);
-begin
-        Self.showTitleBar := showTitleBar;
-end;
-    
+  recursive subroutine ApplicationConfiguration_jm_setProgressBarView_1(this, j_progressBarView)
+    class(ApplicationConfiguration), target :: this
+    logical, value :: j_progressBarView
+        this%f_progressBarView = j_progressBarView
+  end subroutine
 
-function TApplicationConfiguration.isShowTitleBar: Boolean;
-begin
-        Exit(Self.showTitleBar);
-end;
-    
+  recursive function ApplicationConfiguration_jm_isProgressBarView_0(this) result(jresult)
+    class(ApplicationConfiguration), target :: this
+    logical :: jresult
+        jresult = this%f_progressBarView
+        return
+  end function
 
-procedure TApplicationConfiguration.setProgressBarView(progressBarView: Boolean);
-begin
-        Self.progressBarView := progressBarView;
-end;
-    
-
-function TApplicationConfiguration.isProgressBarView: Boolean;
-begin
-        Exit(Self.progressBarView);
-end;
-    
-
-function TApplicationConfiguration.toString: string;
-var
-  stringBuffer: TStringMaker;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append('isFullscreen: ');
-        stringBuffer.appendboolean(Self.isFullscreen());
-        stringBuffer.append(' isProgressBarView: ');
-        stringBuffer.appendboolean(Self.isProgressBarView());
-        stringBuffer.append(' isShowTitleBar: ');
-        stringBuffer.appendboolean(Self.isShowTitleBar());
-        Exit(stringBuffer.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TApplicationConfiguration.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+  recursive function ApplicationConfiguration_jm_toString_0(this) result(jresult)
+    class(ApplicationConfiguration), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1('isFullscreen: ')
+        jdiscardRef => j_stringBuffer%jm_appendboolean_1(this%jm_isFullscreen_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(' isProgressBarView: ')
+        jdiscardRef => j_stringBuffer%jm_appendboolean_1(this%jm_isProgressBarView_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(' isShowTitleBar: ')
+        jdiscardRef => j_stringBuffer%jm_appendboolean_1(this%jm_isShowTitleBar_0())
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module ApplicationConfiguration_m
 

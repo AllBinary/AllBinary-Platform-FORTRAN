@@ -1,75 +1,67 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer.event
+module LayerManagerEventListener_m
+  use JR_m
+  use AllBinaryEventObject_m
+  use LayerManagerEventListenerInterface_m
+  use LayerManagerEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer.event
-unit LayerManagerEventListener;
+  type, extends(LayerManagerEventListenerInterface) :: LayerManagerEventListener
+  contains
+    procedure :: jm_onEvent_1 => LayerManagerEventListener_jm_onEvent_1
+    procedure :: jm_onCreateLayerManagerEvent_1 => LayerManagerEventListener_jm_onCreateLayerManagerEvent_1
+    procedure :: jm_onDeleteLayerManagerEvent_1 => LayerManagerEventListener_jm_onDeleteLayerManagerEvent_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject, LayerManagerEvent, LayerManagerEventListenerInterface, EventListenerInterface;
+  function LayerManagerEventListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LayerManagerEventListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LayerManagerEventListener)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLayerManagerEventListener = class(TInterfacedObject, ILayerManagerEventListenerInterface, IEventListenerInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        procedure onEvent(eventObject: TAllBinaryEventObject); virtual;
-        procedure onCreateLayerManagerEvent(layerManagerEvent_: TLayerManagerEvent); virtual;
-        procedure onDeleteLayerManagerEvent(layerManagerEvent_: TLayerManagerEvent); virtual;
-  end;
+  function LayerManagerEventListener_jnew_0() result(this)
+    class(LayerManagerEventListener), pointer :: this
+    allocate(this)
+    this%jclass = 'LayerManagerEventListener'
+  end function
 
-implementation
+  recursive subroutine LayerManagerEventListener_jm_onEvent_1(this, j_eventObject)
+    class(LayerManagerEventListener), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    continue
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine LayerManagerEventListener_jm_onCreateLayerManagerEvent_1(this, j_layerManagerEvent)
+    class(LayerManagerEventListener), target :: this
+    class(LayerManagerEvent), target, optional :: j_layerManagerEvent
+    continue
+  end subroutine
 
-function TLayerManagerEventListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TLayerManagerEventListener.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TLayerManagerEventListener.onEvent(eventObject: TAllBinaryEventObject);
-begin
-end;
-    
-
-// throws Exception
-procedure TLayerManagerEventListener.onCreateLayerManagerEvent(layerManagerEvent_: TLayerManagerEvent);
-begin
-end;
-    
-
-// throws Exception
-procedure TLayerManagerEventListener.onDeleteLayerManagerEvent(layerManagerEvent_: TLayerManagerEvent);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine LayerManagerEventListener_jm_onDeleteLayerManagerEvent_1(this, j_layerManagerEvent)
+    class(LayerManagerEventListener), target :: this
+    class(LayerManagerEvent), target, optional :: j_layerManagerEvent
+    continue
+  end subroutine
+end module LayerManagerEventListener_m
 

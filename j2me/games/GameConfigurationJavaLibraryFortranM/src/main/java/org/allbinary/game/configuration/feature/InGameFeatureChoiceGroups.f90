@@ -1,93 +1,128 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module InGameFeatureChoiceGroups_m
+  use JR_m
+  use StdUtil_m
+  use ABHashtable_m
+  use BasicArrayList_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit InGameFeatureChoiceGroups;
+  type, extends(JObject) :: InGameFeatureChoiceGroups
+    class(ABHashtable), pointer :: f_hashtable => null()
+  contains
+    procedure :: jm_get_0 => InGameFeatureChoiceGroups_jm_get_0
+    procedure :: jm_add_2 => InGameFeatureChoiceGroups_jm_add_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(InGameFeatureChoiceGroups), pointer, save :: InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsExclusive => null()
+  logical, save :: InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsExclusive = .false.
+  class(InGameFeatureChoiceGroups), pointer, save :: InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsMultiple => null()
+  logical, save :: InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsMultiple = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ABHashtable, BasicArrayList;
+  function InGameFeatureChoiceGroups_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(InGameFeatureChoiceGroups), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (InGameFeatureChoiceGroups)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TInGameFeatureChoiceGroups = class(TObject)
-  public
-    hashtable: TABHashtable<TObject, TObject>;
-    class var gameFeatureChoiceGroupsExclusive: TInGameFeatureChoiceGroups;
-    class var gameFeatureChoiceGroupsMultiple: TInGameFeatureChoiceGroups;
-    procedure InitFields;
-        constructor Create;
-        class function getExclusiveInstance: TInGameFeatureChoiceGroups; static;
-        class function getMultipleInstance: TInGameFeatureChoiceGroups; static;
-        function get: TABHashtable<TObject, TObject>; virtual;
-        procedure add(name: string; list: TBasicArrayList); virtual;
-  end;
+  function InGameFeatureChoiceGroups_jstatic_gameFeatureChoiceGroupsExclusive() result(jresult)
+    class(InGameFeatureChoiceGroups), pointer :: jresult
+    if (.not. InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsExclusive) then
+      InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsExclusive = .true.
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsExclusive => InGameFeatureChoiceGroups_jnew_0()
+    end if
+    jresult => InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsExclusive
+  end function
 
-implementation
-uses
-  StdUtil;
+  subroutine InGameFeatureChoiceGroups_jsetstatic_gameFeatureChoiceGroupsExclusive(jvalue)
+    class(InGameFeatureChoiceGroups), target, optional :: jvalue
+    InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsExclusive = .true.
+    if (present(jvalue)) then
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsExclusive => jvalue
+    else
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsExclusive => null()
+    end if
+  end subroutine
 
+  function InGameFeatureChoiceGroups_jstatic_gameFeatureChoiceGroupsMultiple() result(jresult)
+    class(InGameFeatureChoiceGroups), pointer :: jresult
+    if (.not. InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsMultiple) then
+      InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsMultiple = .true.
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsMultiple => InGameFeatureChoiceGroups_jnew_0()
+    end if
+    jresult => InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsMultiple
+  end function
 
-{AB:CODE}
+  subroutine InGameFeatureChoiceGroups_jsetstatic_gameFeatureChoiceGroupsMultiple(jvalue)
+    class(InGameFeatureChoiceGroups), target, optional :: jvalue
+    InGameFeatureChoiceGroups_jset_gameFeatureChoiceGroupsMultiple = .true.
+    if (present(jvalue)) then
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsMultiple => jvalue
+    else
+      InGameFeatureChoiceGroups_jcell_gameFeatureChoiceGroupsMultiple => null()
+    end if
+  end subroutine
 
-procedure TInGameFeatureChoiceGroups.InitFields;
-begin
-  Self.hashtable := TStdUtil.getInstance().createHashtable();
-end;
-    
+  recursive function InGameFeatureChoiceGroups_jnew_0() result(this)
+    class(InGameFeatureChoiceGroups), pointer :: this
+    class(StdUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'InGameFeatureChoiceGroups'
+    jtemp1 => StdUtil_jm_getInstance_0()
+    this%f_hashtable => jtemp1%jm_createHashtable_0()
+        continue
+  end function
 
-constructor TInGameFeatureChoiceGroups.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function InGameFeatureChoiceGroups_jm_getExclusiveInstance_0() result(jresult)
+    class(InGameFeatureChoiceGroups), pointer :: jresult
+        jresult => InGameFeatureChoiceGroups_jstatic_gameFeatureChoiceGroupsExclusive()
+        return
+  end function
 
-class function TInGameFeatureChoiceGroups.getExclusiveInstance: TInGameFeatureChoiceGroups;
-begin
-        Exit(TInGameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive);
-end;
-    
+  recursive function InGameFeatureChoiceGroups_jm_getMultipleInstance_0() result(jresult)
+    class(InGameFeatureChoiceGroups), pointer :: jresult
+        jresult => InGameFeatureChoiceGroups_jstatic_gameFeatureChoiceGroupsMultiple()
+        return
+  end function
 
-class function TInGameFeatureChoiceGroups.getMultipleInstance: TInGameFeatureChoiceGroups;
-begin
-        Exit(TInGameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple);
-end;
-    
+  recursive function InGameFeatureChoiceGroups_jm_get_0(this) result(jresult)
+    class(InGameFeatureChoiceGroups), target :: this
+    class(ABHashtable), pointer :: jresult
+        jresult => this%f_hashtable
+        return
+  end function
 
-function TInGameFeatureChoiceGroups.get: TABHashtable<TObject, TObject>;
-begin
-        Exit(Self.hashtable);
-end;
-    
-
-procedure TInGameFeatureChoiceGroups.add(name: string; list: TBasicArrayList);
-begin
-        Self.hashtable.put(TJava.Box(name), TJava.Box(list));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TInGameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive := TInGameFeatureChoiceGroups.Create();
-  TInGameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple := TInGameFeatureChoiceGroups.Create();
-  {AB:END}
-
-end.
+  recursive subroutine InGameFeatureChoiceGroups_jm_add_2(this, j_name, j_list)
+    class(InGameFeatureChoiceGroups), target :: this
+    character(len=*), intent(in) :: j_name
+    class(BasicArrayList), target, optional :: j_list
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardRef => this%f_hashtable%jm_put_2(j_name, j_list)
+  end subroutine
+end module InGameFeatureChoiceGroups_m
 

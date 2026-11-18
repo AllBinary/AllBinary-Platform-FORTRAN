@@ -50,6 +50,16 @@ contains
     jresult => NoTimeDelayHelper_jcell_SINGLETON
   end function
 
+  subroutine NoTimeDelayHelper_jsetstatic_SINGLETON(jvalue)
+    class(NoTimeDelayHelper), target, optional :: jvalue
+    NoTimeDelayHelper_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      NoTimeDelayHelper_jcell_SINGLETON => jvalue
+    else
+      NoTimeDelayHelper_jcell_SINGLETON => null()
+    end if
+  end subroutine
+
   recursive function NoTimeDelayHelper_jnew_0() result(this)
     class(NoTimeDelayHelper), pointer :: this
     allocate(this)

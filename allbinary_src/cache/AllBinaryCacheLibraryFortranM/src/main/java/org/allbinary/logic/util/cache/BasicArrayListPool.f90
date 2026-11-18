@@ -1,109 +1,129 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module BasicArrayListPool_m
+  use JR_m
+  use BasicArrayList_m
+  use AbstractArrayListPool_m
+  use CacheableInterfaceFactoryInterface_m
+  use CacheableInterface_m
+  use BasicArrayListCacheable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit BasicArrayListPool;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList, CacheableInterfaceFactoryInterface, CacheableInterface, AbstractArrayListPool;
-
-type
-  {AB:TYPES}
-  TBasicArrayListPool = class(TAbstractArrayListPool)
-  public
-        constructor Create(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface);
-        procedure clear; override;
-        function remove(key: TObject): ICacheableInterface; override;
-        procedure addAll(usedList: TBasicArrayList); virtual;
-        procedure releaseUsedBackToPool(usedList: TBasicArrayList); virtual;
-  end;
-
-implementation
-uses
-  BasicArrayListCacheable;
+  type, extends(AbstractArrayListPool) :: BasicArrayListPool
+  contains
+    procedure :: jm_clear_0 => BasicArrayListPool_jm_clear_0
+    procedure :: jm_remove_1 => BasicArrayListPool_jm_remove_1
+    procedure :: jm_addAll_1 => BasicArrayListPool_jm_addAll_1
+    procedure :: jm_releaseUsedBackToPool_1 => BasicArrayListPool_jm_releaseUsedBackToPool_1
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TBasicArrayListPool.Create(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface);
-begin
-        inherited Create(cacheableInterfaceFactoryInterface_);
-end;
-    
+  function BasicArrayListPool_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicArrayListPool), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicArrayListPool)
+      jresult => object
+    end select
+  end function
 
-procedure TBasicArrayListPool.clear;
-begin
-        Self.buffers.clear();
-end;
-    
+  recursive function BasicArrayListPool_jnew_1(j_cacheableInterfaceFactoryInterface) result(this)
+    class(CacheableInterfaceFactoryInterface), target, optional :: j_cacheableInterfaceFactoryInterface
+    class(BasicArrayListPool), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicArrayListPool'
+        continue ! super()
+  end function
 
-// throws Exception
-function TBasicArrayListPool.remove(key: TObject): ICacheableInterface;
-var
-  size: Integer;
-begin
-        size := Self.buffers.size();
-        if (size) > (0) then begin
-            Exit((TJava.ToObject(Self.buffers.removeAt((size) - (1))) as ICacheableInterface));
-        end else begin
-            Exit(Self.cacheableInterfaceFactoryInterface.getInstance(key));
-        end;
-end;
-    
+  recursive subroutine BasicArrayListPool_jm_clear_0(this)
+    class(BasicArrayListPool), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_buffers%jm_clear_0()
+  end subroutine
 
-// throws Exception
-procedure TBasicArrayListPool.addAll(usedList: TBasicArrayList);
-var
-  anyType: ICacheableInterface;
-  index: Integer;
-begin
-        index := usedList.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            anyType := (TJava.ToObject(usedList.objectArray[index]) as ICacheableInterface);
-            Self.add(anyType);
-        end;
-        usedList.clear();
-end;
-    
+  recursive function BasicArrayListPool_jm_remove_1(this, j_key) result(jresult)
+    class(BasicArrayListPool), target :: this
+    class(JObject), target, optional :: j_key
+    class(CacheableInterface), pointer :: jresult
+    integer(4) :: j_size
+        j_size = this%f_buffers%jm_size_0()
+        if ((j_size > 0)) then
+            jresult => CacheableInterface_jcast(this%f_buffers%jm_removeAt_1((j_size - 1)))
+            return
+        else
+            jresult => this%f_cacheableInterfaceFactoryInterface%jm_getInstance_1(j_key)
+            return
+        end if
+  end function
 
-// throws Exception
-procedure TBasicArrayListPool.releaseUsedBackToPool(usedList: TBasicArrayList);
-var
-  list: TBasicArrayListCacheable;
-  index: Integer;
-begin
-        index := usedList.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            list := TBasicArrayListCacheable(TJava.ToObject(usedList.objectArray[index]));
-            if (list.size()) = (0) then begin
-                usedList.removeAt(index);
-                Self.add(list);
-            end;
-        end;
-end;
+  recursive subroutine BasicArrayListPool_jm_addAll_1(this, j_usedList)
+    class(BasicArrayListPool), target :: this
+    class(BasicArrayList), target, optional :: j_usedList
+    class(CacheableInterface), pointer :: j_anyType
+    integer(4) :: j_index
+    integer(4) :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp1 = j_index
+        j_index = j_usedList%jm_size_0()
+        do while ((jtemp1 >= 0))
+            j_anyType => CacheableInterface_jcast(j_usedList%f_objectArray((j_index) + 1)%v)
+            call this%jm_add_1(j_anyType)
+        end do
+        call j_usedList%jm_clear_0()
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine BasicArrayListPool_jm_releaseUsedBackToPool_1(this, j_usedList)
+    class(BasicArrayListPool), target :: this
+    class(BasicArrayList), target, optional :: j_usedList
+    class(BasicArrayListCacheable), pointer :: j_list
+    integer(4) :: j_index
+    integer(4) :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = j_usedList%jm_size_0()
+        do while ((jtemp2 >= 0))
+            j_list => BasicArrayListCacheable_jcast(j_usedList%f_objectArray((j_index) + 1)%v)
+            if ((j_list%jm_size_0() == 0)) then
+                jdiscardRef => j_usedList%jm_removeAt_1(j_index)
+                call this%jm_add_1(j_list)
+            end if
+        end do
+  end subroutine
+end module BasicArrayListPool_m
 

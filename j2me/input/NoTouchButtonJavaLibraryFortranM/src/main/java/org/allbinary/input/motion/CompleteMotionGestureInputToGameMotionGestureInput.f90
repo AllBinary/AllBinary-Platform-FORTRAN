@@ -1,76 +1,87 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion
+module CompleteMotionGestureInputToGameMotionGestureInput_m
+  use JR_m
+  use PreLogUtil_m
+  use CommonStrings_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion
-unit CompleteMotionGestureInputToGameMotionGestureInput;
+  type, extends(JObject) :: CompleteMotionGestureInputToGameMotionGestureInput
+    class(CommonStrings), pointer :: f_commonStrings => null()
+  contains
+    procedure :: jm_init_0 => CompleteMotionGestureInputToGameMotionGestureInput_jm_init_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(CompleteMotionGestureInputToGameMotionGestureInput), pointer, save :: CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => null()
+  logical, save :: CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CommonStrings;
+  function CompleteMotionGestureInputToGameMotionGestureInput_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CompleteMotionGestureInputToGameMotionGestureInput)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCompleteMotionGestureInputToGameMotionGestureInput = class(TObject)
-  public
-    commonStrings: TCommonStrings;
-    class var instance: TCompleteMotionGestureInputToGameMotionGestureInput;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TCompleteMotionGestureInputToGameMotionGestureInput; static;
-        procedure init; virtual;
-  end;
+  function CompleteMotionGestureInputToGameMotionGestureInput_jstatic_instance() result(jresult)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+    if (.not. CompleteMotionGestureInputToGameMotionGestureInput_jset_instance) then
+      CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .true.
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => CompleteMotionGestureInputToGameMotionGestureInput_jnew_0()
+    end if
+    jresult => CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance
+  end function
 
-implementation
-uses
-  PreLogUtil;
+  subroutine CompleteMotionGestureInputToGameMotionGestureInput_jsetstatic_instance(jvalue)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), target, optional :: jvalue
+    CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .true.
+    if (present(jvalue)) then
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => jvalue
+    else
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => null()
+    end if
+  end subroutine
 
+  function CompleteMotionGestureInputToGameMotionGestureInput_jnew_0() result(this)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: this
+    allocate(this)
+    this%jclass = 'CompleteMotionGestureInputToGameMotionGestureInput'
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+  end function
 
-{AB:CODE}
+  recursive function CompleteMotionGestureInputToGameMotionGestureInput_jm_getInstance_0() result(jresult)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+        jresult => CompleteMotionGestureInputToGameMotionGestureInput_jstatic_instance()
+        return
+  end function
 
-procedure TCompleteMotionGestureInputToGameMotionGestureInput.InitFields;
-begin
-  Self.commonStrings := TCommonStrings.getInstance();
-end;
-
-constructor TCompleteMotionGestureInputToGameMotionGestureInput.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TCompleteMotionGestureInputToGameMotionGestureInput.getInstance: TCompleteMotionGestureInputToGameMotionGestureInput;
-begin
-        Exit(TCompleteMotionGestureInputToGameMotionGestureInput.instance);
-end;
-    
-
-procedure TCompleteMotionGestureInputToGameMotionGestureInput.init;
-begin
-        TPreLogUtil.put('No Touch Button = No Compound Motion Gestures', TJava.Box(Self), Self.commonStrings.INIT);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TCompleteMotionGestureInputToGameMotionGestureInput.instance := TCompleteMotionGestureInputToGameMotionGestureInput.Create();
-  {AB:END}
-
-end.
+  recursive subroutine CompleteMotionGestureInputToGameMotionGestureInput_jm_init_0(this)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call PreLogUtil_jm_put_3('No Touch Button = No Compound Motion Gestures', this, this%f_commonStrings%f_INIT)
+  end subroutine
+end module CompleteMotionGestureInputToGameMotionGestureInput_m
 

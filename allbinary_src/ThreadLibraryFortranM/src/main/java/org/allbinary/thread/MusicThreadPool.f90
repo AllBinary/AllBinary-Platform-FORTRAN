@@ -52,6 +52,16 @@ contains
     jresult => MusicThreadPool_jcell_THREAD_POOL
   end function
 
+  subroutine MusicThreadPool_jsetstatic_THREAD_POOL(jvalue)
+    class(ThreadPool), target, optional :: jvalue
+    MusicThreadPool_jset_THREAD_POOL = .true.
+    if (present(jvalue)) then
+      MusicThreadPool_jcell_THREAD_POOL => jvalue
+    else
+      MusicThreadPool_jcell_THREAD_POOL => null()
+    end if
+  end subroutine
+
   recursive function MusicThreadPool_jnew_3(j_poolName, j_numThreads, j_priority) result(this)
     character(len=*), intent(in) :: j_poolName
     integer(4), value :: j_numThreads
@@ -85,7 +95,7 @@ contains
         jtemp4 => StringUtil_jm_getInstance_0()
         jtemp3 => StringMaker_jnew_0()
         jtemp2 => jtemp3%jm_append_1(jtemp4%jm_toString_1(j_task))
-        jtemp1 => jtemp2%jm_appendlong_1(int(JR_currentTimeMillis(), 8))
+        jtemp1 => jtemp2%jm_appendlong_1(JR_currentTimeMillis())
         call this%f_logUtil%jm_putF_3(jtemp1%jm_toString_0(), this, this%f_threadPoolStrings%f_ADD_TASK)
         call this%ThreadPool%jm_runTask_1(j_task)
   end subroutine
@@ -109,7 +119,7 @@ contains
         jtemp8 => StringMaker_jnew_0()
         jtemp7 => jtemp8%jm_append_1(this%f_threadPoolStrings%f_START_TASK)
         jtemp6 => jtemp7%jm_append_1(jtemp9%jm_toString_1(j_task))
-        jtemp5 => jtemp6%jm_appendlong_1(int(JR_currentTimeMillis(), 8))
+        jtemp5 => jtemp6%jm_appendlong_1(JR_currentTimeMillis())
         call this%f_logUtil%jm_putF_3(jtemp5%jm_toString_0(), this, this%f_commonStrings%f_RUN)
   end subroutine
 
@@ -132,7 +142,7 @@ contains
         jtemp13 => StringMaker_jnew_0()
         jtemp12 => jtemp13%jm_append_1(this%f_threadPoolStrings%f_COMPLETE_TASK)
         jtemp11 => jtemp12%jm_append_1(jtemp14%jm_toString_1(j_task))
-        jtemp10 => jtemp11%jm_appendlong_1(int(JR_currentTimeMillis(), 8))
+        jtemp10 => jtemp11%jm_appendlong_1(JR_currentTimeMillis())
         call this%f_logUtil%jm_putF_3(jtemp10%jm_toString_0(), this, this%f_commonStrings%f_RUN)
   end subroutine
 end module MusicThreadPool_m

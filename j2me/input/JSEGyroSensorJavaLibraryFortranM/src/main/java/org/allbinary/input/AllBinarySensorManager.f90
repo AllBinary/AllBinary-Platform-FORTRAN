@@ -1,96 +1,109 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input
+module AllBinarySensorManager_m
+  use JR_m
+  use NullUtil_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input
-unit AllBinarySensorManager;
+  type, extends(JObject) :: AllBinarySensorManager
+    character(len=:), allocatable :: f_ORIENTATION_SENSOR_INPUT
+    character(len=:), allocatable :: f_ORIENTATION_TYPE
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_init_0 => AllBinarySensorManager_jm_init_0
+    procedure :: jm_getSensorNamesList_0 => AllBinarySensorManager_jm_getSensorNamesList_0
+    procedure :: jm_shutdown_0 => AllBinarySensorManager_jm_shutdown_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: AllBinarySensorManager_jcell_instance => null()
+  logical, save :: AllBinarySensorManager_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList;
+  function AllBinarySensorManager_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinarySensorManager), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinarySensorManager)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinarySensorManager = class(TObject)
-  public
-    ORIENTATION_SENSOR_INPUT: string;
-    ORIENTATION_TYPE: string;
-    list: TBasicArrayList;
-    class var instance: TObject;
-    procedure InitFields;
-        class function getInstance: TAllBinarySensorManager; static;
-        constructor Create;
-        procedure init; virtual;
-        function getSensorNamesList: TBasicArrayList; virtual;
-        procedure shutdown; virtual;
-  end;
+  function AllBinarySensorManager_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. AllBinarySensorManager_jset_instance) then
+      AllBinarySensorManager_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    AllBinarySensorManager_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => AllBinarySensorManager_jcell_instance
+  end function
 
-implementation
-uses
-  NullUtil, BasicArrayListD;
+  subroutine AllBinarySensorManager_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    AllBinarySensorManager_jset_instance = .true.
+    if (present(jvalue)) then
+      AllBinarySensorManager_jcell_instance => jvalue
+    else
+      AllBinarySensorManager_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function AllBinarySensorManager_jnew_0() result(this)
+    class(AllBinarySensorManager), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinarySensorManager'
+    this%f_ORIENTATION_SENSOR_INPUT = ''
+    this%f_ORIENTATION_TYPE = ''
+    this%f_ORIENTATION_SENSOR_INPUT = 'Orientation Sensor Input'
+    this%f_ORIENTATION_TYPE = 'Orientation Type'
+    this%f_list => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-{AB:CODE}
+  recursive function AllBinarySensorManager_jm_getInstance_0() result(jresult)
+    class(AllBinarySensorManager), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(AllBinarySensorManager_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call AllBinarySensorManager_jsetstatic_instance(AllBinarySensorManager_jnew_0())
+        end if
+        jresult => AllBinarySensorManager_jcast(AllBinarySensorManager_jstatic_instance())
+        return
+  end function
 
-procedure TAllBinarySensorManager.InitFields;
-begin
-  Self.ORIENTATION_SENSOR_INPUT := 'Orientation Sensor Input';
-  Self.ORIENTATION_TYPE := 'Orientation Type';
-  Self.list := TBasicArrayListD.Create();
-end;
-    
+  recursive subroutine AllBinarySensorManager_jm_init_0(this)
+    class(AllBinarySensorManager), target :: this
+    continue
+  end subroutine
 
-class function TAllBinarySensorManager.getInstance: TAllBinarySensorManager;
-begin
-        if (TAllBinarySensorManager.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TAllBinarySensorManager.instance := TAllBinarySensorManager.Create();
-        end;
-        Exit(TAllBinarySensorManager(TJava.ToObject(TAllBinarySensorManager.instance)));
-end;
-    
+  recursive function AllBinarySensorManager_jm_getSensorNamesList_0(this) result(jresult)
+    class(AllBinarySensorManager), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_list
+        return
+  end function
 
-constructor TAllBinarySensorManager.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-procedure TAllBinarySensorManager.init;
-begin
-end;
-    
-
-function TAllBinarySensorManager.getSensorNamesList: TBasicArrayList;
-begin
-        Exit(Self.list);
-end;
-    
-
-procedure TAllBinarySensorManager.shutdown;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinarySensorManager.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+  recursive subroutine AllBinarySensorManager_jm_shutdown_0(this)
+    class(AllBinarySensorManager), target :: this
+    continue
+  end subroutine
+end module AllBinarySensorManager_m
 

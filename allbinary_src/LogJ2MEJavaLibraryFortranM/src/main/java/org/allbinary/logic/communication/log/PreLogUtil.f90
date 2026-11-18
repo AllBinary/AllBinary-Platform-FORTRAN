@@ -48,6 +48,12 @@ contains
     jresult = PreLogUtil_jcell_LOG_SUCCESS
   end function
 
+  subroutine PreLogUtil_jsetstatic_LOG_SUCCESS(jvalue)
+    character(len=*), intent(in) :: jvalue
+    PreLogUtil_jset_LOG_SUCCESS = .true.
+    PreLogUtil_jcell_LOG_SUCCESS = jvalue
+  end subroutine
+
   recursive function PreLogUtil_jnew_0() result(this)
     class(PreLogUtil), pointer :: this
     allocate(this)

@@ -1,65 +1,94 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.touch.action
+module DiagonalDownLeftTouchInputToGameKeyEventAction_m
+  use JR_m
+  use PlatformInputMappingFactory_m
+  use GameKeyCompleteMotionGestureInputEvent_m
+  use TouchMotionGestureFactory_m
+  use NullUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.touch.action
-unit DiagonalDownLeftTouchInputToGameKeyEventAction;
+  type, extends(GameKeyCompleteMotionGestureInputEvent) :: DiagonalDownLeftTouchInputToGameKeyEventAction
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: DiagonalDownLeftTouchInputToGameKeyEventAction_jcell_instance => null()
+  logical, save :: DiagonalDownLeftTouchInputToGameKeyEventAction_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameKeyCompleteMotionGestureInputEvent;
+  function DiagonalDownLeftTouchInputToGameKeyEventAction_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DiagonalDownLeftTouchInputToGameKeyEventAction), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DiagonalDownLeftTouchInputToGameKeyEventAction)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDiagonalDownLeftTouchInputToGameKeyEventAction = class(TGameKeyCompleteMotionGestureInputEvent)
-  public
-    class var instance: TObject;
-        class function getInstance: TGameKeyCompleteMotionGestureInputEvent; static;
-        constructor Create;
-  end;
+  function DiagonalDownLeftTouchInputToGameKeyEventAction_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. DiagonalDownLeftTouchInputToGameKeyEventAction_jset_instance) then
+      DiagonalDownLeftTouchInputToGameKeyEventAction_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    DiagonalDownLeftTouchInputToGameKeyEventAction_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => DiagonalDownLeftTouchInputToGameKeyEventAction_jcell_instance
+  end function
 
-implementation
-uses
-  PlatformInputMappingFactory, TouchMotionGestureFactory, NullUtil;
+  subroutine DiagonalDownLeftTouchInputToGameKeyEventAction_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    DiagonalDownLeftTouchInputToGameKeyEventAction_jset_instance = .true.
+    if (present(jvalue)) then
+      DiagonalDownLeftTouchInputToGameKeyEventAction_jcell_instance => jvalue
+    else
+      DiagonalDownLeftTouchInputToGameKeyEventAction_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function DiagonalDownLeftTouchInputToGameKeyEventAction_jnew_0() result(this)
+    class(DiagonalDownLeftTouchInputToGameKeyEventAction), pointer :: this
+    class(TouchMotionGestureFactory), pointer :: jtemp3
+    class(PersistentInputMapping), pointer :: jtemp4
+    class(PlatformInputMappingFactory), pointer :: jtemp5
+    allocate(this)
+    this%jclass = 'DiagonalDownLeftTouchInputToGameKeyEventAction'
+        jtemp5 => PlatformInputMappingFactory_jm_getInstance_0()
+        jtemp3 => TouchMotionGestureFactory_jm_getInstance_0()
+        jtemp4 => jtemp5%jm_getPersistentInputMappingInstance_0()
+        continue ! super()
+  end function
 
-{AB:CODE}
-    
+  recursive function DiagonalDownLeftTouchInputToGameKeyEventAction_jm_getInstance_0() result(jresult)
+    class(GameKeyCompleteMotionGestureInputEvent), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(DiagonalDownLeftTouchInputToGameKeyEventAction_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call DiagonalDownLeftTouchInputToGameKeyEventAction_jsetstatic_instance(DiagonalDownLeftTouchInputToGameKeyEventAction_jnew_0())
+        end if
+        jresult => GameKeyCompleteMotionGestureInputEvent_jcast(DiagonalDownLeftTouchInputToGameKeyEventAction_jstatic_instance())
+        return
+  end function
+end module DiagonalDownLeftTouchInputToGameKeyEventAction_m
 
-class function TDiagonalDownLeftTouchInputToGameKeyEventAction.getInstance: TGameKeyCompleteMotionGestureInputEvent;
-begin
-        if (TDiagonalDownLeftTouchInputToGameKeyEventAction.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TDiagonalDownLeftTouchInputToGameKeyEventAction.instance := TDiagonalDownLeftTouchInputToGameKeyEventAction.Create();
-        end;
-        Exit(TGameKeyCompleteMotionGestureInputEvent(TJava.ToObject(TDiagonalDownLeftTouchInputToGameKeyEventAction.instance)));
-end;
-    
-
-constructor TDiagonalDownLeftTouchInputToGameKeyEventAction.Create;
-begin
-        inherited Create('Diagonal Down Left Action', TTouchMotionGestureFactory.getInstance().DIAGONAL_DOWN_LEFT, TPlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDiagonalDownLeftTouchInputToGameKeyEventAction.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+function DiagonalDownLeftTouchInputToGameKeyEventAction_jnew_0_jext() result(this)
+  use DiagonalDownLeftTouchInputToGameKeyEventAction_m, only: JObject, DiagonalDownLeftTouchInputToGameKeyEventAction_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => DiagonalDownLeftTouchInputToGameKeyEventAction_jnew_0()
+end function
 

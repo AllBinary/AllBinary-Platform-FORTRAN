@@ -1,36 +1,30 @@
-// Generated Code Do Not Modify
-// package java.lang
-unit Deprecated;
+! Generated Code Do Not Modify
+! package java.lang
+module Deprecated_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: Deprecated
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  // J2SE to J2ME compatibility
-  TDeprecated = class(TObject)
-  public
-    constructor Create;
-  end;
+  function Deprecated_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Deprecated), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Deprecated)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TDeprecated.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function Deprecated_jnew_0() result(this)
+    class(Deprecated), pointer :: this
+    allocate(this)
+    this%jclass = 'Deprecated'
+  end function
+end module Deprecated_m
 

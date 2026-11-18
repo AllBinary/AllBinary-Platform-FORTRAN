@@ -54,6 +54,16 @@ contains
     jresult => ArrayUtil_jcell_instance
   end function
 
+  subroutine ArrayUtil_jsetstatic_instance(jvalue)
+    class(ArrayUtil), target, optional :: jvalue
+    ArrayUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ArrayUtil_jcell_instance => jvalue
+    else
+      ArrayUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function ArrayUtil_jnew_0() result(this)
     class(ArrayUtil), pointer :: this
     allocate(this)

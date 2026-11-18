@@ -46,6 +46,16 @@ contains
     jresult => FilePathData_jcell_instance
   end function
 
+  subroutine FilePathData_jsetstatic_instance(jvalue)
+    class(FilePathData), target, optional :: jvalue
+    FilePathData_jset_instance = .true.
+    if (present(jvalue)) then
+      FilePathData_jcell_instance => jvalue
+    else
+      FilePathData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function FilePathData_jnew_0() result(this)
     class(FilePathData), pointer :: this
     allocate(this)

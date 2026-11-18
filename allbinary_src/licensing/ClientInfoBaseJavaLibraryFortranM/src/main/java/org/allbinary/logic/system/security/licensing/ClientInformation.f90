@@ -1,259 +1,312 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module ClientInformation_m
+  use JR_m
+  use TsUtil_m
+  use StringMaker_m
+  use StringUtil_m
+  use HardwareInterface_m
+  use SystemHardwareFactory_m
+  use GenericOperatingSystem_m
+  use NoOperatingSystem_m
+  use CommonSeps_m
+  use BasicArrayList_m
+  use BasicArrayListUtil_m
+  use StdUtil_m
+  use ABHashtable_m
+  use AbeClientInformationInterface_m
+  use AbeClientInformationData_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit ClientInformation;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TsUtil, GenericOperatingSystem, BasicArrayList, ABHashtable, AbeClientInformationInterface;
-
-type
-  {AB:TYPES}
-  //  This is the information sent to the license server
-  TClientInformation = class(TInterfacedObject, IAbeClientInformationInterface)
-  public
-    operatingSystemInterface: TGenericOperatingSystem;
-    tsUtil: TTsUtil;
-    name: string;
-    shortName: string;
-    version: string;
-    specialName: string;
-    hardSale: Boolean;
-    licenseId: string;
-    licenseServers: TBasicArrayList;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(name: string; version: string; specialName: string; shortName: string);
-        procedure init; virtual;
-        function getOperatingSystemInterface: TGenericOperatingSystem; virtual;
-        function getName: string; virtual;
-        function getSpecialName: string; virtual;
-        function getVersion: string; virtual;
-        function getLicenseId: string; virtual;
-        function getLicenseServers: TBasicArrayList; virtual;
-        function getLicenseServer(index: Integer): string; virtual;
-        function getNumberOfLicenseServers: Integer; virtual;
-        function toHashtable: TABHashtable<TObject, TObject>; virtual;
-        function isSameId(alicenseId: string): Boolean; virtual;
-        function isLargerOrDifferentServerList(list: TBasicArrayList): Boolean; virtual;
-        procedure setHardSale(hardSale: Boolean); virtual;
-        function isHardSale: Boolean; virtual;
-        procedure setOperatingSystemInterface(operatingSystemInterface: TGenericOperatingSystem); virtual;
-        procedure setLicenseId(licenseId: string); virtual;
-        procedure setLicenseServers(licenseServers: TBasicArrayList); virtual;
-        function toShortString: string; virtual;
-  end;
-
-implementation
-uses
-  AbeClientInformationData, StringMaker, StringUtil, HardwareInterface, SystemHardwareFactory, NoOperatingSystem, CommonSeps, BasicArrayListUtil, StdUtil;
+  type, extends(AbeClientInformationInterface) :: ClientInformation
+    class(GenericOperatingSystem), pointer :: f_operatingSystemInterface => null()
+    class(TsUtil), pointer :: f_tsUtil => null()
+    character(len=:), allocatable :: f_name
+    character(len=:), allocatable :: f_shortName
+    character(len=:), allocatable :: f_version
+    character(len=:), allocatable :: f_specialName
+    logical :: f_hardSale = .false.
+    character(len=:), allocatable :: f_licenseId
+    class(BasicArrayList), pointer :: f_licenseServers => null()
+  contains
+    procedure :: jm_init_0 => ClientInformation_jm_init_0
+    procedure :: jm_getOperatingSystemInterface_0 => ClientInformation_jm_getOperatingSystemInterface_0
+    procedure :: jm_getName_0 => ClientInformation_jm_getName_0
+    procedure :: jm_getSpecialName_0 => ClientInformation_jm_getSpecialName_0
+    procedure :: jm_getVersion_0 => ClientInformation_jm_getVersion_0
+    procedure :: jm_getLicenseId_0 => ClientInformation_jm_getLicenseId_0
+    procedure :: jm_getLicenseServers_0 => ClientInformation_jm_getLicenseServers_0
+    procedure :: jm_getLicenseServer_1 => ClientInformation_jm_getLicenseServer_1
+    procedure :: jm_getNumberOfLicenseServers_0 => ClientInformation_jm_getNumberOfLicenseServers_0
+    procedure :: jm_toHashtable_0 => ClientInformation_jm_toHashtable_0
+    procedure :: jm_isSameId_1 => ClientInformation_jm_isSameId_1
+    procedure :: jm_isLargerOrDifferentServerList_1 => ClientInformation_jm_isLargerOrDifferentServerList_1
+    procedure :: jm_setHardSale_1 => ClientInformation_jm_setHardSale_1
+    procedure :: jm_isHardSale_0 => ClientInformation_jm_isHardSale_0
+    procedure :: jm_setOperatingSystemInterface_1 => ClientInformation_jm_setOperatingSystemInterface_1
+    procedure :: jm_setLicenseId_1 => ClientInformation_jm_setLicenseId_1
+    procedure :: jm_setLicenseServers_1 => ClientInformation_jm_setLicenseServers_1
+    procedure :: jm_toShortString_0 => ClientInformation_jm_toShortString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TClientInformation.InitFields;
-begin
-  Self.operatingSystemInterface := TNoOperatingSystem.NO_OPERATING_SYSTEM;
-  Self.tsUtil := TTsUtil.getInstance();
-  
-  
-  
-  
-  Self.hardSale := True;
-  Self.licenseId := TStringUtil.getInstance().EMPTY_STRING;
-  Self.licenseServers := TBasicArrayListUtil.getInstance().getImmutableInstance();
-end;
+  function ClientInformation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ClientInformation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ClientInformation)
+      jresult => object
+    end select
+  end function
 
-function TClientInformation.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function ClientInformation_jnew_4(j_name, j_version, j_specialName, j_shortName) result(this)
+    character(len=*), intent(in) :: j_name
+    character(len=*), intent(in) :: j_version
+    character(len=*), intent(in) :: j_specialName
+    character(len=*), intent(in) :: j_shortName
+    class(ClientInformation), pointer :: this
+    class(StringMaker), pointer :: jtemp3
+    class(StringMaker), pointer :: jtemp4
+    class(StringMaker), pointer :: jtemp5
+    class(StringMaker), pointer :: jtemp6
+    class(CommonSeps), pointer :: jtemp7
+    class(StringUtil), pointer :: jtemp1
+    class(BasicArrayListUtil), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'ClientInformation'
+    this%f_name = ''
+    this%f_shortName = ''
+    this%f_version = ''
+    this%f_specialName = ''
+    this%f_licenseId = ''
+    this%f_operatingSystemInterface => NoOperatingSystem_jstatic_NO_OPERATING_SYSTEM()
+    this%f_tsUtil => TsUtil_jm_getInstance_0()
     
-
-constructor TClientInformation.Create(name: string; version: string; specialName: string; shortName: string);
-begin
-    inherited Create;
-    InitFields;
-        Self.name := name;
-        Self.version := version;
-        Self.specialName := specialName;
-        Self.shortName := TStringMaker.Create().append(shortName).append(TCommonSeps.getInstance().UNDERSCORE).append(version).toString();
-        Self.init();
-end;
     
-
-procedure TClientInformation.init;
-begin
-end;
     
-
-function TClientInformation.getOperatingSystemInterface: TGenericOperatingSystem;
-begin
-        Exit(Self.operatingSystemInterface);
-end;
     
+    this%f_hardSale = .true.
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_licenseId = jtemp1%f_EMPTY_STRING
+    jtemp2 => BasicArrayListUtil_jm_getInstance_0()
+    this%f_licenseServers => jtemp2%jm_getImmutableInstance_0()
+        this%f_name = j_name
+        this%f_version = j_version
+        this%f_specialName = j_specialName
+        jtemp7 => CommonSeps_jm_getInstance_0()
+        jtemp6 => StringMaker_jnew_0()
+        jtemp5 => jtemp6%jm_append_1(j_shortName)
+        jtemp4 => jtemp5%jm_append_1(jtemp7%f_UNDERSCORE)
+        jtemp3 => jtemp4%jm_append_1(j_version)
+        this%f_shortName = jtemp3%jm_toString_0()
+        call this%jm_init_0()
+  end function
 
-function TClientInformation.getName: string;
-begin
-        Exit(Self.name);
-end;
-    
+  recursive subroutine ClientInformation_jm_init_0(this)
+    class(ClientInformation), target :: this
+    continue
+  end subroutine
 
-function TClientInformation.getSpecialName: string;
-begin
-        Exit(Self.specialName);
-end;
-    
+  recursive function ClientInformation_jm_getOperatingSystemInterface_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    class(GenericOperatingSystem), pointer :: jresult
+        jresult => this%f_operatingSystemInterface
+        return
+  end function
 
-function TClientInformation.getVersion: string;
-begin
-        Exit(Self.version);
-end;
-    
+  recursive function ClientInformation_jm_getName_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_name
+        return
+  end function
 
-function TClientInformation.getLicenseId: string;
-begin
-        Exit(Self.licenseId);
-end;
-    
+  recursive function ClientInformation_jm_getSpecialName_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_specialName
+        return
+  end function
 
-function TClientInformation.getLicenseServers: TBasicArrayList;
-begin
-        Exit(Self.licenseServers);
-end;
-    
+  recursive function ClientInformation_jm_getVersion_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_version
+        return
+  end function
 
-function TClientInformation.getLicenseServer(index: Integer): string;
-begin
-        Exit(TJava.UnboxString(TJava.ToObject(Self.licenseServers.objectArray[index])));
-end;
-    
+  recursive function ClientInformation_jm_getLicenseId_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_licenseId
+        return
+  end function
 
-function TClientInformation.getNumberOfLicenseServers: Integer;
-begin
-        Exit(Self.licenseServers.size());
-end;
-    
+  recursive function ClientInformation_jm_getLicenseServers_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_licenseServers
+        return
+  end function
 
-function TClientInformation.toHashtable: TABHashtable<TObject, TObject>;
-var
-  abeClientInformationData_: TAbeClientInformationData;
-  genericOperatingSystem_: TGenericOperatingSystem;
-  clientInfoHashtable: TABHashtable<TObject, TObject>;
-  hardwareInterface_: IHardwareInterface;
-  hardwareString: string;
-begin
-        abeClientInformationData_ := TAbeClientInformationData.getInstance();
-        genericOperatingSystem_ := Self.getOperatingSystemInterface();
-        clientInfoHashtable := TStdUtil.getInstance().createHashtable();
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.NAME), TJava.Box(Self.name));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.VERSION), TJava.Box(Self.version));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.SPECIALNAME), TJava.Box(Self.specialName));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.LICENSEID), TJava.Box(Self.getLicenseId()));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.OSNAME), TJava.Box(genericOperatingSystem_.getName()));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.OSARCH), TJava.Box(genericOperatingSystem_.getArch()));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.OSVERSION), TJava.Box(genericOperatingSystem_.getVersion()));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.OS), TJava.Box(genericOperatingSystem_.toString()));
-        hardwareInterface_ := TSystemHardwareFactory.getInstance().getInstance(genericOperatingSystem_);
-        hardwareString := TJava.ToString(TJava.ToObject(hardwareInterface_));
-        clientInfoHashtable.put(TJava.Box(abeClientInformationData_.HARDWARE), TJava.Box(hardwareString));
-        Exit(clientInfoHashtable);
-end;
-    
+  recursive function ClientInformation_jm_getLicenseServer_1(this, j_index) result(jresult)
+    class(ClientInformation), target :: this
+    integer(4), value :: j_index
+    character(len=:), allocatable :: jresult
+        jresult = this%f_licenseServers%f_objectArray((j_index) + 1)%v
+        return
+  end function
 
-function TClientInformation.isSameId(alicenseId: string): Boolean;
-begin
-        if (Self.tsUtil.compareTo(Self.getLicenseId(), alicenseId)) = (0) then begin
-            Exit(True);
-        end else begin
-            Exit(False);
-        end;
-end;
-    
+  recursive function ClientInformation_jm_getNumberOfLicenseServers_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_licenseServers%jm_size_0()
+        return
+  end function
 
-function TClientInformation.isLargerOrDifferentServerList(list: TBasicArrayList): Boolean;
-var
-  size: Integer;
-  currentSize: Integer;
-  newServerName: string;
-  nextOldServerName: string;
-  index2: Integer;
-  index: Integer;
-begin
-        size := (list.size()) - (1);
-        currentSize := (Self.licenseServers.size()) - (1);
-        if (size) > (currentSize) then begin
-            Exit(True);
-        end;
-        for index := size downto 0 do begin
-            newServerName := TJava.UnboxString(TJava.ToObject(list.objectArray[index]));
-            for index2 := currentSize downto 0 do begin
-                nextOldServerName := TJava.UnboxString(TJava.ToObject(Self.licenseServers.objectArray[index]));
-                if (Self.tsUtil.compareTo(newServerName, nextOldServerName)) <> (0) then begin
-                    Exit(True);
-                end;
-            end;
-        end;
-        Exit(False);
-end;
-    
+  recursive function ClientInformation_jm_toHashtable_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    class(ABHashtable), pointer :: jresult
+    class(AbeClientInformationData), pointer :: j_abeClientInformationData
+    class(GenericOperatingSystem), pointer :: j_genericOperatingSystem
+    class(ABHashtable), pointer :: j_clientInfoHashtable
+    class(HardwareInterface), pointer :: j_hardwareInterface
+    character(len=:), allocatable :: j_hardwareString
+    class(StdUtil), pointer :: jtemp8
+    class(SystemHardwareFactory), pointer :: jtemp9
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_abeClientInformationData => AbeClientInformationData_jm_getInstance_0()
+        j_genericOperatingSystem => this%jm_getOperatingSystemInterface_0()
+        jtemp8 => StdUtil_jm_getInstance_0()
+        j_clientInfoHashtable => jtemp8%jm_createHashtable_0()
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_NAME_u4, this%f_name)
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_VERSION_u7, this%f_version)
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_SPECIALNAME_u11, this%f_specialName)
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_LICENSEID_u9, this%jm_getLicenseId_0())
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_OSNAME, j_genericOperatingSystem%jm_getName_0())
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_OSARCH, j_genericOperatingSystem%jm_getArch_0())
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_OSVERSION, j_genericOperatingSystem%jm_getVersion_0())
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_OS, j_genericOperatingSystem%jm_toString_0())
+        jtemp9 => SystemHardwareFactory_jm_getInstance_0()
+        j_hardwareInterface => jtemp9%jm_getInstance_1(j_genericOperatingSystem)
+        j_hardwareString = j_hardwareInterface%jm_toString_0()
+        jdiscardRef => j_clientInfoHashtable%jm_put_2(j_abeClientInformationData%f_HARDWARE, j_hardwareString)
+        jresult => j_clientInfoHashtable
+        return
+  end function
 
-procedure TClientInformation.setHardSale(hardSale: Boolean);
-begin
-        Self.hardSale := hardSale;
-end;
-    
+  recursive function ClientInformation_jm_isSameId_1(this, j_alicenseId) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=*), intent(in) :: j_alicenseId
+    logical :: jresult
+        if ((this%f_tsUtil%jm_compareTo_2(this%jm_getLicenseId_0(), j_alicenseId) == 0)) then
+            jresult = .true.
+            return
+        else
+            jresult = .false.
+            return
+        end if
+  end function
 
-function TClientInformation.isHardSale: Boolean;
-begin
-        Exit(Self.hardSale);
-end;
-    
+  recursive function ClientInformation_jm_isLargerOrDifferentServerList_1(this, j_vector) result(jresult)
+    class(ClientInformation), target :: this
+    class(BasicArrayList), target, optional :: j_vector
+    logical :: jresult
+    integer(4) :: j_size
+    integer(4) :: j_currentSize
+    character(len=:), allocatable :: j_newServerName
+    character(len=:), allocatable :: j_nextOldServerName
+    integer(4) :: j_index2
+    integer(4) :: j_index
+        j_size = (j_vector%jm_size_0() - 1)
+        j_currentSize = (this%f_licenseServers%jm_size_0() - 1)
+        if ((j_size > j_currentSize)) then
+            jresult = .true.
+            return
+        end if
+        j_index = j_size
+        do while ((j_index >= 0))
+            j_newServerName = j_vector%f_objectArray((j_index) + 1)%v
+            j_index2 = j_currentSize
+            do while ((j_index2 >= 0))
+                j_nextOldServerName = this%f_licenseServers%f_objectArray((j_index) + 1)%v
+                if ((this%f_tsUtil%jm_compareTo_2(j_newServerName, j_nextOldServerName) /= 0)) then
+                    jresult = .true.
+                    return
+                end if
+                j_index2 = j_index2 - 1
+            end do
+            j_index = j_index - 1
+        end do
+        jresult = .false.
+        return
+  end function
 
-procedure TClientInformation.setOperatingSystemInterface(operatingSystemInterface: TGenericOperatingSystem);
-begin
-        Self.operatingSystemInterface := operatingSystemInterface;
-end;
-    
+  recursive subroutine ClientInformation_jm_setHardSale_1(this, j_hardSale)
+    class(ClientInformation), target :: this
+    logical, value :: j_hardSale
+        this%f_hardSale = j_hardSale
+  end subroutine
 
-procedure TClientInformation.setLicenseId(licenseId: string);
-begin
-        Self.licenseId := licenseId;
-end;
-    
+  recursive function ClientInformation_jm_isHardSale_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    logical :: jresult
+        jresult = this%f_hardSale
+        return
+  end function
 
-procedure TClientInformation.setLicenseServers(licenseServers: TBasicArrayList);
-begin
-        Self.licenseServers := licenseServers;
-end;
-    
+  recursive subroutine ClientInformation_jm_setOperatingSystemInterface_1(this, j_operatingSystemInterface)
+    class(ClientInformation), target :: this
+    class(GenericOperatingSystem), target, optional :: j_operatingSystemInterface
+        this%f_operatingSystemInterface => j_operatingSystemInterface
+  end subroutine
 
-function TClientInformation.toShortString: string;
-begin
-        Exit(Self.shortName);
-end;
+  recursive subroutine ClientInformation_jm_setLicenseId_1(this, j_licenseId)
+    class(ClientInformation), target :: this
+    character(len=*), intent(in) :: j_licenseId
+        this%f_licenseId = j_licenseId
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine ClientInformation_jm_setLicenseServers_1(this, j_licenseServers)
+    class(ClientInformation), target :: this
+    class(BasicArrayList), target, optional :: j_licenseServers
+        this%f_licenseServers => j_licenseServers
+  end subroutine
 
-end.
+  recursive function ClientInformation_jm_toShortString_0(this) result(jresult)
+    class(ClientInformation), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_shortName
+        return
+  end function
+end module ClientInformation_m
 

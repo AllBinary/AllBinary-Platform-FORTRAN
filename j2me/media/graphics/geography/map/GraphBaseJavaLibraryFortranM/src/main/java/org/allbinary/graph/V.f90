@@ -1,42 +1,39 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graph
-unit V;
+! Generated Code Do Not Modify
+! package org.allbinary.graph
+module V_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: V
+  contains
+    procedure :: jm_getId_0 => V_jm_getId_0
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TV = class(TObject)
-  public
-    constructor Create;
-        function getId: Integer; virtual;
-  end;
+  function V_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(V), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (V)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function V_jnew_0() result(this)
+    class(V), pointer :: this
+    allocate(this)
+    this%jclass = 'V'
+  end function
 
-{AB:CODE}
-
-constructor TV.Create;
-begin
-  inherited Create;
-end;
-    
-
-function TV.getId: Integer;
-begin
-        Exit(0);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function V_jm_getId_0(this) result(jresult)
+    class(V), target :: this
+    integer(4) :: jresult
+        jresult = 0
+        return
+  end function
+end module V_m
 

@@ -42,6 +42,16 @@ contains
     jresult => ThreadObjectUtil_jcell_instance
   end function
 
+  subroutine ThreadObjectUtil_jsetstatic_instance(jvalue)
+    class(ThreadObjectUtil), target, optional :: jvalue
+    ThreadObjectUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ThreadObjectUtil_jcell_instance => jvalue
+    else
+      ThreadObjectUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function ThreadObjectUtil_jnew_0() result(this)
     class(ThreadObjectUtil), pointer :: this
     allocate(this)

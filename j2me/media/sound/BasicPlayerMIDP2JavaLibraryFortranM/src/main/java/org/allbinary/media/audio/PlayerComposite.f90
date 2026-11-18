@@ -1,265 +1,306 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.audio
+module PlayerComposite_m
+  use JR_m
+  use LogUtil_m
+  use CommonStrings_m
+  use GameTickTimeDelayHelper_m
+  use GameTickTimeDelayHelperFactory_m
+  use TimeDelayHelper_m
+  use TimeBaseInterface_m
+  use Controllable2_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.audio
-unit PlayerComposite;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Control, Controllable, Player, PlayerListener, TimeBase, LogUtil, CommonStrings, GameTickTimeDelayHelper, TimeDelayHelper;
-
-type
-  {AB:TYPES}
-  // BasicPlayerMIDP2
-  TPlayerComposite = class(TInterfacedObject, IControllable, IPlayer)
-  public
-    logUtil: TLogUtil;
-    commonStrings: TCommonStrings;
-    player: IPlayer;
-    timeElapsedHelper: TTimeDelayHelper;
-    gameTickTimeDelayHelper: TGameTickTimeDelayHelper;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(player_: IPlayer; repeatTime: Integer);
-        procedure addPlayerListener(playerListener_: IPlayerListener); virtual;
-        procedure removePlayerListener(playerListener_: IPlayerListener); virtual;
-        procedure close; virtual;
-        procedure deallocate; virtual;
-        function getContentType: string; virtual;
-        function getDuration: Int64; virtual;
-        function getMediaTime: Int64; virtual;
-        function getTimeBase: ITimeBase; virtual;
-        procedure setTimeBase(timeBase_: ITimeBase); virtual;
-        procedure prefetch; virtual;
-        procedure realize; virtual;
-        function getState: Integer; virtual;
-        procedure setLoopCount(count: Integer); virtual;
-        function setMediaTime(now: Int64): Int64; virtual;
-        procedure start; virtual;
-        procedure stop; virtual;
-        function getControl(controlType: string): TControl; virtual;
-        function getControls: TArray<TControl>; virtual;
-        procedure setVolume(leftVolume: Integer; rightVolume: Integer); virtual;
-        function getPlayerP: IPlayer; virtual;
-  end;
-
-implementation
-uses
-  TimeBaseInterface, Controllable2, MediaException, GameTickTimeDelayHelperFactory;
+  type, extends(Controllable) :: PlayerComposite
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(CommonStrings), pointer :: f_commonStrings => null()
+    class(Player), pointer :: f_player => null()
+    class(TimeDelayHelper), pointer :: f_timeElapsedHelper => null()
+    class(GameTickTimeDelayHelper), pointer :: f_gameTickTimeDelayHelper => null()
+  contains
+    procedure :: jm_addPlayerListener_1 => PlayerComposite_jm_addPlayerListener_1
+    procedure :: jm_removePlayerListener_1 => PlayerComposite_jm_removePlayerListener_1
+    procedure :: jm_close_0 => PlayerComposite_jm_close_0
+    procedure :: jm_deallocate_0 => PlayerComposite_jm_deallocate_0
+    procedure :: jm_getContentType_0 => PlayerComposite_jm_getContentType_0
+    procedure :: jm_getDuration_0 => PlayerComposite_jm_getDuration_0
+    procedure :: jm_getMediaTime_0 => PlayerComposite_jm_getMediaTime_0
+    procedure :: jm_getTimeBase_0 => PlayerComposite_jm_getTimeBase_0
+    procedure :: jm_setTimeBase_1 => PlayerComposite_jm_setTimeBase_1
+    procedure :: jm_prefetch_0 => PlayerComposite_jm_prefetch_0
+    procedure :: jm_realize_0 => PlayerComposite_jm_realize_0
+    procedure :: jm_getState_0 => PlayerComposite_jm_getState_0
+    procedure :: jm_setLoopCount_1 => PlayerComposite_jm_setLoopCount_1
+    procedure :: jm_setMediaTime_1 => PlayerComposite_jm_setMediaTime_1
+    procedure :: jm_start_0 => PlayerComposite_jm_start_0
+    procedure :: jm_stop_0 => PlayerComposite_jm_stop_0
+    procedure :: jm_getControl_1 => PlayerComposite_jm_getControl_1
+    procedure :: jm_getControls_0 => PlayerComposite_jm_getControls_0
+    procedure :: jm_setVolume_2 => PlayerComposite_jm_setVolume_2
+    procedure :: jm_getPlayerP_0 => PlayerComposite_jm_getPlayerP_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TPlayerComposite.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.commonStrings := TCommonStrings.getInstance();
-  
-  Self.timeElapsedHelper := TTimeDelayHelper.Create(0);
-  Self.gameTickTimeDelayHelper := TGameTickTimeDelayHelperFactory.getInstance();
-end;
+  function PlayerComposite_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlayerComposite), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlayerComposite)
+      jresult => object
+    end select
+  end function
 
-function TPlayerComposite.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function PlayerComposite_jnew_2(j_player, j_repeatTime) result(this)
+    class(Player), target, optional :: j_player
+    integer(4), value :: j_repeatTime
+    class(PlayerComposite), pointer :: this
+    allocate(this)
+    this%jclass = 'PlayerComposite'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
     
+    this%f_timeElapsedHelper => TimeDelayHelper_jnew_1(0)
+    this%f_gameTickTimeDelayHelper => GameTickTimeDelayHelperFactory_jm_getInstance_0()
+        this%f_player => j_player
+        this%f_timeElapsedHelper%f_delay = j_repeatTime
+  end function
 
-constructor TPlayerComposite.Create(player_: IPlayer; repeatTime: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.player := player_;
-        Self.timeElapsedHelper.delay := repeatTime;
-end;
-    
+  recursive subroutine PlayerComposite_jm_addPlayerListener_1(this, j_playerListener)
+    class(PlayerComposite), target :: this
+    class(PlayerListener), target, optional :: j_playerListener
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_player%jm_addPlayerListener_1(j_playerListener)
+  end subroutine
 
-procedure TPlayerComposite.addPlayerListener(playerListener_: IPlayerListener);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.player.addPlayerListener(playerListener_);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine PlayerComposite_jm_removePlayerListener_1(this, j_playerListener)
+    class(PlayerComposite), target :: this
+    class(PlayerListener), target, optional :: j_playerListener
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_player%jm_removePlayerListener_1(j_playerListener)
+  end subroutine
 
-procedure TPlayerComposite.removePlayerListener(playerListener_: IPlayerListener);
-begin
-        Self.player.removePlayerListener(playerListener_);
-end;
-    
+  recursive subroutine PlayerComposite_jm_close_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_player%jm_close_0()
+  end subroutine
 
-procedure TPlayerComposite.close;
-begin
-        Self.player.close();
-end;
-    
+  recursive subroutine PlayerComposite_jm_deallocate_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_player%jm_deallocate_0()
+  end subroutine
 
-procedure TPlayerComposite.deallocate;
-begin
-        Self.player.deallocate();
-end;
-    
+  recursive function PlayerComposite_jm_getContentType_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_player%jm_getContentType_0()
+        return
+  end function
 
-function TPlayerComposite.getContentType: string;
-begin
-        Exit(Self.player.getContentType());
-end;
-    
+  recursive function PlayerComposite_jm_getDuration_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    integer(8) :: jresult
+        jresult = this%f_player%jm_getDuration_0()
+        return
+  end function
 
-function TPlayerComposite.getDuration: Int64;
-begin
-        Exit(Self.player.getDuration());
-end;
-    
+  recursive function PlayerComposite_jm_getMediaTime_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    integer(8) :: jresult
+        jresult = this%f_player%jm_getMediaTime_0()
+        return
+  end function
 
-function TPlayerComposite.getMediaTime: Int64;
-begin
-        Exit(Self.player.getMediaTime());
-end;
-    
+  recursive function PlayerComposite_jm_getTimeBase_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    class(TimeBase), pointer :: jresult
+        associate (jstaticref1 => TimeBaseInterface_jcast(this%f_player))
+        jresult => jstaticref1%jm_getTimeBase_0()
+        end associate
+        return
+  end function
 
-function TPlayerComposite.getTimeBase: ITimeBase;
-begin
-        Exit(((TJava.ToObject(Self.player) as ITimeBaseInterface)).getTimeBase());
-end;
-    
+  recursive subroutine PlayerComposite_jm_setTimeBase_1(this, j_timeBase)
+    class(PlayerComposite), target :: this
+    class(TimeBase), target, optional :: j_timeBase
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref2 => TimeBaseInterface_jcast(this%f_player))
+        call jstaticref2%jm_setTimeBase_1(j_timeBase)
+        end associate
+  end subroutine
 
-// throws MediaException
-procedure TPlayerComposite.setTimeBase(timeBase_: ITimeBase);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        ((TJava.ToObject(Self.player) as ITimeBaseInterface)).setTimeBase(timeBase_);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine PlayerComposite_jm_prefetch_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            call this%f_player%jm_prefetch_0()
+  end subroutine
 
-procedure TPlayerComposite.prefetch;
-begin
-        try
-            Self.player.prefetch();
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), 'prefetch', TJava.Box(e));
-            end;
-        end;
-end;
-    
+  recursive subroutine PlayerComposite_jm_realize_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            call this%f_player%jm_realize_0()
+  end subroutine
 
-procedure TPlayerComposite.realize;
-begin
-        try
-            Self.player.realize();
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), 'realize', TJava.Box(e));
-            end;
-        end;
-end;
-    
+  recursive function PlayerComposite_jm_getState_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    integer(4) :: jresult
+        jresult = this%f_player%jm_getState_0()
+        return
+  end function
 
-function TPlayerComposite.getState: Integer;
-begin
-        Exit(Self.player.getState());
-end;
-    
+  recursive subroutine PlayerComposite_jm_setLoopCount_1(this, j_count)
+    class(PlayerComposite), target :: this
+    integer(4), value :: j_count
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_player%jm_setLoopCount_1(j_count)
+  end subroutine
 
-procedure TPlayerComposite.setLoopCount(count: Integer);
-begin
-        Self.player.setLoopCount(count);
-end;
-    
+  recursive function PlayerComposite_jm_setMediaTime_1(this, j_now) result(jresult)
+    class(PlayerComposite), target :: this
+    integer(8), value :: j_now
+    integer(8) :: jresult
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            jresult = this%f_player%jm_setMediaTime_1(j_now)
+            return
+  end function
 
-function TPlayerComposite.setMediaTime(now: Int64): Int64;
-begin
-        try
-            Exit(Self.player.setMediaTime(now));
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), 'setMediaTime', TJava.Box(e));
-            Exit(Int64(-1));
-            end;
-        end;
-end;
-    
+  recursive subroutine PlayerComposite_jm_start_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            if (this%f_timeElapsedHelper%jm_isTime_1(this%f_gameTickTimeDelayHelper%f_startTime)) then
+                call this%f_player%jm_start_0()
+            end if
+  end subroutine
 
-procedure TPlayerComposite.start;
-begin
-        try
-            if Self.timeElapsedHelper.isTime(Self.gameTickTimeDelayHelper.startTime) then begin
-                Self.player.start();
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), Self.commonStrings.START_METHOD_NAME, TJava.Box(e));
-            end;
-        end;
-end;
-    
+  recursive subroutine PlayerComposite_jm_stop_0(this)
+    class(PlayerComposite), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            call this%f_player%jm_stop_0()
+  end subroutine
 
-procedure TPlayerComposite.stop;
-begin
-        try
-            Self.player.stop();
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), 'stop', TJava.Box(e));
-            end;
-        end;
-end;
-    
+  recursive function PlayerComposite_jm_getControl_1(this, j_controlType) result(jresult)
+    class(PlayerComposite), target :: this
+    character(len=*), intent(in) :: j_controlType
+    class(Control), pointer :: jresult
+        jresult => this%f_player%jm_getControl_1(j_controlType)
+        return
+  end function
 
-function TPlayerComposite.getControl(controlType: string): TControl;
-begin
-        Exit(Self.player.getControl(controlType));
-end;
-    
+  recursive function PlayerComposite_jm_getControls_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    type(JRef), allocatable :: jresult(:)
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
 
-function TPlayerComposite.getControls: TArray<TControl>;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-    
+  recursive subroutine PlayerComposite_jm_setVolume_2(this, j_leftVolume, j_rightVolume)
+    class(PlayerComposite), target :: this
+    integer(4), value :: j_leftVolume
+    integer(4), value :: j_rightVolume
+    class(Controllable2), pointer :: j_controllable2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_controllable2 => Controllable2_jcast(this%f_player)
+        call j_controllable2%jm_setVolume_2(j_leftVolume, j_rightVolume)
+  end subroutine
 
-procedure TPlayerComposite.setVolume(leftVolume: Integer; rightVolume: Integer);
-var
-  controllable2_: IControllable2;
-begin
-        controllable2_ := ((TJava.ToObject(Self.player) as IControllable2));
-        controllable2_.setVolume(leftVolume, rightVolume);
-end;
-    
-
-function TPlayerComposite.getPlayerP: IPlayer;
-begin
-        Exit(Self.player);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function PlayerComposite_jm_getPlayerP_0(this) result(jresult)
+    class(PlayerComposite), target :: this
+    class(Player), pointer :: jresult
+        jresult => this%f_player
+        return
+  end function
+end module PlayerComposite_m
 

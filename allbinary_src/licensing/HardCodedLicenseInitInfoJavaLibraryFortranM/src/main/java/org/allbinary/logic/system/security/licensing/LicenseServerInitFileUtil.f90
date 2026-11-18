@@ -1,61 +1,55 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module LicenseServerInitFileUtil_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit LicenseServerInitFileUtil;
+  type, extends(JObject) :: LicenseServerInitFileUtil
+  contains
+    procedure :: jm_init_0 => LicenseServerInitFileUtil_jm_init_0
+    procedure :: jm_write_0 => LicenseServerInitFileUtil_jm_write_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function LicenseServerInitFileUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LicenseServerInitFileUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LicenseServerInitFileUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLicenseServerInitFileUtil = class(TObject)
-  public
-    constructor Create;
-        procedure init;
-        procedure write;
-  end;
+  function LicenseServerInitFileUtil_jnew_0() result(this)
+    class(LicenseServerInitFileUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'LicenseServerInitFileUtil'
+  end function
 
-implementation
+  recursive subroutine LicenseServerInitFileUtil_jm_init_0(this)
+    class(LicenseServerInitFileUtil), target :: this
+    continue
+  end subroutine
 
-{AB:CODE}
-
-constructor TLicenseServerInitFileUtil.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TLicenseServerInitFileUtil.init;
-begin
-end;
-    
-
-procedure TLicenseServerInitFileUtil.write;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine LicenseServerInitFileUtil_jm_write_0(this)
+    class(LicenseServerInitFileUtil), target :: this
+    continue
+  end subroutine
+end module LicenseServerInitFileUtil_m
 

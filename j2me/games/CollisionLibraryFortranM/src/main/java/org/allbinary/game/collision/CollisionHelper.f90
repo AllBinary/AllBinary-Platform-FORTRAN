@@ -1,80 +1,73 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.collision
+module CollisionHelper_m
+  use JR_m
+  use CollidableCompositeLayer_m
+  use AllBinaryLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.collision
-unit CollisionHelper;
+  type, extends(JObject) :: CollisionHelper
+    class(AllBinaryLayer), pointer :: f_sourceLayerInterface => null()
+  contains
+    procedure :: jm_isCollidable_1 => CollisionHelper_jm_isCollidable_1
+    procedure :: jm_getOwnerLayerInterface_0 => CollisionHelper_jm_getOwnerLayerInterface_0
+    procedure :: jm_setOwnerLayerInterface_1 => CollisionHelper_jm_setOwnerLayerInterface_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CollidableCompositeLayer, AllBinaryLayer;
+  function CollisionHelper_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CollisionHelper), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CollisionHelper)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCollisionHelper = class(TObject)
-  public
-    sourceLayerInterface: TAllBinaryLayer;
-    procedure InitFields;
-        constructor Create(sourceLayerInterface: TAllBinaryLayer);
-        function isCollidable(layerInterface: TCollidableCompositeLayer): Boolean; virtual;
-        function getOwnerLayerInterface: TAllBinaryLayer; virtual;
-        procedure setOwnerLayerInterface(sourceLayerInterface: TAllBinaryLayer); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TCollisionHelper.InitFields;
-begin
-  
-end;
+  recursive function CollisionHelper_jnew_1(j_sourceLayerInterface) result(this)
+    class(AllBinaryLayer), target, optional :: j_sourceLayerInterface
+    class(CollisionHelper), pointer :: this
+    allocate(this)
+    this%jclass = 'CollisionHelper'
     
+        this%f_sourceLayerInterface => j_sourceLayerInterface
+  end function
 
-constructor TCollisionHelper.Create(sourceLayerInterface: TAllBinaryLayer);
-begin
-    inherited Create;
-    InitFields;
-        Self.sourceLayerInterface := sourceLayerInterface;
-end;
-    
+  recursive function CollisionHelper_jm_isCollidable_1(this, j_layerInterface) result(jresult)
+    class(CollisionHelper), target :: this
+    class(CollidableCompositeLayer), target, optional :: j_layerInterface
+    logical :: jresult
+        jresult = .true.
+        return
+  end function
 
-function TCollisionHelper.isCollidable(layerInterface: TCollidableCompositeLayer): Boolean;
-begin
-        Exit(True);
-end;
-    
+  recursive function CollisionHelper_jm_getOwnerLayerInterface_0(this) result(jresult)
+    class(CollisionHelper), target :: this
+    class(AllBinaryLayer), pointer :: jresult
+        jresult => this%f_sourceLayerInterface
+        return
+  end function
 
-function TCollisionHelper.getOwnerLayerInterface: TAllBinaryLayer;
-begin
-        Exit(Self.sourceLayerInterface);
-end;
-    
-
-procedure TCollisionHelper.setOwnerLayerInterface(sourceLayerInterface: TAllBinaryLayer);
-begin
-        Self.sourceLayerInterface := sourceLayerInterface;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine CollisionHelper_jm_setOwnerLayerInterface_1(this, j_sourceLayerInterface)
+    class(CollisionHelper), target :: this
+    class(AllBinaryLayer), target, optional :: j_sourceLayerInterface
+        this%f_sourceLayerInterface => j_sourceLayerInterface
+  end subroutine
+end module CollisionHelper_m
 

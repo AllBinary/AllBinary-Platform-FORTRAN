@@ -1,66 +1,63 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form
+module MultipleScrollSelectionFormRectPaintable_m
+  use JR_m
+  use Paintable_m
+  use MultipleScrollSelectionHorizontalForm_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form
-unit MultipleScrollSelectionFormRectPaintable;
+  type, extends(Paintable) :: MultipleScrollSelectionFormRectPaintable
+    class(MultipleScrollSelectionHorizontalForm), pointer :: f_multipleScrollSelectionForm => null()
+  contains
+    procedure :: jm_paint_1 => MultipleScrollSelectionFormRectPaintable_jm_paint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Paintable, MultipleScrollSelectionHorizontalForm;
+  function MultipleScrollSelectionFormRectPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MultipleScrollSelectionFormRectPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MultipleScrollSelectionFormRectPaintable)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TMultipleScrollSelectionFormRectPaintable = class(TPaintable)
-  public
-    multipleScrollSelectionForm: TMultipleScrollSelectionHorizontalForm;
-    procedure InitFields;
-        constructor Create(multipleScrollSelectionForm: TMultipleScrollSelectionHorizontalForm);
-        procedure paint(graphics_: TGraphics); override;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TMultipleScrollSelectionFormRectPaintable.InitFields;
-begin
-  
-end;
+  recursive function MultipleScrollSelectionFormRectPaintable_jnew_1(j_multipleScrollSelectionForm) result(this)
+    class(MultipleScrollSelectionHorizontalForm), target, optional :: j_multipleScrollSelectionForm
+    class(MultipleScrollSelectionFormRectPaintable), pointer :: this
+    allocate(this)
+    this%jclass = 'MultipleScrollSelectionFormRectPaintable'
     
+        this%f_multipleScrollSelectionForm => j_multipleScrollSelectionForm
+  end function
 
-constructor TMultipleScrollSelectionFormRectPaintable.Create(multipleScrollSelectionForm: TMultipleScrollSelectionHorizontalForm);
-begin
-    inherited Create;
-    InitFields;
-        Self.multipleScrollSelectionForm := multipleScrollSelectionForm;
-end;
-    
-
-procedure TMultipleScrollSelectionFormRectPaintable.paint(graphics_: TGraphics);
-begin
-        Self.multipleScrollSelectionForm.fillRect(graphics_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine MultipleScrollSelectionFormRectPaintable_jm_paint_1(this, j_graphics)
+    class(MultipleScrollSelectionFormRectPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_multipleScrollSelectionForm%jm_fillRect_1(j_graphics)
+  end subroutine
+end module MultipleScrollSelectionFormRectPaintable_m
 

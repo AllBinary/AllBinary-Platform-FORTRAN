@@ -45,6 +45,16 @@ contains
     jresult => ColorChangeEventHandler_jcell_eventHandler
   end function
 
+  subroutine ColorChangeEventHandler_jsetstatic_eventHandler(jvalue)
+    class(ColorChangeEventHandler), target, optional :: jvalue
+    ColorChangeEventHandler_jset_eventHandler = .true.
+    if (present(jvalue)) then
+      ColorChangeEventHandler_jcell_eventHandler => jvalue
+    else
+      ColorChangeEventHandler_jcell_eventHandler => null()
+    end if
+  end subroutine
+
   recursive function ColorChangeEventHandler_jnew_0() result(this)
     class(ColorChangeEventHandler), pointer :: this
     allocate(this)

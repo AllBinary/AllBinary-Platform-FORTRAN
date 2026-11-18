@@ -1,57 +1,55 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.bounds.event
+module BoundsChangeEvent_m
+  use JR_m
+  use Rectangle_m
+  use AllBinaryEventObject_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.bounds.event
-unit BoundsChangeEvent;
+  type, extends(AllBinaryEventObject) :: BoundsChangeEvent
+  contains
+    procedure :: jm_getRectangle_0 => BoundsChangeEvent_jm_getRectangle_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Rectangle, AllBinaryEventObject;
+  function BoundsChangeEvent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BoundsChangeEvent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BoundsChangeEvent)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBoundsChangeEvent = class(TAllBinaryEventObject)
-  public
-        constructor Create(rectangle_: TRectangle);
-        function getRectangle: TRectangle; virtual;
-  end;
+  recursive function BoundsChangeEvent_jnew_1(j_rectangle) result(this)
+    class(Rectangle), target, optional :: j_rectangle
+    class(BoundsChangeEvent), pointer :: this
+    allocate(this)
+    this%jclass = 'BoundsChangeEvent'
+        continue ! super()
+  end function
 
-implementation
-
-{AB:CODE}
-    
-
-constructor TBoundsChangeEvent.Create(rectangle_: TRectangle);
-begin
-        inherited Create(rectangle_);
-end;
-    
-
-function TBoundsChangeEvent.getRectangle: TRectangle;
-begin
-        Exit(TRectangle(TJava.ToObject(Self.getSource())));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BoundsChangeEvent_jm_getRectangle_0(this) result(jresult)
+    class(BoundsChangeEvent), target :: this
+    class(Rectangle), pointer :: jresult
+        jresult => Rectangle_jcast(this%jm_getSource_0())
+        return
+  end function
+end module BoundsChangeEvent_m
 

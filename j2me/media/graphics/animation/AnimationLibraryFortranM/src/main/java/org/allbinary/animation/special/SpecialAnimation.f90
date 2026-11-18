@@ -1,109 +1,143 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.special
+module SpecialAnimation_m
+  use JR_m
+  use AnimationBehavior_m
+  use IndexedAnimation_m
+  use IndexedAnimationBehavior_m
+  use SpecialAnimationInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.special
-unit SpecialAnimation;
+  type, extends(IndexedAnimation) :: SpecialAnimation
+  contains
+    procedure :: jm_nextFrame_0 => SpecialAnimation_jm_nextFrame_0
+    procedure :: jm_setLastFrame_0 => SpecialAnimation_jm_setLastFrame_0
+    procedure :: jm_isComplete_0 => SpecialAnimation_jm_isComplete_0
+    procedure :: jm_open_0 => SpecialAnimation_jm_open_0
+    procedure :: jm_close_0 => SpecialAnimation_jm_close_0
+    procedure :: jm_process_0 => SpecialAnimation_jm_process_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! SpecialAnimation used as a SpecialAnimationInterface
+  type, extends(SpecialAnimationInterface) :: SpecialAnimation_jas_SpecialAnimationInterface
+    class(SpecialAnimation), pointer :: jtarget => null()
+  contains
+    procedure :: jm_setLastFrame_0 => SpecialAnimation_jas_SpecialAnimationInterface_jm_setLastFrame_0
+    procedure :: jm_isComplete_0 => SpecialAnimation_jas_SpecialAnimationInterface_jm_isComplete_0
+  end type
 
-interface
+  class(SpecialAnimation), pointer, save :: SpecialAnimation_jcell_NULL_SPECIAL_ANIMATION => null()
+  logical, save :: SpecialAnimation_jset_NULL_SPECIAL_ANIMATION = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AnimationBehavior, IndexedAnimation, SpecialAnimationInterface, AnimationInterface, IndexedAnimationInterface, LocationPaintableInterface, SequenceInterface, SequentialAnimationInterface;
+contains
 
-type
-  {AB:TYPES}
-  TSpecialAnimation = class(TIndexedAnimation, ISpecialAnimationInterface, IAnimationInterface, IIndexedAnimationInterface, ILocationPaintableInterface, ISequenceInterface, ISequentialAnimationInterface)
-  public
-    class var NULL_SPECIAL_ANIMATION: TSpecialAnimation;
-    function JavaObject: TObject;
-        class function getInstance: TSpecialAnimation; static;
-        constructor Create(animationBehavior_: TAnimationBehavior);
-        procedure nextFrame; virtual;
-        procedure setLastFrame; virtual;
-        function isComplete: Boolean; virtual;
-        procedure open; virtual;
-        procedure close; virtual;
-        procedure process; virtual;
-  end;
+  function SpecialAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SpecialAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SpecialAnimation)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  IndexedAnimationBehavior;
+  function SpecialAnimation_jas_SpecialAnimationInterface_jnew(object) result(jresult)
+    class(SpecialAnimation), target :: object
+    class(SpecialAnimation_jas_SpecialAnimationInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'SpecialAnimation'
+    jresult%jtarget => object
+  end function
 
+  recursive subroutine SpecialAnimation_jas_SpecialAnimationInterface_jm_setLastFrame_0(this)
+    class(SpecialAnimation_jas_SpecialAnimationInterface), target :: this
+    call this%jtarget%jm_setLastFrame_0()
+  end subroutine
 
-{AB:CODE}
+  recursive function SpecialAnimation_jas_SpecialAnimationInterface_jm_isComplete_0(this) result(jresult)
+    class(SpecialAnimation_jas_SpecialAnimationInterface), target :: this
+    logical :: jresult
+    jresult = this%jtarget%jm_isComplete_0()
+  end function
 
-function TSpecialAnimation.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  function SpecialAnimation_jstatic_NULL_SPECIAL_ANIMATION() result(jresult)
+    class(SpecialAnimation), pointer :: jresult
+    if (.not. SpecialAnimation_jset_NULL_SPECIAL_ANIMATION) then
+      SpecialAnimation_jset_NULL_SPECIAL_ANIMATION = .true.
+      SpecialAnimation_jcell_NULL_SPECIAL_ANIMATION => SpecialAnimation_jnew_1(IndexedAnimationBehavior_jnew_2(1, int(250, 8)))
+    end if
+    jresult => SpecialAnimation_jcell_NULL_SPECIAL_ANIMATION
+  end function
 
-class function TSpecialAnimation.getInstance: TSpecialAnimation;
-begin
-        Exit(TSpecialAnimation.NULL_SPECIAL_ANIMATION);
-end;
-    
+  subroutine SpecialAnimation_jsetstatic_NULL_SPECIAL_ANIMATION(jvalue)
+    class(SpecialAnimation), target, optional :: jvalue
+    SpecialAnimation_jset_NULL_SPECIAL_ANIMATION = .true.
+    if (present(jvalue)) then
+      SpecialAnimation_jcell_NULL_SPECIAL_ANIMATION => jvalue
+    else
+      SpecialAnimation_jcell_NULL_SPECIAL_ANIMATION => null()
+    end if
+  end subroutine
 
-constructor TSpecialAnimation.Create(animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(animationBehavior_);
-end;
-    
+  recursive function SpecialAnimation_jnew_1(j_animationBehavior) result(this)
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(SpecialAnimation), pointer :: this
+    allocate(this)
+    this%jclass = 'SpecialAnimation'
+        continue ! super()
+  end function
 
-procedure TSpecialAnimation.nextFrame;
-var
-  indexedAnimationBehavior_: TIndexedAnimationBehavior;
-begin
-        indexedAnimationBehavior_ := (TIndexedAnimationBehavior(TJava.ToObject(Self.animationBehaviorP)));
-        Inc(indexedAnimationBehavior_.loopIndex);
-end;
-    
+  recursive function SpecialAnimation_jm_getInstance_0() result(jresult)
+    class(SpecialAnimation), pointer :: jresult
+        jresult => SpecialAnimation_jstatic_NULL_SPECIAL_ANIMATION()
+        return
+  end function
 
-procedure TSpecialAnimation.setLastFrame;
-begin
-end;
-    
+  recursive subroutine SpecialAnimation_jm_nextFrame_0(this)
+    class(SpecialAnimation), target :: this
+    class(IndexedAnimationBehavior), pointer :: j_indexedAnimationBehavior
+        j_indexedAnimationBehavior => IndexedAnimationBehavior_jcast(this%f_animationBehaviorP)
+        j_indexedAnimationBehavior%f_loopIndex = j_indexedAnimationBehavior%f_loopIndex + 1
+  end subroutine
 
-function TSpecialAnimation.isComplete: Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive subroutine SpecialAnimation_jm_setLastFrame_0(this)
+    class(SpecialAnimation), target :: this
+    continue
+  end subroutine
 
-procedure TSpecialAnimation.open;
-begin
-end;
-    
+  recursive function SpecialAnimation_jm_isComplete_0(this) result(jresult)
+    class(SpecialAnimation), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-procedure TSpecialAnimation.close;
-begin
-end;
-    
+  recursive subroutine SpecialAnimation_jm_open_0(this)
+    class(SpecialAnimation), target :: this
+    continue
+  end subroutine
 
-procedure TSpecialAnimation.process;
-begin
-end;
+  recursive subroutine SpecialAnimation_jm_close_0(this)
+    class(SpecialAnimation), target :: this
+    continue
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  TSpecialAnimation.NULL_SPECIAL_ANIMATION := TSpecialAnimation.Create(TIndexedAnimationBehavior.Create(1, 250));
-  {AB:END}
-
-end.
+  recursive subroutine SpecialAnimation_jm_process_0(this)
+    class(SpecialAnimation), target :: this
+    continue
+  end subroutine
+end module SpecialAnimation_m
 

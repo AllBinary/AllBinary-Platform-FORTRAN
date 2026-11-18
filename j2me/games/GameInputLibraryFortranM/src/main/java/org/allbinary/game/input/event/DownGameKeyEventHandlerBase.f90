@@ -1,167 +1,233 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2011 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit DownGameKeyEventHandlerBase;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2011 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module DownGameKeyEventHandlerBase_m
+  use JR_m
+  use PlayerGameInput_m
+  use StringMaker_m
+  use AllBinaryEventObject_m
+  use EventListenerInterface_m
+  use EventStrings_m
+  use BasicEventHandler_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use GameKeyEvent_m
+  use DownGameKeyEventListenerInterface_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(BasicEventHandler) :: DownGameKeyEventHandlerBase
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_addListener_1 => DownGameKeyEventHandlerBase_jm_addListener_1
+    procedure :: jm_removeAllListeners_0 => DownGameKeyEventHandlerBase_jm_removeAllListeners_0
+    procedure :: jm_removeListenerSingleThreaded_1 => DownGameKeyEventHandlerBase_jm_removeListenerSingleThreaded_1
+    procedure :: jm_removeListener_1 => DownGameKeyEventHandlerBase_jm_removeListener_1
+    procedure :: jm_fireEvent_1 => DownGameKeyEventHandlerBase_jm_fireEvent_1
+    procedure :: jm_process_2 => DownGameKeyEventHandlerBase_jm_process_2
+    procedure :: jm_toString_0 => DownGameKeyEventHandlerBase_jm_toString_0
+  end type
 
-interface
+  character(len=:), allocatable, save :: DownGameKeyEventHandlerBase_jcell_TOTAL_LISTENERS
+  logical, save :: DownGameKeyEventHandlerBase_jset_TOTAL_LISTENERS = .false.
+  character(len=:), allocatable, save :: DownGameKeyEventHandlerBase_jcell_LISTENER_LABEL
+  logical, save :: DownGameKeyEventHandlerBase_jset_LISTENER_LABEL = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PlayerGameInput, AllBinaryEventObject, EventListenerInterface, BasicEventHandler, BasicArrayList;
+contains
 
-type
-  {AB:TYPES}
-  TDownGameKeyEventHandlerBase = class(TBasicEventHandler)
-  public
-    list: TBasicArrayList;
-    class var TOTAL_LISTENERS: string;
-    class var LISTENER_LABEL: string;
-    procedure InitFields;
-        constructor Create;
-        procedure addListener(playerGameInput_: TPlayerGameInput); virtual;
-        procedure removeAllListeners; override;
-        procedure removeListenerSingleThreaded(eventListenerInterface_: IEventListenerInterface); override;
-        procedure removeListener(eventListenerInterface_: IEventListenerInterface); override;
-        procedure fireEvent(eventObject: TAllBinaryEventObject); override;
-        procedure process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface); override;
-        function toString: string; override;
-  end;
+  function DownGameKeyEventHandlerBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DownGameKeyEventHandlerBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DownGameKeyEventHandlerBase)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  GameKeyEvent, DownGameKeyEventListenerInterface, StringMaker, EventStrings, BasicArrayListD;
+  function DownGameKeyEventHandlerBase_jstatic_TOTAL_LISTENERS() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. DownGameKeyEventHandlerBase_jset_TOTAL_LISTENERS) then
+      DownGameKeyEventHandlerBase_jset_TOTAL_LISTENERS = .true.
+      DownGameKeyEventHandlerBase_jcell_TOTAL_LISTENERS = ' Total PlayerGameInput Listeners: '
+    end if
+    jresult = DownGameKeyEventHandlerBase_jcell_TOTAL_LISTENERS
+  end function
 
+  subroutine DownGameKeyEventHandlerBase_jsetstatic_TOTAL_LISTENERS(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DownGameKeyEventHandlerBase_jset_TOTAL_LISTENERS = .true.
+    DownGameKeyEventHandlerBase_jcell_TOTAL_LISTENERS = jvalue
+  end subroutine
 
-{AB:CODE}
+  function DownGameKeyEventHandlerBase_jstatic_LISTENER_LABEL() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. DownGameKeyEventHandlerBase_jset_LISTENER_LABEL) then
+      DownGameKeyEventHandlerBase_jset_LISTENER_LABEL = .true.
+      DownGameKeyEventHandlerBase_jcell_LISTENER_LABEL = ' PlayerGameInput Listener: '
+    end if
+    jresult = DownGameKeyEventHandlerBase_jcell_LISTENER_LABEL
+  end function
 
-procedure TDownGameKeyEventHandlerBase.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
-    
+  subroutine DownGameKeyEventHandlerBase_jsetstatic_LISTENER_LABEL(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DownGameKeyEventHandlerBase_jset_LISTENER_LABEL = .true.
+    DownGameKeyEventHandlerBase_jcell_LISTENER_LABEL = jvalue
+  end subroutine
 
-constructor TDownGameKeyEventHandlerBase.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function DownGameKeyEventHandlerBase_jnew_0() result(this)
+    class(DownGameKeyEventHandlerBase), pointer :: this
+    allocate(this)
+    this%jclass = 'DownGameKeyEventHandlerBase'
+    this%f_list => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-procedure TDownGameKeyEventHandlerBase.addListener(playerGameInput_: TPlayerGameInput);
-begin
-        if not (Self.list.contains(TJava.Box(playerGameInput_))) then begin
-            Self.list.add(TJava.Box(playerGameInput_));
-        end;
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_addListener_1(this, j_playerGameInput)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(PlayerGameInput), target, optional :: j_playerGameInput
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_list%jm_contains_1(j_playerGameInput))) then
+            jdiscardBoolean = this%f_list%jm_add_1(j_playerGameInput)
+        end if
+  end subroutine
 
-procedure TDownGameKeyEventHandlerBase.removeAllListeners;
-begin
-        Self.list.clear();
-        inherited removeAllListeners();
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_removeAllListeners_0(this)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_list%jm_clear_0()
+        call this%BasicEventHandler%jm_removeAllListeners_0()
+  end subroutine
 
-procedure TDownGameKeyEventHandlerBase.removeListenerSingleThreaded(eventListenerInterface_: IEventListenerInterface);
-begin
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListenerSingleThreaded(eventListenerInterface_);
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_removeListenerSingleThreaded_1(this, j_eventListenerInterface)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListenerSingleThreaded_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TDownGameKeyEventHandlerBase.removeListener(eventListenerInterface_: IEventListenerInterface);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListener(eventListenerInterface_);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_removeListener_1(this, j_eventListenerInterface)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListener_1(j_eventListenerInterface)
+  end subroutine
 
-// throws Exception
-procedure TDownGameKeyEventHandlerBase.fireEvent(eventObject: TAllBinaryEventObject);
-var
-  playerGameInput_: TPlayerGameInput;
-  index: Integer;
-begin
-        index := Self.list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            try
-                playerGameInput_ := TPlayerGameInput(TJava.ToObject(Self.list.objectArray[index]));
-                playerGameInput_.onDownGameKeyEvent(TGameKeyEvent(TJava.ToObject(eventObject)));
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-        end;
-        inherited fireEvent(eventObject);
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_fireEvent_1(this, j_eventObject)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(PlayerGameInput), pointer :: j_playerGameInput
+    integer(4) :: j_index
+    class(EventStrings), pointer :: jtemp1
+    integer(4) :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = this%f_list%jm_size_0()
+        do while ((jtemp2 >= 0))
+            continue ! try
+                j_playerGameInput => PlayerGameInput_jcast(this%f_list%f_objectArray((j_index) + 1)%v)
+                call j_playerGameInput%jm_onDownGameKeyEvent_1(GameKeyEvent_jcast(j_eventObject))
+        end do
+        call this%BasicEventHandler%jm_fireEvent_1(j_eventObject)
+  end subroutine
 
-// throws Exception
-procedure TDownGameKeyEventHandlerBase.process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface);
-var
-  downGameKeyEventListenerInterface_: IDownGameKeyEventListenerInterface;
-begin
-        downGameKeyEventListenerInterface_ := (TJava.ToObject(eventListenerInterface_) as IDownGameKeyEventListenerInterface);
-        downGameKeyEventListenerInterface_.onDownGameKeyEvent(TGameKeyEvent(TJava.ToObject(eventObject)));
-end;
-    
+  recursive subroutine DownGameKeyEventHandlerBase_jm_process_2(this, j_eventObject, j_eventListenerInterface)
+    class(DownGameKeyEventHandlerBase), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(DownGameKeyEventListenerInterface), pointer :: j_downGameKeyEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_downGameKeyEventListenerInterface => DownGameKeyEventListenerInterface_jcast(j_eventListenerInterface)
+        call j_downGameKeyEventListenerInterface%jm_onDownGameKeyEvent_1(GameKeyEvent_jcast(j_eventObject))
+  end subroutine
 
-function TDownGameKeyEventHandlerBase.toString: string;
-var
-  stringBuffer: TStringMaker;
-  eventListenerInterface_: IEventListenerInterface;
-  size: Integer;
-  index: Integer;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append(inherited toString());
-        stringBuffer.append(TDownGameKeyEventHandlerBase.TOTAL_LISTENERS);
-        stringBuffer.appendint(Self.list.size());
-        
-        size := Self.list.size();
-        index := 0;
-        while (index) < (size) do begin
-            try
-                eventListenerInterface_ := (TJava.ToObject(Self.list.get(index)) as IEventListenerInterface);
-                stringBuffer.append(TDownGameKeyEventHandlerBase.LISTENER_LABEL);
-                stringBuffer.append(TJava.ToString(TJava.ToObject(eventListenerInterface_)));
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), Self.commonStrings.TOSTRING, TJava.Box(e));
-                end;
-            end;
-            Inc(index);
-        end;
-        Exit(stringBuffer.toString());
-end;
+  recursive function DownGameKeyEventHandlerBase_jm_toString_0(this) result(jresult)
+    class(DownGameKeyEventHandlerBase), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(EventListenerInterface), pointer :: j_eventListenerInterface
+    integer(4) :: j_size
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(this%BasicEventHandler%jm_toString_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(DownGameKeyEventHandlerBase_jstatic_TOTAL_LISTENERS())
+        jdiscardRef => j_stringBuffer%jm_appendint_1(this%f_list%jm_size_0())
+        continue
+        j_size = this%f_list%jm_size_0()
+        j_index = 0
+        do while ((j_index < j_size))
+            continue ! try
+                j_eventListenerInterface => EventListenerInterface_jcast(this%f_list%jm_get_1(j_index))
+                jdiscardRef => j_stringBuffer%jm_append_1(DownGameKeyEventHandlerBase_jstatic_LISTENER_LABEL())
+                jdiscardRef => j_stringBuffer%jm_append_1(j_eventListenerInterface%jm_toString_0())
+            j_index = j_index + 1
+        end do
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module DownGameKeyEventHandlerBase_m
 
-initialization
-  {AB:INITIALIZATION}
-  TDownGameKeyEventHandlerBase.TOTAL_LISTENERS := ' Total PlayerGameInput Listeners: ';
-  TDownGameKeyEventHandlerBase.LISTENER_LABEL := ' PlayerGameInput Listener: ';
-  {AB:END}
-
-end.
+function DownGameKeyEventHandlerBase_jnew_0_jext() result(this)
+  use DownGameKeyEventHandlerBase_m, only: JObject, DownGameKeyEventHandlerBase_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => DownGameKeyEventHandlerBase_jnew_0()
+end function
 

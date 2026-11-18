@@ -1,112 +1,122 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.displayable
-unit GameTickDisplayInfoSingleton;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.displayable
+module GameTickDisplayInfoSingleton_m
+  use JR_m
+  use DisplayInfoSingleton_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: GameTickDisplayInfoSingleton
+    class(DisplayInfoSingleton), pointer :: f_displayInfoSingleton => null()
+    integer(4) :: f_lastWidth = 0
+    integer(4) :: f_lastHeight = 0
+    integer(4) :: f_lastHalfWidth = 0
+    integer(4) :: f_lastHalfHeight = 0
+  contains
+    procedure :: jm_update_0 => GameTickDisplayInfoSingleton_jm_update_0
+    procedure :: jm_getLastWidth_0 => GameTickDisplayInfoSingleton_jm_getLastWidth_0
+    procedure :: jm_getLastHeight_0 => GameTickDisplayInfoSingleton_jm_getLastHeight_0
+    procedure :: jm_getLastHalfWidth_0 => GameTickDisplayInfoSingleton_jm_getLastHalfWidth_0
+    procedure :: jm_getLastHalfHeight_0 => GameTickDisplayInfoSingleton_jm_getLastHalfHeight_0
+  end type
 
-interface
+  class(GameTickDisplayInfoSingleton), pointer, save :: GameTickDisplayInfoSingleton_jcell_instance => null()
+  logical, save :: GameTickDisplayInfoSingleton_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, DisplayInfoSingleton;
+contains
 
-type
-  {AB:TYPES}
-  TGameTickDisplayInfoSingleton = class(TObject)
-  public
-    displayInfoSingleton: TDisplayInfoSingleton;
-    lastWidth: Integer;
-    lastHeight: Integer;
-    lastHalfWidth: Integer;
-    lastHalfHeight: Integer;
-    class var instance: TGameTickDisplayInfoSingleton;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TGameTickDisplayInfoSingleton; static;
-        procedure update; virtual;
-        function getLastWidth: Integer; virtual;
-        function getLastHeight: Integer; virtual;
-        function getLastHalfWidth: Integer; virtual;
-        function getLastHalfHeight: Integer; virtual;
-  end;
+  function GameTickDisplayInfoSingleton_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameTickDisplayInfoSingleton), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameTickDisplayInfoSingleton)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function GameTickDisplayInfoSingleton_jstatic_instance() result(jresult)
+    class(GameTickDisplayInfoSingleton), pointer :: jresult
+    if (.not. GameTickDisplayInfoSingleton_jset_instance) then
+      GameTickDisplayInfoSingleton_jset_instance = .true.
+      GameTickDisplayInfoSingleton_jcell_instance => GameTickDisplayInfoSingleton_jnew_0()
+    end if
+    jresult => GameTickDisplayInfoSingleton_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine GameTickDisplayInfoSingleton_jsetstatic_instance(jvalue)
+    class(GameTickDisplayInfoSingleton), target, optional :: jvalue
+    GameTickDisplayInfoSingleton_jset_instance = .true.
+    if (present(jvalue)) then
+      GameTickDisplayInfoSingleton_jcell_instance => jvalue
+    else
+      GameTickDisplayInfoSingleton_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TGameTickDisplayInfoSingleton.InitFields;
-begin
-  Self.displayInfoSingleton := TDisplayInfoSingleton.getInstance();
-  Self.lastWidth := Self.displayInfoSingleton.getLastWidth();
-  Self.lastHeight := Self.displayInfoSingleton.getLastHeight();
-  Self.lastHalfWidth := Self.displayInfoSingleton.getLastHalfWidth();
-  Self.lastHalfHeight := Self.displayInfoSingleton.getLastHalfHeight();
-end;
+  function GameTickDisplayInfoSingleton_jnew_0() result(this)
+    class(GameTickDisplayInfoSingleton), pointer :: this
+    allocate(this)
+    this%jclass = 'GameTickDisplayInfoSingleton'
+    this%f_displayInfoSingleton => DisplayInfoSingleton_jm_getInstance_0()
+    this%f_lastWidth = this%f_displayInfoSingleton%jm_getLastWidth_0()
+    this%f_lastHeight = this%f_displayInfoSingleton%jm_getLastHeight_0()
+    this%f_lastHalfWidth = this%f_displayInfoSingleton%jm_getLastHalfWidth_0()
+    this%f_lastHalfHeight = this%f_displayInfoSingleton%jm_getLastHalfHeight_0()
+  end function
 
-constructor TGameTickDisplayInfoSingleton.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function GameTickDisplayInfoSingleton_jm_getInstance_0() result(jresult)
+    class(GameTickDisplayInfoSingleton), pointer :: jresult
+        jresult => GameTickDisplayInfoSingleton_jstatic_instance()
+        return
+  end function
 
-class function TGameTickDisplayInfoSingleton.getInstance: TGameTickDisplayInfoSingleton;
-begin
-        Exit(TGameTickDisplayInfoSingleton.instance);
-end;
-    
+  recursive subroutine GameTickDisplayInfoSingleton_jm_update_0(this)
+    class(GameTickDisplayInfoSingleton), target :: this
+        this%f_lastWidth = this%f_displayInfoSingleton%jm_getLastWidth_0()
+        this%f_lastHeight = this%f_displayInfoSingleton%jm_getLastHeight_0()
+        this%f_lastHalfWidth = this%f_displayInfoSingleton%jm_getLastHalfWidth_0()
+        this%f_lastHalfHeight = this%f_displayInfoSingleton%jm_getLastHalfHeight_0()
+  end subroutine
 
-procedure TGameTickDisplayInfoSingleton.update;
-begin
-        Self.lastWidth := Self.displayInfoSingleton.getLastWidth();
-        Self.lastHeight := Self.displayInfoSingleton.getLastHeight();
-        Self.lastHalfWidth := Self.displayInfoSingleton.getLastHalfWidth();
-        Self.lastHalfHeight := Self.displayInfoSingleton.getLastHalfHeight();
-end;
-    
+  recursive function GameTickDisplayInfoSingleton_jm_getLastWidth_0(this) result(jresult)
+    class(GameTickDisplayInfoSingleton), target :: this
+    integer(4) :: jresult
+        jresult = this%f_lastWidth
+        return
+  end function
 
-function TGameTickDisplayInfoSingleton.getLastWidth: Integer;
-begin
-        Exit(Self.lastWidth);
-end;
-    
+  recursive function GameTickDisplayInfoSingleton_jm_getLastHeight_0(this) result(jresult)
+    class(GameTickDisplayInfoSingleton), target :: this
+    integer(4) :: jresult
+        jresult = this%f_lastHeight
+        return
+  end function
 
-function TGameTickDisplayInfoSingleton.getLastHeight: Integer;
-begin
-        Exit(Self.lastHeight);
-end;
-    
+  recursive function GameTickDisplayInfoSingleton_jm_getLastHalfWidth_0(this) result(jresult)
+    class(GameTickDisplayInfoSingleton), target :: this
+    integer(4) :: jresult
+        jresult = this%f_lastHalfWidth
+        return
+  end function
 
-function TGameTickDisplayInfoSingleton.getLastHalfWidth: Integer;
-begin
-        Exit(Self.lastHalfWidth);
-end;
-    
-
-function TGameTickDisplayInfoSingleton.getLastHalfHeight: Integer;
-begin
-        Exit(Self.lastHalfHeight);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameTickDisplayInfoSingleton.instance := TGameTickDisplayInfoSingleton.Create();
-  {AB:END}
-
-end.
+  recursive function GameTickDisplayInfoSingleton_jm_getLastHalfHeight_0(this) result(jresult)
+    class(GameTickDisplayInfoSingleton), target :: this
+    integer(4) :: jresult
+        jresult = this%f_lastHalfHeight
+        return
+  end function
+end module GameTickDisplayInfoSingleton_m
 

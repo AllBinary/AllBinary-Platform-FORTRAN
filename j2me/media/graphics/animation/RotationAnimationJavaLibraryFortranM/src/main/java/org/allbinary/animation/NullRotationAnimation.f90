@@ -1,61 +1,68 @@
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit NullRotationAnimation;
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module NullRotationAnimation_m
+  use JR_m
+  use AngleFactory_m
+  use AngleInfo_m
+  use CircularIndexUtil_m
+  use RotationAnimation_m
+  use AnimationBehavior_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AngleInfo, CircularIndexUtil, AnimationBehavior, RotationAnimation;
-
-type
-  {AB:TYPES}
-  TNullRotationAnimation = class(TRotationAnimation)
-  public
-        class function createTotalAngle(angleInfo_: TAngleInfo; totalAngle: SmallInt; animationBehavior_: TAnimationBehavior): TNullRotationAnimation; static;
-        class function createQuarter(animationBehavior_: TAnimationBehavior): TNullRotationAnimation; static;
-        constructor Create(angleInfo_: TAngleInfo; circularIndexUtil_: TCircularIndexUtil; animationBehavior_: TAnimationBehavior);
-        function getAnimationSize: Integer; override;
-  end;
-
-implementation
-uses
-  AngleFactory;
+  type, extends(RotationAnimation) :: NullRotationAnimation
+  contains
+    procedure :: jm_getAnimationSize_0 => NullRotationAnimation_jm_getAnimationSize_0
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-class function TNullRotationAnimation.createTotalAngle(angleInfo_: TAngleInfo; totalAngle: SmallInt; animationBehavior_: TAnimationBehavior): TNullRotationAnimation;
-begin
-        Exit(TNullRotationAnimation.Create(angleInfo_, TCircularIndexUtil.createInstance(TJava.Divide(totalAngle, angleInfo_.getAngleIncrementInfo().getAngleIncrement())), animationBehavior_));
-end;
-    
+  function NullRotationAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullRotationAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullRotationAnimation)
+      jresult => object
+    end select
+  end function
 
-class function TNullRotationAnimation.createQuarter(animationBehavior_: TAnimationBehavior): TNullRotationAnimation;
-begin
-        Exit(TNullRotationAnimation.Create(TAngleInfo.getInstance(TAngleFactory.getInstance().QUARTER_TOTAL_ANGLE), TCircularIndexUtil.createInstance(4), animationBehavior_));
-end;
-    
+  recursive function NullRotationAnimation_jnew_3(j_angleInfo, j_circularIndexUtil, j_animationBehavior) result(this)
+    class(AngleInfo), target, optional :: j_angleInfo
+    class(CircularIndexUtil), target, optional :: j_circularIndexUtil
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(NullRotationAnimation), pointer :: this
+    allocate(this)
+    this%jclass = 'NullRotationAnimation'
+        continue ! super()
+  end function
 
-constructor TNullRotationAnimation.Create(angleInfo_: TAngleInfo; circularIndexUtil_: TCircularIndexUtil; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(angleInfo_, circularIndexUtil_, animationBehavior_);
-end;
-    
+  recursive function NullRotationAnimation_jm_createTotalAngle_3(j_angleInfo, j_totalAngle, j_animationBehavior) result(jresult)
+    class(AngleInfo), target, optional :: j_angleInfo
+    integer(4), value :: j_totalAngle
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(NullRotationAnimation), pointer :: jresult
+    class(AngleIncrementInfo), pointer :: jtemp1
+        jtemp1 => j_angleInfo%jm_getAngleIncrementInfo_0()
+        jresult => NullRotationAnimation_jnew_3(j_angleInfo, CircularIndexUtil_jm_createInstance_1((j_totalAngle / jtemp1%jm_getAngleIncrement_0())), j_animationBehavior)
+        return
+  end function
 
-// throws Exception
-function TNullRotationAnimation.getAnimationSize: Integer;
-begin
-        Exit(0);
-end;
+  recursive function NullRotationAnimation_jm_createQuarter_1(j_animationBehavior) result(jresult)
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(NullRotationAnimation), pointer :: jresult
+    class(AngleFactory), pointer :: jtemp2
+        jtemp2 => AngleFactory_jm_getInstance_0()
+        jresult => NullRotationAnimation_jnew_3(AngleInfo_jm_getInstance_1(jtemp2%f_QUARTER_TOTAL_ANGLE), CircularIndexUtil_jm_createInstance_1(4), j_animationBehavior)
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function NullRotationAnimation_jm_getAnimationSize_0(this) result(jresult)
+    class(NullRotationAnimation), target :: this
+    integer(4) :: jresult
+        jresult = 0
+        return
+  end function
+end module NullRotationAnimation_m
 

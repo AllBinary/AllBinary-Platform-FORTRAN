@@ -54,6 +54,16 @@ contains
     jresult => SmallBasicColorCacheFactory_jcell_instance
   end function
 
+  subroutine SmallBasicColorCacheFactory_jsetstatic_instance(jvalue)
+    class(SmallBasicColorCacheFactory), target, optional :: jvalue
+    SmallBasicColorCacheFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      SmallBasicColorCacheFactory_jcell_instance => jvalue
+    else
+      SmallBasicColorCacheFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SmallBasicColorCacheFactory_jnew_0() result(this)
     class(SmallBasicColorCacheFactory), pointer :: this
     allocate(this)

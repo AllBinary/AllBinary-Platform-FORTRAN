@@ -48,6 +48,16 @@ contains
     jresult => NullEventListener_jcell_NULL_EVENT_LISTENER
   end function
 
+  subroutine NullEventListener_jsetstatic_NULL_EVENT_LISTENER(jvalue)
+    class(NullEventListener), target, optional :: jvalue
+    NullEventListener_jset_NULL_EVENT_LISTENER = .true.
+    if (present(jvalue)) then
+      NullEventListener_jcell_NULL_EVENT_LISTENER => jvalue
+    else
+      NullEventListener_jcell_NULL_EVENT_LISTENER => null()
+    end if
+  end subroutine
+
   function NullEventListener_jnew_0() result(this)
     class(NullEventListener), pointer :: this
     allocate(this)

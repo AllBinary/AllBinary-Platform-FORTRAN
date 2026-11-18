@@ -1,59 +1,50 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.transition.shake
+module ShakeAnimationListenerFactory_m
+  use JR_m
+  use NoShakeAnimationListener_m
+  use ShakeAnimationListener_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.transition.shake
-unit ShakeAnimationListenerFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ShakeAnimationListener;
-
-type
-  {AB:TYPES}
-  TShakeAnimationListenerFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance: TShakeAnimationListener; static;
-  end;
-
-implementation
-uses
-  NoShakeAnimationListener;
+  type, extends(JObject) :: ShakeAnimationListenerFactory
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TShakeAnimationListenerFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function ShakeAnimationListenerFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ShakeAnimationListenerFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ShakeAnimationListenerFactory)
+      jresult => object
+    end select
+  end function
 
-class function TShakeAnimationListenerFactory.getInstance: TShakeAnimationListener;
-begin
-        Exit(TNoShakeAnimationListener.Create());
-end;
+  function ShakeAnimationListenerFactory_jnew_0() result(this)
+    class(ShakeAnimationListenerFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'ShakeAnimationListenerFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function ShakeAnimationListenerFactory_jm_getInstance_0() result(jresult)
+    class(ShakeAnimationListener), pointer :: jresult
+        jresult => NoShakeAnimationListener_jnew_0()
+        return
+  end function
+end module ShakeAnimationListenerFactory_m
 

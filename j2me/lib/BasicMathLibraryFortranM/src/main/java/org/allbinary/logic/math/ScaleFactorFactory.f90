@@ -46,6 +46,16 @@ contains
     jresult => ScaleFactorFactory_jcell_instance
   end function
 
+  subroutine ScaleFactorFactory_jsetstatic_instance(jvalue)
+    class(ScaleFactorFactory), target, optional :: jvalue
+    ScaleFactorFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ScaleFactorFactory_jcell_instance => jvalue
+    else
+      ScaleFactorFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function ScaleFactorFactory_jnew_0() result(this)
     class(ScaleFactorFactory), pointer :: this
     allocate(this)

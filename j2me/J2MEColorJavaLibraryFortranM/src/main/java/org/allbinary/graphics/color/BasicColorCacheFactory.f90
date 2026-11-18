@@ -53,6 +53,16 @@ contains
     jresult => BasicColorCacheFactory_jcell_instance
   end function
 
+  subroutine BasicColorCacheFactory_jsetstatic_instance(jvalue)
+    class(BasicColorCacheFactory), target, optional :: jvalue
+    BasicColorCacheFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicColorCacheFactory_jcell_instance => jvalue
+    else
+      BasicColorCacheFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function BasicColorCacheFactory_jnew_0() result(this)
     class(BasicColorCacheFactory), pointer :: this
     class(StdUtil), pointer :: jtemp1

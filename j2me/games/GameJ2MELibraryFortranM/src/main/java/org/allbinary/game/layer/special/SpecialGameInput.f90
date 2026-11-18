@@ -1,151 +1,144 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.special
-unit SpecialGameInput;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.special
+module SpecialGameInput_m
+  use JR_m
+  use GameKeyEvent_m
+  use AllBinaryLayerManager_m
+  use SpecialGameInputInterface_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(SpecialGameInputInterface) :: SpecialGameInput
+  contains
+    procedure :: jm_up_0 => SpecialGameInput_jm_up_0
+    procedure :: jm_down_0 => SpecialGameInput_jm_down_0
+    procedure :: jm_right_0 => SpecialGameInput_jm_right_0
+    procedure :: jm_left_0 => SpecialGameInput_jm_left_0
+    procedure :: jm_strafeLeft_0 => SpecialGameInput_jm_strafeLeft_0
+    procedure :: jm_strafeRight_0 => SpecialGameInput_jm_strafeRight_0
+    procedure :: jm_fire_2 => SpecialGameInput_jm_fire_2
+    procedure :: jm_special1_2 => SpecialGameInput_jm_special1_2
+    procedure :: jm_special2_2 => SpecialGameInput_jm_special2_2
+    procedure :: jm_special3_2 => SpecialGameInput_jm_special3_2
+    procedure :: jm_special4_2 => SpecialGameInput_jm_special4_2
+    procedure :: jm_special5_2 => SpecialGameInput_jm_special5_2
+    procedure :: jm_paint_1 => SpecialGameInput_jm_paint_1
+    procedure :: jm_paintThreed_1 => SpecialGameInput_jm_paintThreed_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, GameKeyEvent, AllBinaryLayerManager, SpecialGameInputInterface, PaintableInterface;
+contains
 
-type
-  {AB:TYPES}
-  TSpecialGameInput = class(TInterfacedObject, ISpecialGameInputInterface, IPaintableInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        procedure up; virtual;
-        procedure down; virtual;
-        procedure right; virtual;
-        procedure left; virtual;
-        procedure strafeLeft; virtual;
-        procedure strafeRight; virtual;
-        procedure fire(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure special1(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure special2(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure special3(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure special4(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure special5(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent); virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure paintThreed(graphics_: TGraphics); virtual;
-  end;
+  function SpecialGameInput_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SpecialGameInput), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SpecialGameInput)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function SpecialGameInput_jnew_0() result(this)
+    class(SpecialGameInput), pointer :: this
+    allocate(this)
+    this%jclass = 'SpecialGameInput'
+  end function
 
-{AB:CODE}
+  recursive subroutine SpecialGameInput_jm_up_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-function TSpecialGameInput.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive subroutine SpecialGameInput_jm_down_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-constructor TSpecialGameInput.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine SpecialGameInput_jm_right_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.up;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_left_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.down;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_strafeLeft_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.right;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_strafeRight_0(this)
+    class(SpecialGameInput), target :: this
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.left;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_fire_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.strafeLeft;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_special1_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.strafeRight;
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_special2_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.fire(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_special3_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.special1(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_special4_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.special2(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_special5_2(this, j_layerManager, j_gameKeyEvent)
+    class(SpecialGameInput), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.special3(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
+  recursive subroutine SpecialGameInput_jm_paint_1(this, j_graphics)
+    class(SpecialGameInput), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSpecialGameInput.special4(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
-
-// throws Exception
-procedure TSpecialGameInput.special5(layerManager: TAllBinaryLayerManager; gameKeyEvent_: TGameKeyEvent);
-begin
-end;
-    
-
-procedure TSpecialGameInput.paint(graphics_: TGraphics);
-begin
-end;
-    
-
-procedure TSpecialGameInput.paintThreed(graphics_: TGraphics);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine SpecialGameInput_jm_paintThreed_1(this, j_graphics)
+    class(SpecialGameInput), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module SpecialGameInput_m
 

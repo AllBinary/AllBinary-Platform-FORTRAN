@@ -1,51 +1,71 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.transition.shake
+module NoShakeAnimationListener_m
+  use JR_m
+  use ShakeAnimationListener_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.transition.shake
-unit NoShakeAnimationListener;
+  type, extends(ShakeAnimationListener) :: NoShakeAnimationListener
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ShakeAnimationListener), pointer, save :: NoShakeAnimationListener_jcell_NO_SHAKE_ANIMATION_LISTENER => null()
+  logical, save :: NoShakeAnimationListener_jset_NO_SHAKE_ANIMATION_LISTENER = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ShakeAnimationListener;
+  function NoShakeAnimationListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoShakeAnimationListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoShakeAnimationListener)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TNoShakeAnimationListener = class(TShakeAnimationListener)
-  public
-    class var NO_SHAKE_ANIMATION_LISTENER: TShakeAnimationListener;
-    constructor Create;
-  end;
+  function NoShakeAnimationListener_jstatic_NO_SHAKE_ANIMATION_LISTENER() result(jresult)
+    class(ShakeAnimationListener), pointer :: jresult
+    if (.not. NoShakeAnimationListener_jset_NO_SHAKE_ANIMATION_LISTENER) then
+      NoShakeAnimationListener_jset_NO_SHAKE_ANIMATION_LISTENER = .true.
+      NoShakeAnimationListener_jcell_NO_SHAKE_ANIMATION_LISTENER => NoShakeAnimationListener_jnew_0()
+    end if
+    jresult => NoShakeAnimationListener_jcell_NO_SHAKE_ANIMATION_LISTENER
+  end function
 
-implementation
+  subroutine NoShakeAnimationListener_jsetstatic_NO_SHAKE_ANIMATION_LISTENER(jvalue)
+    class(ShakeAnimationListener), target, optional :: jvalue
+    NoShakeAnimationListener_jset_NO_SHAKE_ANIMATION_LISTENER = .true.
+    if (present(jvalue)) then
+      NoShakeAnimationListener_jcell_NO_SHAKE_ANIMATION_LISTENER => jvalue
+    else
+      NoShakeAnimationListener_jcell_NO_SHAKE_ANIMATION_LISTENER => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function NoShakeAnimationListener_jnew_0() result(this)
+    class(NoShakeAnimationListener), pointer :: this
+    allocate(this)
+    this%jclass = 'NoShakeAnimationListener'
+  end function
+end module NoShakeAnimationListener_m
 
-constructor TNoShakeAnimationListener.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNoShakeAnimationListener.NO_SHAKE_ANIMATION_LISTENER := TNoShakeAnimationListener.Create();
-  {AB:END}
-
-end.
+function NoShakeAnimationListener_jnew_0_jext() result(this)
+  use NoShakeAnimationListener_m, only: JObject, NoShakeAnimationListener_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NoShakeAnimationListener_jnew_0()
+end function
 

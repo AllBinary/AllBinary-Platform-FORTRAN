@@ -1,91 +1,76 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.audio
+module BaseSoundsFactory_m
+  use JR_m
+  use SoundsFactoryInterface_m
+  use Sound_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.audio
-unit BaseSoundsFactory;
+  type, extends(SoundsFactoryInterface) :: BaseSoundsFactory
+    logical :: f_initialized = .false.
+  contains
+    procedure :: jm_init_0 => BaseSoundsFactory_jm_init_0
+    procedure :: jm_getSoundInterfaceArray_0 => BaseSoundsFactory_jm_getSoundInterfaceArray_0
+    procedure :: jm_setInitialized_1 => BaseSoundsFactory_jm_setInitialized_1
+    procedure :: jm_isInitialized_0 => BaseSoundsFactory_jm_isInitialized_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Sound, SoundsFactoryInterface;
+  function BaseSoundsFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BaseSoundsFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BaseSoundsFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBaseSoundsFactory = class(TInterfacedObject, ISoundsFactoryInterface)
-  public
-    initialized: Boolean;
-    procedure InitFields;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure init; virtual;
-        function getSoundInterfaceArray: TArray<TSound>; virtual;
-        procedure setInitialized(initialized: Boolean); virtual;
-        function isInitialized: Boolean; virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TBaseSoundsFactory.InitFields;
-begin
-  
-end;
-
-function TBaseSoundsFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TBaseSoundsFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  function BaseSoundsFactory_jnew_0() result(this)
+    class(BaseSoundsFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'BaseSoundsFactory'
     
+  end function
 
-procedure TBaseSoundsFactory.init;
-begin
-end;
-    
+  recursive subroutine BaseSoundsFactory_jm_init_0(this)
+    class(BaseSoundsFactory), target :: this
+    continue
+  end subroutine
 
-// throws Exception
-function TBaseSoundsFactory.getSoundInterfaceArray: TArray<TSound>;
-begin
-        Exit(nil);
-end;
-    
+  recursive function BaseSoundsFactory_jm_getSoundInterfaceArray_0(this) result(jresult)
+    class(BaseSoundsFactory), target :: this
+    type(JRef), allocatable :: jresult(:)
+        jresult = JR_newRefArray(0)
+        return
+  end function
 
-procedure TBaseSoundsFactory.setInitialized(initialized: Boolean);
-begin
-        Self.initialized := initialized;
-end;
-    
+  recursive subroutine BaseSoundsFactory_jm_setInitialized_1(this, j_initialized)
+    class(BaseSoundsFactory), target :: this
+    logical, value :: j_initialized
+        this%f_initialized = j_initialized
+  end subroutine
 
-function TBaseSoundsFactory.isInitialized: Boolean;
-begin
-        Exit(Self.initialized);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BaseSoundsFactory_jm_isInitialized_0(this) result(jresult)
+    class(BaseSoundsFactory), target :: this
+    logical :: jresult
+        jresult = this%f_initialized
+        return
+  end function
+end module BaseSoundsFactory_m
 

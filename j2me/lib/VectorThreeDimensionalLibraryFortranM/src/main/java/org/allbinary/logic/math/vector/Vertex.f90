@@ -1,85 +1,85 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.math.vector
+module Vertex_m
+  use JR_m
+  use BasicDecimal_m
+  use StringMaker_m
+  use PositionStrings_m
+  use CommonSeps_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.math.vector
-unit Vertex;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicDecimal;
-
-type
-  {AB:TYPES}
-  TVertex = class(TObject)
-  public
-    x: TBasicDecimal;
-    y: TBasicDecimal;
-    z: TBasicDecimal;
-    procedure InitFields;
-        constructor Create;
-        function toString: string; virtual;
-  end;
-
-implementation
-uses
-  StringMaker, PositionStrings, CommonSeps;
+  type, extends(JObject) :: Vertex
+    class(BasicDecimal), pointer :: f_x => null()
+    class(BasicDecimal), pointer :: f_y => null()
+    class(BasicDecimal), pointer :: f_z => null()
+  contains
+    procedure :: jm_toString_0 => Vertex_jm_toString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TVertex.InitFields;
-begin
-  Self.x := TBasicDecimal.Create(0);
-  Self.y := TBasicDecimal.Create(0);
-  Self.z := TBasicDecimal.Create(0);
-end;
-    
+  function Vertex_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Vertex), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Vertex)
+      jresult => object
+    end select
+  end function
 
-constructor TVertex.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function Vertex_jnew_0() result(this)
+    class(Vertex), pointer :: this
+    allocate(this)
+    this%jclass = 'Vertex'
+    this%f_x => BasicDecimal_jnew_1(int(0, 8))
+    this%f_y => BasicDecimal_jnew_1(int(0, 8))
+    this%f_z => BasicDecimal_jnew_1(int(0, 8))
+        continue
+  end function
 
-function TVertex.toString: string;
-var
-  stringBuffer: TStringMaker;
-  positionStrings_: TPositionStrings;
-begin
-        stringBuffer := TStringMaker.Create();
-        positionStrings_ := TPositionStrings.getInstance();
-        stringBuffer.append(positionStrings_.X_LABEL);
-        stringBuffer.append(Self.x.toString());
-        stringBuffer.append(TCommonSeps.getInstance().SPACE);
-        stringBuffer.append(positionStrings_.Y_LABEL);
-        stringBuffer.append(Self.y.toString());
-        stringBuffer.append(TCommonSeps.getInstance().SPACE);
-        stringBuffer.append(positionStrings_.Z_LABEL);
-        stringBuffer.append(Self.z.toString());
-        Exit(stringBuffer.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function Vertex_jm_toString_0(this) result(jresult)
+    class(Vertex), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(PositionStrings), pointer :: j_positionStrings
+    class(CommonSeps), pointer :: jtemp1
+    class(CommonSeps), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        j_positionStrings => PositionStrings_jm_getInstance_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_X_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(this%f_x%jm_toString_0())
+        jtemp1 => CommonSeps_jm_getInstance_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(jtemp1%f_SPACE)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_Y_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(this%f_y%jm_toString_0())
+        jtemp2 => CommonSeps_jm_getInstance_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(jtemp2%f_SPACE)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_Z_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(this%f_z%jm_toString_0())
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module Vertex_m
 

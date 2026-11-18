@@ -56,6 +56,16 @@ contains
     jresult => CommonStateStrings_jcell_instance
   end function
 
+  subroutine CommonStateStrings_jsetstatic_instance(jvalue)
+    class(CommonStateStrings), target, optional :: jvalue
+    CommonStateStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonStateStrings_jcell_instance => jvalue
+    else
+      CommonStateStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function CommonStateStrings_jnew_0() result(this)
     class(CommonStateStrings), pointer :: this
     allocate(this)

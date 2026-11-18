@@ -1,159 +1,224 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.weapon
+module CollidableWeaponBehavior_m
+  use JR_m
+  use CollidableHelperFactory_m
+  use CollidableInterfaceCompositeInterface_m
+  use CollisionHelper_m
+  use CollisionType_m
+  use CollisionTypeFactory_m
+  use DamageableInterface_m
+  use CollidableCompositeLayer_m
+  use CollidableDestroyableDamageableBehavior_m
+  use AllBinaryLayer_m
+  use NullUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.weapon
-unit CollidableWeaponBehavior;
+  type, extends(CollidableDestroyableDamageableBehavior) :: CollidableWeaponBehavior
+    logical :: f_collided = .false.
+    class(CollisionHelper), pointer :: f_collisionHelper => null()
+  contains
+    procedure :: jm_init_1 => CollidableWeaponBehavior_jm_init_1
+    procedure :: jm_isCollision_2 => CollidableWeaponBehavior_jm_isCollision_2
+    procedure :: jm_collide_2 => CollidableWeaponBehavior_jm_collide_2
+    procedure :: jm_isCollisionInterface_2 => CollidableWeaponBehavior_jm_isCollisionInterface_2
+    procedure :: jm_collideInterface_2 => CollidableWeaponBehavior_jm_collideInterface_2
+    procedure :: jm_getCollisionTypeWith_1 => CollidableWeaponBehavior_jm_getCollisionTypeWith_1
+    procedure :: jm_isCollided_0 => CollidableWeaponBehavior_jm_isCollided_0
+    procedure :: jm_setCollided_1 => CollidableWeaponBehavior_jm_setCollided_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: CollidableWeaponBehavior_jcell_NULL_COLLIDABLE_WEAPON_BEHAVIOR => null()
+  logical, save :: CollidableWeaponBehavior_jset_NULL_COLLIDABLE_WEAPON_BEHAVIOR = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CollidableInterfaceCompositeInterface, CollisionHelper, CollisionType, CollidableCompositeLayer, CollidableDestroyableDamageableBehavior, AllBinaryLayer;
+  function CollidableWeaponBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CollidableWeaponBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CollidableWeaponBehavior)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCollidableWeaponBehavior = class(TCollidableDestroyableDamageableBehavior)
-  public
-    collided: Boolean;
-    collisionHelper: TCollisionHelper;
-    class var NULL_COLLIDABLE_WEAPON_BEHAVIOR: TObject;
-    procedure InitFields;
-        class function getNullInstance: TCollidableWeaponBehavior; static;
-        constructor Create(collidable: Boolean);
-        procedure init(sourceLayerInterface: TAllBinaryLayer); virtual;
-        function isCollision(ownerLayer: TCollidableCompositeLayer; collisionLayer: TCollidableCompositeLayer): Boolean; override;
-        procedure collide(ownerLayer: TCollidableCompositeLayer; collisionLayer: TCollidableCompositeLayer); override;
-        function isCollisionInterface(ownerLayer: TCollidableCompositeLayer; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface): Boolean; override;
-        procedure collideInterface(ownerLayer: TCollidableCompositeLayer; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface); override;
-        function getCollisionTypeWith(layerInterface: TAllBinaryLayer): TCollisionType; override;
-        function isCollided: Boolean; virtual;
-        procedure setCollided(collided: Boolean);
-  end;
+  function CollidableWeaponBehavior_jstatic_NULL_COLLIDABLE_WEAPON_BEHAVIOR() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. CollidableWeaponBehavior_jset_NULL_COLLIDABLE_WEAPON_BEHAVIOR) then
+      CollidableWeaponBehavior_jset_NULL_COLLIDABLE_WEAPON_BEHAVIOR = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    CollidableWeaponBehavior_jcell_NULL_COLLIDABLE_WEAPON_BEHAVIOR => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => CollidableWeaponBehavior_jcell_NULL_COLLIDABLE_WEAPON_BEHAVIOR
+  end function
 
-implementation
-uses
-  CollidableHelperFactory, CollisionTypeFactory, DamageableInterface, NullUtil;
+  subroutine CollidableWeaponBehavior_jsetstatic_NULL_COLLIDABLE_WEAPON_BEHAVIOR(jvalue)
+    class(JObject), target, optional :: jvalue
+    CollidableWeaponBehavior_jset_NULL_COLLIDABLE_WEAPON_BEHAVIOR = .true.
+    if (present(jvalue)) then
+      CollidableWeaponBehavior_jcell_NULL_COLLIDABLE_WEAPON_BEHAVIOR => jvalue
+    else
+      CollidableWeaponBehavior_jcell_NULL_COLLIDABLE_WEAPON_BEHAVIOR => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TCollidableWeaponBehavior.InitFields;
-begin
-  
-  
-end;
+  recursive function CollidableWeaponBehavior_jnew_1(j_collidable) result(this)
+    logical, value :: j_collidable
+    class(CollidableWeaponBehavior), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'CollidableWeaponBehavior'
     
-
-class function TCollidableWeaponBehavior.getNullInstance: TCollidableWeaponBehavior;
-begin
-        if (TCollidableWeaponBehavior.NULL_COLLIDABLE_WEAPON_BEHAVIOR) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TCollidableWeaponBehavior.NULL_COLLIDABLE_WEAPON_BEHAVIOR := TCollidableWeaponBehavior.Create(False);
-        end;
-        Exit(TCollidableWeaponBehavior(TJava.ToObject(TCollidableWeaponBehavior.NULL_COLLIDABLE_WEAPON_BEHAVIOR)));
-end;
     
+        continue ! super()
+        call this%jm_setCollided_1(.false.)
+        call this%jm_setCollidable_1(.true.)
+        this%f_collisionHelper => CollidableHelperFactory_jm_getInstance_0()
+  end function
 
-constructor TCollidableWeaponBehavior.Create(collidable: Boolean);
-begin
-        inherited Create(collidable);
-        InitFields;
-        Self.setCollided(False);
-        Self.setCollidable(True);
-        Self.collisionHelper := TCollidableHelperFactory.getInstance();
-end;
-    
+  recursive function CollidableWeaponBehavior_jm_getNullInstance_0() result(jresult)
+    class(CollidableWeaponBehavior), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(CollidableWeaponBehavior_jstatic_NULL_COLLIDABLE_WEAPON_BEHAVIOR(), jtemp2%f_NULL_OBJECT)) then
+            call CollidableWeaponBehavior_jsetstatic_NULL_COLLIDABLE_WEAPON_BEHAVIOR(CollidableWeaponBehavior_jnew_1(.false.))
+        end if
+        jresult => CollidableWeaponBehavior_jcast(CollidableWeaponBehavior_jstatic_NULL_COLLIDABLE_WEAPON_BEHAVIOR())
+        return
+  end function
 
-procedure TCollidableWeaponBehavior.init(sourceLayerInterface: TAllBinaryLayer);
-begin
-        Self.setCollided(False);
-        Self.collisionHelper.setOwnerLayerInterface(sourceLayerInterface);
-end;
-    
+  recursive subroutine CollidableWeaponBehavior_jm_init_1(this, j_sourceLayerInterface)
+    class(CollidableWeaponBehavior), target :: this
+    class(AllBinaryLayer), target, optional :: j_sourceLayerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setCollided_1(.false.)
+        call this%f_collisionHelper%jm_setOwnerLayerInterface_1(j_sourceLayerInterface)
+  end subroutine
 
-function TCollidableWeaponBehavior.isCollision(ownerLayer: TCollidableCompositeLayer; collisionLayer: TCollidableCompositeLayer): Boolean;
-begin
-        if Self.collisionHelper.isCollidable(collisionLayer) then begin
-            if (ownerLayer.getGroupInterface()[0]) <> (collisionLayer.getGroupInterface()[0]) then begin
-                Exit(inherited isCollision(ownerLayer, collisionLayer));
-            end;
-        end;
-        Exit(False);
-end;
-    
+  recursive function CollidableWeaponBehavior_jm_isCollision_2(this, j_ownerLayer, j_collidableInterfaceCompositeInterface) result(jresult)
+    class(CollidableWeaponBehavior), target :: this
+    class(CollidableCompositeLayer), target, optional :: j_ownerLayer
+    class(CollidableCompositeLayer), target, optional :: j_collidableInterfaceCompositeInterface
+    logical :: jresult
+        if (this%f_collisionHelper%jm_isCollidable_1(j_collidableInterfaceCompositeInterface)) then
+            if ((j_ownerLayer%jm_getGroupInterface_0()((0) + 1) /= j_collidableInterfaceCompositeInterface%jm_getGroupInterface_0()((0) + 1))) then
+                jresult = this%CollidableDestroyableDamageableBehavior%jm_isCollision_2(j_ownerLayer, j_collidableInterfaceCompositeInterface)
+                return
+            end if
+        end if
+        jresult = .false.
+        return
+  end function
 
-// throws Exception
-procedure TCollidableWeaponBehavior.collide(ownerLayer: TCollidableCompositeLayer; collisionLayer: TCollidableCompositeLayer);
-begin
-        inherited collide(ownerLayer, collisionLayer);
-        Self.collided := True;
-end;
-    
+  recursive subroutine CollidableWeaponBehavior_jm_collide_2(this, j_ownerLayer, j_collidableInterfaceCompositeInterface)
+    class(CollidableWeaponBehavior), target :: this
+    class(CollidableCompositeLayer), target, optional :: j_ownerLayer
+    class(CollidableCompositeLayer), target, optional :: j_collidableInterfaceCompositeInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%CollidableDestroyableDamageableBehavior%jm_collide_2(j_ownerLayer, j_collidableInterfaceCompositeInterface)
+        this%f_collided = .true.
+  end subroutine
 
-function TCollidableWeaponBehavior.isCollisionInterface(ownerLayer: TCollidableCompositeLayer; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface): Boolean;
-var
-  layerInterface: TAllBinaryLayer;
-begin
-        if Self.collisionHelper.isCollidable(TCollidableCompositeLayer(TJava.ToObject(collidableInterfaceCompositeInterface_))) then begin
-            layerInterface := TAllBinaryLayer(TJava.ToObject(collidableInterfaceCompositeInterface_));
-            if (ownerLayer.getGroupInterface()[0]) <> (layerInterface.getGroupInterface()[0]) then begin
-                if Self.layerCollisionUtil.isCollision(ownerLayer, layerInterface) then begin
-                    Exit(True);
-                end;
-            end;
-        end;
-        Exit(False);
-end;
-    
+  recursive function CollidableWeaponBehavior_jm_isCollisionInterface_2(this, j_ownerLayer, j_collidableInterfaceCompositeInterface) result(jresult)
+    class(CollidableWeaponBehavior), target :: this
+    class(CollidableCompositeLayer), target, optional :: j_ownerLayer
+    class(CollidableInterfaceCompositeInterface), target, optional :: j_collidableInterfaceCompositeInterface
+    logical :: jresult
+    class(AllBinaryLayer), pointer :: j_layerInterface
+        if (this%f_collisionHelper%jm_isCollidable_1(CollidableCompositeLayer_jcast(j_collidableInterfaceCompositeInterface))) then
+            j_layerInterface => AllBinaryLayer_jcast(j_collidableInterfaceCompositeInterface)
+            if ((j_ownerLayer%jm_getGroupInterface_0()((0) + 1) /= j_layerInterface%jm_getGroupInterface_0()((0) + 1))) then
+                if (this%f_layerCollisionUtil%jm_isCollision_2(j_ownerLayer, j_layerInterface)) then
+                    jresult = .true.
+                    return
+                end if
+            end if
+        end if
+        jresult = .false.
+        return
+  end function
 
-// throws Exception
-procedure TCollidableWeaponBehavior.collideInterface(ownerLayer: TCollidableCompositeLayer; collidableInterfaceCompositeInterface_: ICollidableInterfaceCompositeInterface);
-var
-  ownerDamageableInterface: IDamageableInterface;
-  damageableInterface_: IDamageableInterface;
-begin
-        ownerDamageableInterface := (TJava.ToObject(ownerLayer) as IDamageableInterface);
-        damageableInterface_ := (TJava.ToObject(collidableInterfaceCompositeInterface_) as IDamageableInterface);
-        Self.damageUtil.process(ownerDamageableInterface, damageableInterface_);
-        Self.collided := True;
-end;
-    
+  recursive subroutine CollidableWeaponBehavior_jm_collideInterface_2(this, j_ownerLayer, j_collidableInterfaceCompositeInterface)
+    class(CollidableWeaponBehavior), target :: this
+    class(CollidableCompositeLayer), target, optional :: j_ownerLayer
+    class(CollidableInterfaceCompositeInterface), target, optional :: j_collidableInterfaceCompositeInterface
+    class(DamageableInterface), pointer :: j_ownerDamageableInterface
+    class(DamageableInterface), pointer :: j_damageableInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_ownerDamageableInterface => DamageableInterface_jcast(j_ownerLayer)
+        j_damageableInterface => DamageableInterface_jcast(j_collidableInterfaceCompositeInterface)
+        call this%f_damageUtil%jm_process_2(j_ownerDamageableInterface, j_damageableInterface)
+        this%f_collided = .true.
+  end subroutine
 
-function TCollidableWeaponBehavior.getCollisionTypeWith(layerInterface: TAllBinaryLayer): TCollisionType;
-begin
-        Exit(TCollisionTypeFactory.getInstance().COLLISION);
-end;
-    
+  recursive function CollidableWeaponBehavior_jm_getCollisionTypeWith_1(this, j_layerInterface) result(jresult)
+    class(CollidableWeaponBehavior), target :: this
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+    class(CollisionType), pointer :: jresult
+    class(CollisionTypeFactory), pointer :: jtemp3
+        jtemp3 => CollisionTypeFactory_jm_getInstance_0()
+        jresult => jtemp3%f_COLLISION
+        return
+  end function
 
-function TCollidableWeaponBehavior.isCollided: Boolean;
-begin
-        Exit(Self.collided);
-end;
-    
+  recursive function CollidableWeaponBehavior_jm_isCollided_0(this) result(jresult)
+    class(CollidableWeaponBehavior), target :: this
+    logical :: jresult
+        jresult = this%f_collided
+        return
+  end function
 
-procedure TCollidableWeaponBehavior.setCollided(collided: Boolean);
-begin
-        Self.collided := collided;
-end;
+  recursive subroutine CollidableWeaponBehavior_jm_setCollided_1(this, j_collided)
+    class(CollidableWeaponBehavior), target :: this
+    logical, value :: j_collided
+        this%f_collided = j_collided
+  end subroutine
+end module CollidableWeaponBehavior_m
 
-initialization
-  {AB:INITIALIZATION}
-  TCollidableWeaponBehavior.NULL_COLLIDABLE_WEAPON_BEHAVIOR := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+function CollidableWeaponBehavior_jnew_1_jext(p1) result(this)
+  use CollidableWeaponBehavior_m, only: JObject, CollidableWeaponBehavior_jnew_1
+  implicit none
+      logical, value :: p1
+  class(JObject), pointer :: this
+  this => CollidableWeaponBehavior_jnew_1(p1)
+end function
 

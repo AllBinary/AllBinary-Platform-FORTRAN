@@ -50,6 +50,16 @@ contains
     jresult => ByteUtil_jcell_instance
   end function
 
+  subroutine ByteUtil_jsetstatic_instance(jvalue)
+    class(ByteUtil), target, optional :: jvalue
+    ByteUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ByteUtil_jcell_instance => jvalue
+    else
+      ByteUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function ByteUtil_jnew_0() result(this)
     class(ByteUtil), pointer :: this
     allocate(this)

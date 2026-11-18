@@ -1,57 +1,81 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media
+module AllBinaryNoVibration_m
+  use JR_m
+  use AllBinaryVibrationME_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media
-unit AllBinaryNoVibration;
+  type, extends(AllBinaryVibrationME) :: AllBinaryNoVibration
+  contains
+    procedure :: jm_vibrate_3 => AllBinaryNoVibration_jm_vibrate_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AllBinaryVibrationME), pointer, save :: AllBinaryNoVibration_jcell_NO_VIBRATION => null()
+  logical, save :: AllBinaryNoVibration_jset_NO_VIBRATION = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryVibrationME;
+  function AllBinaryNoVibration_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinaryNoVibration), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinaryNoVibration)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinaryNoVibration = class(TAllBinaryVibrationME)
-  public
-    class var NO_VIBRATION: TAllBinaryVibrationME;
-    constructor Create;
-        procedure vibrate(duration: Integer; type_: Integer; volume: Integer); override;
-  end;
+  function AllBinaryNoVibration_jstatic_NO_VIBRATION() result(jresult)
+    class(AllBinaryVibrationME), pointer :: jresult
+    if (.not. AllBinaryNoVibration_jset_NO_VIBRATION) then
+      AllBinaryNoVibration_jset_NO_VIBRATION = .true.
+      AllBinaryNoVibration_jcell_NO_VIBRATION => AllBinaryNoVibration_jnew_0()
+    end if
+    jresult => AllBinaryNoVibration_jcell_NO_VIBRATION
+  end function
 
-implementation
+  subroutine AllBinaryNoVibration_jsetstatic_NO_VIBRATION(jvalue)
+    class(AllBinaryVibrationME), target, optional :: jvalue
+    AllBinaryNoVibration_jset_NO_VIBRATION = .true.
+    if (present(jvalue)) then
+      AllBinaryNoVibration_jcell_NO_VIBRATION => jvalue
+    else
+      AllBinaryNoVibration_jcell_NO_VIBRATION => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function AllBinaryNoVibration_jnew_0() result(this)
+    class(AllBinaryNoVibration), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinaryNoVibration'
+  end function
 
-constructor TAllBinaryNoVibration.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine AllBinaryNoVibration_jm_vibrate_3(this, j_duration, j_type, j_volume)
+    class(AllBinaryNoVibration), target :: this
+    integer(4), value :: j_duration
+    integer(4), value :: j_type
+    integer(4), value :: j_volume
+    continue
+  end subroutine
+end module AllBinaryNoVibration_m
 
-procedure TAllBinaryNoVibration.vibrate(duration: Integer; type_: Integer; volume: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinaryNoVibration.NO_VIBRATION := TAllBinaryNoVibration.Create();
-  {AB:END}
-
-end.
+function AllBinaryNoVibration_jnew_0_jext() result(this)
+  use AllBinaryNoVibration_m, only: JObject, AllBinaryNoVibration_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => AllBinaryNoVibration_jnew_0()
+end function
 

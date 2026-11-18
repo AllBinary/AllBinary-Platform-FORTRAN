@@ -69,6 +69,16 @@ contains
     jresult => LogFormatUtil_jcell_instance
   end function
 
+  subroutine LogFormatUtil_jsetstatic_instance(jvalue)
+    class(LogFormatUtil), target, optional :: jvalue
+    LogFormatUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      LogFormatUtil_jcell_instance => jvalue
+    else
+      LogFormatUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function LogFormatUtil_jnew_0() result(this)
     class(LogFormatUtil), pointer :: this
     class(CommonLabels), pointer :: jtemp1

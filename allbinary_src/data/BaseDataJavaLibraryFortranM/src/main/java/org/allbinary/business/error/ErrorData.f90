@@ -46,6 +46,16 @@ contains
     jresult => ErrorData_jcell_instance
   end function
 
+  subroutine ErrorData_jsetstatic_instance(jvalue)
+    class(ErrorData), target, optional :: jvalue
+    ErrorData_jset_instance = .true.
+    if (present(jvalue)) then
+      ErrorData_jcell_instance => jvalue
+    else
+      ErrorData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function ErrorData_jnew_0() result(this)
     class(ErrorData), pointer :: this
     allocate(this)

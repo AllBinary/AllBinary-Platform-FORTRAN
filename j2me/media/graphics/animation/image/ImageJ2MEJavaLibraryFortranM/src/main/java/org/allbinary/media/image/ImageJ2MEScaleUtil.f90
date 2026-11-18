@@ -1,116 +1,151 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2023 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.image
+module ImageJ2MEScaleUtil_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2023 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.image
-unit ImageJ2MEScaleUtil;
+  type, extends(JObject) :: ImageJ2MEScaleUtil
+  contains
+    procedure :: jm_scaleArray_3 => ImageJ2MEScaleUtil_jm_scaleArray_3
+    procedure :: jm_scale_3 => ImageJ2MEScaleUtil_jm_scale_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ImageJ2MEScaleUtil), pointer, save :: ImageJ2MEScaleUtil_jcell_instance => null()
+  logical, save :: ImageJ2MEScaleUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image;
+  function ImageJ2MEScaleUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ImageJ2MEScaleUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ImageJ2MEScaleUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TImageJ2MEScaleUtil = class(TObject)
-  public
-    class var instance: TImageJ2MEScaleUtil;
-        class function getInstance: TImageJ2MEScaleUtil; static;
-        constructor Create;
-        function scaleArray(images: TArray<TImage>; width: Integer; height: Integer): TArray<TImage>; virtual;
-        function scale(image_: TImage; width: Integer; height: Integer): TImage; virtual;
-  end;
+  function ImageJ2MEScaleUtil_jstatic_instance() result(jresult)
+    class(ImageJ2MEScaleUtil), pointer :: jresult
+    if (.not. ImageJ2MEScaleUtil_jset_instance) then
+      ImageJ2MEScaleUtil_jset_instance = .true.
+      ImageJ2MEScaleUtil_jcell_instance => ImageJ2MEScaleUtil_jnew_0()
+    end if
+    jresult => ImageJ2MEScaleUtil_jcell_instance
+  end function
 
-implementation
+  subroutine ImageJ2MEScaleUtil_jsetstatic_instance(jvalue)
+    class(ImageJ2MEScaleUtil), target, optional :: jvalue
+    ImageJ2MEScaleUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ImageJ2MEScaleUtil_jcell_instance => jvalue
+    else
+      ImageJ2MEScaleUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function ImageJ2MEScaleUtil_jnew_0() result(this)
+    class(ImageJ2MEScaleUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'ImageJ2MEScaleUtil'
+        continue
+  end function
 
-class function TImageJ2MEScaleUtil.getInstance: TImageJ2MEScaleUtil;
-begin
-        Exit(TImageJ2MEScaleUtil.instance);
-end;
-    
+  recursive function ImageJ2MEScaleUtil_jm_getInstance_0() result(jresult)
+    class(ImageJ2MEScaleUtil), pointer :: jresult
+        jresult => ImageJ2MEScaleUtil_jstatic_instance()
+        return
+  end function
 
-constructor TImageJ2MEScaleUtil.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive function ImageJ2MEScaleUtil_jm_scaleArray_3(this, j_images, j_width, j_height) result(jresult)
+    class(ImageJ2MEScaleUtil), target :: this
+    type(JRef) :: j_images(:)
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    type(JRef), allocatable :: jresult(:)
+    type(JRef), allocatable :: j_scaledImages(:)
+    integer(4) :: j_index
+    integer(4) :: jtemp1
+        j_scaledImages = JR_newRefArray(size(j_images, 1))
+        j_index = j_index - 1
+        jtemp1 = j_index
+        j_index = size(j_images, 1)
+        do while ((jtemp1 >= 0))
+            j_scaledImages((j_index) + 1)%v => this%jm_scale_3(Image_jcast(j_images((j_index) + 1)%v), j_width, j_height)
+        end do
+        jresult = j_scaledImages
+        return
+  end function
 
-// throws Exception
-function TImageJ2MEScaleUtil.scaleArray(images: TArray<TImage>; width: Integer; height: Integer): TArray<TImage>;
-var
-  scaledImages: TArray<TImage>;
-  index: Integer;
-begin
-        scaledImages := TJava.NewArray<TImage>(System.Length(images));
-        index := System.Length(images);
-        while (TJava.PreDec(index)) >= (0) do begin
-            scaledImages[index] := Self.scale(images[index], width, height);
-        end;
-        Exit(scaledImages);
-end;
-    
-
-// throws Exception
-function TImageJ2MEScaleUtil.scale(image_: TImage; width: Integer; height: Integer): TImage;
-var
-  sourceWidth: Integer;
-  sourceHeight: Integer;
-  originalData: TArray<Integer>;
-  scaledData: TArray<Integer>;
-  heightRatioFactor: Integer;
-  widthRatioFactor: Integer;
-  scaledIndex: Integer;
-  dx: Integer;
-  dy: Integer;
-  index2: Integer;
-  index: Integer;
-  scaledImage: TImage;
-begin
-        sourceWidth := image_.getWidth();
-        sourceHeight := image_.getHeight();
-        originalData := TJava.NewArray<Integer>((image_.getWidth()) * (image_.getHeight()));
-        image_.getRGB(originalData, 0, image_.getWidth(), 0, 0, image_.getWidth(), image_.getHeight());
-        scaledData := TJava.NewArray<Integer>((width) * (height));
-        heightRatioFactor := (((8) * (sourceHeight))) div (height);
-        widthRatioFactor := (((8) * (sourceWidth))) div (width);
-        scaledIndex := (System.Length(scaledData)) - (1);
-        
-        
-        index := height;
-        while (TJava.PreDec(index)) >= (0) do begin
-            dy := TJava.SignedRightShift(((index) * (heightRatioFactor)), 3);
-            index2 := width;
-            while (TJava.PreDec(index2)) >= (0) do begin
-                dx := TJava.SignedRightShift(((index2) * (widthRatioFactor)), 3);
-                scaledData[TJava.PostDec(scaledIndex)] := originalData[(((sourceWidth) * (dy))) + (dx)];
-            end;
-        end;
-        scaledImage := TImage.createRGBImage(scaledData, width, height, True);
-        Exit(scaledImage);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TImageJ2MEScaleUtil.instance := TImageJ2MEScaleUtil.Create();
-  {AB:END}
-
-end.
+  recursive function ImageJ2MEScaleUtil_jm_scale_3(this, j_image, j_width, j_height) result(jresult)
+    class(ImageJ2MEScaleUtil), target :: this
+    class(Image), target, optional :: j_image
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(Image), pointer :: jresult
+    integer(4) :: j_sourceWidth
+    integer(4) :: j_sourceHeight
+    integer(4), allocatable :: j_originalData(:)
+    integer(4), allocatable :: j_scaledData(:)
+    integer(4) :: j_heightRatioFactor
+    integer(4) :: j_widthRatioFactor
+    integer(4) :: j_scaledIndex
+    integer(4) :: j_dx
+    integer(4) :: j_dy
+    integer(4) :: j_index2
+    integer(4) :: j_index
+    class(Image), pointer :: j_scaledImage
+    integer(4) :: jtemp2
+    integer(4) :: jtemp3
+    integer(4) :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_sourceWidth = j_image%jm_getWidth_0()
+        j_sourceHeight = j_image%jm_getHeight_0()
+        j_originalData = JR_newIntArray((j_image%jm_getWidth_0() * j_image%jm_getHeight_0()))
+        call j_image%jm_getRGB_7(j_originalData, 0, j_image%jm_getWidth_0(), 0, 0, j_image%jm_getWidth_0(), j_image%jm_getHeight_0())
+        j_scaledData = JR_newIntArray((j_width * j_height))
+        j_heightRatioFactor = (((8 * j_sourceHeight)) / j_height)
+        j_widthRatioFactor = (((8 * j_sourceWidth)) / j_width)
+        j_scaledIndex = (size(j_scaledData, 1) - 1)
+        continue
+        continue
+        j_index = j_index - 1
+        jtemp4 = j_index
+        j_index = j_height
+        do while ((jtemp4 >= 0))
+            j_dy = shifta(((j_index * j_heightRatioFactor)), iand(3, 31))
+            j_index2 = j_index2 - 1
+            jtemp3 = j_index2
+            j_index2 = j_width
+            do while ((jtemp3 >= 0))
+                j_dx = shifta(((j_index2 * j_widthRatioFactor)), iand(3, 31))
+                jtemp2 = j_scaledIndex
+                j_scaledIndex = j_scaledIndex - 1
+                j_scaledData((jtemp2) + 1) = j_originalData(((((j_sourceWidth * j_dy)) + j_dx)) + 1)
+            end do
+        end do
+        j_scaledImage => Image_jm_createRGBImage_4(j_scaledData, j_width, j_height, .true.)
+        jresult => j_scaledImage
+        return
+  end function
+end module ImageJ2MEScaleUtil_m
 

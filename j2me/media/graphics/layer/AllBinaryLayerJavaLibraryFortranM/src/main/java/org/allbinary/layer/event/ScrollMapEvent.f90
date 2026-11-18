@@ -1,96 +1,89 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer.event
+module ScrollMapEvent_m
+  use JR_m
+  use AllBinaryEventObject_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer.event
-unit ScrollMapEvent;
+  type, extends(AllBinaryEventObject) :: ScrollMapEvent
+    integer(4) :: f_dx = 0
+    integer(4) :: f_dy = 0
+  contains
+    procedure :: jm_setDx_1 => ScrollMapEvent_jm_setDx_1
+    procedure :: jm_getDx_0 => ScrollMapEvent_jm_getDx_0
+    procedure :: jm_setDy_1 => ScrollMapEvent_jm_setDy_1
+    procedure :: jm_getDy_0 => ScrollMapEvent_jm_getDy_0
+    procedure :: jm_setDxDy_2 => ScrollMapEvent_jm_setDxDy_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject;
+  function ScrollMapEvent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ScrollMapEvent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ScrollMapEvent)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TScrollMapEvent = class(TAllBinaryEventObject)
-  public
-    dx: Integer;
-    dy: Integer;
-    procedure InitFields;
-        constructor Create(anyType: TObject);
-        procedure setDx(dx: Integer); virtual;
-        function getDx: Integer; virtual;
-        procedure setDy(dy: Integer); virtual;
-        function getDy: Integer; virtual;
-        procedure setDxDy(dx: Integer; dy: Integer); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TScrollMapEvent.InitFields;
-begin
-  
-  
-end;
+  recursive function ScrollMapEvent_jnew_1(j_anyType) result(this)
+    class(JObject), target, optional :: j_anyType
+    class(ScrollMapEvent), pointer :: this
+    allocate(this)
+    this%jclass = 'ScrollMapEvent'
     
-
-constructor TScrollMapEvent.Create(anyType: TObject);
-begin
-        inherited Create(anyType);
-        InitFields;
-end;
     
+        continue ! super()
+  end function
 
-procedure TScrollMapEvent.setDx(dx: Integer);
-begin
-        Self.dx := dx;
-end;
-    
+  recursive subroutine ScrollMapEvent_jm_setDx_1(this, j_dx)
+    class(ScrollMapEvent), target :: this
+    integer(4), value :: j_dx
+        this%f_dx = j_dx
+  end subroutine
 
-function TScrollMapEvent.getDx: Integer;
-begin
-        Exit(Self.dx);
-end;
-    
+  recursive function ScrollMapEvent_jm_getDx_0(this) result(jresult)
+    class(ScrollMapEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_dx
+        return
+  end function
 
-procedure TScrollMapEvent.setDy(dy: Integer);
-begin
-        Self.dy := dy;
-end;
-    
+  recursive subroutine ScrollMapEvent_jm_setDy_1(this, j_dy)
+    class(ScrollMapEvent), target :: this
+    integer(4), value :: j_dy
+        this%f_dy = j_dy
+  end subroutine
 
-function TScrollMapEvent.getDy: Integer;
-begin
-        Exit(Self.dy);
-end;
-    
+  recursive function ScrollMapEvent_jm_getDy_0(this) result(jresult)
+    class(ScrollMapEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_dy
+        return
+  end function
 
-procedure TScrollMapEvent.setDxDy(dx: Integer; dy: Integer);
-begin
-        Self.dx := dx;
-        Self.dy := dy;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine ScrollMapEvent_jm_setDxDy_2(this, j_dx, j_dy)
+    class(ScrollMapEvent), target :: this
+    integer(4), value :: j_dx
+    integer(4), value :: j_dy
+        this%f_dx = j_dx
+        this%f_dy = j_dy
+  end subroutine
+end module ScrollMapEvent_m
 

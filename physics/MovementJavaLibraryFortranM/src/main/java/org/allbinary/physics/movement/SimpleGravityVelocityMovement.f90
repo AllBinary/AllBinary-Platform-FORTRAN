@@ -1,70 +1,67 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.physics.movement
+module SimpleGravityVelocityMovement_m
+  use JR_m
+  use AllBinaryGameLayer_m
+  use GravityUtil_m
+  use VelocityProperties_m
+  use BasicDecimal_m
+  use BasicConstantVelocityMovement_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.physics.movement
-unit SimpleGravityVelocityMovement;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryGameLayer, GravityUtil, BasicDecimal, BasicConstantVelocityMovement;
-
-type
-  {AB:TYPES}
-  TSimpleGravityVelocityMovement = class(TBasicConstantVelocityMovement)
-  public
-    gravityUtil: TGravityUtil;
-    procedure InitFields;
-        constructor Create(speedBasicDecimal: TBasicDecimal);
-        procedure process(layer: TAllBinaryGameLayer); override;
-  end;
-
-implementation
-uses
-  VelocityProperties;
+  type, extends(BasicConstantVelocityMovement) :: SimpleGravityVelocityMovement
+    class(GravityUtil), pointer :: f_gravityUtil => null()
+  contains
+    procedure :: jm_process_1 => SimpleGravityVelocityMovement_jm_process_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TSimpleGravityVelocityMovement.InitFields;
-begin
-  Self.gravityUtil := TGravityUtil.getInstance();
-end;
-    
+  function SimpleGravityVelocityMovement_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SimpleGravityVelocityMovement), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SimpleGravityVelocityMovement)
+      jresult => object
+    end select
+  end function
 
-constructor TSimpleGravityVelocityMovement.Create(speedBasicDecimal: TBasicDecimal);
-begin
-        inherited Create(speedBasicDecimal, TVelocityProperties.Create(Integer(Trunc(speedBasicDecimal.getUnscaled())), Integer(Trunc(speedBasicDecimal.getUnscaled()))));
-        InitFields;
-end;
-    
+  recursive function SimpleGravityVelocityMovement_jnew_1(j_speedBasicDecimal) result(this)
+    class(BasicDecimal), target, optional :: j_speedBasicDecimal
+    class(SimpleGravityVelocityMovement), pointer :: this
+    allocate(this)
+    this%jclass = 'SimpleGravityVelocityMovement'
+    this%f_gravityUtil => GravityUtil_jm_getInstance_0()
+        continue ! super()
+  end function
 
-// throws Exception
-procedure TSimpleGravityVelocityMovement.process(layer: TAllBinaryGameLayer);
-begin
-        Self.gravityUtil.process(Self.getVelocityProperties(), Self.gravityUtil.GAME_GRAVITY_VELOCITY);
-        inherited process(layer);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine SimpleGravityVelocityMovement_jm_process_1(this, j_layer)
+    class(SimpleGravityVelocityMovement), target :: this
+    class(AllBinaryGameLayer), target, optional :: j_layer
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_gravityUtil%jm_process_2(this%jm_getVelocityProperties_0(), this%f_gravityUtil%f_GAME_GRAVITY_VELOCITY)
+        call this%BasicConstantVelocityMovement%jm_process_1(j_layer)
+  end subroutine
+end module SimpleGravityVelocityMovement_m
 

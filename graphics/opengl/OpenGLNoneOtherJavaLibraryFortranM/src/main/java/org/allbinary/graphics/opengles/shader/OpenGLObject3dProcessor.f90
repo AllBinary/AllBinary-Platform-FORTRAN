@@ -1,55 +1,52 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit OpenGLObject3dProcessor;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module OpenGLObject3dProcessor_m
+  use JR_m
+  use GL10_m
+  use CommonStrings_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLObject3dProcessor
+    class(CommonStrings), pointer :: f_commonStrings => null()
+  contains
+    procedure :: jm_process_2 => OpenGLObject3dProcessor_jm_process_2
+    procedure :: jm_process_3 => OpenGLObject3dProcessor_jm_process_3
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10, CommonStrings;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLObject3dProcessor = class(TObject)
-  public
-    commonStrings: TCommonStrings;
-    procedure InitFields;
-    constructor Create;
-        procedure process(gl: IGL10; object3d: TObject); overload; virtual;
-        procedure process(gl: IGL10; object3d: TObject; index: Integer); overload; virtual;
-  end;
+  function OpenGLObject3dProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLObject3dProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLObject3dProcessor)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLObject3dProcessor_jnew_0() result(this)
+    class(OpenGLObject3dProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLObject3dProcessor'
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+  end function
 
-{AB:CODE}
+  recursive subroutine OpenGLObject3dProcessor_jm_process_2(this, j_gl, j_object3d)
+    class(OpenGLObject3dProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    class(JObject), target, optional :: j_object3d
+    continue
+  end subroutine
 
-procedure TOpenGLObject3dProcessor.InitFields;
-begin
-  Self.commonStrings := TCommonStrings.getInstance();
-end;
-
-constructor TOpenGLObject3dProcessor.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-procedure TOpenGLObject3dProcessor.process(gl: IGL10; object3d: TObject);
-begin
-end;
-    
-
-procedure TOpenGLObject3dProcessor.process(gl: IGL10; object3d: TObject; index: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine OpenGLObject3dProcessor_jm_process_3(this, j_gl, j_object3d, j_index)
+    class(OpenGLObject3dProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    class(JObject), target, optional :: j_object3d
+    integer(4), value :: j_index
+    continue
+  end subroutine
+end module OpenGLObject3dProcessor_m
 

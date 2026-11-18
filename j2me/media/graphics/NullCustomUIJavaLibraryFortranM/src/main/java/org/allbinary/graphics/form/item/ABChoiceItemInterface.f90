@@ -1,29 +1,30 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit ABChoiceItemInterface;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module ABChoiceItemInterface_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ABChoiceItemInterface
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  IABChoiceItemInterface = interface(IJavaObject) ['IABChoiceItemInterface']
-  end;
-  TABChoiceItemInterface = IABChoiceItemInterface;
+  function ABChoiceItemInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ABChoiceItemInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ABChoiceItemInterface)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function ABChoiceItemInterface_jnew_0() result(this)
+    class(ABChoiceItemInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'ABChoiceItemInterface'
+  end function
+end module ABChoiceItemInterface_m
 

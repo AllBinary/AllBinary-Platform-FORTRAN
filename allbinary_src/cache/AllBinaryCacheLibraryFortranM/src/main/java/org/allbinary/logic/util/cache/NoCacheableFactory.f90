@@ -1,64 +1,54 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module NoCacheableFactory_m
+  use JR_m
+  use CacheableInterfaceFactoryInterface_m
+  use CacheableInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit NoCacheableFactory;
+  type, extends(CacheableInterfaceFactoryInterface) :: NoCacheableFactory
+  contains
+    procedure :: jm_getInstance_1 => NoCacheableFactory_jm_getInstance_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CacheableInterface, CacheableInterfaceFactoryInterface;
+  function NoCacheableFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoCacheableFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoCacheableFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TNoCacheableFactory = class(TInterfacedObject, ICacheableInterfaceFactoryInterface)
-  public
-    function JavaObject: TObject;
-        constructor Create;
-        function getInstance(key: TObject): ICacheableInterface; virtual;
-  end;
+  recursive function NoCacheableFactory_jnew_0() result(this)
+    class(NoCacheableFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'NoCacheableFactory'
+        continue
+  end function
 
-implementation
-
-{AB:CODE}
-
-function TNoCacheableFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
-
-constructor TNoCacheableFactory.Create;
-begin
-    inherited Create;
-end;
-    
-
-// throws Exception
-function TNoCacheableFactory.getInstance(key: TObject): ICacheableInterface;
-begin
-        raise SysUtils.Exception.Create('This Factory Does Not');
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function NoCacheableFactory_jm_getInstance_1(this, j_key) result(jresult)
+    class(NoCacheableFactory), target :: this
+    class(JObject), target, optional :: j_key
+    class(CacheableInterface), pointer :: jresult
+        error stop JR_toString(JR_newJObject('Exception'))
+  end function
+end module NoCacheableFactory_m
 

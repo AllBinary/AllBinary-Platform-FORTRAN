@@ -1,80 +1,95 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.gyro
+module AllBinaryOrientationSensor_m
+  use JR_m
+  use CompleteMotionGestureInputEventListenerInterface_m
+  use NoCompleteMotionGestureInputEventListener_m
+  use AllBinarySensor_m
+  use Orientation_m
+  use PrimitiveFloatUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.gyro
-unit AllBinaryOrientationSensor;
+  type, extends(AllBinarySensor) :: AllBinaryOrientationSensor
+    real(4), allocatable :: f_sensorDataFloatArray(:)
+    class(CompleteMotionGestureInputEventListenerInterface), pointer :: f_listener => null()
+  contains
+    procedure :: jm_setCompleteMotionGestureInputEventListener_1 => AllBinaryOrientationSensor_jm_setCompleteMotionGestureInputEventListener_1
+    procedure :: jm_getOrientation_0 => AllBinaryOrientationSensor_jm_getOrientation_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AllBinaryOrientationSensor), pointer, save :: AllBinaryOrientationSensor_jcell_NULL_ALLBINARY_ORIENTATION_SENSOR => null()
+  logical, save :: AllBinaryOrientationSensor_jset_NULL_ALLBINARY_ORIENTATION_SENSOR = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CompleteMotionGestureInputEventListenerInterface, AllBinarySensor, Orientation;
+  function AllBinaryOrientationSensor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinaryOrientationSensor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinaryOrientationSensor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinaryOrientationSensor = class(TAllBinarySensor)
-  public
-    sensorDataFloatArray: TArray<Single>;
-    listener: ICompleteMotionGestureInputEventListenerInterface;
-    class var NULL_ALLBINARY_ORIENTATION_SENSOR: TAllBinaryOrientationSensor;
-    procedure InitFields;
-        procedure setCompleteMotionGestureInputEventListener(completeMotionGestureInputEventListenerInterface_: ICompleteMotionGestureInputEventListenerInterface); virtual;
-        constructor Create;
-        function getOrientation: TOrientation; virtual;
-  end;
+  function AllBinaryOrientationSensor_jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR() result(jresult)
+    class(AllBinaryOrientationSensor), pointer :: jresult
+    if (.not. AllBinaryOrientationSensor_jset_NULL_ALLBINARY_ORIENTATION_SENSOR) then
+      AllBinaryOrientationSensor_jset_NULL_ALLBINARY_ORIENTATION_SENSOR = .true.
+      AllBinaryOrientationSensor_jcell_NULL_ALLBINARY_ORIENTATION_SENSOR => AllBinaryOrientationSensor_jnew_0()
+    end if
+    jresult => AllBinaryOrientationSensor_jcell_NULL_ALLBINARY_ORIENTATION_SENSOR
+  end function
 
-implementation
-uses
-  NoCompleteMotionGestureInputEventListener, PrimitiveFloatUtil;
+  subroutine AllBinaryOrientationSensor_jsetstatic_NULL_ALLBINARY_ORIENTATION_SENSOR(jvalue)
+    class(AllBinaryOrientationSensor), target, optional :: jvalue
+    AllBinaryOrientationSensor_jset_NULL_ALLBINARY_ORIENTATION_SENSOR = .true.
+    if (present(jvalue)) then
+      AllBinaryOrientationSensor_jcell_NULL_ALLBINARY_ORIENTATION_SENSOR => jvalue
+    else
+      AllBinaryOrientationSensor_jcell_NULL_ALLBINARY_ORIENTATION_SENSOR => null()
+    end if
+  end subroutine
 
+  recursive function AllBinaryOrientationSensor_jnew_0() result(this)
+    class(AllBinaryOrientationSensor), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinaryOrientationSensor'
+    this%f_sensorDataFloatArray = PrimitiveFloatUtil_jm_getArrayInstance_0()
+    this%f_listener => NoCompleteMotionGestureInputEventListener_jm_getInstance_0()
+        continue
+  end function
 
-{AB:CODE}
+  recursive subroutine AllBinaryOrientationSensor_jm_setCompleteMotionGestureInputEventListener_1(this, j_completeMotionGestureInputEventListenerInterface)
+    class(AllBinaryOrientationSensor), target :: this
+    class(CompleteMotionGestureInputEventListenerInterface), target, optional :: j_completeMotionGestureInputEventListenerInterface
+        this%f_listener => j_completeMotionGestureInputEventListenerInterface
+  end subroutine
 
-procedure TAllBinaryOrientationSensor.InitFields;
-begin
-  Self.sensorDataFloatArray := TPrimitiveFloatUtil.getArrayInstance();
-  Self.listener := TNoCompleteMotionGestureInputEventListener.getInstance();
-end;
-    
+  recursive function AllBinaryOrientationSensor_jm_getOrientation_0(this) result(jresult)
+    class(AllBinaryOrientationSensor), target :: this
+    class(Orientation), pointer :: jresult
+        error stop JR_toString(JR_newJObject('Exception'))
+  end function
+end module AllBinaryOrientationSensor_m
 
-procedure TAllBinaryOrientationSensor.setCompleteMotionGestureInputEventListener(completeMotionGestureInputEventListenerInterface_: ICompleteMotionGestureInputEventListenerInterface);
-begin
-        Self.listener := completeMotionGestureInputEventListenerInterface_;
-end;
-    
-
-constructor TAllBinaryOrientationSensor.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-// throws Exception
-function TAllBinaryOrientationSensor.getOrientation: TOrientation;
-begin
-        raise SysUtils.Exception.Create(Self.commonStrings.NOT_IMPLEMENTED);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinaryOrientationSensor.NULL_ALLBINARY_ORIENTATION_SENSOR := TAllBinaryOrientationSensor.Create();
-  {AB:END}
-
-end.
+function AllBinaryOrientationSensor_jnew_0_jext() result(this)
+  use AllBinaryOrientationSensor_m, only: JObject, AllBinaryOrientationSensor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => AllBinaryOrientationSensor_jnew_0()
+end function
 

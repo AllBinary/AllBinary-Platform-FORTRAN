@@ -1,128 +1,147 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.business.init
+module LicenseInitInfo_m
+  use JR_m
+  use DebugFactory_m
+  use NoDebug_m
+  use StringUtil_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.business.init
-unit LicenseInitInfo;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList;
-
-type
-  {AB:TYPES}
-  TLicenseInitInfo = class(TObject)
-  public
-    id: string;
-    serverList: TBasicArrayList;
-    procedure InitFields;
-        constructor Create;
-        function getLicenseId: string; virtual;
-        function getServer(index: Integer): string; virtual;
-        function getNumberOfServers: Integer; virtual;
-        procedure setLicenseId(value: string); virtual;
-        procedure clearServers; virtual;
-        procedure setServer(value: string; index: Integer); virtual;
-        procedure addServer(value: string); virtual;
-        function getServerList: TBasicArrayList; virtual;
-        procedure setServerList(servers: TBasicArrayList); virtual;
-  end;
-
-implementation
-uses
-  DebugFactory, NoDebug, StringUtil, BasicArrayListD;
+  type, extends(JObject) :: LicenseInitInfo
+    character(len=:), allocatable :: f_id
+    class(BasicArrayList), pointer :: f_serverList => null()
+  contains
+    procedure :: jm_getLicenseId_0 => LicenseInitInfo_jm_getLicenseId_0
+    procedure :: jm_getServer_1 => LicenseInitInfo_jm_getServer_1
+    procedure :: jm_getNumberOfServers_0 => LicenseInitInfo_jm_getNumberOfServers_0
+    procedure :: jm_setLicenseId_1 => LicenseInitInfo_jm_setLicenseId_1
+    procedure :: jm_clearServers_0 => LicenseInitInfo_jm_clearServers_0
+    procedure :: jm_setServer_2 => LicenseInitInfo_jm_setServer_2
+    procedure :: jm_addServer_1 => LicenseInitInfo_jm_addServer_1
+    procedure :: jm_getServerList_0 => LicenseInitInfo_jm_getServerList_0
+    procedure :: jm_setServerList_1 => LicenseInitInfo_jm_setServerList_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TLicenseInitInfo.InitFields;
-begin
-  Self.id := TStringUtil.getInstance().EMPTY_STRING;
-  Self.serverList := TBasicArrayListD.Create();
-end;
-    
+  function LicenseInitInfo_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LicenseInitInfo), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LicenseInitInfo)
+      jresult => object
+    end select
+  end function
 
-constructor TLicenseInitInfo.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function LicenseInitInfo_jnew_0() result(this)
+    class(LicenseInitInfo), pointer :: this
+    class(StringUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'LicenseInitInfo'
+    this%f_id = ''
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_id = jtemp1%f_EMPTY_STRING
+    this%f_serverList => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-function TLicenseInitInfo.getLicenseId: string;
-begin
-        Exit(Self.id);
-end;
-    
+  recursive function LicenseInitInfo_jm_getLicenseId_0(this) result(jresult)
+    class(LicenseInitInfo), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_id
+        return
+  end function
 
-function TLicenseInitInfo.getServer(index: Integer): string;
-begin
-        Exit(TJava.UnboxString(TJava.ToObject(Self.serverList.get(index))));
-end;
-    
+  recursive function LicenseInitInfo_jm_getServer_1(this, j_index) result(jresult)
+    class(LicenseInitInfo), target :: this
+    integer(4), value :: j_index
+    character(len=:), allocatable :: jresult
+        jresult = this%f_serverList%jm_get_1(j_index)
+        return
+  end function
 
-function TLicenseInitInfo.getNumberOfServers: Integer;
-begin
-        Exit(Self.serverList.size());
-end;
-    
+  recursive function LicenseInitInfo_jm_getNumberOfServers_0(this) result(jresult)
+    class(LicenseInitInfo), target :: this
+    integer(4) :: jresult
+        jresult = this%f_serverList%jm_size_0()
+        return
+  end function
 
-procedure TLicenseInitInfo.setLicenseId(value: string);
-begin
-        Self.id := value;
-end;
-    
+  recursive subroutine LicenseInitInfo_jm_setLicenseId_1(this, j_value)
+    class(LicenseInitInfo), target :: this
+    character(len=*), intent(in) :: j_value
+        this%f_id = j_value
+  end subroutine
 
-procedure TLicenseInitInfo.clearServers;
-begin
-        Self.serverList.clear();
-end;
-    
+  recursive subroutine LicenseInitInfo_jm_clearServers_0(this)
+    class(LicenseInitInfo), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_serverList%jm_clear_0()
+  end subroutine
 
-procedure TLicenseInitInfo.setServer(value: string; index: Integer);
-begin
-        Self.serverList.addAt(index, TJava.Box(value));
-end;
-    
+  recursive subroutine LicenseInitInfo_jm_setServer_2(this, j_value, j_index)
+    class(LicenseInitInfo), target :: this
+    character(len=*), intent(in) :: j_value
+    integer(4), value :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_serverList%jm_addAt_2(j_index, JR_boxString(j_value))
+  end subroutine
 
-procedure TLicenseInitInfo.addServer(value: string);
-begin
-        Self.serverList.add(TJava.Box(value));
-end;
-    
+  recursive subroutine LicenseInitInfo_jm_addServer_1(this, j_value)
+    class(LicenseInitInfo), target :: this
+    character(len=*), intent(in) :: j_value
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_serverList%jm_add_1(JR_boxString(j_value))
+  end subroutine
 
-function TLicenseInitInfo.getServerList: TBasicArrayList;
-begin
-        Exit(Self.serverList);
-end;
-    
+  recursive function LicenseInitInfo_jm_getServerList_0(this) result(jresult)
+    class(LicenseInitInfo), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_serverList
+        return
+  end function
 
-procedure TLicenseInitInfo.setServerList(servers: TBasicArrayList);
-begin
-        if (TDebugFactory.getInstance()) = (TNoDebug.getInstance()) then begin
-            Self.serverList := servers;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine LicenseInitInfo_jm_setServerList_1(this, j_servers)
+    class(LicenseInitInfo), target :: this
+    class(BasicArrayList), target, optional :: j_servers
+        if ((DebugFactory_jm_getInstance_0() == NoDebug_jm_getInstance_0())) then
+            this%f_serverList => j_servers
+        end if
+  end subroutine
+end module LicenseInitInfo_m
 

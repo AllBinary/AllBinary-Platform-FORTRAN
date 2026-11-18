@@ -96,6 +96,16 @@ contains
     jresult => CommonStrings_jcell_instance
   end function
 
+  subroutine CommonStrings_jsetstatic_instance(jvalue)
+    class(CommonStrings), target, optional :: jvalue
+    CommonStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonStrings_jcell_instance => jvalue
+    else
+      CommonStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function CommonStrings_jnew_0() result(this)
     class(CommonStrings), pointer :: this
     allocate(this)

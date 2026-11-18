@@ -1,57 +1,53 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.pickup
+module IconLayerFactory_m
+  use JR_m
+  use Animation_m
+  use IconLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.pickup
-unit IconLayerFactory;
+  type, extends(JObject) :: IconLayerFactory
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Animation, IconLayer;
+  function IconLayerFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(IconLayerFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (IconLayerFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TIconLayerFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance(animationInterface: TAnimation; width: Integer; height: Integer): TIconLayer; static;
-  end;
+  function IconLayerFactory_jnew_0() result(this)
+    class(IconLayerFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'IconLayerFactory'
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TIconLayerFactory.Create;
-begin
-  inherited Create;
-end;
-    
-
-// throws Exception
-class function TIconLayerFactory.getInstance(animationInterface: TAnimation; width: Integer; height: Integer): TIconLayer;
-begin
-        Exit(TIconLayer.Create(animationInterface, width, height));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function IconLayerFactory_jm_getInstance_3(j_animationInterface, j_width, j_height) result(jresult)
+    class(Animation), target, optional :: j_animationInterface
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(IconLayer), pointer :: jresult
+        jresult => IconLayer_jnew_3(j_animationInterface, j_width, j_height)
+        return
+  end function
+end module IconLayerFactory_m
 

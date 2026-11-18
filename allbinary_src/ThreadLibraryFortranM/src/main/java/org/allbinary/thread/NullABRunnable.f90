@@ -47,6 +47,16 @@ contains
     jresult => NullABRunnable_jcell_instance
   end function
 
+  subroutine NullABRunnable_jsetstatic_instance(jvalue)
+    class(NullABRunnable), target, optional :: jvalue
+    NullABRunnable_jset_instance = .true.
+    if (present(jvalue)) then
+      NullABRunnable_jcell_instance => jvalue
+    else
+      NullABRunnable_jcell_instance => null()
+    end if
+  end subroutine
+
   function NullABRunnable_jnew_0() result(this)
     class(NullABRunnable), pointer :: this
     allocate(this)

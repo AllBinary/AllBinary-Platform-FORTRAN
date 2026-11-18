@@ -1,68 +1,83 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.android.input.motion
+module AllAnalogControllerVisitor_m
+  use JR_m
+  use AnalogLocationInput_m
+  use AnalogLocationInputFactory_m
+  use AllBinaryLayerManager_m
+  use BasicArrayList_m
+  use AnalogControllerVisitor_m
+  use AnalogLocationInputProcessor_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.android.input.motion
-unit AllAnalogControllerVisitor;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryLayerManager, AnalogLocationInputProcessor, AnalogControllerVisitor;
-
-type
-  {AB:TYPES}
-  TAllAnalogControllerVisitor = class(TAnalogControllerVisitor)
-  public
-    constructor Create;
-        procedure process(allbinaryLayerManager_: TAllBinaryLayerManager; analogLocationInputProcessor_: TAnalogLocationInputProcessor); override;
-  end;
-
-implementation
-uses
-  AnalogLocationInput, AnalogLocationInputFactory, BasicArrayList;
+  type, extends(AnalogControllerVisitor) :: AllAnalogControllerVisitor
+  contains
+    procedure :: jm_process_2 => AllAnalogControllerVisitor_jm_process_2
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TAllAnalogControllerVisitor.Create;
-begin
-  inherited Create;
-end;
-    
+  function AllAnalogControllerVisitor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllAnalogControllerVisitor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllAnalogControllerVisitor)
+      jresult => object
+    end select
+  end function
 
-procedure TAllAnalogControllerVisitor.process(allbinaryLayerManager_: TAllBinaryLayerManager; analogLocationInputProcessor_: TAnalogLocationInputProcessor);
-var
-  analogLocationInputList: TBasicArrayList;
-  analogLocationInput_: TAnalogLocationInput;
-  index: Integer;
-begin
-        analogLocationInputList := TAnalogLocationInputFactory.getInstance().getList();
-        
-        for index := (analogLocationInputList.size()) - (1) downto 0 do begin
-            analogLocationInput_ := TAnalogLocationInput(TJava.ToObject(analogLocationInputList.get(index)));
-            analogLocationInputProcessor_.process(allbinaryLayerManager_, analogLocationInput_);
-        end;
-end;
+  function AllAnalogControllerVisitor_jnew_0() result(this)
+    class(AllAnalogControllerVisitor), pointer :: this
+    allocate(this)
+    this%jclass = 'AllAnalogControllerVisitor'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine AllAnalogControllerVisitor_jm_process_2(this, j_allbinaryLayerManager, j_analogLocationInputProcessor)
+    class(AllAnalogControllerVisitor), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    class(AnalogLocationInputProcessor), target, optional :: j_analogLocationInputProcessor
+    class(BasicArrayList), pointer :: j_analogLocationInputList
+    class(AnalogLocationInput), pointer :: j_analogLocationInput
+    integer(4) :: j_index
+    class(AnalogLocationInputFactory), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => AnalogLocationInputFactory_jm_getInstance_0()
+        j_analogLocationInputList => jtemp1%jm_getList_0()
+        continue
+        j_index = (j_analogLocationInputList%jm_size_0() - 1)
+        do while ((j_index >= 0))
+            j_analogLocationInput => AnalogLocationInput_jcast(j_analogLocationInputList%jm_get_1(j_index))
+            call j_analogLocationInputProcessor%jm_process_2(j_allbinaryLayerManager, j_analogLocationInput)
+            j_index = j_index - 1
+        end do
+  end subroutine
+end module AllAnalogControllerVisitor_m
 
-end.
+function AllAnalogControllerVisitor_jnew_0_jext() result(this)
+  use AllAnalogControllerVisitor_m, only: JObject, AllAnalogControllerVisitor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => AllAnalogControllerVisitor_jnew_0()
+end function
 

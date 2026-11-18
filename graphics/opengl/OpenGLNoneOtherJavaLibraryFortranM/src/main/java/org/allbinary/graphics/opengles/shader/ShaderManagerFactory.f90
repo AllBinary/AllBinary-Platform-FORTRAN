@@ -1,65 +1,79 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit ShaderManagerFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module ShaderManagerFactory_m
+  use JR_m
+  use ShaderManager_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ShaderManagerFactory
+  contains
+    procedure :: jm_create_0 => ShaderManagerFactory_jm_create_0
+  end type
 
-interface
+  class(ShaderManagerFactory), pointer, save :: ShaderManagerFactory_jcell_instance => null()
+  logical, save :: ShaderManagerFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ShaderManager;
+contains
 
-type
-  {AB:TYPES}
-  TShaderManagerFactory = class(TObject)
-  public
-    class var instance: TShaderManagerFactory;
-    constructor Create;
-        class function getInstance: TShaderManagerFactory; static;
-        function create_: TShaderManager; virtual;
-  end;
+  function ShaderManagerFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ShaderManagerFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ShaderManagerFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function ShaderManagerFactory_jstatic_instance() result(jresult)
+    class(ShaderManagerFactory), pointer :: jresult
+    if (.not. ShaderManagerFactory_jset_instance) then
+      ShaderManagerFactory_jset_instance = .true.
+      ShaderManagerFactory_jcell_instance => ShaderManagerFactory_jnew_0()
+    end if
+    jresult => ShaderManagerFactory_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine ShaderManagerFactory_jsetstatic_instance(jvalue)
+    class(ShaderManagerFactory), target, optional :: jvalue
+    ShaderManagerFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ShaderManagerFactory_jcell_instance => jvalue
+    else
+      ShaderManagerFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TShaderManagerFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function ShaderManagerFactory_jnew_0() result(this)
+    class(ShaderManagerFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'ShaderManagerFactory'
+  end function
 
-class function TShaderManagerFactory.getInstance: TShaderManagerFactory;
-begin
-        Exit(TShaderManagerFactory.instance);
-end;
-    
+  recursive function ShaderManagerFactory_jm_getInstance_0() result(jresult)
+    class(ShaderManagerFactory), pointer :: jresult
+        jresult => ShaderManagerFactory_jstatic_instance()
+        return
+  end function
 
-function TShaderManagerFactory.create_: TShaderManager;
-begin
-        Exit(TShaderManager.getInstance());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TShaderManagerFactory.instance := TShaderManagerFactory.Create();
-  {AB:END}
-
-end.
+  recursive function ShaderManagerFactory_jm_create_0(this) result(jresult)
+    class(ShaderManagerFactory), target :: this
+    class(ShaderManager), pointer :: jresult
+        jresult => ShaderManager_jm_getInstance_0()
+        return
+  end function
+end module ShaderManagerFactory_m
 

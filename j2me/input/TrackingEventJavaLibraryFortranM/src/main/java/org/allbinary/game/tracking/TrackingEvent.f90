@@ -1,105 +1,117 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.tracking
+module TrackingEvent_m
+  use JR_m
+  use AllBinaryLayer_m
+  use StringMaker_m
+  use AllBinaryEventObject_m
+  use TrackingEventHandler_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.tracking
-unit TrackingEvent;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryLayer, AllBinaryEventObject;
-
-type
-  {AB:TYPES}
-  TTrackingEvent = class(TAllBinaryEventObject)
-  public
-    layerInterface: TAllBinaryLayer;
-    procedure InitFields;
-        constructor Create(allBinaryLayerInterface: TObject);
-        procedure init(anyType: TObject); virtual;
-        function getLayerInterface: TAllBinaryLayer; virtual;
-        procedure setLayerInterface(layerInterface: TAllBinaryLayer);
-        procedure setLayerInterfaceForCircularStaticPool(layerInterface: TAllBinaryLayer); virtual;
-        function toString: string; override;
-  end;
-
-implementation
-uses
-  TrackingEventHandler, StringMaker;
+  type, extends(AllBinaryEventObject) :: TrackingEvent
+    class(AllBinaryLayer), pointer :: f_layerInterface => null()
+  contains
+    procedure :: jm_init_1 => TrackingEvent_jm_init_1
+    procedure :: jm_getLayerInterface_0 => TrackingEvent_jm_getLayerInterface_0
+    procedure :: jm_setLayerInterface_1 => TrackingEvent_jm_setLayerInterface_1
+    procedure :: jm_setLayerInterfaceForCircularStaticPool_1 => TrackingEvent_jm_setLayerInterfaceForCircularStaticPool_1
+    procedure :: jm_toString_0 => TrackingEvent_jm_toString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TTrackingEvent.InitFields;
-begin
-  Self.layerInterface := TAllBinaryLayer.NULL_ALLBINARY_LAYER;
-end;
-    
+  function TrackingEvent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TrackingEvent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TrackingEvent)
+      jresult => object
+    end select
+  end function
 
-constructor TTrackingEvent.Create(allBinaryLayerInterface: TObject);
-begin
-        inherited Create(allBinaryLayerInterface);
-        InitFields;
-        if (allBinaryLayerInterface) <> (TTrackingEventHandler.getInstance()) then begin
-            Self.setLayerInterface(TAllBinaryLayer(TJava.ToObject(allBinaryLayerInterface)));
-        end;
-end;
-    
+  recursive function TrackingEvent_jnew_1(j_allBinaryLayerInterface) result(this)
+    class(JObject), target, optional :: j_allBinaryLayerInterface
+    class(TrackingEvent), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'TrackingEvent'
+    this%f_layerInterface => AllBinaryLayer_jstatic_NULL_ALLBINARY_LAYER()
+        continue ! super()
+        if ((.not. JR_same(j_allBinaryLayerInterface, TrackingEventHandler_jm_getInstance_0()))) then
+            call this%jm_setLayerInterface_1(AllBinaryLayer_jcast(j_allBinaryLayerInterface))
+        end if
+  end function
 
-procedure TTrackingEvent.init(anyType: TObject);
-begin
-        Self.setSource(TJava.Box(anyType));
-end;
-    
+  recursive subroutine TrackingEvent_jm_init_1(this, j_anyType)
+    class(TrackingEvent), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setSource_1(j_anyType)
+  end subroutine
 
-function TTrackingEvent.getLayerInterface: TAllBinaryLayer;
-begin
-        Exit(Self.layerInterface);
-end;
-    
+  recursive function TrackingEvent_jm_getLayerInterface_0(this) result(jresult)
+    class(TrackingEvent), target :: this
+    class(AllBinaryLayer), pointer :: jresult
+        jresult => this%f_layerInterface
+        return
+  end function
 
-procedure TTrackingEvent.setLayerInterface(layerInterface: TAllBinaryLayer);
-begin
-        Self.layerInterface := layerInterface;
-end;
-    
+  recursive subroutine TrackingEvent_jm_setLayerInterface_1(this, j_layerInterface)
+    class(TrackingEvent), target :: this
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+        this%f_layerInterface => j_layerInterface
+  end subroutine
 
-procedure TTrackingEvent.setLayerInterfaceForCircularStaticPool(layerInterface: TAllBinaryLayer);
-begin
-        Self.layerInterface := layerInterface;
-end;
-    
+  recursive subroutine TrackingEvent_jm_setLayerInterfaceForCircularStaticPool_1(this, j_layerInterface)
+    class(TrackingEvent), target :: this
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+        this%f_layerInterface => j_layerInterface
+  end subroutine
 
-function TTrackingEvent.toString: string;
-var
-  stringBuffer: TStringMaker;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append('TrackingEvent: '#10'');
-        stringBuffer.append('LayerInterface: ');
-        stringBuffer.append(Self.layerInterface.toString());
-        Exit(stringBuffer.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function TrackingEvent_jm_toString_0(this) result(jresult)
+    class(TrackingEvent), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(JR_unescape('TrackingEvent: \n'))
+        jdiscardRef => j_stringBuffer%jm_append_1('LayerInterface: ')
+        jdiscardRef => j_stringBuffer%jm_append_1(this%f_layerInterface%jm_toString_0())
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module TrackingEvent_m
 

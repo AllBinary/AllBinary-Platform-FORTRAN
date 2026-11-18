@@ -1,74 +1,86 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit ShaderUpdater;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module ShaderUpdater_m
+  use JR_m
+  use EGLConfig_m
+  use GL10_m
+  use RendererStrings_m
+  use CommonStrings_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ShaderUpdater
+    class(CommonStrings), pointer :: f_commonStrings => null()
+    class(RendererStrings), pointer :: f_rendererStrings => null()
+  contains
+    procedure :: jm_onSurfaceCreated_2 => ShaderUpdater_jm_onSurfaceCreated_2
+  end type
 
-interface
+  class(ShaderUpdater), pointer, save :: ShaderUpdater_jcell_instance => null()
+  logical, save :: ShaderUpdater_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, EGLConfig, GL10, RendererStrings, CommonStrings;
+contains
 
-type
-  {AB:TYPES}
-  TShaderUpdater = class(TObject)
-  public
-    commonStrings: TCommonStrings;
-    rendererStrings: TRendererStrings;
-    class var instance: TShaderUpdater;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TShaderUpdater; static;
-        procedure onSurfaceCreated(gl: IGL10; eglConfig_: TEGLConfig); virtual;
-  end;
+  function ShaderUpdater_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ShaderUpdater), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ShaderUpdater)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function ShaderUpdater_jstatic_instance() result(jresult)
+    class(ShaderUpdater), pointer :: jresult
+    if (.not. ShaderUpdater_jset_instance) then
+      ShaderUpdater_jset_instance = .true.
+      ShaderUpdater_jcell_instance => ShaderUpdater_jnew_0()
+    end if
+    jresult => ShaderUpdater_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine ShaderUpdater_jsetstatic_instance(jvalue)
+    class(ShaderUpdater), target, optional :: jvalue
+    ShaderUpdater_jset_instance = .true.
+    if (present(jvalue)) then
+      ShaderUpdater_jcell_instance => jvalue
+    else
+      ShaderUpdater_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TShaderUpdater.InitFields;
-begin
-  Self.commonStrings := TCommonStrings.getInstance();
-  Self.rendererStrings := TRendererStrings.getInstance();
-end;
+  function ShaderUpdater_jnew_0() result(this)
+    class(ShaderUpdater), pointer :: this
+    allocate(this)
+    this%jclass = 'ShaderUpdater'
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+    this%f_rendererStrings => RendererStrings_jm_getInstance_0()
+  end function
 
-constructor TShaderUpdater.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function ShaderUpdater_jm_getInstance_0() result(jresult)
+    class(ShaderUpdater), pointer :: jresult
+        jresult => ShaderUpdater_jstatic_instance()
+        return
+  end function
 
-class function TShaderUpdater.getInstance: TShaderUpdater;
-begin
-        Exit(TShaderUpdater.instance);
-end;
-    
-
-procedure TShaderUpdater.onSurfaceCreated(gl: IGL10; eglConfig_: TEGLConfig);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TShaderUpdater.instance := TShaderUpdater.Create();
-  {AB:END}
-
-end.
+  recursive subroutine ShaderUpdater_jm_onSurfaceCreated_2(this, j_gl, j_eglConfig)
+    class(ShaderUpdater), target :: this
+    class(GL10), target, optional :: j_gl
+    class(EGLConfig), target, optional :: j_eglConfig
+    continue
+  end subroutine
+end module ShaderUpdater_m
 

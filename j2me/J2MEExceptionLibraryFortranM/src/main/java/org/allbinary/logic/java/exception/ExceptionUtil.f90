@@ -49,6 +49,16 @@ contains
     jresult => ExceptionUtil_jcell_instance
   end function
 
+  subroutine ExceptionUtil_jsetstatic_instance(jvalue)
+    class(ExceptionUtil), target, optional :: jvalue
+    ExceptionUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ExceptionUtil_jcell_instance => jvalue
+    else
+      ExceptionUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function ExceptionUtil_jnew_0() result(this)
     class(ExceptionUtil), pointer :: this
     allocate(this)

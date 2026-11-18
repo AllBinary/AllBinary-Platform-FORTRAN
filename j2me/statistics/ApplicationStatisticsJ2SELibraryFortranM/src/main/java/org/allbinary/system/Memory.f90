@@ -57,13 +57,13 @@ contains
         j_stringBuffer => StringMaker_jnew_0()
         jdiscardRef => j_stringBuffer%jm_append_1('Memory: Free: ')
         jtemp1 => Runtime_jm_getRuntime_0()
-        jdiscardRef => j_stringBuffer%jm_appendlong_1(int(jtemp1%jm_freeMemory_0(), 8))
+        jdiscardRef => j_stringBuffer%jm_appendlong_1(jtemp1%jm_freeMemory_0())
         jdiscardRef => j_stringBuffer%jm_append_1(' Max: ')
         jtemp2 => Runtime_jm_getRuntime_0()
-        jdiscardRef => j_stringBuffer%jm_appendlong_1(int(jtemp2%jm_maxMemory_0(), 8))
+        jdiscardRef => j_stringBuffer%jm_appendlong_1(jtemp2%jm_maxMemory_0())
         jdiscardRef => j_stringBuffer%jm_append_1(' Total: ')
         jtemp3 => Runtime_jm_getRuntime_0()
-        jdiscardRef => j_stringBuffer%jm_appendlong_1(int(jtemp3%jm_totalMemory_0(), 8))
+        jdiscardRef => j_stringBuffer%jm_appendlong_1(jtemp3%jm_totalMemory_0())
         jresult = j_stringBuffer%jm_toString_0()
         return
   end function

@@ -1,66 +1,79 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles
+module OpenGLFeatureUtil_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles
-unit OpenGLFeatureUtil;
+  type, extends(JObject) :: OpenGLFeatureUtil
+  contains
+    procedure :: jm_isAnyThreed_0 => OpenGLFeatureUtil_jm_isAnyThreed_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(OpenGLFeatureUtil), pointer, save :: OpenGLFeatureUtil_jcell_instance => null()
+  logical, save :: OpenGLFeatureUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function OpenGLFeatureUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLFeatureUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLFeatureUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TOpenGLFeatureUtil = class(TObject)
-  public
-    class var instance: TOpenGLFeatureUtil;
-        class function getInstance: TOpenGLFeatureUtil; static;
-        constructor Create;
-        function isAnyThreed: Boolean; virtual;
-  end;
+  function OpenGLFeatureUtil_jstatic_instance() result(jresult)
+    class(OpenGLFeatureUtil), pointer :: jresult
+    if (.not. OpenGLFeatureUtil_jset_instance) then
+      OpenGLFeatureUtil_jset_instance = .true.
+      OpenGLFeatureUtil_jcell_instance => OpenGLFeatureUtil_jnew_0()
+    end if
+    jresult => OpenGLFeatureUtil_jcell_instance
+  end function
 
-implementation
+  subroutine OpenGLFeatureUtil_jsetstatic_instance(jvalue)
+    class(OpenGLFeatureUtil), target, optional :: jvalue
+    OpenGLFeatureUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLFeatureUtil_jcell_instance => jvalue
+    else
+      OpenGLFeatureUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function OpenGLFeatureUtil_jnew_0() result(this)
+    class(OpenGLFeatureUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLFeatureUtil'
+        continue
+  end function
 
-class function TOpenGLFeatureUtil.getInstance: TOpenGLFeatureUtil;
-begin
-        Exit(TOpenGLFeatureUtil.instance);
-end;
-    
+  recursive function OpenGLFeatureUtil_jm_getInstance_0() result(jresult)
+    class(OpenGLFeatureUtil), pointer :: jresult
+        jresult => OpenGLFeatureUtil_jstatic_instance()
+        return
+  end function
 
-constructor TOpenGLFeatureUtil.Create;
-begin
-    inherited Create;
-end;
-    
-
-function TOpenGLFeatureUtil.isAnyThreed: Boolean;
-begin
-        Exit(False);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLFeatureUtil.instance := TOpenGLFeatureUtil.Create();
-  {AB:END}
-
-end.
+  recursive function OpenGLFeatureUtil_jm_isAnyThreed_0(this) result(jresult)
+    class(OpenGLFeatureUtil), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
+end module OpenGLFeatureUtil_m
 

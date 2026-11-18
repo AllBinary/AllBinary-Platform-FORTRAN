@@ -1,59 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchButtonStartResource_m
+  use JR_m
+  use TouchButtonResource_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchButtonStartResource;
+  type, extends(TouchButtonResource) :: TouchButtonStartResource
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(TouchButtonResource), pointer, save :: TouchButtonStartResource_jcell_instance => null()
+  logical, save :: TouchButtonStartResource_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TouchButtonResource;
+  function TouchButtonStartResource_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchButtonStartResource), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchButtonStartResource)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TTouchButtonStartResource = class(TTouchButtonResource)
-  public
-    class var instance: TTouchButtonResource;
-        class function getInstance: TTouchButtonResource; static;
-        constructor Create;
-  end;
+  function TouchButtonStartResource_jstatic_instance() result(jresult)
+    class(TouchButtonResource), pointer :: jresult
+    if (.not. TouchButtonStartResource_jset_instance) then
+      TouchButtonStartResource_jset_instance = .true.
+      TouchButtonStartResource_jcell_instance => TouchButtonStartResource_jnew_0()
+    end if
+    jresult => TouchButtonStartResource_jcell_instance
+  end function
 
-implementation
+  subroutine TouchButtonStartResource_jsetstatic_instance(jvalue)
+    class(TouchButtonResource), target, optional :: jvalue
+    TouchButtonStartResource_jset_instance = .true.
+    if (present(jvalue)) then
+      TouchButtonStartResource_jcell_instance => jvalue
+    else
+      TouchButtonStartResource_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function TouchButtonStartResource_jnew_0() result(this)
+    class(TouchButtonStartResource), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchButtonStartResource'
+        continue ! super()
+  end function
 
-class function TTouchButtonStartResource.getInstance: TTouchButtonResource;
-begin
-        Exit(TTouchButtonStartResource.instance);
-end;
-    
+  recursive function TouchButtonStartResource_jm_getInstance_0() result(jresult)
+    class(TouchButtonResource), pointer :: jresult
+        jresult => TouchButtonStartResource_jstatic_instance()
+        return
+  end function
+end module TouchButtonStartResource_m
 
-constructor TTouchButtonStartResource.Create;
-begin
-        inherited Create('/touch_button_start_64_by_64.png', '/touch_button_start_hint_64_by_64.png');
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTouchButtonStartResource.instance := TTouchButtonStartResource.Create();
-  {AB:END}
-
-end.
+function TouchButtonStartResource_jnew_0_jext() result(this)
+  use TouchButtonStartResource_m, only: JObject, TouchButtonStartResource_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => TouchButtonStartResource_jnew_0()
+end function
 

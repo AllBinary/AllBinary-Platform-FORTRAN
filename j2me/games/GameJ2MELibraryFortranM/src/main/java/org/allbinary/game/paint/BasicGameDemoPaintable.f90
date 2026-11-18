@@ -1,119 +1,135 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.paint
+module BasicGameDemoPaintable_m
+  use JR_m
+  use NullPaintable_m
+  use Paintable_m
+  use StatePaintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.paint
-unit BasicGameDemoPaintable;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Paintable, StatePaintable;
-
-type
-  {AB:TYPES}
-  TBasicGameDemoPaintable = class(TStatePaintable)
-  public
-    mainDemoStatePaintable: TPaintable;
-    ownershipPaintable: TPaintable;
-    helpPaintableInterface: TPaintable;
-    currentStatePaintable: TPaintable;
-    procedure InitFields;
-        constructor Create(mainDemoStatePaintable: TPaintable; ownershipPaintable: TPaintable; helpPaintableInterface: TPaintable);
-        procedure setState(state: Integer); override;
-        procedure paint(graphics_: TGraphics); override;
-        function getHelpPaintableInterface: TPaintable; virtual;
-        procedure setCurrentStatePaintable(currentStatePaintable: TPaintable); virtual;
-        function getCurrentStatePaintable: TPaintable; virtual;
-        function getMainDemoStatePaintable: TPaintable; virtual;
-  end;
-
-implementation
-uses
-  NullPaintable;
+  type, extends(StatePaintable) :: BasicGameDemoPaintable
+    class(Paintable), pointer :: f_mainDemoStatePaintable => null()
+    class(Paintable), pointer :: f_ownershipPaintable => null()
+    class(Paintable), pointer :: f_helpPaintableInterface => null()
+    class(Paintable), pointer :: f_currentStatePaintable => null()
+  contains
+    procedure :: jm_setState_1 => BasicGameDemoPaintable_jm_setState_1
+    procedure :: jm_paint_1 => BasicGameDemoPaintable_jm_paint_1
+    procedure :: jm_getHelpPaintableInterface_0 => BasicGameDemoPaintable_jm_getHelpPaintableInterface_0
+    procedure :: jm_setCurrentStatePaintable_1 => BasicGameDemoPaintable_jm_setCurrentStatePaintable_1
+    procedure :: jm_getCurrentStatePaintable_0 => BasicGameDemoPaintable_jm_getCurrentStatePaintable_0
+    procedure :: jm_getMainDemoStatePaintable_0 => BasicGameDemoPaintable_jm_getMainDemoStatePaintable_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TBasicGameDemoPaintable.InitFields;
-begin
-  
-  
-  
-  Self.currentStatePaintable := TNullPaintable.getInstance();
-end;
+  function BasicGameDemoPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicGameDemoPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicGameDemoPaintable)
+      jresult => object
+    end select
+  end function
+
+  recursive function BasicGameDemoPaintable_jnew_3(j_mainDemoStatePaintable, j_ownershipPaintable, j_helpPaintableInterface) result(this)
+    class(Paintable), target, optional :: j_mainDemoStatePaintable
+    class(Paintable), target, optional :: j_ownershipPaintable
+    class(Paintable), target, optional :: j_helpPaintableInterface
+    class(BasicGameDemoPaintable), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'BasicGameDemoPaintable'
     
-
-constructor TBasicGameDemoPaintable.Create(mainDemoStatePaintable: TPaintable; ownershipPaintable: TPaintable; helpPaintableInterface: TPaintable);
-begin
-    inherited Create;
-    InitFields;
-        Self.mainDemoStatePaintable := mainDemoStatePaintable;
-        Self.setCurrentStatePaintable(TNullPaintable.getInstance());
-        Self.ownershipPaintable := ownershipPaintable;
-        Self.helpPaintableInterface := helpPaintableInterface;
-end;
     
-
-procedure TBasicGameDemoPaintable.setState(state: Integer);
-begin
-        if (state) = (0) then begin
-            Self.setCurrentStatePaintable(Self.getMainDemoStatePaintable());
-        end else if (state) = (1) then begin
-            Self.setCurrentStatePaintable(Self.helpPaintableInterface);
-        end else begin
-            Self.setCurrentStatePaintable(Self.ownershipPaintable);
-        end;
-end;
     
+    this%f_currentStatePaintable => NullPaintable_jm_getInstance_0()
+        this%f_mainDemoStatePaintable => j_mainDemoStatePaintable
+        call this%jm_setCurrentStatePaintable_1(NullPaintable_jm_getInstance_0())
+        this%f_ownershipPaintable => j_ownershipPaintable
+        this%f_helpPaintableInterface => j_helpPaintableInterface
+  end function
 
-procedure TBasicGameDemoPaintable.paint(graphics_: TGraphics);
-begin
-        Self.getCurrentStatePaintable().paint(graphics_);
-end;
-    
+  recursive subroutine BasicGameDemoPaintable_jm_setState_1(this, j_state)
+    class(BasicGameDemoPaintable), target :: this
+    integer(4), value :: j_state
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((j_state == 0)) then
+            call this%jm_setCurrentStatePaintable_1(this%jm_getMainDemoStatePaintable_0())
+        else if ((j_state == 1)) then
+            call this%jm_setCurrentStatePaintable_1(this%f_helpPaintableInterface)
+        else
+            call this%jm_setCurrentStatePaintable_1(this%f_ownershipPaintable)
+        end if
+  end subroutine
 
-function TBasicGameDemoPaintable.getHelpPaintableInterface: TPaintable;
-begin
-        Exit(Self.helpPaintableInterface);
-end;
-    
+  recursive subroutine BasicGameDemoPaintable_jm_paint_1(this, j_graphics)
+    class(BasicGameDemoPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Paintable), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => this%jm_getCurrentStatePaintable_0()
+        call jtemp1%jm_paint_1(j_graphics)
+  end subroutine
 
-procedure TBasicGameDemoPaintable.setCurrentStatePaintable(currentStatePaintable: TPaintable);
-begin
-        Self.currentStatePaintable := currentStatePaintable;
-end;
-    
+  recursive function BasicGameDemoPaintable_jm_getHelpPaintableInterface_0(this) result(jresult)
+    class(BasicGameDemoPaintable), target :: this
+    class(Paintable), pointer :: jresult
+        jresult => this%f_helpPaintableInterface
+        return
+  end function
 
-function TBasicGameDemoPaintable.getCurrentStatePaintable: TPaintable;
-begin
-        Exit(Self.currentStatePaintable);
-end;
-    
+  recursive subroutine BasicGameDemoPaintable_jm_setCurrentStatePaintable_1(this, j_currentStatePaintable)
+    class(BasicGameDemoPaintable), target :: this
+    class(Paintable), target, optional :: j_currentStatePaintable
+        this%f_currentStatePaintable => j_currentStatePaintable
+  end subroutine
 
-function TBasicGameDemoPaintable.getMainDemoStatePaintable: TPaintable;
-begin
-        Exit(Self.mainDemoStatePaintable);
-end;
+  recursive function BasicGameDemoPaintable_jm_getCurrentStatePaintable_0(this) result(jresult)
+    class(BasicGameDemoPaintable), target :: this
+    class(Paintable), pointer :: jresult
+        jresult => this%f_currentStatePaintable
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BasicGameDemoPaintable_jm_getMainDemoStatePaintable_0(this) result(jresult)
+    class(BasicGameDemoPaintable), target :: this
+    class(Paintable), pointer :: jresult
+        jresult => this%f_mainDemoStatePaintable
+        return
+  end function
+end module BasicGameDemoPaintable_m
 

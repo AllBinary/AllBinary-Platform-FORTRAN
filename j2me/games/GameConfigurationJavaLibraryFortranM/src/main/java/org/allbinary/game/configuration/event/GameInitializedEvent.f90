@@ -1,93 +1,88 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.event
+module GameInitializedEvent_m
+  use JR_m
+  use ResourceLoadingLevel_m
+  use ResourceLoadingLevelFactory_m
+  use AllBinaryEventObject_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.event
-unit GameInitializedEvent;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ResourceLoadingLevel, AllBinaryEventObject;
-
-type
-  {AB:TYPES}
-  TGameInitializedEvent = class(TAllBinaryEventObject)
-  public
-    resourceLoadingLevel: TResourceLoadingLevel;
-    level: Integer;
-    procedure InitFields;
-        constructor Create(anyType: TObject);
-        procedure setLevel(level: Integer); virtual;
-        function getLevel: Integer; virtual;
-        procedure setResourceLoadingLevel(resourceLoadingLevel_: TResourceLoadingLevel); virtual;
-        function getResourceLoadingLevel: TResourceLoadingLevel; virtual;
-  end;
-
-implementation
-uses
-  ResourceLoadingLevelFactory;
+  type, extends(AllBinaryEventObject) :: GameInitializedEvent
+    class(ResourceLoadingLevel), pointer :: f_resourceLoadingLevel => null()
+    integer(4) :: f_level = 0
+  contains
+    procedure :: jm_setLevel_1 => GameInitializedEvent_jm_setLevel_1
+    procedure :: jm_getLevel_0 => GameInitializedEvent_jm_getLevel_0
+    procedure :: jm_setResourceLoadingLevel_1 => GameInitializedEvent_jm_setResourceLoadingLevel_1
+    procedure :: jm_getResourceLoadingLevel_0 => GameInitializedEvent_jm_getResourceLoadingLevel_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TGameInitializedEvent.InitFields;
-begin
-  Self.resourceLoadingLevel := TResourceLoadingLevelFactory.getInstance().LEVEL;
-  
-end;
+  function GameInitializedEvent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameInitializedEvent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameInitializedEvent)
+      jresult => object
+    end select
+  end function
+
+  recursive function GameInitializedEvent_jnew_1(j_anyType) result(this)
+    class(JObject), target, optional :: j_anyType
+    class(GameInitializedEvent), pointer :: this
+    class(ResourceLoadingLevelFactory), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'GameInitializedEvent'
+    jtemp1 => ResourceLoadingLevelFactory_jm_getInstance_0()
+    this%f_resourceLoadingLevel => jtemp1%f_LEVEL_u5
     
+        continue ! super()
+  end function
 
-constructor TGameInitializedEvent.Create(anyType: TObject);
-begin
-        inherited Create(anyType);
-        InitFields;
-end;
-    
+  recursive subroutine GameInitializedEvent_jm_setLevel_1(this, j_level)
+    class(GameInitializedEvent), target :: this
+    integer(4), value :: j_level
+    class(ResourceLoadingLevelFactory), pointer :: jtemp2
+        this%f_level = j_level
+        jtemp2 => ResourceLoadingLevelFactory_jm_getInstance_0()
+        this%f_resourceLoadingLevel => jtemp2%f_LEVEL_u5
+  end subroutine
 
-procedure TGameInitializedEvent.setLevel(level: Integer);
-begin
-        Self.level := level;
-        Self.resourceLoadingLevel := TResourceLoadingLevelFactory.getInstance().LEVEL;
-end;
-    
+  recursive function GameInitializedEvent_jm_getLevel_0(this) result(jresult)
+    class(GameInitializedEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_level
+        return
+  end function
 
-function TGameInitializedEvent.getLevel: Integer;
-begin
-        Exit(Self.level);
-end;
-    
+  recursive subroutine GameInitializedEvent_jm_setResourceLoadingLevel_1(this, j_resourceLoadingLevel)
+    class(GameInitializedEvent), target :: this
+    class(ResourceLoadingLevel), target, optional :: j_resourceLoadingLevel
+        this%f_resourceLoadingLevel => j_resourceLoadingLevel
+        this%f_level = this%f_resourceLoadingLevel%jm_getLevel_0()
+  end subroutine
 
-procedure TGameInitializedEvent.setResourceLoadingLevel(resourceLoadingLevel_: TResourceLoadingLevel);
-begin
-        Self.resourceLoadingLevel := resourceLoadingLevel_;
-        Self.level := Self.resourceLoadingLevel.getLevel();
-end;
-    
-
-function TGameInitializedEvent.getResourceLoadingLevel: TResourceLoadingLevel;
-begin
-        Exit(Self.resourceLoadingLevel);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function GameInitializedEvent_jm_getResourceLoadingLevel_0(this) result(jresult)
+    class(GameInitializedEvent), target :: this
+    class(ResourceLoadingLevel), pointer :: jresult
+        jresult => this%f_resourceLoadingLevel
+        return
+  end function
+end module GameInitializedEvent_m
 

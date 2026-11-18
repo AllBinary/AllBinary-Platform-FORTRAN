@@ -1,29 +1,30 @@
-// Generated Code Do Not Modify
-// package javax.microedition.khronos.opengles
-unit GL;
+! Generated Code Do Not Modify
+! package javax.microedition.khronos.opengles
+module GL_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: GL
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  IGL = interface(IJavaObject) ['IGL']
-  end;
-  TGL = IGL;
+  function GL_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GL), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GL)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function GL_jnew_0() result(this)
+    class(GL), pointer :: this
+    allocate(this)
+    this%jclass = 'GL'
+  end function
+end module GL_m
 

@@ -53,6 +53,16 @@ contains
     jresult => BooleanFactory_jcell_instance
   end function
 
+  subroutine BooleanFactory_jsetstatic_instance(jvalue)
+    class(BooleanFactory), target, optional :: jvalue
+    BooleanFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      BooleanFactory_jcell_instance => jvalue
+    else
+      BooleanFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function BooleanFactory_jnew_0() result(this)
     class(BooleanFactory), pointer :: this
     allocate(this)

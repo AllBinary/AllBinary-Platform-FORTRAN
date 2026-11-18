@@ -1,74 +1,79 @@
-// Generated Code Do Not Modify
-// package org.allbinary.game.terrain
-unit TerrainEventListener;
+! Generated Code Do Not Modify
+! package org.allbinary.game.terrain
+module TerrainEventListener_m
+  use JR_m
+  use ForcedLogUtil_m
+  use AllBinaryEventObject_m
+  use EventStrings_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use TerrainEventListenerInterface_m
+  use TerrainEvent_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject, BasicArrayList, TerrainEvent, TerrainEventListenerInterface, EventListenerInterface;
-
-type
-  {AB:TYPES}
-  TTerrainEventListener = class(TInterfacedObject, ITerrainEventListenerInterface, IEventListenerInterface)
-  public
-    list: TBasicArrayList;
-    procedure InitFields;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure onEvent(eventObject: TAllBinaryEventObject); virtual;
-        procedure onTerrainEvent(terrainEvent_: TTerrainEvent); virtual;
-        function getList: TBasicArrayList; virtual;
-  end;
-
-implementation
-uses
-  ForcedLogUtil, EventStrings, BasicArrayListD;
+  type, extends(TerrainEventListenerInterface) :: TerrainEventListener
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_onEvent_1 => TerrainEventListener_jm_onEvent_1
+    procedure :: jm_onTerrainEvent_1 => TerrainEventListener_jm_onTerrainEvent_1
+    procedure :: jm_getList_0 => TerrainEventListener_jm_getList_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TTerrainEventListener.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
+  function TerrainEventListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TerrainEventListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TerrainEventListener)
+      jresult => object
+    end select
+  end function
 
-function TTerrainEventListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function TerrainEventListener_jnew_0() result(this)
+    class(TerrainEventListener), pointer :: this
+    allocate(this)
+    this%jclass = 'TerrainEventListener'
+    this%f_list => BasicArrayListD_jnew_0()
+  end function
 
-constructor TTerrainEventListener.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive subroutine TerrainEventListener_jm_onEvent_1(this, j_eventObject)
+    class(TerrainEventListener), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventStrings), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => EventStrings_jm_getInstance_0()
+        call ForcedLogUtil_jm_log_2(jtemp1%f_PERFORMANCE_MESSAGE, this)
+  end subroutine
 
-procedure TTerrainEventListener.onEvent(eventObject: TAllBinaryEventObject);
-begin
-        TForcedLogUtil.log(TEventStrings.getInstance().PERFORMANCE_MESSAGE, TJava.Box(Self));
-end;
-    
+  recursive subroutine TerrainEventListener_jm_onTerrainEvent_1(this, j_trackingEvent)
+    class(TerrainEventListener), target :: this
+    class(TerrainEvent), target, optional :: j_trackingEvent
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_list%jm_clear_0()
+        jdiscardBoolean = this%f_list%jm_add_1(j_trackingEvent)
+  end subroutine
 
-procedure TTerrainEventListener.onTerrainEvent(terrainEvent_: TTerrainEvent);
-begin
-        Self.list.clear();
-        Self.list.add(TJava.Box(terrainEvent_));
-end;
-    
-
-function TTerrainEventListener.getList: TBasicArrayList;
-begin
-        Exit(Self.list);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function TerrainEventListener_jm_getList_0(this) result(jresult)
+    class(TerrainEventListener), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_list
+        return
+  end function
+end module TerrainEventListener_m
 

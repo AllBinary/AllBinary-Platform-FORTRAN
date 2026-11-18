@@ -1,102 +1,123 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit BaseMenuBehavior;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module BaseMenuBehavior_m
+  use JR_m
+  use DisplayChangeEvent_m
+  use NullPaintable_m
+  use AllBinaryGameCanvas_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: BaseMenuBehavior
+  contains
+    procedure :: jm_onDisplayChangeEvent_2 => BaseMenuBehavior_jm_onDisplayChangeEvent_2
+    procedure :: jm_initSpecialPaint_1 => BaseMenuBehavior_jm_initSpecialPaint_1
+    procedure :: jm_initMenu_1 => BaseMenuBehavior_jm_initMenu_1
+    procedure :: jm_updateMenu_1 => BaseMenuBehavior_jm_updateMenu_1
+    procedure :: jm_popupMenu_1 => BaseMenuBehavior_jm_popupMenu_1
+    procedure :: jm_closeMenu_1 => BaseMenuBehavior_jm_closeMenu_1
+  end type
 
-interface
+  class(BaseMenuBehavior), pointer, save :: BaseMenuBehavior_jcell_instance => null()
+  logical, save :: BaseMenuBehavior_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, DisplayChangeEvent, AllBinaryGameCanvas;
+contains
 
-type
-  {AB:TYPES}
-  TBaseMenuBehavior = class(TObject)
-  public
-    class var instance: TBaseMenuBehavior;
-    constructor Create;
-        class function getInstance: TBaseMenuBehavior; static;
-        procedure onDisplayChangeEvent(allBinaryGameCanvas_: TAllBinaryGameCanvas; displayChangeEvent_: TDisplayChangeEvent); virtual;
-        procedure initSpecialPaint(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure initMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure updateMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure popupMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure closeMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-  end;
+  function BaseMenuBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BaseMenuBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BaseMenuBehavior)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullPaintable;
+  function BaseMenuBehavior_jstatic_instance() result(jresult)
+    class(BaseMenuBehavior), pointer :: jresult
+    if (.not. BaseMenuBehavior_jset_instance) then
+      BaseMenuBehavior_jset_instance = .true.
+      BaseMenuBehavior_jcell_instance => BaseMenuBehavior_jnew_0()
+    end if
+    jresult => BaseMenuBehavior_jcell_instance
+  end function
 
+  subroutine BaseMenuBehavior_jsetstatic_instance(jvalue)
+    class(BaseMenuBehavior), target, optional :: jvalue
+    BaseMenuBehavior_jset_instance = .true.
+    if (present(jvalue)) then
+      BaseMenuBehavior_jcell_instance => jvalue
+    else
+      BaseMenuBehavior_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function BaseMenuBehavior_jnew_0() result(this)
+    class(BaseMenuBehavior), pointer :: this
+    allocate(this)
+    this%jclass = 'BaseMenuBehavior'
+  end function
 
-constructor TBaseMenuBehavior.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function BaseMenuBehavior_jm_getInstance_0() result(jresult)
+    class(BaseMenuBehavior), pointer :: jresult
+        jresult => BaseMenuBehavior_jstatic_instance()
+        return
+  end function
 
-class function TBaseMenuBehavior.getInstance: TBaseMenuBehavior;
-begin
-        Exit(TBaseMenuBehavior.instance);
-end;
-    
+  recursive subroutine BaseMenuBehavior_jm_onDisplayChangeEvent_2(this, j_allBinaryGameCanvas, j_displayChangeEvent)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    class(DisplayChangeEvent), target, optional :: j_displayChangeEvent
+    continue
+  end subroutine
 
-// throws Exception
-procedure TBaseMenuBehavior.onDisplayChangeEvent(allBinaryGameCanvas_: TAllBinaryGameCanvas; displayChangeEvent_: TDisplayChangeEvent);
-begin
-end;
-    
+  recursive subroutine BaseMenuBehavior_jm_initSpecialPaint_1(this, j_allBinaryGameCanvas)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_allBinaryGameCanvas%jm_setNonBotPaintableP_1(NullPaintable_jm_getInstance_0())
+  end subroutine
 
-procedure TBaseMenuBehavior.initSpecialPaint(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-        allBinaryGameCanvas_.setNonBotPaintableP(TNullPaintable.getInstance());
-end;
-    
+  recursive subroutine BaseMenuBehavior_jm_initMenu_1(this, j_allBinaryGameCanvas)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TBaseMenuBehavior.initMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine BaseMenuBehavior_jm_updateMenu_1(this, j_allBinaryGameCanvas)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TBaseMenuBehavior.updateMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine BaseMenuBehavior_jm_popupMenu_1(this, j_allBinaryGameCanvas)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TBaseMenuBehavior.popupMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
-
-procedure TBaseMenuBehavior.closeMenu(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TBaseMenuBehavior.instance := TBaseMenuBehavior.Create();
-  {AB:END}
-
-end.
+  recursive subroutine BaseMenuBehavior_jm_closeMenu_1(this, j_allBinaryGameCanvas)
+    class(BaseMenuBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
+end module BaseMenuBehavior_m
 

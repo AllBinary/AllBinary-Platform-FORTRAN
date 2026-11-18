@@ -1,109 +1,134 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.gesture
+module MirrorMotionGestureEventUtil_m
+  use JR_m
+  use GPoint_m
+  use PointFactory_m
+  use MotionEventCircularPool_m
+  use MotionGestureEvent_m
+  use Integer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.gesture
-unit MirrorMotionGestureEventUtil;
+  type, extends(JObject) :: MirrorMotionGestureEventUtil
+    class(MotionEventCircularPool), pointer :: f_motionEventCircularPool => null()
+  contains
+    procedure :: jm_mirrorVerticle_2 => MirrorMotionGestureEventUtil_jm_mirrorVerticle_2
+    procedure :: jm_getNewX_2 => MirrorMotionGestureEventUtil_jm_getNewX_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(MirrorMotionGestureEventUtil), pointer, save :: MirrorMotionGestureEventUtil_jcell_instance => null()
+  logical, save :: MirrorMotionGestureEventUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, MotionEventCircularPool, MotionGestureEvent;
+  function MirrorMotionGestureEventUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MirrorMotionGestureEventUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MirrorMotionGestureEventUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TMirrorMotionGestureEventUtil = class(TObject)
-  public
-    motionEventCircularPool: TMotionEventCircularPool;
-    class var instance: TMirrorMotionGestureEventUtil;
-    procedure InitFields;
-        constructor Create;
-        function mirrorVerticle(motionGestureEvent_: TMotionGestureEvent; halfWidth: Integer): TMotionGestureEvent; virtual;
-        function getNewX(x: Integer; halfWidth: Integer): Integer; virtual;
-        class function getInstance: TMirrorMotionGestureEventUtil; static;
-  end;
+  function MirrorMotionGestureEventUtil_jstatic_instance() result(jresult)
+    class(MirrorMotionGestureEventUtil), pointer :: jresult
+    if (.not. MirrorMotionGestureEventUtil_jset_instance) then
+      MirrorMotionGestureEventUtil_jset_instance = .true.
+      MirrorMotionGestureEventUtil_jcell_instance => MirrorMotionGestureEventUtil_jnew_0()
+    end if
+    jresult => MirrorMotionGestureEventUtil_jcell_instance
+  end function
 
-implementation
-uses
-  GPoint, PointFactory;
+  subroutine MirrorMotionGestureEventUtil_jsetstatic_instance(jvalue)
+    class(MirrorMotionGestureEventUtil), target, optional :: jvalue
+    MirrorMotionGestureEventUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      MirrorMotionGestureEventUtil_jcell_instance => jvalue
+    else
+      MirrorMotionGestureEventUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TMirrorMotionGestureEventUtil.InitFields;
-begin
-  
-end;
+  recursive function MirrorMotionGestureEventUtil_jnew_0() result(this)
+    class(MirrorMotionGestureEventUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'MirrorMotionGestureEventUtil'
     
+        this%f_motionEventCircularPool => MotionEventCircularPool_jm_createPool_1(Integer_jstatic_MAX_VALUE())
+  end function
 
-constructor TMirrorMotionGestureEventUtil.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.motionEventCircularPool := TMotionEventCircularPool.createPool(High(Integer));
-end;
-    
+  recursive function MirrorMotionGestureEventUtil_jm_mirrorVerticle_2(this, j_motionGestureEvent, j_halfWidth) result(jresult)
+    class(MirrorMotionGestureEventUtil), target :: this
+    class(MotionGestureEvent), target, optional :: j_motionGestureEvent
+    integer(4), value :: j_halfWidth
+    class(MotionGestureEvent), pointer :: jresult
+    class(MotionGestureEvent), pointer :: j_event
+    integer(4) :: j_previousNewX
+    integer(4) :: j_currentNewX
+    class(PointFactory), pointer :: j_pointFactory
+    class(GPoint), pointer :: j_mirroredPreviousPoint
+    class(GPoint), pointer :: j_mirroredCurrentPoint
+    class(GPoint), pointer :: jtemp1
+    class(GPoint), pointer :: jtemp2
+    class(GPoint), pointer :: jtemp3
+    class(GPoint), pointer :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_event => this%f_motionEventCircularPool%jm_getInstance_1(j_motionGestureEvent%jm_getMotionGesture_0())
+        jtemp1 => j_motionGestureEvent%jm_getPreviousPoint_0()
+        j_previousNewX = this%jm_getNewX_2(jtemp1%jm_getX_0(), j_halfWidth)
+        jtemp2 => j_motionGestureEvent%jm_getCurrentPoint_0()
+        j_currentNewX = this%jm_getNewX_2(jtemp2%jm_getX_0(), j_halfWidth)
+        j_pointFactory => PointFactory_jm_getInstance_0()
+        jtemp3 => j_motionGestureEvent%jm_getPreviousPoint_0()
+        j_mirroredPreviousPoint => j_pointFactory%jm_createXY_2(j_previousNewX, jtemp3%jm_getY_0())
+        jtemp4 => j_motionGestureEvent%jm_getCurrentPoint_0()
+        j_mirroredCurrentPoint => j_pointFactory%jm_createXY_2(j_currentNewX, jtemp4%jm_getY_0())
+        call j_event%jm_setPreviousPoint_1(j_mirroredPreviousPoint)
+        call j_event%jm_setCurrentPoint_1(j_mirroredCurrentPoint)
+        jresult => j_event
+        return
+  end function
 
-// throws Exception
-function TMirrorMotionGestureEventUtil.mirrorVerticle(motionGestureEvent_: TMotionGestureEvent; halfWidth: Integer): TMotionGestureEvent;
-var
-  event: TMotionGestureEvent;
-  previousNewX: Integer;
-  currentNewX: Integer;
-  pointFactory_: TPointFactory;
-  mirroredPreviousPoint: TGPoint;
-  mirroredCurrentPoint: TGPoint;
-begin
-        event := Self.motionEventCircularPool.getInstance(motionGestureEvent_.getMotionGesture());
-        previousNewX := Self.getNewX(motionGestureEvent_.getPreviousPoint().getX(), halfWidth);
-        currentNewX := Self.getNewX(motionGestureEvent_.getCurrentPoint().getX(), halfWidth);
-        pointFactory_ := TPointFactory.getInstance();
-        mirroredPreviousPoint := pointFactory_.createXY(previousNewX, motionGestureEvent_.getPreviousPoint().getY());
-        mirroredCurrentPoint := pointFactory_.createXY(currentNewX, motionGestureEvent_.getCurrentPoint().getY());
-        event.setPreviousPoint(mirroredPreviousPoint);
-        event.setCurrentPoint(mirroredCurrentPoint);
-        Exit(event);
-end;
-    
+  recursive function MirrorMotionGestureEventUtil_jm_getNewX_2(this, j_x, j_halfWidth) result(jresult)
+    class(MirrorMotionGestureEventUtil), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_halfWidth
+    integer(4) :: jresult
+    integer(4) :: j_newX
+        continue
+        if ((j_x > j_halfWidth)) then
+            j_newX = (j_halfWidth - ((j_x - j_halfWidth)))
+        else
+            j_newX = (j_halfWidth + ((j_halfWidth - j_x)))
+        end if
+        jresult = j_newX
+        return
+  end function
 
-function TMirrorMotionGestureEventUtil.getNewX(x: Integer; halfWidth: Integer): Integer;
-var
-  newX: Integer;
-begin
-        
-        if (x) > (halfWidth) then begin
-            newX := (halfWidth) - (((x) - (halfWidth)));
-        end else begin
-            newX := (halfWidth) + (((halfWidth) - (x)));
-        end;
-        Exit(newX);
-end;
-    
-
-class function TMirrorMotionGestureEventUtil.getInstance: TMirrorMotionGestureEventUtil;
-begin
-        Exit(TMirrorMotionGestureEventUtil.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TMirrorMotionGestureEventUtil.instance := TMirrorMotionGestureEventUtil.Create();
-  {AB:END}
-
-end.
+  recursive function MirrorMotionGestureEventUtil_jm_getInstance_0() result(jresult)
+    class(MirrorMotionGestureEventUtil), pointer :: jresult
+        jresult => MirrorMotionGestureEventUtil_jstatic_instance()
+        return
+  end function
+end module MirrorMotionGestureEventUtil_m
 

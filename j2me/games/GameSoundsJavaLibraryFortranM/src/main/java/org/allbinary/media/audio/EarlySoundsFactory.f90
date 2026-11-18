@@ -1,76 +1,101 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.audio
+module EarlySoundsFactory_m
+  use JR_m
+  use BaseSoundsFactory_m
+  use Sound_m
+  use SelectSound_m
+  use ErrorSound_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.audio
-unit EarlySoundsFactory;
+  type, extends(BaseSoundsFactory) :: EarlySoundsFactory
+  contains
+    procedure :: jm_getSoundInterfaceArray_0 => EarlySoundsFactory_jm_getSoundInterfaceArray_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(EarlySoundsFactory), pointer, save :: EarlySoundsFactory_jcell_instance => null()
+  logical, save :: EarlySoundsFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Sound, BaseSoundsFactory;
+  function EarlySoundsFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(EarlySoundsFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (EarlySoundsFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TEarlySoundsFactory = class(TBaseSoundsFactory)
-  public
-    class var instance: TEarlySoundsFactory;
-    constructor Create;
-        function getSoundInterfaceArray: TArray<TSound>; override;
-        class function getInstance: TEarlySoundsFactory; static;
-  end;
+  function EarlySoundsFactory_jstatic_instance() result(jresult)
+    class(EarlySoundsFactory), pointer :: jresult
+    if (.not. EarlySoundsFactory_jset_instance) then
+      EarlySoundsFactory_jset_instance = .true.
+      EarlySoundsFactory_jcell_instance => EarlySoundsFactory_jnew_0()
+    end if
+    jresult => EarlySoundsFactory_jcell_instance
+  end function
 
-implementation
-uses
-  SelectSound, ErrorSound;
+  subroutine EarlySoundsFactory_jsetstatic_instance(jvalue)
+    class(EarlySoundsFactory), target, optional :: jvalue
+    EarlySoundsFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      EarlySoundsFactory_jcell_instance => jvalue
+    else
+      EarlySoundsFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  function EarlySoundsFactory_jnew_0() result(this)
+    class(EarlySoundsFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'EarlySoundsFactory'
+  end function
 
-{AB:CODE}
+  recursive function EarlySoundsFactory_jm_getSoundInterfaceArray_0(this) result(jresult)
+    class(EarlySoundsFactory), target :: this
+    type(JRef), allocatable :: jresult(:)
+    type(JRef), allocatable :: j_soundInterfaceArray(:)
+    integer(4) :: j_index
+    integer(4) :: jtemp1
+    integer(4) :: jtemp2
+        j_soundInterfaceArray = JR_newRefArray(2)
+        j_index = 0
+        jtemp1 = j_index
+        j_index = j_index + 1
+        j_soundInterfaceArray((jtemp1) + 1)%v => SelectSound_jm_getInstance_0()
+        jtemp2 = j_index
+        j_index = j_index + 1
+        j_soundInterfaceArray((jtemp2) + 1)%v => ErrorSound_jm_getInstance_0()
+        jresult = j_soundInterfaceArray
+        return
+  end function
 
-constructor TEarlySoundsFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function EarlySoundsFactory_jm_getInstance_0() result(jresult)
+    class(EarlySoundsFactory), pointer :: jresult
+        jresult => EarlySoundsFactory_jstatic_instance()
+        return
+  end function
+end module EarlySoundsFactory_m
 
-// throws Exception
-function TEarlySoundsFactory.getSoundInterfaceArray: TArray<TSound>;
-var
-  soundInterfaceArray: TArray<TSound>;
-  index: Integer;
-begin
-        soundInterfaceArray := TJava.NewArray<TSound>(2);
-        index := 0;
-        soundInterfaceArray[TJava.PostInc(index)] := TSelectSound.getInstance();
-        soundInterfaceArray[TJava.PostInc(index)] := TErrorSound.getInstance();
-        Exit(soundInterfaceArray);
-end;
-    
-
-class function TEarlySoundsFactory.getInstance: TEarlySoundsFactory;
-begin
-        Exit(TEarlySoundsFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TEarlySoundsFactory.instance := TEarlySoundsFactory.Create();
-  {AB:END}
-
-end.
+function EarlySoundsFactory_jnew_0_jext() result(this)
+  use EarlySoundsFactory_m, only: JObject, EarlySoundsFactory_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => EarlySoundsFactory_jnew_0()
+end function
 

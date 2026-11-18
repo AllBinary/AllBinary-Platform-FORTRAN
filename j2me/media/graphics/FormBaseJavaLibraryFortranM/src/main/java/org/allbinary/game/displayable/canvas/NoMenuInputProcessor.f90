@@ -1,90 +1,106 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module NoMenuInputProcessor_m
+  use JR_m
+  use NullCanvas_m
+  use GameKeyEvent_m
+  use MotionGestureEvent_m
+  use BasicArrayListUtil_m
+  use BasicMenuInputProcessor_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit NoMenuInputProcessor;
+  type, extends(BasicMenuInputProcessor) :: NoMenuInputProcessor
+  contains
+    procedure :: jm_onDownGameKeyEvent_1 => NoMenuInputProcessor_jm_onDownGameKeyEvent_1
+    procedure :: jm_onUpGameKeyEvent_1 => NoMenuInputProcessor_jm_onUpGameKeyEvent_1
+    procedure :: jm_onMotionGestureEvent_1 => NoMenuInputProcessor_jm_onMotionGestureEvent_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(NoMenuInputProcessor), pointer, save :: NoMenuInputProcessor_jcell_SINGLETON => null()
+  logical, save :: NoMenuInputProcessor_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameKeyEvent, MotionGestureEvent, BasicMenuInputProcessor;
+  function NoMenuInputProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoMenuInputProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoMenuInputProcessor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TNoMenuInputProcessor = class(TBasicMenuInputProcessor)
-  public
-    class var SINGLETON: TNoMenuInputProcessor;
-        class function getInstance: TNoMenuInputProcessor; static;
-        constructor Create;
-        procedure onDownGameKeyEvent(gameKeyEvent_: TGameKeyEvent); override;
-        procedure onUpGameKeyEvent(gameKeyEvent_: TGameKeyEvent); override;
-        procedure onMotionGestureEvent(motionGestureEvent_: TMotionGestureEvent); override;
-  end;
+  function NoMenuInputProcessor_jstatic_SINGLETON() result(jresult)
+    class(NoMenuInputProcessor), pointer :: jresult
+    if (.not. NoMenuInputProcessor_jset_SINGLETON) then
+      NoMenuInputProcessor_jset_SINGLETON = .true.
+      NoMenuInputProcessor_jcell_SINGLETON => NoMenuInputProcessor_jnew_0()
+    end if
+    jresult => NoMenuInputProcessor_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  NullCanvas, BasicArrayListUtil;
+  subroutine NoMenuInputProcessor_jsetstatic_SINGLETON(jvalue)
+    class(NoMenuInputProcessor), target, optional :: jvalue
+    NoMenuInputProcessor_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      NoMenuInputProcessor_jcell_SINGLETON => jvalue
+    else
+      NoMenuInputProcessor_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
+  recursive function NoMenuInputProcessor_jnew_0() result(this)
+    class(NoMenuInputProcessor), pointer :: this
+    class(BasicArrayListUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'NoMenuInputProcessor'
+        jtemp1 => BasicArrayListUtil_jm_getInstance_0()
+        continue ! super()
+  end function
 
-{AB:CODE}
-    
+  recursive function NoMenuInputProcessor_jm_getInstance_0() result(jresult)
+    class(NoMenuInputProcessor), pointer :: jresult
+        jresult => NoMenuInputProcessor_jstatic_SINGLETON()
+        return
+  end function
 
-class function TNoMenuInputProcessor.getInstance: TNoMenuInputProcessor;
-begin
-        Exit(TNoMenuInputProcessor.SINGLETON);
-end;
-    
+  recursive subroutine NoMenuInputProcessor_jm_onDownGameKeyEvent_1(this, j_gameKeyEvent)
+    class(NoMenuInputProcessor), target :: this
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-constructor TNoMenuInputProcessor.Create;
-begin
-        inherited Create(TBasicArrayListUtil.getInstance().getImmutableInstance(), -1, TNullCanvas.NULL_CANVAS);
-end;
-    
+  recursive subroutine NoMenuInputProcessor_jm_onUpGameKeyEvent_1(this, j_gameKeyEvent)
+    class(NoMenuInputProcessor), target :: this
+    class(GameKeyEvent), target, optional :: j_gameKeyEvent
+    continue
+  end subroutine
 
-procedure TNoMenuInputProcessor.onDownGameKeyEvent(gameKeyEvent_: TGameKeyEvent);
-begin
-    TJava.MonitorEnter(Self);
-    try
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine NoMenuInputProcessor_jm_onMotionGestureEvent_1(this, j_motionGestureEvent)
+    class(NoMenuInputProcessor), target :: this
+    class(MotionGestureEvent), target, optional :: j_motionGestureEvent
+    continue
+  end subroutine
+end module NoMenuInputProcessor_m
 
-procedure TNoMenuInputProcessor.onUpGameKeyEvent(gameKeyEvent_: TGameKeyEvent);
-begin
-    TJava.MonitorEnter(Self);
-    try
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
-
-procedure TNoMenuInputProcessor.onMotionGestureEvent(motionGestureEvent_: TMotionGestureEvent);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNoMenuInputProcessor.SINGLETON := TNoMenuInputProcessor.Create();
-  {AB:END}
-
-end.
+function NoMenuInputProcessor_jnew_0_jext() result(this)
+  use NoMenuInputProcessor_m, only: JObject, NoMenuInputProcessor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NoMenuInputProcessor_jnew_0()
+end function
 

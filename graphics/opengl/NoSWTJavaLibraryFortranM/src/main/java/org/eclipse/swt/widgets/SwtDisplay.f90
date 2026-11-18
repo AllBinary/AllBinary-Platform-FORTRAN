@@ -1,55 +1,49 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.eclipse.swt.widgets
-unit SwtDisplay;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.eclipse.swt.widgets
+module SwtDisplay_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: SwtDisplay
+  contains
+    procedure :: jm_sleep_0 => SwtDisplay_jm_sleep_0
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TSwtDisplay = class(TObject)
-  public
-    constructor Create;
-        procedure sleep; virtual;
-  end;
+  function SwtDisplay_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SwtDisplay), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SwtDisplay)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function SwtDisplay_jnew_0() result(this)
+    class(SwtDisplay), pointer :: this
+    allocate(this)
+    this%jclass = 'SwtDisplay'
+  end function
 
-{AB:CODE}
-
-constructor TSwtDisplay.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TSwtDisplay.sleep;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine SwtDisplay_jm_sleep_0(this)
+    class(SwtDisplay), target :: this
+    continue
+  end subroutine
+end module SwtDisplay_m
 

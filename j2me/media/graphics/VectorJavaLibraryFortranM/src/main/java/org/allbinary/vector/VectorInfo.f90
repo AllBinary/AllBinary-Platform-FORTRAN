@@ -1,124 +1,119 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.vector
+module VectorInfo_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.vector
-unit VectorInfo;
+  type, extends(JObject) :: VectorInfo
+    integer(4) :: f_width = 0
+    integer(4) :: f_height = 0
+    integer(4), allocatable :: f_points(:,:)
+    integer(4) :: f_totalFrames = 0
+  contains
+    procedure :: jm_getWidth_0 => VectorInfo_jm_getWidth_0
+    procedure :: jm_setWidth_1 => VectorInfo_jm_setWidth_1
+    procedure :: jm_getHeight_0 => VectorInfo_jm_getHeight_0
+    procedure :: jm_setHeight_1 => VectorInfo_jm_setHeight_1
+    procedure :: jm_getPoints_0 => VectorInfo_jm_getPoints_0
+    procedure :: jm_setPoints_1 => VectorInfo_jm_setPoints_1
+    procedure :: jm_getTotalFrames_0 => VectorInfo_jm_getTotalFrames_0
+    procedure :: jm_setTotalFrames_1 => VectorInfo_jm_setTotalFrames_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function VectorInfo_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(VectorInfo), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (VectorInfo)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TVectorInfo = class(TObject)
-  public
-    width: Integer;
-    height: Integer;
-    points: TArray<TArray<Integer>>;
-    totalFrames: Integer;
-    procedure InitFields;
-        constructor Create(width: Integer; height: Integer; points: TArray<TArray<Integer>>; totalFrames: Integer);
-        function getWidth: Integer; virtual;
-        procedure setWidth(width: Integer);
-        function getHeight: Integer; virtual;
-        procedure setHeight(height: Integer);
-        function getPoints: TArray<TArray<Integer>>; virtual;
-        procedure setPoints(points: TArray<TArray<Integer>>);
-        function getTotalFrames: Integer; virtual;
-        procedure setTotalFrames(totalFrames: Integer);
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TVectorInfo.InitFields;
-begin
-  
-  
-  
-  
-end;
+  recursive function VectorInfo_jnew_4(j_width, j_height, j_points, j_totalFrames) result(this)
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    integer(4) :: j_points(:,:)
+    integer(4), value :: j_totalFrames
+    class(VectorInfo), pointer :: this
+    allocate(this)
+    this%jclass = 'VectorInfo'
     
-
-constructor TVectorInfo.Create(width: Integer; height: Integer; points: TArray<TArray<Integer>>; totalFrames: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.width := width;
-        Self.height := height;
-        Self.points := points;
-        Self.totalFrames := totalFrames;
-end;
     
-
-function TVectorInfo.getWidth: Integer;
-begin
-        Exit(Self.width);
-end;
     
-
-procedure TVectorInfo.setWidth(width: Integer);
-begin
-        Self.width := width;
-end;
     
+        this%f_width = j_width
+        this%f_height = j_height
+        this%f_points = j_points
+        this%f_totalFrames = j_totalFrames
+  end function
 
-function TVectorInfo.getHeight: Integer;
-begin
-        Exit(Self.height);
-end;
-    
+  recursive function VectorInfo_jm_getWidth_0(this) result(jresult)
+    class(VectorInfo), target :: this
+    integer(4) :: jresult
+        jresult = this%f_width
+        return
+  end function
 
-procedure TVectorInfo.setHeight(height: Integer);
-begin
-        Self.height := height;
-end;
-    
+  recursive subroutine VectorInfo_jm_setWidth_1(this, j_width)
+    class(VectorInfo), target :: this
+    integer(4), value :: j_width
+        this%f_width = j_width
+  end subroutine
 
-function TVectorInfo.getPoints: TArray<TArray<Integer>>;
-begin
-        Exit(Self.points);
-end;
-    
+  recursive function VectorInfo_jm_getHeight_0(this) result(jresult)
+    class(VectorInfo), target :: this
+    integer(4) :: jresult
+        jresult = this%f_height
+        return
+  end function
 
-procedure TVectorInfo.setPoints(points: TArray<TArray<Integer>>);
-begin
-        Self.points := points;
-end;
-    
+  recursive subroutine VectorInfo_jm_setHeight_1(this, j_height)
+    class(VectorInfo), target :: this
+    integer(4), value :: j_height
+        this%f_height = j_height
+  end subroutine
 
-function TVectorInfo.getTotalFrames: Integer;
-begin
-        Exit(Self.totalFrames);
-end;
-    
+  recursive function VectorInfo_jm_getPoints_0(this) result(jresult)
+    class(VectorInfo), target :: this
+    integer(4), allocatable :: jresult(:,:)
+        jresult = this%f_points
+        return
+  end function
 
-procedure TVectorInfo.setTotalFrames(totalFrames: Integer);
-begin
-        Self.totalFrames := totalFrames;
-end;
+  recursive subroutine VectorInfo_jm_setPoints_1(this, j_points)
+    class(VectorInfo), target :: this
+    integer(4) :: j_points(:,:)
+        this%f_points = j_points
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function VectorInfo_jm_getTotalFrames_0(this) result(jresult)
+    class(VectorInfo), target :: this
+    integer(4) :: jresult
+        jresult = this%f_totalFrames
+        return
+  end function
 
-end.
+  recursive subroutine VectorInfo_jm_setTotalFrames_1(this, j_totalFrames)
+    class(VectorInfo), target :: this
+    integer(4), value :: j_totalFrames
+        this%f_totalFrames = j_totalFrames
+  end subroutine
+end module VectorInfo_m
 

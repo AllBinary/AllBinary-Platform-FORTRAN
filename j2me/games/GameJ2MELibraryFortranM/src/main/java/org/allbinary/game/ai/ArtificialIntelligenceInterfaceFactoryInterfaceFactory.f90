@@ -1,97 +1,116 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ai
+module ArtificialIntelligenceInterfaceFactoryInterfaceFactory_m
+  use JR_m
+  use ABHashtable_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use BasicArrayListUtil_m
+  use Integer_m
+  use BasicAI_m
+  use ArtificialIntelligenceInterfaceFactoryInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ai
-unit ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
+  type, extends(JObject) :: ArtificialIntelligenceInterfaceFactoryInterfaceFactory
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_clear_0 => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_clear_0
+    procedure :: jm_getInstanceFromCollection_1 => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_getInstanceFromCollection_1
+    procedure :: jm_add_1 => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_add_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), pointer, save :: ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcell_SINGLETON => null()
+  logical, save :: ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ABHashtable, BasicArrayList, ArtificialIntelligenceInterfaceFactoryInterface;
+  function ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ArtificialIntelligenceInterfaceFactoryInterfaceFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TArtificialIntelligenceInterfaceFactoryInterfaceFactory = class(TObject)
-  public
-    list: TBasicArrayList;
-    class var SINGLETON: TArtificialIntelligenceInterfaceFactoryInterfaceFactory;
-    procedure InitFields;
-    constructor Create;
-        procedure clear; virtual;
-        class function getInstance: TArtificialIntelligenceInterfaceFactoryInterfaceFactory; static;
-        function getInstanceFromCollection(hashtable: TABHashtable<TObject, TObject>): IArtificialIntelligenceInterfaceFactoryInterface; virtual;
-        procedure add(artificialIntelligenceInterfaceFactoryInterface_: IArtificialIntelligenceInterfaceFactoryInterface); virtual;
-  end;
+  function ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jstatic_SINGLETON() result(jresult)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), pointer :: jresult
+    if (.not. ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jset_SINGLETON) then
+      ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jset_SINGLETON = .true.
+      ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcell_SINGLETON => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jnew_0()
+    end if
+    jresult => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  BasicAI, BasicArrayListD, BasicArrayListUtil;
+  subroutine ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jsetstatic_SINGLETON(jvalue)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), target, optional :: jvalue
+    ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcell_SINGLETON => jvalue
+    else
+      ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
+  function ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jnew_0() result(this)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), pointer :: this
+    class(BasicArrayListUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'ArtificialIntelligenceInterfaceFactoryInterfaceFactory'
+    jtemp1 => BasicArrayListUtil_jm_getInstance_0()
+    this%f_list => jtemp1%jm_getImmutableInstance_0()
+  end function
 
-{AB:CODE}
+  recursive subroutine ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_clear_0(this)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), target :: this
+        this%f_list => BasicArrayListD_jnew_0()
+  end subroutine
 
-procedure TArtificialIntelligenceInterfaceFactoryInterfaceFactory.InitFields;
-begin
-  Self.list := TBasicArrayListUtil.getInstance().getImmutableInstance();
-end;
+  recursive function ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_getInstance_0() result(jresult)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), pointer :: jresult
+        jresult => ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jstatic_SINGLETON()
+        return
+  end function
 
-constructor TArtificialIntelligenceInterfaceFactoryInterfaceFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_getInstanceFromCollection_1(this, j_hashtable) result(jresult)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), target :: this
+    class(ABHashtable), target, optional :: j_hashtable
+    class(ArtificialIntelligenceInterfaceFactoryInterface), pointer :: jresult
+    integer(4) :: j_typeInteger
+    integer(4) :: j_type
+    class(ArtificialIntelligenceInterfaceFactoryInterface), pointer :: j_artificialIntelligenceInterfaceFactoryInterface
+        j_typeInteger = JR_unboxInt(j_hashtable%jm_get_1(BasicAI_jstatic_ID()))
+        j_type = int(j_typeInteger, 4)
+        j_artificialIntelligenceInterfaceFactoryInterface => ArtificialIntelligenceInterfaceFactoryInterface_jcast(this%f_list%f_objectArray(((j_type - 1)) + 1)%v)
+        jresult => j_artificialIntelligenceInterfaceFactoryInterface
+        return
+  end function
 
-procedure TArtificialIntelligenceInterfaceFactoryInterfaceFactory.clear;
-begin
-        Self.list := TBasicArrayListD.Create();
-end;
-    
-
-class function TArtificialIntelligenceInterfaceFactoryInterfaceFactory.getInstance: TArtificialIntelligenceInterfaceFactoryInterfaceFactory;
-begin
-        Exit(TArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON);
-end;
-    
-
-function TArtificialIntelligenceInterfaceFactoryInterfaceFactory.getInstanceFromCollection(hashtable: TABHashtable<TObject, TObject>): IArtificialIntelligenceInterfaceFactoryInterface;
-var
-  typeInteger: Integer;
-  type_: Integer;
-  artificialIntelligenceInterfaceFactoryInterface_: IArtificialIntelligenceInterfaceFactoryInterface;
-begin
-        typeInteger := Integer(hashtable.get(TJava.Box(TJava.Box(TBasicAI.ID))));
-        type_ := (typeInteger);
-        artificialIntelligenceInterfaceFactoryInterface_ := (TJava.ToObject(Self.list.objectArray[(type_) - (1)]) as IArtificialIntelligenceInterfaceFactoryInterface);
-        Exit(artificialIntelligenceInterfaceFactoryInterface_);
-end;
-    
-
-procedure TArtificialIntelligenceInterfaceFactoryInterfaceFactory.add(artificialIntelligenceInterfaceFactoryInterface_: IArtificialIntelligenceInterfaceFactoryInterface);
-begin
-        Self.list.add(TJava.Box(artificialIntelligenceInterfaceFactoryInterface_));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON := TArtificialIntelligenceInterfaceFactoryInterfaceFactory.Create();
-  {AB:END}
-
-end.
+  recursive subroutine ArtificialIntelligenceInterfaceFactoryInterfaceFactory_jm_add_1(this, j_artificialIntelligenceInterfaceFactoryInterface)
+    class(ArtificialIntelligenceInterfaceFactoryInterfaceFactory), target :: this
+    class(ArtificialIntelligenceInterfaceFactoryInterface), target, optional :: j_artificialIntelligenceInterfaceFactoryInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_add_1(j_artificialIntelligenceInterfaceFactoryInterface)
+  end subroutine
+end module ArtificialIntelligenceInterfaceFactoryInterfaceFactory_m
 

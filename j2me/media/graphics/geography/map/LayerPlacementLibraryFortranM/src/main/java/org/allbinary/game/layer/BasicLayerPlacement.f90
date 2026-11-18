@@ -1,93 +1,87 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer
+module BasicLayerPlacement_m
+  use JR_m
+  use LayerPlacementType_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer
-unit BasicLayerPlacement;
+  type, extends(JObject) :: BasicLayerPlacement
+    class(LayerPlacementType), pointer :: f_layerType => null()
+    integer(4) :: f_width = 0
+    integer(4) :: f_height = 0
+  contains
+    procedure :: jm_getWidth_0 => BasicLayerPlacement_jm_getWidth_0
+    procedure :: jm_getHeight_0 => BasicLayerPlacement_jm_getHeight_0
+    procedure :: jm_getLayerType_0 => BasicLayerPlacement_jm_getLayerType_0
+    procedure :: jm_setLayerType_1 => BasicLayerPlacement_jm_setLayerType_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LayerPlacementType;
+  function BasicLayerPlacement_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicLayerPlacement), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicLayerPlacement)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBasicLayerPlacement = class(TObject)
-  public
-    layerType: TLayerPlacementType;
-    width: Integer;
-    height: Integer;
-    procedure InitFields;
-        constructor Create(layerType: TLayerPlacementType; width: Integer; height: Integer);
-        function getWidth: Integer; virtual;
-        function getHeight: Integer; virtual;
-        function getLayerType: TLayerPlacementType; virtual;
-        procedure setLayerType(layerType: TLayerPlacementType); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TBasicLayerPlacement.InitFields;
-begin
-  
-  
-  
-end;
+  recursive function BasicLayerPlacement_jnew_3(j_layerType, j_width, j_height) result(this)
+    class(LayerPlacementType), target, optional :: j_layerType
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(BasicLayerPlacement), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicLayerPlacement'
     
-
-constructor TBasicLayerPlacement.Create(layerType: TLayerPlacementType; width: Integer; height: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.layerType := layerType;
-        Self.width := width;
-        Self.height := height;
-end;
     
-
-function TBasicLayerPlacement.getWidth: Integer;
-begin
-        Exit(Self.width);
-end;
     
+        this%f_layerType => j_layerType
+        this%f_width = j_width
+        this%f_height = j_height
+  end function
 
-function TBasicLayerPlacement.getHeight: Integer;
-begin
-        Exit(Self.height);
-end;
-    
+  recursive function BasicLayerPlacement_jm_getWidth_0(this) result(jresult)
+    class(BasicLayerPlacement), target :: this
+    integer(4) :: jresult
+        jresult = this%f_width
+        return
+  end function
 
-function TBasicLayerPlacement.getLayerType: TLayerPlacementType;
-begin
-        Exit(Self.layerType);
-end;
-    
+  recursive function BasicLayerPlacement_jm_getHeight_0(this) result(jresult)
+    class(BasicLayerPlacement), target :: this
+    integer(4) :: jresult
+        jresult = this%f_height
+        return
+  end function
 
-procedure TBasicLayerPlacement.setLayerType(layerType: TLayerPlacementType);
-begin
-        Self.layerType := layerType;
-end;
+  recursive function BasicLayerPlacement_jm_getLayerType_0(this) result(jresult)
+    class(BasicLayerPlacement), target :: this
+    class(LayerPlacementType), pointer :: jresult
+        jresult => this%f_layerType
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine BasicLayerPlacement_jm_setLayerType_1(this, j_layerType)
+    class(BasicLayerPlacement), target :: this
+    class(LayerPlacementType), target, optional :: j_layerType
+        this%f_layerType => j_layerType
+  end subroutine
+end module BasicLayerPlacement_m
 

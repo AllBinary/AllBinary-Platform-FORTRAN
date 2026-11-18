@@ -1,64 +1,67 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module KeyFactoryInitializer_m
+  use JR_m
+  use Init_m
+  use LogUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit KeyFactoryInitializer;
+  type, extends(Init) :: KeyFactoryInitializer
+    class(LogUtil), pointer :: f_logUtil => null()
+  contains
+    procedure :: jm_init_0 => KeyFactoryInitializer_jm_init_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Init, LogUtil;
+  function KeyFactoryInitializer_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(KeyFactoryInitializer), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (KeyFactoryInitializer)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TKeyFactoryInitializer = class(TInit)
-  public
-    logUtil: TLogUtil;
-    procedure InitFields;
-    constructor Create;
-        procedure init; override;
-  end;
+  function KeyFactoryInitializer_jnew_0() result(this)
+    class(KeyFactoryInitializer), pointer :: this
+    allocate(this)
+    this%jclass = 'KeyFactoryInitializer'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+  end function
 
-implementation
+  recursive subroutine KeyFactoryInitializer_jm_init_0(this)
+    class(KeyFactoryInitializer), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_commonStrings%f_INIT)
+  end subroutine
+end module KeyFactoryInitializer_m
 
-{AB:CODE}
-
-procedure TKeyFactoryInitializer.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-end;
-
-constructor TKeyFactoryInitializer.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-procedure TKeyFactoryInitializer.init;
-begin
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.commonStrings.INIT);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function KeyFactoryInitializer_jnew_0_jext() result(this)
+  use KeyFactoryInitializer_m, only: JObject, KeyFactoryInitializer_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => KeyFactoryInitializer_jnew_0()
+end function
 

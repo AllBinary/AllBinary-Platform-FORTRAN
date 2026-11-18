@@ -45,6 +45,16 @@ contains
     jresult => LicenseStupidTimerFactory_jcell_instance
   end function
 
+  subroutine LicenseStupidTimerFactory_jsetstatic_instance(jvalue)
+    class(StupidTimer), target, optional :: jvalue
+    LicenseStupidTimerFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      LicenseStupidTimerFactory_jcell_instance => jvalue
+    else
+      LicenseStupidTimerFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function LicenseStupidTimerFactory_jnew_0() result(this)
     class(LicenseStupidTimerFactory), pointer :: this
     allocate(this)

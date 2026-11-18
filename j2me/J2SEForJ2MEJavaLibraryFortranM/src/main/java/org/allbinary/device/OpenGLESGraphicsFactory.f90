@@ -1,45 +1,41 @@
-// Generated Code Do Not Modify
-// package org.allbinary.device
-unit OpenGLESGraphicsFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.device
+module OpenGLESGraphicsFactory_m
+  use JR_m
+  use OpenGLESNullGraphicsFactory_m
+  use OpenGLESGraphics_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, OpenGLESGraphics;
-
-type
-  {AB:TYPES}
-  TOpenGLESGraphicsFactory = class(TObject)
-  public
-    constructor Create;
-        function getOpenGLESGraphicsInstance: TOpenGLESGraphics; virtual;
-  end;
-
-implementation
-uses
-  OpenGLESNullGraphicsFactory;
+  type, extends(JObject) :: OpenGLESGraphicsFactory
+  contains
+    procedure :: jm_getOpenGLESGraphicsInstance_0 => OpenGLESGraphicsFactory_jm_getOpenGLESGraphicsInstance_0
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TOpenGLESGraphicsFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function OpenGLESGraphicsFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLESGraphicsFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLESGraphicsFactory)
+      jresult => object
+    end select
+  end function
 
-function TOpenGLESGraphicsFactory.getOpenGLESGraphicsInstance: TOpenGLESGraphics;
-begin
-        Exit(TOpenGLESNullGraphicsFactory.getInstance());
-end;
+  function OpenGLESGraphicsFactory_jnew_0() result(this)
+    class(OpenGLESGraphicsFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLESGraphicsFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function OpenGLESGraphicsFactory_jm_getOpenGLESGraphicsInstance_0(this) result(jresult)
+    class(OpenGLESGraphicsFactory), target :: this
+    class(OpenGLESGraphics), pointer :: jresult
+        jresult => OpenGLESNullGraphicsFactory_jm_getInstance_0()
+        return
+  end function
+end module OpenGLESGraphicsFactory_m
 

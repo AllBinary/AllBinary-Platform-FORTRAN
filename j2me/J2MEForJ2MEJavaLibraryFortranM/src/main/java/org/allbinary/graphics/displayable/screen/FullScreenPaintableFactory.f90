@@ -1,69 +1,73 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.displayable.screen
-unit FullScreenPaintableFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.displayable.screen
+module FullScreenPaintableFactory_m
+  use JR_m
+  use NullPaintable_m
+  use Paintable_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: FullScreenPaintableFactory
+    class(Paintable), pointer :: f_paintable => null()
+  end type
 
-interface
+  class(FullScreenPaintableFactory), pointer, save :: FullScreenPaintableFactory_jcell_instance => null()
+  logical, save :: FullScreenPaintableFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Paintable;
+contains
 
-type
-  {AB:TYPES}
-  TFullScreenPaintableFactory = class(TObject)
-  public
-    paintable: TPaintable;
-    class var instance: TFullScreenPaintableFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TFullScreenPaintableFactory; static;
-  end;
+  function FullScreenPaintableFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(FullScreenPaintableFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (FullScreenPaintableFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullPaintable;
+  function FullScreenPaintableFactory_jstatic_instance() result(jresult)
+    class(FullScreenPaintableFactory), pointer :: jresult
+    if (.not. FullScreenPaintableFactory_jset_instance) then
+      FullScreenPaintableFactory_jset_instance = .true.
+      FullScreenPaintableFactory_jcell_instance => FullScreenPaintableFactory_jnew_0()
+    end if
+    jresult => FullScreenPaintableFactory_jcell_instance
+  end function
 
+  subroutine FullScreenPaintableFactory_jsetstatic_instance(jvalue)
+    class(FullScreenPaintableFactory), target, optional :: jvalue
+    FullScreenPaintableFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      FullScreenPaintableFactory_jcell_instance => jvalue
+    else
+      FullScreenPaintableFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function FullScreenPaintableFactory_jnew_0() result(this)
+    class(FullScreenPaintableFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'FullScreenPaintableFactory'
+    this%f_paintable => NullPaintable_jm_getInstance_0()
+  end function
 
-procedure TFullScreenPaintableFactory.InitFields;
-begin
-  Self.paintable := TNullPaintable.getInstance();
-end;
-
-constructor TFullScreenPaintableFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TFullScreenPaintableFactory.getInstance: TFullScreenPaintableFactory;
-begin
-        Exit(TFullScreenPaintableFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TFullScreenPaintableFactory.instance := TFullScreenPaintableFactory.Create();
-  {AB:END}
-
-end.
+  recursive function FullScreenPaintableFactory_jm_getInstance_0() result(jresult)
+    class(FullScreenPaintableFactory), pointer :: jresult
+        jresult => FullScreenPaintableFactory_jstatic_instance()
+        return
+  end function
+end module FullScreenPaintableFactory_m
 

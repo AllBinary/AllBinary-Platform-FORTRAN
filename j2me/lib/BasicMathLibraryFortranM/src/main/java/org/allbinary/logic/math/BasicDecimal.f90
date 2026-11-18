@@ -72,6 +72,16 @@ contains
     jresult => BasicDecimal_jcell_ZERO_BIGDECIMAL
   end function
 
+  subroutine BasicDecimal_jsetstatic_ZERO_BIGDECIMAL(jvalue)
+    class(BasicDecimal), target, optional :: jvalue
+    BasicDecimal_jset_ZERO_BIGDECIMAL = .true.
+    if (present(jvalue)) then
+      BasicDecimal_jcell_ZERO_BIGDECIMAL => jvalue
+    else
+      BasicDecimal_jcell_ZERO_BIGDECIMAL => null()
+    end if
+  end subroutine
+
   recursive function BasicDecimal_jnew_1(j_units) result(this)
     integer(8), value :: j_units
     class(BasicDecimal), pointer :: this

@@ -55,6 +55,16 @@ contains
     jresult => StringUtil_jcell_instance
   end function
 
+  subroutine StringUtil_jsetstatic_instance(jvalue)
+    class(StringUtil), target, optional :: jvalue
+    StringUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      StringUtil_jcell_instance => jvalue
+    else
+      StringUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function StringUtil_jnew_0() result(this)
     class(StringUtil), pointer :: this
     allocate(this)

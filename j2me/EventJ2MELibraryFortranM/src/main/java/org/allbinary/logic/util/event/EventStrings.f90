@@ -48,6 +48,16 @@ contains
     jresult => EventStrings_jcell_instance
   end function
 
+  subroutine EventStrings_jsetstatic_instance(jvalue)
+    class(EventStrings), target, optional :: jvalue
+    EventStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      EventStrings_jcell_instance => jvalue
+    else
+      EventStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function EventStrings_jnew_0() result(this)
     class(EventStrings), pointer :: this
     allocate(this)

@@ -48,6 +48,16 @@ contains
     jresult => AbPathData_jcell_instance
   end function
 
+  subroutine AbPathData_jsetstatic_instance(jvalue)
+    class(AbPathData), target, optional :: jvalue
+    AbPathData_jset_instance = .true.
+    if (present(jvalue)) then
+      AbPathData_jcell_instance => jvalue
+    else
+      AbPathData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function AbPathData_jnew_0() result(this)
     class(AbPathData), pointer :: this
     class(CommonSeps), pointer :: jtemp1

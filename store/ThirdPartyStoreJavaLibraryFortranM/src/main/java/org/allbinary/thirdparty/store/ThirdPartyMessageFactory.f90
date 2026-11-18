@@ -1,70 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.thirdparty.store
+module ThirdPartyMessageFactory_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.thirdparty.store
-unit ThirdPartyMessageFactory;
+  type, extends(JObject) :: ThirdPartyMessageFactory
+    character(len=:), allocatable :: f_AUTHORIZED
+    character(len=:), allocatable :: f_NOT_AUTHORIZED
+    character(len=:), allocatable :: f_LINKAGE_ERROR
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ThirdPartyMessageFactory), pointer, save :: ThirdPartyMessageFactory_jcell_instance => null()
+  logical, save :: ThirdPartyMessageFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function ThirdPartyMessageFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ThirdPartyMessageFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ThirdPartyMessageFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TThirdPartyMessageFactory = class(TObject)
-  public
-    AUTHORIZED: string;
-    NOT_AUTHORIZED: string;
-    LINKAGE_ERROR: string;
-    class var instance: TThirdPartyMessageFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TThirdPartyMessageFactory; static;
-  end;
+  function ThirdPartyMessageFactory_jstatic_instance() result(jresult)
+    class(ThirdPartyMessageFactory), pointer :: jresult
+    if (.not. ThirdPartyMessageFactory_jset_instance) then
+      ThirdPartyMessageFactory_jset_instance = .true.
+      ThirdPartyMessageFactory_jcell_instance => ThirdPartyMessageFactory_jnew_0()
+    end if
+    jresult => ThirdPartyMessageFactory_jcell_instance
+  end function
 
-implementation
+  subroutine ThirdPartyMessageFactory_jsetstatic_instance(jvalue)
+    class(ThirdPartyMessageFactory), target, optional :: jvalue
+    ThirdPartyMessageFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ThirdPartyMessageFactory_jcell_instance => jvalue
+    else
+      ThirdPartyMessageFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function ThirdPartyMessageFactory_jnew_0() result(this)
+    class(ThirdPartyMessageFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'ThirdPartyMessageFactory'
+    this%f_AUTHORIZED = ''
+    this%f_NOT_AUTHORIZED = ''
+    this%f_LINKAGE_ERROR = ''
+    this%f_AUTHORIZED = 'Authorized'
+    this%f_NOT_AUTHORIZED = 'Not Authorized'
+    this%f_LINKAGE_ERROR = 'Linkage Error'
+  end function
 
-procedure TThirdPartyMessageFactory.InitFields;
-begin
-  Self.AUTHORIZED := 'Authorized';
-  Self.NOT_AUTHORIZED := 'Not Authorized';
-  Self.LINKAGE_ERROR := 'Linkage Error';
-end;
-
-constructor TThirdPartyMessageFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TThirdPartyMessageFactory.getInstance: TThirdPartyMessageFactory;
-begin
-        Exit(TThirdPartyMessageFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TThirdPartyMessageFactory.instance := TThirdPartyMessageFactory.Create();
-  {AB:END}
-
-end.
+  recursive function ThirdPartyMessageFactory_jm_getInstance_0() result(jresult)
+    class(ThirdPartyMessageFactory), pointer :: jresult
+        jresult => ThirdPartyMessageFactory_jstatic_instance()
+        return
+  end function
+end module ThirdPartyMessageFactory_m
 

@@ -1,130 +1,154 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module GamePerformanceInitUpdatePaintable_m
+  use JR_m
+  use GameStatisticsFactory_m
+  use BasicColorFactory_m
+  use DisplayInfoSingleton_m
+  use MyFontProcessor_m
+  use UpdateMyFontInterface_m
+  use UpdateMyFontProcessor_m
+  use InitUpdatePaintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit GamePerformanceInitUpdatePaintable;
+  type, extends(InitUpdatePaintable) :: GamePerformanceInitUpdatePaintable
+    integer(4) :: f_halfHeight = 0
+    integer(4), allocatable :: f_yArray(:)
+    class(MyFontProcessor), pointer :: f_myFontProcessor => null()
+    integer(4), allocatable :: f_baseRefreshHelperCharArray(:,:)
+    integer(4) :: f_defaultStringWidth = 0
+    integer(4) :: f_RED = 0
+  contains
+    procedure :: jm_updateMeasurement_1 => GamePerformanceInitUpdatePaintable_jm_updateMeasurement_1
+    procedure :: jm_init_0 => GamePerformanceInitUpdatePaintable_jm_init_0
+    procedure :: jm_update_0 => GamePerformanceInitUpdatePaintable_jm_update_0
+    procedure :: jm_paint_1 => GamePerformanceInitUpdatePaintable_jm_paint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, MyFontProcessor, UpdateMyFontInterface, InitUpdatePaintable;
-
-type
-  {AB:TYPES}
-  TGamePerformanceInitUpdatePaintable = class(TInitUpdatePaintable, IUpdateMyFontInterface)
-  public
-    halfHeight: Integer;
-    yArray: TArray<Integer>;
-    myFontProcessor: TMyFontProcessor;
-    baseRefreshHelperCharArray: TArray<TArray<WideChar>>;
-    defaultStringWidth: Integer;
-    RED: Integer;
-    procedure InitFields;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure updateMeasurement(graphics_: TGraphics); virtual;
-        procedure init; virtual;
-        procedure update; virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-  end;
-
-implementation
-uses
-  Font, GameStatisticsFactory, BasicColorFactory, DisplayInfoSingleton, UpdateMyFontProcessor;
+  ! GamePerformanceInitUpdatePaintable used as a UpdateMyFontInterface
+  type, extends(UpdateMyFontInterface) :: GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface
+    class(GamePerformanceInitUpdatePaintable), pointer :: jtarget => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TGamePerformanceInitUpdatePaintable.InitFields;
-begin
-  Self.halfHeight := TDisplayInfoSingleton.getInstance().getLastHalfHeight();
-  Self.yArray := TArray<Integer>.Create((Self.halfHeight) + (30), (Self.halfHeight) + (30), ((Self.halfHeight) + (30)) + (15), ((Self.halfHeight) + (30)) + (15), ((Self.halfHeight) + (30)) + (30), ((Self.halfHeight) + (30)) + (30), ((Self.halfHeight) + (30)) + (45), ((Self.halfHeight) + (30)) + (45));
-  Self.myFontProcessor := TUpdateMyFontProcessor.Create(Self);
-  Self.baseRefreshHelperCharArray := TJava.NewArray2<WideChar>(0, 0);
-  
-  Self.RED := TBasicColorFactory.getInstance().RED.intValue();
-end;
+  function GamePerformanceInitUpdatePaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GamePerformanceInitUpdatePaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GamePerformanceInitUpdatePaintable)
+      jresult => object
+    end select
+  end function
 
-function TGamePerformanceInitUpdatePaintable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface_jnew(object) result(jresult)
+    class(GamePerformanceInitUpdatePaintable), target :: object
+    class(GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'GamePerformanceInitUpdatePaintable'
+    jresult%jtarget => object
+  end function
 
-constructor TGamePerformanceInitUpdatePaintable.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  recursive subroutine GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1(this, j_graphics)
+    class(GamePerformanceInitUpdatePaintable_jas_UpdateMyFontInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_updateMeasurement_1(j_graphics)
+  end subroutine
+
+  function GamePerformanceInitUpdatePaintable_jnew_0() result(this)
+    class(GamePerformanceInitUpdatePaintable), pointer :: this
+    class(DisplayInfoSingleton), pointer :: jtemp1
+    class(BasicColorFactory), pointer :: jtemp3
+    allocate(this)
+    this%jclass = 'GamePerformanceInitUpdatePaintable'
+    jtemp1 => DisplayInfoSingleton_jm_getInstance_0()
+    this%f_halfHeight = jtemp1%jm_getLastHalfHeight_0()
+    this%f_yArray = [integer(4) :: (this%f_halfHeight + 30), (this%f_halfHeight + 30), ((this%f_halfHeight + 30) + 15), ((this%f_halfHeight + 30) + 15), ((this%f_halfHeight + 30) + 30), ((this%f_halfHeight + 30) + 30), ((this%f_halfHeight + 30) + 45), ((this%f_halfHeight + 30) + 45)]
+    this%f_myFontProcessor => UpdateMyFontProcessor_jnew_1(this)
+    this%f_baseRefreshHelperCharArray = JR_newIntArray2(0, 0)
     
+    jtemp3 => BasicColorFactory_jm_getInstance_0()
+    this%f_RED = jtemp3%f_RED%jm_intValue_0()
+  end function
 
-procedure TGamePerformanceInitUpdatePaintable.updateMeasurement(graphics_: TGraphics);
-var
-  font_: TFont;
-begin
-        font_ := graphics_.getFont();
-        Self.defaultStringWidth := TMyFontProcessor.defaultStringWidth(font_, 2);
-        Self.myFontProcessor := TMyFontProcessor.getInstance();
-end;
-    
+  recursive subroutine GamePerformanceInitUpdatePaintable_jm_updateMeasurement_1(this, j_graphics)
+    class(GamePerformanceInitUpdatePaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Font), pointer :: j_font
+        j_font => j_graphics%jm_getFont_0()
+        this%f_defaultStringWidth = MyFontProcessor_jm_defaultStringWidth_2(j_font, 2)
+        this%f_myFontProcessor => MyFontProcessor_jm_getInstance_0()
+  end subroutine
 
-procedure TGamePerformanceInitUpdatePaintable.init;
-begin
-end;
-    
+  recursive subroutine GamePerformanceInitUpdatePaintable_jm_init_0(this)
+    class(GamePerformanceInitUpdatePaintable), target :: this
+    continue
+  end subroutine
 
-procedure TGamePerformanceInitUpdatePaintable.update;
-begin
-        Self.baseRefreshHelperCharArray := TGameStatisticsFactory.getInstance().to2DCharArray();
-end;
-    
+  recursive subroutine GamePerformanceInitUpdatePaintable_jm_update_0(this)
+    class(GamePerformanceInitUpdatePaintable), target :: this
+    class(GameStatisticsFactory), pointer :: jtemp2
+        jtemp2 => GameStatisticsFactory_jm_getInstance_0()
+        this%f_baseRefreshHelperCharArray = jtemp2%jm_to2DCharArray_0()
+  end subroutine
 
-procedure TGamePerformanceInitUpdatePaintable.paint(graphics_: TGraphics);
-var
-  charArray: TArray<WideChar>;
-  charArray2: TArray<WideChar>;
-  size2: Integer;
-  size3: Integer;
-  size: Integer;
-  index: Integer;
-begin
-        Self.myFontProcessor.process(graphics_);
-        graphics_.setColor(Self.RED);
-        
-        
-        
-        
-        size := (System.Length(Self.baseRefreshHelperCharArray)) - (2);
-        index := size;
-        while (index) >= (0) do begin
-            charArray := Self.baseRefreshHelperCharArray[index];
-            charArray2 := Self.baseRefreshHelperCharArray[(index) + (1)];
-            size2 := System.Length(charArray);
-            size3 := System.Length(charArray2);
-            graphics_.drawChars(charArray, 0, size2, 0, Self.yArray[index], 0);
-            graphics_.drawChars(charArray2, 0, size3, (size2) * (Self.defaultStringWidth), Self.yArray[(index) + (1)], 0);
-            index := (index) - (2);
-        end;
-end;
+  recursive subroutine GamePerformanceInitUpdatePaintable_jm_paint_1(this, j_graphics)
+    class(GamePerformanceInitUpdatePaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), allocatable :: j_charArray(:)
+    integer(4), allocatable :: j_charArray2(:)
+    integer(4) :: j_size2
+    integer(4) :: j_size3
+    integer(4) :: j_size
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_myFontProcessor%jm_process_1(j_graphics)
+        call j_graphics%jm_setColor_1(this%f_RED)
+        continue
+        continue
+        continue
+        continue
+        j_size = (size(this%f_baseRefreshHelperCharArray, 1) - 2)
+        j_index = j_size
+        do while ((j_index >= 0))
+            j_charArray = this%f_baseRefreshHelperCharArray((j_index) + 1, :)
+            j_charArray2 = this%f_baseRefreshHelperCharArray(((j_index + 1)) + 1, :)
+            j_size2 = size(j_charArray, 1)
+            j_size3 = size(j_charArray2, 1)
+            call j_graphics%jm_drawChars_6(j_charArray, 0, j_size2, 0, this%f_yArray((j_index) + 1), 0)
+            call j_graphics%jm_drawChars_6(j_charArray2, 0, j_size3, (j_size2 * this%f_defaultStringWidth), this%f_yArray(((j_index + 1)) + 1), 0)
+            j_index = (j_index - 2)
+        end do
+  end subroutine
+end module GamePerformanceInitUpdatePaintable_m
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function GamePerformanceInitUpdatePaintable_jnew_0_jext() result(this)
+  use GamePerformanceInitUpdatePaintable_m, only: JObject, GamePerformanceInitUpdatePaintable_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => GamePerformanceInitUpdatePaintable_jnew_0()
+end function
 

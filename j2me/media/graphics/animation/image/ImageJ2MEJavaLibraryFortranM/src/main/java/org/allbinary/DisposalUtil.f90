@@ -1,73 +1,94 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary
-unit DisposalUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary
+module DisposalUtil_m
+  use JR_m
+  use Resource_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: DisposalUtil
+  contains
+    procedure :: jm_disposeImage_1 => DisposalUtil_jm_disposeImage_1
+    procedure :: jm_disposeResource_1 => DisposalUtil_jm_disposeResource_1
+  end type
 
-interface
+  class(DisposalUtil), pointer, save :: DisposalUtil_jcell_instance => null()
+  logical, save :: DisposalUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, Resource;
+contains
 
-type
-  {AB:TYPES}
-  TDisposalUtil = class(TObject)
-  public
-    class var instance: TDisposalUtil;
-    constructor Create;
-        class function getInstance: TDisposalUtil; static;
-        procedure disposeImage(image_: TImage); virtual;
-        procedure disposeResource(resource_: TResource); virtual;
-  end;
+  function DisposalUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DisposalUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DisposalUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function DisposalUtil_jstatic_instance() result(jresult)
+    class(DisposalUtil), pointer :: jresult
+    if (.not. DisposalUtil_jset_instance) then
+      DisposalUtil_jset_instance = .true.
+      DisposalUtil_jcell_instance => DisposalUtil_jnew_0()
+    end if
+    jresult => DisposalUtil_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine DisposalUtil_jsetstatic_instance(jvalue)
+    class(DisposalUtil), target, optional :: jvalue
+    DisposalUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      DisposalUtil_jcell_instance => jvalue
+    else
+      DisposalUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TDisposalUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  function DisposalUtil_jnew_0() result(this)
+    class(DisposalUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'DisposalUtil'
+  end function
 
-class function TDisposalUtil.getInstance: TDisposalUtil;
-begin
-        Exit(TDisposalUtil.instance);
-end;
-    
+  recursive function DisposalUtil_jm_getInstance_0() result(jresult)
+    class(DisposalUtil), pointer :: jresult
+        jresult => DisposalUtil_jstatic_instance()
+        return
+  end function
 
-procedure TDisposalUtil.disposeImage(image_: TImage);
-begin
-end;
-    
+  recursive subroutine DisposalUtil_jm_disposeImage_1(this, j_image)
+    class(DisposalUtil), target :: this
+    class(Image), target, optional :: j_image
+    continue
+  end subroutine
 
-procedure TDisposalUtil.disposeResource(resource_: TResource);
-begin
-        if not (resource_.isDisposed()) then begin
-            resource_.dispose_();
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDisposalUtil.instance := TDisposalUtil.Create();
-  {AB:END}
-
-end.
+  recursive subroutine DisposalUtil_jm_disposeResource_1(this, j_resource)
+    class(DisposalUtil), target :: this
+    class(Resource), target, optional :: j_resource
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. j_resource%jm_isDisposed_0())) then
+            call j_resource%jm_dispose_0()
+        end if
+  end subroutine
+end module DisposalUtil_m
 

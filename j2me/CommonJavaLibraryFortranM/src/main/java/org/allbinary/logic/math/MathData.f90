@@ -52,6 +52,16 @@ contains
     jresult => MathData_jcell_instance
   end function
 
+  subroutine MathData_jsetstatic_instance(jvalue)
+    class(MathData), target, optional :: jvalue
+    MathData_jset_instance = .true.
+    if (present(jvalue)) then
+      MathData_jcell_instance => jvalue
+    else
+      MathData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function MathData_jnew_0() result(this)
     class(MathData), pointer :: this
     class(CommonSeps), pointer :: j_commonSeps

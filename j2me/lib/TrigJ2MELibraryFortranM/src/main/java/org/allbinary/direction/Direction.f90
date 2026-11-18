@@ -1,125 +1,144 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.direction
+module Direction_m
+  use JR_m
+  use StringMaker_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.direction
-unit Direction;
+  type, extends(JObject) :: Direction
+    character(len=:), allocatable :: f_name
+    character(len=:), allocatable :: f_otherName
+    integer(4) :: f_value = 0
+    integer(4) :: f_frameFactor = 0
+  contains
+    procedure :: jm_getValue_0 => Direction_jm_getValue_0
+    procedure :: jm_getFrameFactor_0 => Direction_jm_getFrameFactor_0
+    procedure :: jm_getOtherName_0 => Direction_jm_getOtherName_0
+    procedure :: jm_getName_0 => Direction_jm_getName_0
+    procedure :: jm_toString_0 => Direction_jm_toString_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type(JRef), allocatable, save :: Direction_jcell_directionArray(:)
+  logical, save :: Direction_jset_directionArray = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function Direction_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Direction), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Direction)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDirection = class(TObject)
-  public
-    name: string;
-    otherName: string;
-    value: Integer;
-    frameFactor: Integer;
-    class var directionArray: TArray<TDirection>;
-    procedure InitFields;
-        constructor Create(name: string; otherName: string; value: Integer; frameFactor: Integer);
-        class function getInstance(direction_: Integer): TDirection; static;
-        function getValue: Integer; virtual;
-        function getFrameFactor: Integer; virtual;
-        function getOtherName: string; virtual;
-        function getName: string; virtual;
-        function toString: string; virtual;
-  end;
+  function Direction_jstatic_directionArray() result(jresult)
+    type(JRef), allocatable :: jresult(:)
+    if (.not. Direction_jset_directionArray) then
+      Direction_jset_directionArray = .true.
+      Direction_jcell_directionArray = JR_newRefArray(13)
+    end if
+    jresult = Direction_jcell_directionArray
+  end function
 
-implementation
-uses
-  StringMaker;
+  subroutine Direction_jsetstatic_directionArray(jvalue)
+    type(JRef) :: jvalue(:)
+    Direction_jset_directionArray = .true.
+    Direction_jcell_directionArray = jvalue
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TDirection.InitFields;
-begin
-  
-  
-  
-  
-end;
+  recursive function Direction_jnew_4(j_name, j_otherName, j_value, j_frameFactor) result(this)
+    character(len=*), intent(in) :: j_name
+    character(len=*), intent(in) :: j_otherName
+    integer(4), value :: j_value
+    integer(4), value :: j_frameFactor
+    class(Direction), pointer :: this
+    allocate(this)
+    this%jclass = 'Direction'
+    this%f_name = ''
+    this%f_otherName = ''
     
-
-constructor TDirection.Create(name: string; otherName: string; value: Integer; frameFactor: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.name := name;
-        Self.otherName := otherName;
-        Self.value := value;
-        Self.frameFactor := frameFactor;
-        TDirection.directionArray[value] := Self;
-end;
     
-
-class function TDirection.getInstance(direction_: Integer): TDirection;
-begin
-        Exit(TDirection.directionArray[direction_]);
-end;
     
-
-function TDirection.getValue: Integer;
-begin
-        Exit(Self.value);
-end;
     
+        this%f_name = j_name
+        this%f_otherName = j_otherName
+        this%f_value = j_value
+        this%f_frameFactor = j_frameFactor
+        Direction_jstatic_directionArray()((j_value) + 1)%v => this
+  end function
 
-function TDirection.getFrameFactor: Integer;
-begin
-        Exit(Self.frameFactor);
-end;
-    
+  recursive function Direction_jm_getInstance_1(j_direction) result(jresult)
+    integer(4), value :: j_direction
+    class(Direction), pointer :: jresult
+        associate (jstaticref1 => Direction_jstatic_directionArray())
+        jresult => Direction_jcast(jstaticref1((j_direction) + 1)%v)
+        end associate
+        return
+  end function
 
-function TDirection.getOtherName: string;
-begin
-        Exit(Self.otherName);
-end;
-    
+  recursive function Direction_jm_getValue_0(this) result(jresult)
+    class(Direction), target :: this
+    integer(4) :: jresult
+        jresult = this%f_value
+        return
+  end function
 
-function TDirection.getName: string;
-begin
-        Exit(Self.name);
-end;
-    
+  recursive function Direction_jm_getFrameFactor_0(this) result(jresult)
+    class(Direction), target :: this
+    integer(4) :: jresult
+        jresult = this%f_frameFactor
+        return
+  end function
 
-function TDirection.toString: string;
-var
-  stringBuffer: TStringMaker;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append('Direction: ');
-        stringBuffer.append(Self.getName());
-        stringBuffer.append(' Or: ');
-        stringBuffer.append(Self.getOtherName());
-        stringBuffer.append(' Value: ');
-        stringBuffer.appendint(Self.value);
-        Exit(stringBuffer.toString());
-end;
+  recursive function Direction_jm_getOtherName_0(this) result(jresult)
+    class(Direction), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_otherName
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  TDirection.directionArray := TJava.NewArray<TDirection>(13);
-  {AB:END}
+  recursive function Direction_jm_getName_0(this) result(jresult)
+    class(Direction), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_name
+        return
+  end function
 
-end.
+  recursive function Direction_jm_toString_0(this) result(jresult)
+    class(Direction), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1('Direction: ')
+        jdiscardRef => j_stringBuffer%jm_append_1(this%jm_getName_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(' Or: ')
+        jdiscardRef => j_stringBuffer%jm_append_1(this%jm_getOtherName_0())
+        jdiscardRef => j_stringBuffer%jm_append_1(' Value: ')
+        jdiscardRef => j_stringBuffer%jm_appendint_1(this%f_value)
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module Direction_m
 

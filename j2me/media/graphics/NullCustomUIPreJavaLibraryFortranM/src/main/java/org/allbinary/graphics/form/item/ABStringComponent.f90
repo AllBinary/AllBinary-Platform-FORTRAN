@@ -1,61 +1,88 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit ABStringComponent;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module ABStringComponent_m
+  use JR_m
+  use BasicColor_m
+  use BasicColorFactory_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ABStringComponent
+  contains
+    procedure :: jm_getBackgroundBasicColor_0 => ABStringComponent_jm_getBackgroundBasicColor_0
+    procedure :: jm_getForegroundBasicColor_0 => ABStringComponent_jm_getForegroundBasicColor_0
+    procedure :: jm_setForegroundBasicColor_1 => ABStringComponent_jm_setForegroundBasicColor_1
+  end type
 
-interface
+  class(ABStringComponent), pointer, save :: ABStringComponent_jcell_NULL_STRING_COMPONENT => null()
+  logical, save :: ABStringComponent_jset_NULL_STRING_COMPONENT = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicColor;
+contains
 
-type
-  {AB:TYPES}
-  TABStringComponent = class(TObject)
-  public
-    class var NULL_STRING_COMPONENT: TABStringComponent;
-        function getBackgroundBasicColor: TBasicColor; virtual;
-        constructor Create(backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-        function getForegroundBasicColor: TBasicColor; virtual;
-        procedure setForegroundBasicColor(foregroundBasicColor: TBasicColor); virtual;
-  end;
+  function ABStringComponent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ABStringComponent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ABStringComponent)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  BasicColorFactory;
+  function ABStringComponent_jstatic_NULL_STRING_COMPONENT() result(jresult)
+    class(ABStringComponent), pointer :: jresult
+    class(BasicColorFactory), pointer :: jtemp1
+    class(BasicColorFactory), pointer :: jtemp2
+    if (.not. ABStringComponent_jset_NULL_STRING_COMPONENT) then
+      ABStringComponent_jset_NULL_STRING_COMPONENT = .true.
+      jtemp1 => BasicColorFactory_jm_getInstance_0()
+    jtemp2 => BasicColorFactory_jm_getInstance_0()
+    ABStringComponent_jcell_NULL_STRING_COMPONENT => ABStringComponent_jnew_2(jtemp1%f_BLACK, jtemp2%f_WHITE)
+    end if
+    jresult => ABStringComponent_jcell_NULL_STRING_COMPONENT
+  end function
 
+  subroutine ABStringComponent_jsetstatic_NULL_STRING_COMPONENT(jvalue)
+    class(ABStringComponent), target, optional :: jvalue
+    ABStringComponent_jset_NULL_STRING_COMPONENT = .true.
+    if (present(jvalue)) then
+      ABStringComponent_jcell_NULL_STRING_COMPONENT => jvalue
+    else
+      ABStringComponent_jcell_NULL_STRING_COMPONENT => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function ABStringComponent_jnew_2(j_backgroundBasicColor, j_foregroundBasicColor) result(this)
+    class(BasicColor), target, optional :: j_backgroundBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(ABStringComponent), pointer :: this
+    allocate(this)
+    this%jclass = 'ABStringComponent'
+        continue
+  end function
 
-function TABStringComponent.getBackgroundBasicColor: TBasicColor;
-begin
-        Exit(TBasicColorFactory.getInstance().WHITE);
-end;
-    
+  recursive function ABStringComponent_jm_getBackgroundBasicColor_0(this) result(jresult)
+    class(ABStringComponent), target :: this
+    class(BasicColor), pointer :: jresult
+    class(BasicColorFactory), pointer :: jtemp3
+        jtemp3 => BasicColorFactory_jm_getInstance_0()
+        jresult => jtemp3%f_WHITE
+        return
+  end function
 
-constructor TABStringComponent.Create(backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-begin
-    inherited Create;
-end;
-    
+  recursive function ABStringComponent_jm_getForegroundBasicColor_0(this) result(jresult)
+    class(ABStringComponent), target :: this
+    class(BasicColor), pointer :: jresult
+    class(BasicColorFactory), pointer :: jtemp4
+        jtemp4 => BasicColorFactory_jm_getInstance_0()
+        jresult => jtemp4%f_WHITE
+        return
+  end function
 
-function TABStringComponent.getForegroundBasicColor: TBasicColor;
-begin
-        Exit(TBasicColorFactory.getInstance().WHITE);
-end;
-    
-
-procedure TABStringComponent.setForegroundBasicColor(foregroundBasicColor: TBasicColor);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TABStringComponent.NULL_STRING_COMPONENT := TABStringComponent.Create(TBasicColorFactory.getInstance().BLACK, TBasicColorFactory.getInstance().WHITE);
-  {AB:END}
-
-end.
+  recursive subroutine ABStringComponent_jm_setForegroundBasicColor_1(this, j_foregroundBasicColor)
+    class(ABStringComponent), target :: this
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    continue
+  end subroutine
+end module ABStringComponent_m
 

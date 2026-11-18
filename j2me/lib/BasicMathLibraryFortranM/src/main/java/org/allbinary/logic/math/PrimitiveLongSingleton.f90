@@ -52,6 +52,16 @@ contains
     jresult => PrimitiveLongSingleton_jcell_instance
   end function
 
+  subroutine PrimitiveLongSingleton_jsetstatic_instance(jvalue)
+    class(PrimitiveLongSingleton), target, optional :: jvalue
+    PrimitiveLongSingleton_jset_instance = .true.
+    if (present(jvalue)) then
+      PrimitiveLongSingleton_jcell_instance => jvalue
+    else
+      PrimitiveLongSingleton_jcell_instance => null()
+    end if
+  end subroutine
+
   function PrimitiveLongSingleton_jnew_0() result(this)
     class(PrimitiveLongSingleton), pointer :: this
     allocate(this)

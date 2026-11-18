@@ -51,6 +51,16 @@ contains
     jresult => AllBinaryEventObject_jcell_NULL_EVENT
   end function
 
+  subroutine AllBinaryEventObject_jsetstatic_NULL_EVENT(jvalue)
+    class(AllBinaryEventObject), target, optional :: jvalue
+    AllBinaryEventObject_jset_NULL_EVENT = .true.
+    if (present(jvalue)) then
+      AllBinaryEventObject_jcell_NULL_EVENT => jvalue
+    else
+      AllBinaryEventObject_jcell_NULL_EVENT => null()
+    end if
+  end subroutine
+
   recursive function AllBinaryEventObject_jnew_1(j_anyType) result(this)
     class(JObject), target, optional :: j_anyType
     class(AllBinaryEventObject), pointer :: this

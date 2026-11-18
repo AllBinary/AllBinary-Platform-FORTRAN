@@ -61,6 +61,16 @@ contains
     jresult => MyRandomFactory_jcell_instance
   end function
 
+  subroutine MyRandomFactory_jsetstatic_instance(jvalue)
+    class(MyRandomFactory), target, optional :: jvalue
+    MyRandomFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      MyRandomFactory_jcell_instance => jvalue
+    else
+      MyRandomFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function MyRandomFactory_jnew_0() result(this)
     class(MyRandomFactory), pointer :: this
     allocate(this)

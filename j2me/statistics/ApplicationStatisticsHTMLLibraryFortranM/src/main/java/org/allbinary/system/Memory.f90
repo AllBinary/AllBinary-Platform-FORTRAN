@@ -1,60 +1,51 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.system
+module Memory_m
+  use JR_m
+  use StringUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.system
-unit Memory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
-
-type
-  {AB:TYPES}
-  // ActualPlatform
-  TMemory = class(TObject)
-  public
-    constructor Create;
-        class function getInfo: string; static;
-  end;
-
-implementation
-uses
-  StringUtil;
+  type, extends(JObject) :: Memory
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TMemory.Create;
-begin
-  inherited Create;
-end;
-    
+  function Memory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Memory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Memory)
+      jresult => object
+    end select
+  end function
 
-class function TMemory.getInfo: string;
-begin
-        Exit(TStringUtil.getInstance().EMPTY_STRING);
-end;
+  function Memory_jnew_0() result(this)
+    class(Memory), pointer :: this
+    allocate(this)
+    this%jclass = 'Memory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function Memory_jm_getInfo_0() result(jresult)
+    character(len=:), allocatable :: jresult
+    class(StringUtil), pointer :: jtemp1
+        jtemp1 => StringUtil_jm_getInstance_0()
+        jresult = jtemp1%f_EMPTY_STRING
+        return
+  end function
+end module Memory_m
 

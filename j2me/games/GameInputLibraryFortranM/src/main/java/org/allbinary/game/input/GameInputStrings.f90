@@ -1,96 +1,117 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module GameInputStrings_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit GameInputStrings;
+  type, extends(JObject) :: GameInputStrings
+    character(len=:), allocatable :: f_PROCESS_INPUT
+    character(len=:), allocatable :: f_KEY_PRESSED
+    character(len=:), allocatable :: f_KEY_RELEASED
+    character(len=:), allocatable :: f_KEY_REPEATED
+    character(len=:), allocatable :: f_ON_PRESS_GAME_KEY
+    character(len=:), allocatable :: f_ON_DOWN_GAME_KEY
+    character(len=:), allocatable :: f_ON_UP_GAME_KEY
+    character(len=:), allocatable :: f_NO_KEY
+    character(len=:), allocatable :: f_ADD_KEY_EVENT
+    character(len=:), allocatable :: f_REMOVE_KEY_EVENT
+    character(len=:), allocatable :: f_STRAFE_LEFT
+    character(len=:), allocatable :: f_STRAFE_RIGHT
+    character(len=:), allocatable :: f_PROCESS_MOTION_INPUT
+    character(len=:), allocatable :: f_UDPATE_CURRENT_TOUCH_INPUT_FACTORY
+    character(len=:), allocatable :: f_ENABLE_PLAYER_GAME_INPUTS
+    character(len=:), allocatable :: f_ENABLE_PLAYER_GAME_INPUT
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GameInputStrings), pointer, save :: GameInputStrings_jcell_instance => null()
+  logical, save :: GameInputStrings_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function GameInputStrings_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameInputStrings), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameInputStrings)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameInputStrings = class(TObject)
-  public
-    PROCESS_INPUT: string;
-    KEY_PRESSED: string;
-    KEY_RELEASED: string;
-    KEY_REPEATED: string;
-    ON_PRESS_GAME_KEY: string;
-    ON_DOWN_GAME_KEY: string;
-    ON_UP_GAME_KEY: string;
-    NO_KEY: string;
-    ADD_KEY_EVENT: string;
-    REMOVE_KEY_EVENT: string;
-    STRAFE_LEFT: string;
-    STRAFE_RIGHT: string;
-    PROCESS_MOTION_INPUT: string;
-    UDPATE_CURRENT_TOUCH_INPUT_FACTORY: string;
-    ENABLE_PLAYER_GAME_INPUTS: string;
-    ENABLE_PLAYER_GAME_INPUT: string;
-    class var instance: TGameInputStrings;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TGameInputStrings; static;
-  end;
+  function GameInputStrings_jstatic_instance() result(jresult)
+    class(GameInputStrings), pointer :: jresult
+    if (.not. GameInputStrings_jset_instance) then
+      GameInputStrings_jset_instance = .true.
+      GameInputStrings_jcell_instance => GameInputStrings_jnew_0()
+    end if
+    jresult => GameInputStrings_jcell_instance
+  end function
 
-implementation
+  subroutine GameInputStrings_jsetstatic_instance(jvalue)
+    class(GameInputStrings), target, optional :: jvalue
+    GameInputStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      GameInputStrings_jcell_instance => jvalue
+    else
+      GameInputStrings_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function GameInputStrings_jnew_0() result(this)
+    class(GameInputStrings), pointer :: this
+    allocate(this)
+    this%jclass = 'GameInputStrings'
+    this%f_PROCESS_INPUT = ''
+    this%f_KEY_PRESSED = ''
+    this%f_KEY_RELEASED = ''
+    this%f_KEY_REPEATED = ''
+    this%f_ON_PRESS_GAME_KEY = ''
+    this%f_ON_DOWN_GAME_KEY = ''
+    this%f_ON_UP_GAME_KEY = ''
+    this%f_NO_KEY = ''
+    this%f_ADD_KEY_EVENT = ''
+    this%f_REMOVE_KEY_EVENT = ''
+    this%f_STRAFE_LEFT = ''
+    this%f_STRAFE_RIGHT = ''
+    this%f_PROCESS_MOTION_INPUT = ''
+    this%f_UDPATE_CURRENT_TOUCH_INPUT_FACTORY = ''
+    this%f_ENABLE_PLAYER_GAME_INPUTS = ''
+    this%f_ENABLE_PLAYER_GAME_INPUT = ''
+    this%f_PROCESS_INPUT = 'processInput'
+    this%f_KEY_PRESSED = 'keyPressed'
+    this%f_KEY_RELEASED = 'keyReleased'
+    this%f_KEY_REPEATED = 'keyRepeated'
+    this%f_ON_PRESS_GAME_KEY = 'onPressGameKeyEvent'
+    this%f_ON_DOWN_GAME_KEY = 'onDownGameKeyEvent'
+    this%f_ON_UP_GAME_KEY = 'onUpGameKeyEvent'
+    this%f_NO_KEY = 'Key Code Not Mapped For Game: '
+    this%f_ADD_KEY_EVENT = 'addGameKeyEvent'
+    this%f_REMOVE_KEY_EVENT = 'removeGameKeyEvent'
+    this%f_STRAFE_LEFT = 'strafeLeft'
+    this%f_STRAFE_RIGHT = 'strafeRight'
+    this%f_PROCESS_MOTION_INPUT = 'processMotionInput'
+    this%f_UDPATE_CURRENT_TOUCH_INPUT_FACTORY = 'updateCurrentTouchInputFactory'
+    this%f_ENABLE_PLAYER_GAME_INPUTS = 'Enabling PlayerGameInputs: '
+    this%f_ENABLE_PLAYER_GAME_INPUT = 'Enabling PlayerGameInput: '
+  end function
 
-procedure TGameInputStrings.InitFields;
-begin
-  Self.PROCESS_INPUT := 'processInput';
-  Self.KEY_PRESSED := 'keyPressed';
-  Self.KEY_RELEASED := 'keyReleased';
-  Self.KEY_REPEATED := 'keyRepeated';
-  Self.ON_PRESS_GAME_KEY := 'onPressGameKeyEvent';
-  Self.ON_DOWN_GAME_KEY := 'onDownGameKeyEvent';
-  Self.ON_UP_GAME_KEY := 'onUpGameKeyEvent';
-  Self.NO_KEY := 'Key Code Not Mapped For Game: ';
-  Self.ADD_KEY_EVENT := 'addGameKeyEvent';
-  Self.REMOVE_KEY_EVENT := 'removeGameKeyEvent';
-  Self.STRAFE_LEFT := 'strafeLeft';
-  Self.STRAFE_RIGHT := 'strafeRight';
-  Self.PROCESS_MOTION_INPUT := 'processMotionInput';
-  Self.UDPATE_CURRENT_TOUCH_INPUT_FACTORY := 'updateCurrentTouchInputFactory';
-  Self.ENABLE_PLAYER_GAME_INPUTS := 'Enabling PlayerGameInputs: ';
-  Self.ENABLE_PLAYER_GAME_INPUT := 'Enabling PlayerGameInput: ';
-end;
-
-constructor TGameInputStrings.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TGameInputStrings.getInstance: TGameInputStrings;
-begin
-        Exit(TGameInputStrings.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameInputStrings.instance := TGameInputStrings.Create();
-  {AB:END}
-
-end.
+  recursive function GameInputStrings_jm_getInstance_0() result(jresult)
+    class(GameInputStrings), pointer :: jresult
+        jresult => GameInputStrings_jstatic_instance()
+        return
+  end function
+end module GameInputStrings_m
 

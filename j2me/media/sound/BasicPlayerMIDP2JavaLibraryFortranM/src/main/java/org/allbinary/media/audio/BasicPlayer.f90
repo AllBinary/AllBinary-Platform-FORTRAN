@@ -1,262 +1,318 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.audio
+module BasicPlayer_m
+  use JR_m
+  use StringUtil_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use TimeBaseInterface_m
+  use Controllable2_m
+  use NullControl_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.audio
-unit BasicPlayer;
+  type, extends(Player) :: BasicPlayer
+    class(BasicArrayList), pointer :: f_listenersList => null()
+    class(TimeBase), pointer :: f_timeBase => null()
+    integer(4) :: f_stateP = 0
+    integer(4) :: f_loopCountP = 0
+  contains
+    procedure :: jm_getContentType_0 => BasicPlayer_jm_getContentType_0
+    procedure :: jm_getControl_1 => BasicPlayer_jm_getControl_1
+    procedure :: jm_getControls_0 => BasicPlayer_jm_getControls_0
+    procedure :: jm_close_0 => BasicPlayer_jm_close_0
+    procedure :: jm_addPlayerListener_1 => BasicPlayer_jm_addPlayerListener_1
+    procedure :: jm_removePlayerListener_1 => BasicPlayer_jm_removePlayerListener_1
+    procedure :: jm_getState_0 => BasicPlayer_jm_getState_0
+    procedure :: jm_setState_1 => BasicPlayer_jm_setState_1
+    procedure :: jm_getDuration_0 => BasicPlayer_jm_getDuration_0
+    procedure :: jm_getMediaTime_0 => BasicPlayer_jm_getMediaTime_0
+    procedure :: jm_getTimeBase_0 => BasicPlayer_jm_getTimeBase_0
+    procedure :: jm_setTimeBase_1 => BasicPlayer_jm_setTimeBase_1
+    procedure :: jm_deallocate_0 => BasicPlayer_jm_deallocate_0
+    procedure :: jm_prefetch_0 => BasicPlayer_jm_prefetch_0
+    procedure :: jm_realize_0 => BasicPlayer_jm_realize_0
+    procedure :: jm_setLoopCount_1 => BasicPlayer_jm_setLoopCount_1
+    procedure :: jm_getLoopCount_0 => BasicPlayer_jm_getLoopCount_0
+    procedure :: jm_setMediaTime_1 => BasicPlayer_jm_setMediaTime_1
+    procedure :: jm_start_0 => BasicPlayer_jm_start_0
+    procedure :: jm_stop_0 => BasicPlayer_jm_stop_0
+    procedure :: jm_setVolume_2 => BasicPlayer_jm_setVolume_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! BasicPlayer used as a TimeBaseInterface
+  type, extends(TimeBaseInterface) :: BasicPlayer_jas_TimeBaseInterface
+    class(BasicPlayer), pointer :: jtarget => null()
+  contains
+    procedure :: jm_getTimeBase_0 => BasicPlayer_jas_TimeBaseInterface_jm_getTimeBase_0
+    procedure :: jm_setTimeBase_1 => BasicPlayer_jas_TimeBaseInterface_jm_setTimeBase_1
+  end type
 
-interface
+  ! BasicPlayer used as a Controllable2
+  type, extends(Controllable2) :: BasicPlayer_jas_Controllable2
+    class(BasicPlayer), pointer :: jtarget => null()
+  contains
+    procedure :: jm_setVolume_2 => BasicPlayer_jas_Controllable2_jm_setVolume_2
+  end type
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Control, Player, PlayerListener, TimeBase, BasicArrayList, TimeBaseInterface, Controllable2, Controllable;
+  character(len=:), allocatable, save :: BasicPlayer_jcell_CONTROL_TYPE
+  logical, save :: BasicPlayer_jset_CONTROL_TYPE = .false.
 
-type
-  {AB:TYPES}
-  // BasicPlayerMIDP2JavaLibrary
-  TBasicPlayer = class(TInterfacedObject, IPlayer, ITimeBaseInterface, IControllable2, IControllable)
-  public
-    listenersList: TBasicArrayList;
-    timeBase: ITimeBase;
-    stateP: Integer;
-    loopCountP: Integer;
-    class var CONTROL_TYPE: string;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create;
-        function getContentType: string; virtual;
-        function getControl(controlType: string): TControl; virtual;
-        function getControls: TArray<TControl>; virtual;
-        procedure close; virtual;
-        procedure addPlayerListener(playerListener_: IPlayerListener); virtual;
-        procedure removePlayerListener(playerListener_: IPlayerListener); virtual;
-        function getState: Integer; virtual;
-        procedure setState(state: Integer); virtual;
-        function getDuration: Int64; virtual;
-        function getMediaTime: Int64; virtual;
-        function getTimeBase: ITimeBase; virtual;
-        procedure setTimeBase(timeBase_: ITimeBase); virtual;
-        procedure deallocate; virtual;
-        procedure prefetch; virtual;
-        procedure realize; virtual;
-        procedure setLoopCount(count: Integer); virtual;
-        function getLoopCount: Integer; virtual;
-        function setMediaTime(now: Int64): Int64; virtual;
-        procedure start; virtual;
-        procedure stop; virtual;
-        procedure setVolume(leftVolume: Integer; rightVolume: Integer); virtual;
-  end;
+contains
 
-implementation
-uses
-  NullControl, MediaException, StringUtil, BasicArrayListD;
+  function BasicPlayer_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicPlayer), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicPlayer)
+      jresult => object
+    end select
+  end function
 
+  function BasicPlayer_jas_TimeBaseInterface_jnew(object) result(jresult)
+    class(BasicPlayer), target :: object
+    class(BasicPlayer_jas_TimeBaseInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'BasicPlayer'
+    jresult%jtarget => object
+  end function
 
-{AB:CODE}
+  recursive function BasicPlayer_jas_TimeBaseInterface_jm_getTimeBase_0(this) result(jresult)
+    class(BasicPlayer_jas_TimeBaseInterface), target :: this
+    class(TimeBase), pointer :: jresult
+    jresult => this%jtarget%jm_getTimeBase_0()
+  end function
 
-procedure TBasicPlayer.InitFields;
-begin
-  Self.listenersList := TBasicArrayListD.Create();
-  
-  
-  
-end;
+  recursive subroutine BasicPlayer_jas_TimeBaseInterface_jm_setTimeBase_1(this, j_timeBase)
+    class(BasicPlayer_jas_TimeBaseInterface), target :: this
+    class(TimeBase), target, optional :: j_timeBase
+    call this%jtarget%jm_setTimeBase_1(j_timeBase)
+  end subroutine
 
-function TBasicPlayer.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function BasicPlayer_jas_Controllable2_jnew(object) result(jresult)
+    class(BasicPlayer), target :: object
+    class(BasicPlayer_jas_Controllable2), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'BasicPlayer'
+    jresult%jtarget => object
+  end function
+
+  recursive subroutine BasicPlayer_jas_Controllable2_jm_setVolume_2(this, j_leftVolume, j_rightVolume)
+    class(BasicPlayer_jas_Controllable2), target :: this
+    integer(4), value :: j_leftVolume
+    integer(4), value :: j_rightVolume
+    call this%jtarget%jm_setVolume_2(j_leftVolume, j_rightVolume)
+  end subroutine
+
+  function BasicPlayer_jstatic_CONTROL_TYPE() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. BasicPlayer_jset_CONTROL_TYPE) then
+      BasicPlayer_jset_CONTROL_TYPE = .true.
+      BasicPlayer_jcell_CONTROL_TYPE = 'ToneControl'
+    end if
+    jresult = BasicPlayer_jcell_CONTROL_TYPE
+  end function
+
+  subroutine BasicPlayer_jsetstatic_CONTROL_TYPE(jvalue)
+    character(len=*), intent(in) :: jvalue
+    BasicPlayer_jset_CONTROL_TYPE = .true.
+    BasicPlayer_jcell_CONTROL_TYPE = jvalue
+  end subroutine
+
+  recursive function BasicPlayer_jnew_0() result(this)
+    class(BasicPlayer), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'BasicPlayer'
+    this%f_listenersList => BasicArrayListD_jnew_0()
     
-
-constructor TBasicPlayer.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.setLoopCount(0);
-        Self.setState(IPlayer.UNREALIZED);
-end;
     
-
-function TBasicPlayer.getContentType: string;
-begin
-        Exit(TStringUtil.getInstance().EMPTY_STRING);
-end;
     
+        call this%jm_setLoopCount_1(0)
+        call this%jm_setState_1(Player_jstatic_UNREALIZED())
+  end function
 
-function TBasicPlayer.getControl(controlType: string): TControl;
-begin
-        Exit(TNullControl.Create());
-end;
-    
+  recursive function BasicPlayer_jm_getContentType_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringUtil), pointer :: jtemp1
+        jtemp1 => StringUtil_jm_getInstance_0()
+        jresult = jtemp1%f_EMPTY_STRING
+        return
+  end function
 
-function TBasicPlayer.getControls: TArray<TControl>;
-begin
-        Exit(nil);
-end;
-    
+  recursive function BasicPlayer_jm_getControl_1(this, j_controlType) result(jresult)
+    class(BasicPlayer), target :: this
+    character(len=*), intent(in) :: j_controlType
+    class(Control), pointer :: jresult
+        jresult => NullControl_jnew_0()
+        return
+  end function
 
-procedure TBasicPlayer.close;
-begin
-end;
-    
+  recursive function BasicPlayer_jm_getControls_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    type(JRef), allocatable :: jresult(:)
+        jresult = JR_newRefArray(0)
+        return
+  end function
 
-procedure TBasicPlayer.addPlayerListener(playerListener_: IPlayerListener);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        if not (Self.listenersList.contains(TJava.Box(playerListener_))) then begin
-            Self.listenersList.add(TJava.Box(playerListener_));
-        end;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine BasicPlayer_jm_close_0(this)
+    class(BasicPlayer), target :: this
+    continue
+  end subroutine
 
-procedure TBasicPlayer.removePlayerListener(playerListener_: IPlayerListener);
-begin
-        Self.listenersList.remove(TJava.ToObject(playerListener_));
-end;
-    
+  recursive subroutine BasicPlayer_jm_addPlayerListener_1(this, j_playerListener)
+    class(BasicPlayer), target :: this
+    class(PlayerListener), target, optional :: j_playerListener
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_listenersList%jm_contains_1(j_playerListener))) then
+            jdiscardBoolean = this%f_listenersList%jm_add_1(j_playerListener)
+        end if
+  end subroutine
 
-function TBasicPlayer.getState: Integer;
-begin
-        Exit(Self.stateP);
-end;
-    
+  recursive subroutine BasicPlayer_jm_removePlayerListener_1(this, j_playerListener)
+    class(BasicPlayer), target :: this
+    class(PlayerListener), target, optional :: j_playerListener
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_listenersList%jm_remove_1(j_playerListener)
+  end subroutine
 
-procedure TBasicPlayer.setState(state: Integer);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.stateP := state;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive function BasicPlayer_jm_getState_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    integer(4) :: jresult
+        jresult = this%f_stateP
+        return
+  end function
 
-function TBasicPlayer.getDuration: Int64;
-begin
-        Exit(0);
-end;
-    
+  recursive subroutine BasicPlayer_jm_setState_1(this, j_state)
+    class(BasicPlayer), target :: this
+    integer(4), value :: j_state
+        this%f_stateP = j_state
+  end subroutine
 
-function TBasicPlayer.getMediaTime: Int64;
-begin
-        Exit(0);
-end;
-    
+  recursive function BasicPlayer_jm_getDuration_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    integer(8) :: jresult
+        jresult = 0_8
+        return
+  end function
 
-function TBasicPlayer.getTimeBase: ITimeBase;
-begin
-        Exit(Self.timeBase);
-end;
-    
+  recursive function BasicPlayer_jm_getMediaTime_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    integer(8) :: jresult
+        jresult = 0_8
+        return
+  end function
 
-procedure TBasicPlayer.setTimeBase(timeBase_: ITimeBase);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.timeBase := timeBase_;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive function BasicPlayer_jm_getTimeBase_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    class(TimeBase), pointer :: jresult
+        jresult => this%f_timeBase
+        return
+  end function
 
-procedure TBasicPlayer.deallocate;
-begin
-end;
-    
+  recursive subroutine BasicPlayer_jm_setTimeBase_1(this, j_timeBase)
+    class(BasicPlayer), target :: this
+    class(TimeBase), target, optional :: j_timeBase
+        this%f_timeBase => j_timeBase
+  end subroutine
 
-// throws MediaException
-procedure TBasicPlayer.prefetch;
-begin
-end;
-    
+  recursive subroutine BasicPlayer_jm_deallocate_0(this)
+    class(BasicPlayer), target :: this
+    continue
+  end subroutine
 
-// throws MediaException
-procedure TBasicPlayer.realize;
-begin
-end;
-    
+  recursive subroutine BasicPlayer_jm_prefetch_0(this)
+    class(BasicPlayer), target :: this
+    continue
+  end subroutine
 
-procedure TBasicPlayer.setLoopCount(count: Integer);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.loopCountP := count;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine BasicPlayer_jm_realize_0(this)
+    class(BasicPlayer), target :: this
+    continue
+  end subroutine
 
-function TBasicPlayer.getLoopCount: Integer;
-begin
-        Exit(Self.loopCountP);
-end;
-    
+  recursive subroutine BasicPlayer_jm_setLoopCount_1(this, j_count)
+    class(BasicPlayer), target :: this
+    integer(4), value :: j_count
+        this%f_loopCountP = j_count
+  end subroutine
 
-// throws MediaException
-function TBasicPlayer.setMediaTime(now: Int64): Int64;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Exit(0);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive function BasicPlayer_jm_getLoopCount_0(this) result(jresult)
+    class(BasicPlayer), target :: this
+    integer(4) :: jresult
+        jresult = this%f_loopCountP
+        return
+  end function
 
-// throws MediaException
-procedure TBasicPlayer.start;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.setState(IPlayer.STARTED);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive function BasicPlayer_jm_setMediaTime_1(this, j_now) result(jresult)
+    class(BasicPlayer), target :: this
+    integer(8), value :: j_now
+    integer(8) :: jresult
+        jresult = 0_8
+        return
+  end function
 
-// throws MediaException
-procedure TBasicPlayer.stop;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Self.setState(IPlayer.PREFETCHED);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine BasicPlayer_jm_start_0(this)
+    class(BasicPlayer), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setState_1(Player_jstatic_STARTED())
+  end subroutine
 
-procedure TBasicPlayer.setVolume(leftVolume: Integer; rightVolume: Integer);
-begin
-end;
+  recursive subroutine BasicPlayer_jm_stop_0(this)
+    class(BasicPlayer), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setState_1(Player_jstatic_PREFETCHED())
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  TBasicPlayer.CONTROL_TYPE := 'ToneControl';
-  {AB:END}
-
-end.
+  recursive subroutine BasicPlayer_jm_setVolume_2(this, j_leftVolume, j_rightVolume)
+    class(BasicPlayer), target :: this
+    integer(4), value :: j_leftVolume
+    integer(4), value :: j_rightVolume
+    continue
+  end subroutine
+end module BasicPlayer_m
 

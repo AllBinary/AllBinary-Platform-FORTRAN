@@ -45,6 +45,16 @@ contains
     jresult => RendererInitializedStupidTimerFactory_jcell_instance
   end function
 
+  subroutine RendererInitializedStupidTimerFactory_jsetstatic_instance(jvalue)
+    class(StupidTimer), target, optional :: jvalue
+    RendererInitializedStupidTimerFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      RendererInitializedStupidTimerFactory_jcell_instance => jvalue
+    else
+      RendererInitializedStupidTimerFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function RendererInitializedStupidTimerFactory_jnew_0() result(this)
     class(RendererInitializedStupidTimerFactory), pointer :: this
     allocate(this)

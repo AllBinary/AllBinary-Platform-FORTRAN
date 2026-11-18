@@ -46,6 +46,16 @@ contains
     jresult => LogConfigTypes_jcell_LOGGING
   end function
 
+  subroutine LogConfigTypes_jsetstatic_LOGGING(jvalue)
+    class(BasicArrayList), target, optional :: jvalue
+    LogConfigTypes_jset_LOGGING = .true.
+    if (present(jvalue)) then
+      LogConfigTypes_jcell_LOGGING => jvalue
+    else
+      LogConfigTypes_jcell_LOGGING => null()
+    end if
+  end subroutine
+
   recursive function LogConfigTypes_jnew_0() result(this)
     class(LogConfigTypes), pointer :: this
     allocate(this)

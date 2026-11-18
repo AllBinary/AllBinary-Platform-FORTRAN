@@ -1,56 +1,54 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.ai
+module DiveAndDirectionalTrackingAICompositeVisitorFactory_m
+  use JR_m
+  use Visitor_m
+  use DiveAndDirectionalTrackingAI_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.ai
-unit DiveAndDirectionalTrackingAICompositeVisitorFactory;
+  type, extends(JObject) :: DiveAndDirectionalTrackingAICompositeVisitorFactory
+  contains
+    procedure :: jm_getInstance_1 => DiveAndDirectionalTrackingAICompositeVisitorFactory_jm_getInstance_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Visitor, DiveAndDirectionalTrackingAI;
+  function DiveAndDirectionalTrackingAICompositeVisitorFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DiveAndDirectionalTrackingAICompositeVisitorFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DiveAndDirectionalTrackingAICompositeVisitorFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDiveAndDirectionalTrackingAICompositeVisitorFactory = class(TObject)
-  public
-    constructor Create;
-        function getInstance(diveBombAI: TDiveAndDirectionalTrackingAI): TVisitor; virtual;
-  end;
+  function DiveAndDirectionalTrackingAICompositeVisitorFactory_jnew_0() result(this)
+    class(DiveAndDirectionalTrackingAICompositeVisitorFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'DiveAndDirectionalTrackingAICompositeVisitorFactory'
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TDiveAndDirectionalTrackingAICompositeVisitorFactory.Create;
-begin
-  inherited Create;
-end;
-    
-
-function TDiveAndDirectionalTrackingAICompositeVisitorFactory.getInstance(diveBombAI: TDiveAndDirectionalTrackingAI): TVisitor;
-begin
-        Exit(TVisitor.getInstance());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function DiveAndDirectionalTrackingAICompositeVisitorFactory_jm_getInstance_1(this, j_diveBombAI) result(jresult)
+    class(DiveAndDirectionalTrackingAICompositeVisitorFactory), target :: this
+    class(DiveAndDirectionalTrackingAI), target, optional :: j_diveBombAI
+    class(Visitor), pointer :: jresult
+        jresult => Visitor_jm_getInstance_0()
+        return
+  end function
+end module DiveAndDirectionalTrackingAICompositeVisitorFactory_m
 

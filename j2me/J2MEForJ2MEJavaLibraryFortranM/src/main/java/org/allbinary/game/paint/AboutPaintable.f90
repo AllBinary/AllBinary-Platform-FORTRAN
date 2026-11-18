@@ -1,151 +1,176 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.paint
+module AboutPaintable_m
+  use JR_m
+  use Anchor_m
+  use CanvasStrings_m
+  use DisplayInfoSingleton_m
+  use MyFontProcessor_m
+  use UpdateMyFontInterface_m
+  use UpdateMyFontProcessor_m
+  use Paintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.paint
-unit AboutPaintable;
+  type, extends(Paintable) :: AboutPaintable
+    class(DisplayInfoSingleton), pointer :: f_displayInfoSingleton => null()
+    character(len=:), allocatable :: f_ABOUT
+    type(JString), allocatable :: f_info(:)
+    type(JString), allocatable :: f_developers(:)
+    type(JRef), allocatable :: f_paintableArray(:)
+    class(MyFontProcessor), pointer :: f_myFontProcessor => null()
+    integer(4) :: f_charHeight = 0
+    integer(4) :: f_aboutBeginWidth = 0
+    integer(4), allocatable :: f_infoBeginWidth(:)
+    integer(4), allocatable :: f_developersBeginWidth(:)
+    integer(4) :: f_anchor = 0
+  contains
+    procedure :: jm_updateMeasurement_1 => AboutPaintable_jm_updateMeasurement_1
+    procedure :: jm_getPaintableArrayInstance_0 => AboutPaintable_jm_getPaintableArrayInstance_0
+    procedure :: jm_paint_1 => AboutPaintable_jm_paint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, DisplayInfoSingleton, MyFontProcessor, UpdateMyFontInterface, Paintable;
-
-type
-  {AB:TYPES}
-  // J2MEForJ2ME
-  TAboutPaintable = class(TPaintable, IUpdateMyFontInterface)
-  public
-    displayInfoSingleton: TDisplayInfoSingleton;
-    ABOUT: string;
-    info: TArray<string>;
-    developers: TArray<string>;
-    paintableArray: TArray<TPaintable>;
-    myFontProcessor: TMyFontProcessor;
-    charHeight: Integer;
-    aboutBeginWidth: Integer;
-    infoBeginWidth: TArray<Integer>;
-    developersBeginWidth: TArray<Integer>;
-    anchor: Integer;
-    procedure InitFields;
-    function JavaObject: TObject;
-        class function getInstance(info: TArray<string>; developers: TArray<string>): TAboutPaintable; static;
-        constructor Create(info: TArray<string>; developers: TArray<string>);
-        procedure updateMeasurement(graphics_: TGraphics); virtual;
-        function getPaintableArrayInstance: TArray<TPaintable>; virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-  end;
-
-implementation
-uses
-  Font, Anchor, CanvasStrings, UpdateMyFontProcessor;
+  ! AboutPaintable used as a UpdateMyFontInterface
+  type, extends(UpdateMyFontInterface) :: AboutPaintable_jas_UpdateMyFontInterface
+    class(AboutPaintable), pointer :: jtarget => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => AboutPaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TAboutPaintable.InitFields;
-begin
-  Self.displayInfoSingleton := TDisplayInfoSingleton.getInstance();
-  Self.ABOUT := TCanvasStrings.getInstance().ABOUT;
-  
-  
-  Self.paintableArray := TArray<TPaintable>.Create(Self);
-  Self.myFontProcessor := TUpdateMyFontProcessor.Create(Self);
-  
-  
-  
-  
-  Self.anchor := TAnchor.TOP_LEFT;
-end;
+  function AboutPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AboutPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AboutPaintable)
+      jresult => object
+    end select
+  end function
 
-function TAboutPaintable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function AboutPaintable_jas_UpdateMyFontInterface_jnew(object) result(jresult)
+    class(AboutPaintable), target :: object
+    class(AboutPaintable_jas_UpdateMyFontInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'AboutPaintable'
+    jresult%jtarget => object
+  end function
+
+  recursive subroutine AboutPaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1(this, j_graphics)
+    class(AboutPaintable_jas_UpdateMyFontInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_updateMeasurement_1(j_graphics)
+  end subroutine
+
+  recursive function AboutPaintable_jnew_2(j_info, j_developers) result(this)
+    type(JString) :: j_info(:)
+    type(JString) :: j_developers(:)
+    class(AboutPaintable), pointer :: this
+    class(CanvasStrings), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'AboutPaintable'
+    this%f_ABOUT = ''
+    this%f_displayInfoSingleton => DisplayInfoSingleton_jm_getInstance_0()
+    jtemp1 => CanvasStrings_jm_getInstance_0()
+    this%f_ABOUT = jtemp1%f_ABOUT
     
-
-class function TAboutPaintable.getInstance(info: TArray<string>; developers: TArray<string>): TAboutPaintable;
-begin
-        Exit(TAboutPaintable.Create(info, developers));
-end;
     
-
-constructor TAboutPaintable.Create(info: TArray<string>; developers: TArray<string>);
-begin
-    inherited Create;
-    InitFields;
-        Self.info := info;
-        Self.infoBeginWidth := TJava.NewArray<Integer>(System.Length(Self.info));
-        Self.developers := developers;
-        Self.developersBeginWidth := TJava.NewArray<Integer>(System.Length(Self.developers));
-end;
+    this%f_paintableArray = [JRef :: JRef(this)]
+    this%f_myFontProcessor => UpdateMyFontProcessor_jnew_1(this)
     
-
-procedure TAboutPaintable.updateMeasurement(graphics_: TGraphics);
-var
-  font_: TFont;
-  infoSize: Integer;
-  index: Integer;
-  size: Integer;
-begin
-        font_ := graphics_.getFont();
-        Self.charHeight := font_.getHeight();
-        Self.aboutBeginWidth := (TJava.SignedRightShift(font_.stringWidth(Self.ABOUT), 1));
-        infoSize := System.Length(Self.info);
-        for index := 0 to infoSize - 1 do begin
-            Self.infoBeginWidth[index] := (TJava.SignedRightShift(font_.stringWidth(Self.info[index]), 1));
-        end;
-        size := System.Length(Self.developers);
-        for index := 0 to size - 1 do begin
-            Self.developersBeginWidth[index] := (TJava.SignedRightShift(font_.stringWidth(Self.developers[index]), 1));
-        end;
-        Self.myFontProcessor := TMyFontProcessor.getInstance();
-end;
     
-
-function TAboutPaintable.getPaintableArrayInstance: TArray<TPaintable>;
-begin
-        Exit(Self.paintableArray);
-end;
     
+    
+    this%f_anchor = Anchor_jstatic_TOP_LEFT()
+        this%f_info = j_info
+        this%f_infoBeginWidth = JR_newIntArray(size(this%f_info, 1))
+        this%f_developers = j_developers
+        this%f_developersBeginWidth = JR_newIntArray(size(this%f_developers, 1))
+  end function
 
-procedure TAboutPaintable.paint(graphics_: TGraphics);
-var
-  halfWidth: Integer;
-  infoSize: Integer;
-  index: Integer;
-  size: Integer;
-begin
-        Self.myFontProcessor.process(graphics_);
-        halfWidth := Self.displayInfoSingleton.getLastHalfWidth();
-        graphics_.drawString(Self.ABOUT, (halfWidth) - (Self.aboutBeginWidth), (2) * (Self.charHeight), Self.anchor);
-        infoSize := System.Length(Self.info);
-        for index := 0 to infoSize - 1 do begin
-            graphics_.drawString(Self.info[index], (halfWidth) - (Self.infoBeginWidth[index]), (((4) + (index))) * (Self.charHeight), Self.anchor);
-        end;
-        size := System.Length(Self.developers);
-        for index := 0 to size - 1 do begin
-            graphics_.drawString(Self.developers[index], (halfWidth) - (Self.developersBeginWidth[index]), ((((5) + (infoSize)) + (index))) * (Self.charHeight), Self.anchor);
-        end;
-end;
+  recursive function AboutPaintable_jm_getInstance_2(j_info, j_developers) result(jresult)
+    type(JString) :: j_info(:)
+    type(JString) :: j_developers(:)
+    class(AboutPaintable), pointer :: jresult
+        jresult => AboutPaintable_jnew_2(j_info, j_developers)
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine AboutPaintable_jm_updateMeasurement_1(this, j_graphics)
+    class(AboutPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Font), pointer :: j_font
+    integer(4) :: j_infoSize
+    integer(4) :: j_index
+    integer(4) :: j_size
+        j_font => j_graphics%jm_getFont_0()
+        this%f_charHeight = j_font%jm_getHeight_0()
+        this%f_aboutBeginWidth = (shifta(j_font%jm_stringWidth_1(this%f_ABOUT), iand(1, 31)))
+        j_infoSize = size(this%f_info, 1)
+        j_index = 0
+        do while ((j_index < j_infoSize))
+            this%f_infoBeginWidth((j_index) + 1) = (shifta(j_font%jm_stringWidth_1(this%f_info((j_index) + 1)%v), iand(1, 31)))
+            j_index = j_index + 1
+        end do
+        j_size = size(this%f_developers, 1)
+        j_index = 0
+        do while ((j_index < j_size))
+            this%f_developersBeginWidth((j_index) + 1) = (shifta(j_font%jm_stringWidth_1(this%f_developers((j_index) + 1)%v), iand(1, 31)))
+            j_index = j_index + 1
+        end do
+        this%f_myFontProcessor => MyFontProcessor_jm_getInstance_0()
+  end subroutine
 
-end.
+  recursive function AboutPaintable_jm_getPaintableArrayInstance_0(this) result(jresult)
+    class(AboutPaintable), target :: this
+    type(JRef), allocatable :: jresult(:)
+        jresult = this%f_paintableArray
+        return
+  end function
+
+  recursive subroutine AboutPaintable_jm_paint_1(this, j_graphics)
+    class(AboutPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4) :: j_halfWidth
+    integer(4) :: j_infoSize
+    integer(4) :: j_index
+    integer(4) :: j_size
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_myFontProcessor%jm_process_1(j_graphics)
+        j_halfWidth = this%f_displayInfoSingleton%jm_getLastHalfWidth_0()
+        call j_graphics%jm_drawString_4(this%f_ABOUT, (j_halfWidth - this%f_aboutBeginWidth), (2 * this%f_charHeight), this%f_anchor)
+        j_infoSize = size(this%f_info, 1)
+        j_index = 0
+        do while ((j_index < j_infoSize))
+            call j_graphics%jm_drawString_4(this%f_info((j_index) + 1)%v, (j_halfWidth - this%f_infoBeginWidth((j_index) + 1)), (((4 + j_index)) * this%f_charHeight), this%f_anchor)
+            j_index = j_index + 1
+        end do
+        j_size = size(this%f_developers, 1)
+        j_index = 0
+        do while ((j_index < j_size))
+            call j_graphics%jm_drawString_4(this%f_developers((j_index) + 1)%v, (j_halfWidth - this%f_developersBeginWidth((j_index) + 1)), ((((5 + j_infoSize) + j_index)) * this%f_charHeight), this%f_anchor)
+            j_index = j_index + 1
+        end do
+  end subroutine
+end module AboutPaintable_m
 

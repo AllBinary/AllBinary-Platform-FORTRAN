@@ -65,6 +65,16 @@ contains
     jresult => SmallIntegerSingletonFactory_jcell_instance
   end function
 
+  subroutine SmallIntegerSingletonFactory_jsetstatic_instance(jvalue)
+    class(SmallIntegerSingletonFactory), target, optional :: jvalue
+    SmallIntegerSingletonFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      SmallIntegerSingletonFactory_jcell_instance => jvalue
+    else
+      SmallIntegerSingletonFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SmallIntegerSingletonFactory_jnew_0() result(this)
     class(SmallIntegerSingletonFactory), pointer :: this
     class(JObject), pointer :: jdiscardRef

@@ -1,89 +1,77 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module AnimationInterfaceFactoryInterfaceComposite_m
+  use JR_m
+  use ScaleProperties_m
+  use AnimationInterfaceFactoryInterface_m
+  use NullAnimationFactory_m
+  use Animation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit AnimationInterfaceFactoryInterfaceComposite;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ScaleProperties, Animation, AnimationInterfaceFactoryInterface, BasicAnimationInterfaceFactoryInterface;
-
-type
-  {AB:TYPES}
-  TAnimationInterfaceFactoryInterfaceComposite = class(TInterfacedObject, IAnimationInterfaceFactoryInterface, IBasicAnimationInterfaceFactoryInterface)
-  public
-    animationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(basicAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>);
-        function getInstance(instanceId: Integer): TAnimation; virtual;
-        function getAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>; virtual;
-        procedure setInitialScale(scaleProperties_: TScaleProperties); virtual;
-  end;
-
-implementation
-uses
-  NullAnimationFactory;
+  type, extends(AnimationInterfaceFactoryInterface) :: AnimationInterfaceFactoryInterfaceComposite
+    type(JRef), allocatable :: f_animationInterfaceFactoryInterfaceArray(:)
+  contains
+    procedure :: jm_getInstance_1 => AnimationInterfaceFactoryInterfaceComposite_jm_getInstance_1
+    procedure :: jm_getAnimationInterfaceFactoryInterfaceArray_0 => AnimationInterfaceFactoryInterfaceComposite_jm_getAnimationInterfaceFactoryInterfaceArray_0
+    procedure :: jm_setInitialScale_1 => AnimationInterfaceFactoryInterfaceComposite_jm_setInitialScale_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TAnimationInterfaceFactoryInterfaceComposite.InitFields;
-begin
-  
-end;
+  function AnimationInterfaceFactoryInterfaceComposite_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnimationInterfaceFactoryInterfaceComposite), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnimationInterfaceFactoryInterfaceComposite)
+      jresult => object
+    end select
+  end function
 
-function TAnimationInterfaceFactoryInterfaceComposite.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function AnimationInterfaceFactoryInterfaceComposite_jnew_1(j_basicAnimationInterfaceFactoryInterfaceArray) result(this)
+    type(JRef) :: j_basicAnimationInterfaceFactoryInterfaceArray(:)
+    class(AnimationInterfaceFactoryInterfaceComposite), pointer :: this
+    allocate(this)
+    this%jclass = 'AnimationInterfaceFactoryInterfaceComposite'
     
+        this%f_animationInterfaceFactoryInterfaceArray = j_basicAnimationInterfaceFactoryInterfaceArray
+  end function
 
-constructor TAnimationInterfaceFactoryInterfaceComposite.Create(basicAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>);
-begin
-    inherited Create;
-    InitFields;
-        Self.animationInterfaceFactoryInterfaceArray := basicAnimationInterfaceFactoryInterfaceArray;
-end;
-    
+  recursive function AnimationInterfaceFactoryInterfaceComposite_jm_getInstance_1(this, j_instanceId) result(jresult)
+    class(AnimationInterfaceFactoryInterfaceComposite), target :: this
+    integer(4), value :: j_instanceId
+    class(Animation), pointer :: jresult
+    class(NullAnimationFactory), pointer :: jtemp1
+        jtemp1 => NullAnimationFactory_jm_getFactoryInstance_0()
+        jresult => jtemp1%jm_getInstance_1(0)
+        return
+  end function
 
-// throws Exception
-function TAnimationInterfaceFactoryInterfaceComposite.getInstance(instanceId: Integer): TAnimation;
-begin
-        Exit(TNullAnimationFactory.getFactoryInstance().getInstance(0));
-end;
-    
+  recursive function AnimationInterfaceFactoryInterfaceComposite_jm_getAnimationInterfaceFactoryInterfaceArray_0(this) result(jresult)
+    class(AnimationInterfaceFactoryInterfaceComposite), target :: this
+    type(JRef), allocatable :: jresult(:)
+        jresult = this%f_animationInterfaceFactoryInterfaceArray
+        return
+  end function
 
-function TAnimationInterfaceFactoryInterfaceComposite.getAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>;
-begin
-        Exit(Self.animationInterfaceFactoryInterfaceArray);
-end;
-    
-
-procedure TAnimationInterfaceFactoryInterfaceComposite.setInitialScale(scaleProperties_: TScaleProperties);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine AnimationInterfaceFactoryInterfaceComposite_jm_setInitialScale_1(this, j_scaleProperties)
+    class(AnimationInterfaceFactoryInterfaceComposite), target :: this
+    class(ScaleProperties), target, optional :: j_scaleProperties
+    continue
+  end subroutine
+end module AnimationInterfaceFactoryInterfaceComposite_m
 

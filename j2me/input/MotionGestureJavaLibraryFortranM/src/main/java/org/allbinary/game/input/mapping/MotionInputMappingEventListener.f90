@@ -1,74 +1,85 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.mapping
+module MotionInputMappingEventListener_m
+  use JR_m
+  use InputMappingEvent_m
+  use InputMappingEventListenerInterface_m
+  use GameKeyCompleteMotionGestureInputEventFactory_m
+  use BasicTouchInputFactory_m
+  use ForcedLogUtil_m
+  use AllBinaryEventObject_m
+  use EventStrings_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.mapping
-unit MotionInputMappingEventListener;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, InputMappingEvent, InputMappingEventListenerInterface, AllBinaryEventObject, EventListenerInterface;
-
-type
-  {AB:TYPES}
-  TMotionInputMappingEventListener = class(TInterfacedObject, IInputMappingEventListenerInterface, IEventListenerInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        procedure onEvent(eventObject: TAllBinaryEventObject); virtual;
-        procedure onInputMappingEvent(inputMappingEvent_: TInputMappingEvent); virtual;
-  end;
-
-implementation
-uses
-  GameKeyCompleteMotionGestureInputEventFactory, BasicTouchInputFactory, ForcedLogUtil, EventStrings;
+  type, extends(InputMappingEventListenerInterface) :: MotionInputMappingEventListener
+  contains
+    procedure :: jm_onEvent_1 => MotionInputMappingEventListener_jm_onEvent_1
+    procedure :: jm_onInputMappingEvent_1 => MotionInputMappingEventListener_jm_onInputMappingEvent_1
+  end type
 
 
-{AB:CODE}
+contains
 
-function TMotionInputMappingEventListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function MotionInputMappingEventListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MotionInputMappingEventListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MotionInputMappingEventListener)
+      jresult => object
+    end select
+  end function
 
-constructor TMotionInputMappingEventListener.Create;
-begin
-  inherited Create;
-end;
-    
+  function MotionInputMappingEventListener_jnew_0() result(this)
+    class(MotionInputMappingEventListener), pointer :: this
+    allocate(this)
+    this%jclass = 'MotionInputMappingEventListener'
+  end function
 
-procedure TMotionInputMappingEventListener.onEvent(eventObject: TAllBinaryEventObject);
-begin
-        TForcedLogUtil.log(TEventStrings.getInstance().PERFORMANCE_MESSAGE, TJava.Box(Self));
-end;
-    
+  recursive subroutine MotionInputMappingEventListener_jm_onEvent_1(this, j_eventObject)
+    class(MotionInputMappingEventListener), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventStrings), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => EventStrings_jm_getInstance_0()
+        call ForcedLogUtil_jm_log_2(jtemp1%f_PERFORMANCE_MESSAGE, this)
+  end subroutine
 
-// throws Exception
-procedure TMotionInputMappingEventListener.onInputMappingEvent(inputMappingEvent_: TInputMappingEvent);
-begin
-        TGameKeyCompleteMotionGestureInputEventFactory.getInstance().updateAll();
-        TBasicTouchInputFactory.getInstance().updateAll(inputMappingEvent_.getInputToGameKeyMapping());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine MotionInputMappingEventListener_jm_onInputMappingEvent_1(this, j_inputMappingEvent)
+    class(MotionInputMappingEventListener), target :: this
+    class(InputMappingEvent), target, optional :: j_inputMappingEvent
+    class(GameKeyCompleteMotionGestureInputEventFactory), pointer :: jtemp2
+    class(BasicTouchInputFactory), pointer :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp2 => GameKeyCompleteMotionGestureInputEventFactory_jm_getInstance_0()
+        call jtemp2%jm_updateAll_0()
+        jtemp3 => BasicTouchInputFactory_jm_getInstance_0()
+        call jtemp3%jm_updateAll_1(j_inputMappingEvent%jm_getInputToGameKeyMapping_0())
+  end subroutine
+end module MotionInputMappingEventListener_m
 

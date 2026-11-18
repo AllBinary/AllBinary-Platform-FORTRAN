@@ -48,6 +48,16 @@ contains
     jresult => J2SEMath_jcell_instance
   end function
 
+  subroutine J2SEMath_jsetstatic_instance(jvalue)
+    class(J2SEMath), target, optional :: jvalue
+    J2SEMath_jset_instance = .true.
+    if (present(jvalue)) then
+      J2SEMath_jcell_instance => jvalue
+    else
+      J2SEMath_jcell_instance => null()
+    end if
+  end subroutine
+
   function J2SEMath_jnew_0() result(this)
     class(J2SEMath), pointer :: this
     allocate(this)

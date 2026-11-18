@@ -1,64 +1,76 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit AnimationBehavior;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module AnimationBehavior_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: AnimationBehavior
+  contains
+    procedure :: jm_reset_0 => AnimationBehavior_jm_reset_0
+  end type
 
-interface
+  class(AnimationBehavior), pointer, save :: AnimationBehavior_jcell_instance => null()
+  logical, save :: AnimationBehavior_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TAnimationBehavior = class(TObject)
-  public
-    class var instance: TAnimationBehavior;
-    constructor Create;
-        class function getInstance: TAnimationBehavior; static;
-        procedure reset; virtual;
-  end;
+  function AnimationBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnimationBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnimationBehavior)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function AnimationBehavior_jstatic_instance() result(jresult)
+    class(AnimationBehavior), pointer :: jresult
+    if (.not. AnimationBehavior_jset_instance) then
+      AnimationBehavior_jset_instance = .true.
+      AnimationBehavior_jcell_instance => AnimationBehavior_jnew_0()
+    end if
+    jresult => AnimationBehavior_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine AnimationBehavior_jsetstatic_instance(jvalue)
+    class(AnimationBehavior), target, optional :: jvalue
+    AnimationBehavior_jset_instance = .true.
+    if (present(jvalue)) then
+      AnimationBehavior_jcell_instance => jvalue
+    else
+      AnimationBehavior_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TAnimationBehavior.Create;
-begin
-  inherited Create;
-end;
-    
+  function AnimationBehavior_jnew_0() result(this)
+    class(AnimationBehavior), pointer :: this
+    allocate(this)
+    this%jclass = 'AnimationBehavior'
+  end function
 
-class function TAnimationBehavior.getInstance: TAnimationBehavior;
-begin
-        Exit(TAnimationBehavior.instance);
-end;
-    
+  recursive function AnimationBehavior_jm_getInstance_0() result(jresult)
+    class(AnimationBehavior), pointer :: jresult
+        jresult => AnimationBehavior_jstatic_instance()
+        return
+  end function
 
-procedure TAnimationBehavior.reset;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAnimationBehavior.instance := TAnimationBehavior.Create();
-  {AB:END}
-
-end.
+  recursive subroutine AnimationBehavior_jm_reset_0(this)
+    class(AnimationBehavior), target :: this
+    continue
+  end subroutine
+end module AnimationBehavior_m
 

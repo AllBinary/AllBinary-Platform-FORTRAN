@@ -1,78 +1,86 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module CachePolicyFactory_m
+  use JR_m
+  use Long_m
+  use CachePolicy_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit CachePolicyFactory;
+  type, extends(JObject) :: CachePolicyFactory
+    character(len=:), allocatable :: f_NAME
+    class(CachePolicy), pointer :: f_MAX_TIME_THOUSAND_MAX => null()
+    class(CachePolicy), pointer :: f_THIRTY_MINUTES_TEN_THOUSAND_MAX => null()
+    class(CachePolicy), pointer :: f_THIRTY_MINUTES_FIFTY_THOUSAND_MAX => null()
+    class(CachePolicy), pointer :: f_ONE_MINUTE_FIVE_MAX => null()
+    class(CachePolicy), pointer :: f_ONE_MINUTE_TEN_MAX => null()
+    class(CachePolicy), pointer :: f_ONE_MINUTE_ONE_HUNDRED_MAX => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(CachePolicyFactory), pointer, save :: CachePolicyFactory_jcell_instance => null()
+  logical, save :: CachePolicyFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CachePolicy;
+  function CachePolicyFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CachePolicyFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CachePolicyFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCachePolicyFactory = class(TObject)
-  public
-    NAME: string;
-    MAX_TIME_THOUSAND_MAX: TCachePolicy;
-    THIRTY_MINUTES_TEN_THOUSAND_MAX: TCachePolicy;
-    THIRTY_MINUTES_FIFTY_THOUSAND_MAX: TCachePolicy;
-    ONE_MINUTE_FIVE_MAX: TCachePolicy;
-    ONE_MINUTE_TEN_MAX: TCachePolicy;
-    ONE_MINUTE_ONE_HUNDRED_MAX: TCachePolicy;
-    class var instance: TCachePolicyFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TCachePolicyFactory; static;
-  end;
+  function CachePolicyFactory_jstatic_instance() result(jresult)
+    class(CachePolicyFactory), pointer :: jresult
+    if (.not. CachePolicyFactory_jset_instance) then
+      CachePolicyFactory_jset_instance = .true.
+      CachePolicyFactory_jcell_instance => CachePolicyFactory_jnew_0()
+    end if
+    jresult => CachePolicyFactory_jcell_instance
+  end function
 
-implementation
+  subroutine CachePolicyFactory_jsetstatic_instance(jvalue)
+    class(CachePolicyFactory), target, optional :: jvalue
+    CachePolicyFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      CachePolicyFactory_jcell_instance => jvalue
+    else
+      CachePolicyFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function CachePolicyFactory_jnew_0() result(this)
+    class(CachePolicyFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'CachePolicyFactory'
+    this%f_NAME = ''
+    this%f_NAME = 'lru'
+    this%f_MAX_TIME_THOUSAND_MAX => CachePolicy_jnew_3(this%f_NAME, Long_jstatic_MAX_VALUE(), int(1000, 8))
+    this%f_THIRTY_MINUTES_TEN_THOUSAND_MAX => CachePolicy_jnew_3(this%f_NAME, ((1000 * 60) * 30), int(10000, 8))
+    this%f_THIRTY_MINUTES_FIFTY_THOUSAND_MAX => CachePolicy_jnew_3(this%f_NAME, ((1000 * 60) * 30), int(100000, 8))
+    this%f_ONE_MINUTE_FIVE_MAX => CachePolicy_jnew_3(this%f_NAME, ((1000 * 60) * 1), int(5, 8))
+    this%f_ONE_MINUTE_TEN_MAX => CachePolicy_jnew_3(this%f_NAME, ((1000 * 60) * 1), int(10, 8))
+    this%f_ONE_MINUTE_ONE_HUNDRED_MAX => CachePolicy_jnew_3(this%f_NAME, ((1000 * 60) * 1), int(100, 8))
+  end function
 
-procedure TCachePolicyFactory.InitFields;
-begin
-  Self.NAME := 'lru';
-  Self.MAX_TIME_THOUSAND_MAX := TCachePolicy.Create(Self.NAME, High(Int64), 1000);
-  Self.THIRTY_MINUTES_TEN_THOUSAND_MAX := TCachePolicy.Create(Self.NAME, ((1000) * (60)) * (30), 10000);
-  Self.THIRTY_MINUTES_FIFTY_THOUSAND_MAX := TCachePolicy.Create(Self.NAME, ((1000) * (60)) * (30), 100000);
-  Self.ONE_MINUTE_FIVE_MAX := TCachePolicy.Create(Self.NAME, ((1000) * (60)) * (1), 5);
-  Self.ONE_MINUTE_TEN_MAX := TCachePolicy.Create(Self.NAME, ((1000) * (60)) * (1), 10);
-  Self.ONE_MINUTE_ONE_HUNDRED_MAX := TCachePolicy.Create(Self.NAME, ((1000) * (60)) * (1), 100);
-end;
-
-constructor TCachePolicyFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TCachePolicyFactory.getInstance: TCachePolicyFactory;
-begin
-        Exit(TCachePolicyFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TCachePolicyFactory.instance := TCachePolicyFactory.Create();
-  {AB:END}
-
-end.
+  recursive function CachePolicyFactory_jm_getInstance_0() result(jresult)
+    class(CachePolicyFactory), pointer :: jresult
+        jresult => CachePolicyFactory_jstatic_instance()
+        return
+  end function
+end module CachePolicyFactory_m
 

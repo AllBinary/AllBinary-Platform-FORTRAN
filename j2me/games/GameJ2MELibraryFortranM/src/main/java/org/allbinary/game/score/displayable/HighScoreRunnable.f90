@@ -1,103 +1,105 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.score.displayable
+module HighScoreRunnable_m
+  use JR_m
+  use J2MEUtil_m
+  use ABSystemWrapper_m
+  use LogUtil_m
+  use StringMaker_m
+  use CommonStrings_m
+  use ARunnable_m
+  use HighScoresCanvas_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.score.displayable
-unit HighScoreRunnable;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ARunnable, HighScoresCanvas;
-
-type
-  {AB:TYPES}
-  THighScoreRunnable = class(TARunnable)
-  public
-    highScoresCanvas: THighScoresCanvas;
-    procedure InitFields;
-        constructor Create(highScoresCanvas_: THighScoresCanvas);
-        procedure run; override;
-  end;
-
-implementation
-uses
-  J2MEUtil, ABSystemWrapper, LogUtil, StringMaker, CommonStrings;
+  type, extends(ARunnable) :: HighScoreRunnable
+    class(HighScoresCanvas), pointer :: f_highScoresCanvas => null()
+  contains
+    procedure :: jm_run_0 => HighScoreRunnable_jm_run_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure THighScoreRunnable.InitFields;
-begin
-  
-end;
+  function HighScoreRunnable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HighScoreRunnable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HighScoreRunnable)
+      jresult => object
+    end select
+  end function
+
+  recursive function HighScoreRunnable_jnew_1(j_highScoresCanvas) result(this)
+    class(HighScoresCanvas), target, optional :: j_highScoresCanvas
+    class(HighScoreRunnable), pointer :: this
+    allocate(this)
+    this%jclass = 'HighScoreRunnable'
     
+        this%f_highScoresCanvas => j_highScoresCanvas
+  end function
 
-constructor THighScoreRunnable.Create(highScoresCanvas_: THighScoresCanvas);
-begin
-    inherited Create;
-    InitFields;
-        Self.highScoresCanvas := highScoresCanvas_;
-end;
-    
-
-procedure THighScoreRunnable.run;
-var
-  commonStrings_: TCommonStrings;
-  logUtil_: TLogUtil;
-  highScoresCanvas_: THighScoresCanvas;
-  isHTML: Boolean;
-  stringMaker_: TStringMaker;
-  systemWrapper: TABSystemWrapper;
-  currentTimeMillis: Int64;
-begin
-        commonStrings_ := TCommonStrings.getInstance();
-        logUtil_ := TLogUtil.getInstance();
-        highScoresCanvas_ := Self.highScoresCanvas;
-        try
-            isHTML := TJ2MEUtil.isHTML();
-            if not (isHTML) then begin
-                while not (highScoresCanvas_.hasPainted) do begin
-                end;
-                highScoresCanvas_.hasPainted := False;
-            end;
-            stringMaker_ := TStringMaker.Create();
-            systemWrapper := TABSystemWrapper.getInstance();
-            currentTimeMillis := systemWrapper.currentTimeMillis();
-            logUtil_.putF(stringMaker_.append('HighScoresCanvas - Request repaint to be sure: ').appendlong(currentTimeMillis).toString(), TJava.Box(Self), commonStrings_.RUN);
-            highScoresCanvas_.repaintBehavior.onChangeRepaint(highScoresCanvas_);
-            if not (isHTML) then begin
-                while not (highScoresCanvas_.hasPainted) do begin
-                end;
-            end;
-            stringMaker_.delete_(0, stringMaker_.length());
-            logUtil_.putF(stringMaker_.append('HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: ').appendlong(currentTimeMillis).toString(), TJava.Box(Self), commonStrings_.RUN);
-            highScoresCanvas_.executeUpdate();
-        except
-            on e: SysUtils.Exception do begin
-            logUtil_.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.RUN, TJava.Box(e));
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine HighScoreRunnable_jm_run_0(this)
+    class(HighScoreRunnable), target :: this
+    class(CommonStrings), pointer :: j_commonStrings
+    class(LogUtil), pointer :: j_logUtil
+    class(HighScoresCanvas), pointer :: j_highScoresCanvas
+    logical :: j_isHTML
+    class(StringMaker), pointer :: j_stringMaker
+    class(ABSystemWrapper), pointer :: j_systemWrapper
+    integer(8) :: j_currentTimeMillis
+    class(StringMaker), pointer :: jtemp1
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+    class(StringMaker), pointer :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonStrings => CommonStrings_jm_getInstance_0()
+        j_logUtil => LogUtil_jm_getInstance_0()
+        j_highScoresCanvas => this%f_highScoresCanvas
+        continue ! try
+            j_isHTML = J2MEUtil_jm_isHTML_0()
+            if ((.not. j_isHTML)) then
+                do while ((.not. j_highScoresCanvas%f_hasPainted))
+                    continue
+                end do
+                j_highScoresCanvas%f_hasPainted = .false.
+            end if
+            j_stringMaker => StringMaker_jnew_0()
+            j_systemWrapper => ABSystemWrapper_jm_getInstance_0()
+            j_currentTimeMillis = j_systemWrapper%jm_currentTimeMillis_0()
+            jtemp2 => j_stringMaker%jm_append_1('HighScoresCanvas - Request repaint to be sure: ')
+            jtemp1 => jtemp2%jm_appendlong_1(j_currentTimeMillis)
+            call j_logUtil%jm_putF_3(jtemp1%jm_toString_0(), this, j_commonStrings%f_RUN)
+            call j_highScoresCanvas%f_repaintBehavior%jm_onChangeRepaint_1(j_highScoresCanvas)
+            if ((.not. j_isHTML)) then
+                do while ((.not. j_highScoresCanvas%f_hasPainted))
+                    continue
+                end do
+            end if
+            jdiscardRef => j_stringMaker%jm_delete_2(0, j_stringMaker%jm_length_0())
+            jtemp4 => j_stringMaker%jm_append_1('HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: ')
+            jtemp3 => jtemp4%jm_appendlong_1(j_currentTimeMillis)
+            call j_logUtil%jm_putF_3(jtemp3%jm_toString_0(), this, j_commonStrings%f_RUN)
+            call j_highScoresCanvas%jm_executeUpdate_0()
+  end subroutine
+end module HighScoreRunnable_m
 

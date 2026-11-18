@@ -1,98 +1,127 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration
+module SaveGameForm_m
+  use JR_m
+  use MIDPUtil_m
+  use GameCommandsFactory_m
+  use BasicColor_m
+  use CommandForm_m
+  use ABSystemWrapper_m
+  use Long_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration
-unit SaveGameForm;
+  type, extends(CommandForm) :: SaveGameForm
+    class(MIDPUtil), pointer :: f_meUtil => null()
+  contains
+    procedure :: jm_initCommands_1 => SaveGameForm_jm_initCommands_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(CommandForm), pointer, save :: SaveGameForm_jcell_FORM => null()
+  logical, save :: SaveGameForm_jset_FORM = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CommandListener, MIDPUtil, BasicColor, CommandForm;
+  function SaveGameForm_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SaveGameForm), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SaveGameForm)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TSaveGameForm = class(TCommandForm)
-  public
-    meUtil: TMIDPUtil;
-    class var FORM: TCommandForm;
-    procedure InitFields;
-        class function createForm(commandListener_: ICommandListener; title: string; backgrounBasicColor: TBasicColor; foregroundBasicColor: TBasicColor): TCommandForm; static;
-        class function getInstance: TCommandForm; static;
-        constructor Create(commandListener_: ICommandListener; title: string; backgrounBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-        procedure initCommands(cmdListener: ICommandListener); override;
-  end;
+  function SaveGameForm_jstatic_FORM() result(jresult)
+    class(CommandForm), pointer :: jresult
+    if (.not. SaveGameForm_jset_FORM) then
+      SaveGameForm_jset_FORM = .true.
+      SaveGameForm_jcell_FORM => CommandForm_jm_getNullCommandForm_0()
+    end if
+    jresult => SaveGameForm_jcell_FORM
+  end function
 
-implementation
-uses
-  TextField, GameCommandsFactory, ABSystemWrapper;
+  subroutine SaveGameForm_jsetstatic_FORM(jvalue)
+    class(CommandForm), target, optional :: jvalue
+    SaveGameForm_jset_FORM = .true.
+    if (present(jvalue)) then
+      SaveGameForm_jcell_FORM => jvalue
+    else
+      SaveGameForm_jcell_FORM => null()
+    end if
+  end subroutine
 
+  recursive function SaveGameForm_jnew_4(j_commandListener, j_title, j_backgrounBasicColor, j_foregroundBasicColor) result(this)
+    class(CommandListener), target, optional :: j_commandListener
+    character(len=*), intent(in) :: j_title
+    class(BasicColor), target, optional :: j_backgrounBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(SaveGameForm), pointer :: this
+    character(len=:), allocatable :: j_timeString
+    class(ABSystemWrapper), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'SaveGameForm'
+    this%f_meUtil => MIDPUtil_jm_getInstance_0()
+        continue ! super()
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_commonStrings%f_CONSTRUCTOR)
+        jtemp1 => ABSystemWrapper_jm_getInstance_0()
+        j_timeString = JR_longString(jtemp1%jm_currentTimeMillis_0())
+        call this%f_meUtil%jm_appendItem_2(this, TextField_jnew_4('Name: ', j_timeString, 30, TextField_jstatic_ANY()))
+        call this%jm_initCommands_1(j_commandListener)
+  end function
 
-{AB:CODE}
+  recursive function SaveGameForm_jm_createForm_4(j_commandListener, j_title, j_backgrounBasicColor, j_foregroundBasicColor) result(jresult)
+    class(CommandListener), target, optional :: j_commandListener
+    character(len=*), intent(in) :: j_title
+    class(BasicColor), target, optional :: j_backgrounBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(CommandForm), pointer :: jresult
+        call SaveGameForm_jsetstatic_FORM(SaveGameForm_jnew_4(j_commandListener, j_title, j_backgrounBasicColor, j_foregroundBasicColor))
+        jresult => SaveGameForm_jstatic_FORM()
+        return
+  end function
 
-procedure TSaveGameForm.InitFields;
-begin
-  Self.meUtil := TMIDPUtil.getInstance();
-end;
-    
+  recursive function SaveGameForm_jm_getInstance_0() result(jresult)
+    class(CommandForm), pointer :: jresult
+        jresult => SaveGameForm_jstatic_FORM()
+        return
+  end function
 
-// throws Exception
-class function TSaveGameForm.createForm(commandListener_: ICommandListener; title: string; backgrounBasicColor: TBasicColor; foregroundBasicColor: TBasicColor): TCommandForm;
-begin
-        TSaveGameForm.FORM := TSaveGameForm.Create(commandListener_, title, backgrounBasicColor, foregroundBasicColor);
-        Exit(TSaveGameForm.FORM);
-end;
-    
-
-class function TSaveGameForm.getInstance: TCommandForm;
-begin
-        Exit(TSaveGameForm.FORM);
-end;
-    
-
-constructor TSaveGameForm.Create(commandListener_: ICommandListener; title: string; backgrounBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-var
-  timeString: string;
-begin
-        inherited Create(commandListener_, title, backgrounBasicColor, foregroundBasicColor);
-        InitFields;
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.commonStrings.CONSTRUCTOR_);
-        timeString := IntToStr(TABSystemWrapper.getInstance().currentTimeMillis());
-        Self.meUtil.appendItem(Self, TTextField.Create('Name: ', timeString, 30, TTextField.ANY));
-        Self.initCommands(commandListener_);
-end;
-    
-
-procedure TSaveGameForm.initCommands(cmdListener: ICommandListener);
-var
-  gameCommandsFactory_: TGameCommandsFactory;
-begin
-        gameCommandsFactory_ := TGameCommandsFactory.getInstance();
-        Self.removeAllCommands();
-        Self.addCommand(gameCommandsFactory_.SAVE);
-        Self.addCommand(gameCommandsFactory_.CLOSE_AND_SHOW_GAME_CANVAS);
-        Self.setCommandListener(cmdListener);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TSaveGameForm.FORM := TCommandForm.getNullCommandForm();
-  {AB:END}
-
-end.
+  recursive subroutine SaveGameForm_jm_initCommands_1(this, j_cmdListener)
+    class(SaveGameForm), target :: this
+    class(CommandListener), target, optional :: j_cmdListener
+    class(GameCommandsFactory), pointer :: j_gameCommandsFactory
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_gameCommandsFactory => GameCommandsFactory_jm_getInstance_0()
+        call this%jm_removeAllCommands_0()
+        call this%jm_addCommand_1(j_gameCommandsFactory%f_SAVE)
+        call this%jm_addCommand_1(j_gameCommandsFactory%f_CLOSE_AND_SHOW_GAME_CANVAS)
+        call this%jm_setCommandListener_1(j_cmdListener)
+  end subroutine
+end module SaveGameForm_m
 

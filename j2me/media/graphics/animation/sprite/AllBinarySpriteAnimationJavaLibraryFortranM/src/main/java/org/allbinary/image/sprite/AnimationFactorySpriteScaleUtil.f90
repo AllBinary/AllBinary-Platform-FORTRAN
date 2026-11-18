@@ -1,130 +1,144 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.image.sprite
-unit AnimationFactorySpriteScaleUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.image.sprite
+module AnimationFactorySpriteScaleUtil_m
+  use JR_m
+  use SpriteFactory_m
+  use OpenGLUtil_m
+  use ImageCache_m
+  use ImageCacheFactory_m
+  use OpenGLESImageExclusionUtil_m
+  use J2SEMath_m
+  use ImageScaleUtil_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: AnimationFactorySpriteScaleUtil
+    class(ImageCache), pointer :: f_imageCache => null()
+    class(ImageScaleUtil), pointer :: f_imageScaleUtil => null()
+    class(OpenGLUtil), pointer :: f_openGLUtil => null()
+    class(J2SEMath), pointer :: f_j2seMath => null()
+    class(OpenGLESImageExclusionUtil), pointer :: f_openGLESImageExclusionUtil => null()
+  contains
+    procedure :: jm_createImage_5 => AnimationFactorySpriteScaleUtil_jm_createImage_5
+  end type
 
-interface
+  class(AnimationFactorySpriteScaleUtil), pointer, save :: AnimationFactorySpriteScaleUtil_jcell_instance => null()
+  logical, save :: AnimationFactorySpriteScaleUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, Sprite, OpenGLUtil, ImageCache, OpenGLESImageExclusionUtil, J2SEMath, ImageScaleUtil;
+contains
 
-type
-  {AB:TYPES}
-  TAnimationFactorySpriteScaleUtil = class(TObject)
-  public
-    imageCache: TImageCache;
-    imageScaleUtil: TImageScaleUtil;
-    openGLUtil: TOpenGLUtil;
-    j2seMath: TJ2SEMath;
-    openGLESImageExclusionUtil: TOpenGLESImageExclusionUtil;
-    class var instance: TAnimationFactorySpriteScaleUtil;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TAnimationFactorySpriteScaleUtil; static;
-        function createImage(image_: TImage; width: Integer; height: Integer; scaleWidth: Integer; scaleHeight: Integer): TSprite; virtual;
-  end;
+  function AnimationFactorySpriteScaleUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnimationFactorySpriteScaleUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnimationFactorySpriteScaleUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  SpriteFactory, ImageCacheFactory, LogUtil, StringMaker, CommonLabels, CommonStrings;
+  function AnimationFactorySpriteScaleUtil_jstatic_instance() result(jresult)
+    class(AnimationFactorySpriteScaleUtil), pointer :: jresult
+    if (.not. AnimationFactorySpriteScaleUtil_jset_instance) then
+      AnimationFactorySpriteScaleUtil_jset_instance = .true.
+      AnimationFactorySpriteScaleUtil_jcell_instance => AnimationFactorySpriteScaleUtil_jnew_0()
+    end if
+    jresult => AnimationFactorySpriteScaleUtil_jcell_instance
+  end function
 
+  subroutine AnimationFactorySpriteScaleUtil_jsetstatic_instance(jvalue)
+    class(AnimationFactorySpriteScaleUtil), target, optional :: jvalue
+    AnimationFactorySpriteScaleUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      AnimationFactorySpriteScaleUtil_jcell_instance => jvalue
+    else
+      AnimationFactorySpriteScaleUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function AnimationFactorySpriteScaleUtil_jnew_0() result(this)
+    class(AnimationFactorySpriteScaleUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'AnimationFactorySpriteScaleUtil'
+    this%f_imageCache => ImageCacheFactory_jm_getInstance_0()
+    this%f_imageScaleUtil => ImageScaleUtil_jm_getInstance_0()
+    this%f_openGLUtil => OpenGLUtil_jm_getInstance_0()
+    this%f_j2seMath => J2SEMath_jm_getInstance_0()
+    this%f_openGLESImageExclusionUtil => OpenGLESImageExclusionUtil_jm_getInstance_0()
+  end function
 
-procedure TAnimationFactorySpriteScaleUtil.InitFields;
-begin
-  Self.imageCache := TImageCacheFactory.getInstance();
-  Self.imageScaleUtil := TImageScaleUtil.getInstance();
-  Self.openGLUtil := TOpenGLUtil.getInstance();
-  Self.j2seMath := TJ2SEMath.getInstance();
-  Self.openGLESImageExclusionUtil := TOpenGLESImageExclusionUtil.getInstance();
-end;
+  recursive function AnimationFactorySpriteScaleUtil_jm_getInstance_0() result(jresult)
+    class(AnimationFactorySpriteScaleUtil), pointer :: jresult
+        jresult => AnimationFactorySpriteScaleUtil_jstatic_instance()
+        return
+  end function
 
-constructor TAnimationFactorySpriteScaleUtil.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TAnimationFactorySpriteScaleUtil.getInstance: TAnimationFactorySpriteScaleUtil;
-begin
-        Exit(TAnimationFactorySpriteScaleUtil.instance);
-end;
-    
-
-// throws Exception
-function TAnimationFactorySpriteScaleUtil.createImage(image_: TImage; width: Integer; height: Integer; scaleWidth: Integer; scaleHeight: Integer): TSprite;
-var
-  spriteFactory_: TSpriteFactory;
-  sprite_: TSprite;
-  scaledImage: TImage;
-  scaleX: Single;
-  scaleY: Single;
-  width2: Integer;
-  height2: Integer;
-  multiplesOf16Width: Integer;
-  by16Width: Integer;
-  multiplesOf16Height: Integer;
-  by16Height: Integer;
-begin
-        spriteFactory_ := TSpriteFactory.getInstance();
-        
-        
-        if ((scaleWidth) <> (0)) and ((scaleHeight) <> (0)) then begin
-            scaleX := ((scaleWidth)) / ((width));
-            scaleY := ((scaleHeight)) / ((height));
-            if ((((scaleX) = (1.0)) and ((scaleY) = (1.0)))) or ((((scaleX) = (0.0)) or ((scaleY) = (0.0)))) then begin
-                scaledImage := Self.openGLUtil.addImage(image_);
-                sprite_ := spriteFactory_.createSprite(scaledImage, width, height);
-            end else begin
-                if Self.openGLESImageExclusionUtil.isCustomScaling(image_) then begin
-                    width2 := Self.j2seMath.round(((scaleWidth)) - (0.5));
-                    height2 := Self.j2seMath.round(((scaleHeight)) - (0.5));
-                    multiplesOf16Width := (width2) div (16);
-                    by16Width := (multiplesOf16Width) * (16);
-                    scaleX := ((by16Width)) / (width);
-                    multiplesOf16Height := (height2) div (16);
-                    by16Height := (multiplesOf16Height) * (16);
-                    scaleY := ((by16Height)) / (height);
-                    if (scaleWidth) < (width) then begin
-                        scaleX := (scaleX) * (2.35);
-                    end;
-                    if (scaleHeight) < (height) then begin
-                        scaleY := (scaleY) * (2.35);
-                    end;
-                end;
-                scaledImage := Self.imageScaleUtil.createImage2(Self.imageCache, image_, scaleX, 1.0, scaleY, 1.0, True);
-                sprite_ := spriteFactory_.createSprite(scaledImage, Integer(Trunc(((width) * (scaleX)))), Integer(Trunc(((height) * (scaleY)))));
-            end;
-        end else begin
-            scaledImage := Self.openGLUtil.addImage(image_);
-            sprite_ := spriteFactory_.createSprite(scaledImage, width, height);
-        end;
-        Exit(sprite_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAnimationFactorySpriteScaleUtil.instance := TAnimationFactorySpriteScaleUtil.Create();
-  {AB:END}
-
-end.
+  recursive function AnimationFactorySpriteScaleUtil_jm_createImage_5(this, j_image, j_width, j_height, j_scaleWidth, j_scaleHeight) result(jresult)
+    class(AnimationFactorySpriteScaleUtil), target :: this
+    class(Image), target, optional :: j_image
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    integer(4), value :: j_scaleWidth
+    integer(4), value :: j_scaleHeight
+    class(Sprite), pointer :: jresult
+    class(SpriteFactory), pointer :: j_spriteFactory
+    class(Sprite), pointer :: j_sprite
+    class(Image), pointer :: j_scaledImage
+    real(4) :: j_scaleX
+    real(4) :: j_scaleY
+    integer(4) :: j_width2
+    integer(4) :: j_height2
+    integer(4) :: j_multiplesOf16Width
+    integer(4) :: j_by16Width
+    integer(4) :: j_multiplesOf16Height
+    integer(4) :: j_by16Height
+        j_spriteFactory => SpriteFactory_jm_getInstance_0()
+        continue
+        continue
+        if (((j_scaleWidth /= 0) .and. (j_scaleHeight /= 0))) then
+            j_scaleX = ((real(j_scaleWidth, 4)) / (real(j_width, 4)))
+            j_scaleY = ((real(j_scaleHeight, 4)) / (real(j_height, 4)))
+            if (((((j_scaleX == 1.0) .and. (j_scaleY == 1.0))) .or. (((j_scaleX == 0.0) .or. (j_scaleY == 0.0))))) then
+                j_scaledImage => this%f_openGLUtil%jm_addImage_1(j_image)
+                j_sprite => j_spriteFactory%jm_createSprite_3(j_scaledImage, j_width, j_height)
+            else
+                if (this%f_openGLESImageExclusionUtil%jm_isCustomScaling_1(j_image)) then
+                    j_width2 = this%f_j2seMath%jm_round_1((real(j_scaleWidth, 4) - 0.5))
+                    j_height2 = this%f_j2seMath%jm_round_1((real(j_scaleHeight, 4) - 0.5))
+                    j_multiplesOf16Width = (j_width2 / 16)
+                    j_by16Width = (j_multiplesOf16Width * 16)
+                    j_scaleX = ((real(j_by16Width, 4)) / real(j_width, 4))
+                    j_multiplesOf16Height = (j_height2 / 16)
+                    j_by16Height = (j_multiplesOf16Height * 16)
+                    j_scaleY = ((real(j_by16Height, 4)) / real(j_height, 4))
+                    if ((j_scaleWidth < j_width)) then
+                        j_scaleX = (j_scaleX * 2.35)
+                    end if
+                    if ((j_scaleHeight < j_height)) then
+                        j_scaleY = (j_scaleY * 2.35)
+                    end if
+                end if
+                j_scaledImage => this%f_imageScaleUtil%jm_createImage2_7(this%f_imageCache, j_image, j_scaleX, 1.0, j_scaleY, 1.0, .true.)
+                j_sprite => j_spriteFactory%jm_createSprite_3(j_scaledImage, JR_d2i(real(((real(j_width, 4) * j_scaleX)), 8)), JR_d2i(real(((real(j_height, 4) * j_scaleY)), 8)))
+            end if
+        else
+            j_scaledImage => this%f_openGLUtil%jm_addImage_1(j_image)
+            j_sprite => j_spriteFactory%jm_createSprite_3(j_scaledImage, j_width, j_height)
+        end if
+        jresult => j_sprite
+        return
+  end function
+end module AnimationFactorySpriteScaleUtil_m
 

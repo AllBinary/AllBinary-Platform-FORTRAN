@@ -1,67 +1,71 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.physics.velocity
-unit VelocityBehaviorBase;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.physics.velocity
+module VelocityBehaviorBase_m
+  use JR_m
+  use BasicVelocityProperties_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: VelocityBehaviorBase
+  contains
+    procedure :: jm_reduce_3 => VelocityBehaviorBase_jm_reduce_3
+    procedure :: jm_reduceX_3 => VelocityBehaviorBase_jm_reduceX_3
+    procedure :: jm_reduceY_3 => VelocityBehaviorBase_jm_reduceY_3
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicVelocityProperties;
+contains
 
-type
-  {AB:TYPES}
-  TVelocityBehaviorBase = class(TObject)
-  public
-    constructor Create;
-        procedure reduce(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer); virtual;
-        procedure reduceX(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer); virtual;
-        procedure reduceY(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer); virtual;
-  end;
+  function VelocityBehaviorBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(VelocityBehaviorBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (VelocityBehaviorBase)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function VelocityBehaviorBase_jnew_0() result(this)
+    class(VelocityBehaviorBase), pointer :: this
+    allocate(this)
+    this%jclass = 'VelocityBehaviorBase'
+  end function
 
-{AB:CODE}
+  recursive subroutine VelocityBehaviorBase_jm_reduce_3(this, j_velocityProperties, j_nominator, j_denominator)
+    class(VelocityBehaviorBase), target :: this
+    class(BasicVelocityProperties), target, optional :: j_velocityProperties
+    integer(4), value :: j_nominator
+    integer(4), value :: j_denominator
+    continue
+  end subroutine
 
-constructor TVelocityBehaviorBase.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine VelocityBehaviorBase_jm_reduceX_3(this, j_velocityProperties, j_nominator, j_denominator)
+    class(VelocityBehaviorBase), target :: this
+    class(BasicVelocityProperties), target, optional :: j_velocityProperties
+    integer(4), value :: j_nominator
+    integer(4), value :: j_denominator
+    continue
+  end subroutine
 
-procedure TVelocityBehaviorBase.reduce(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer);
-begin
-end;
-    
-
-procedure TVelocityBehaviorBase.reduceX(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer);
-begin
-end;
-    
-
-procedure TVelocityBehaviorBase.reduceY(velocityProperties: TBasicVelocityProperties; nominator: Integer; denominator: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine VelocityBehaviorBase_jm_reduceY_3(this, j_velocityProperties, j_nominator, j_denominator)
+    class(VelocityBehaviorBase), target :: this
+    class(BasicVelocityProperties), target, optional :: j_velocityProperties
+    integer(4), value :: j_nominator
+    integer(4), value :: j_denominator
+    continue
+  end subroutine
+end module VelocityBehaviorBase_m
 

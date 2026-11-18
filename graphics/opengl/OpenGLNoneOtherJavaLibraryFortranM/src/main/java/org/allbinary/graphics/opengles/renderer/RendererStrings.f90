@@ -1,74 +1,84 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.renderer
-unit RendererStrings;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.renderer
+module RendererStrings_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: RendererStrings
+    character(len=:), allocatable :: f_ON_SURFACE_CREATED
+    character(len=:), allocatable :: f_ON_SURFACE_CHANGED
+    character(len=:), allocatable :: f_ON_DRAW_FRAME
+    character(len=:), allocatable :: f_ON_DRAW_FRAME_THREED
+    character(len=:), allocatable :: f_ON_DRAW_FRAME_2D
+  end type
 
-interface
+  class(RendererStrings), pointer, save :: RendererStrings_jcell_instance => null()
+  logical, save :: RendererStrings_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TRendererStrings = class(TObject)
-  public
-    ON_SURFACE_CREATED: string;
-    ON_SURFACE_CHANGED: string;
-    ON_DRAW_FRAME: string;
-    ON_DRAW_FRAME_THREED: string;
-    ON_DRAW_FRAME_2D: string;
-    class var instance: TRendererStrings;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TRendererStrings; static;
-  end;
+  function RendererStrings_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RendererStrings), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RendererStrings)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function RendererStrings_jstatic_instance() result(jresult)
+    class(RendererStrings), pointer :: jresult
+    if (.not. RendererStrings_jset_instance) then
+      RendererStrings_jset_instance = .true.
+      RendererStrings_jcell_instance => RendererStrings_jnew_0()
+    end if
+    jresult => RendererStrings_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine RendererStrings_jsetstatic_instance(jvalue)
+    class(RendererStrings), target, optional :: jvalue
+    RendererStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      RendererStrings_jcell_instance => jvalue
+    else
+      RendererStrings_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TRendererStrings.InitFields;
-begin
-  Self.ON_SURFACE_CREATED := 'onSurfaceCreated';
-  Self.ON_SURFACE_CHANGED := 'onSurfaceChanged';
-  Self.ON_DRAW_FRAME := 'onDrawFrame';
-  Self.ON_DRAW_FRAME_THREED := 'onDrawFrameThreed';
-  Self.ON_DRAW_FRAME_2D := 'onDrawFrame2d';
-end;
+  function RendererStrings_jnew_0() result(this)
+    class(RendererStrings), pointer :: this
+    allocate(this)
+    this%jclass = 'RendererStrings'
+    this%f_ON_SURFACE_CREATED = ''
+    this%f_ON_SURFACE_CHANGED = ''
+    this%f_ON_DRAW_FRAME = ''
+    this%f_ON_DRAW_FRAME_THREED = ''
+    this%f_ON_DRAW_FRAME_2D = ''
+    this%f_ON_SURFACE_CREATED = 'onSurfaceCreated'
+    this%f_ON_SURFACE_CHANGED = 'onSurfaceChanged'
+    this%f_ON_DRAW_FRAME = 'onDrawFrame'
+    this%f_ON_DRAW_FRAME_THREED = 'onDrawFrameThreed'
+    this%f_ON_DRAW_FRAME_2D = 'onDrawFrame2d'
+  end function
 
-constructor TRendererStrings.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TRendererStrings.getInstance: TRendererStrings;
-begin
-        Exit(TRendererStrings.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TRendererStrings.instance := TRendererStrings.Create();
-  {AB:END}
-
-end.
+  recursive function RendererStrings_jm_getInstance_0() result(jresult)
+    class(RendererStrings), pointer :: jresult
+        jresult => RendererStrings_jstatic_instance()
+        return
+  end function
+end module RendererStrings_m
 

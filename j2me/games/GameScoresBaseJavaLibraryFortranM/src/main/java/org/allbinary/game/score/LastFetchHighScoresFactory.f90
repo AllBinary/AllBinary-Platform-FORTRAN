@@ -1,72 +1,83 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.score
-unit LastFetchHighScoresFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.score
+module LastFetchHighScoresFactory_m
+  use JR_m
+  use NullUtil_m
+  use NoHighScoresFactory_m
+  use HighScores_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: LastFetchHighScoresFactory
+    type(JRef), allocatable :: f_highScoresArray(:)
+  end type
 
-interface
+  class(JObject), pointer, save :: LastFetchHighScoresFactory_jcell_instance => null()
+  logical, save :: LastFetchHighScoresFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, HighScores;
+contains
 
-type
-  {AB:TYPES}
-  TLastFetchHighScoresFactory = class(TObject)
-  public
-    highScoresArray: TArray<THighScores>;
-    class var instance: TObject;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TLastFetchHighScoresFactory; static;
-  end;
+  function LastFetchHighScoresFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LastFetchHighScoresFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LastFetchHighScoresFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NoHighScoresFactory, NullUtil;
+  function LastFetchHighScoresFactory_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. LastFetchHighScoresFactory_jset_instance) then
+      LastFetchHighScoresFactory_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    LastFetchHighScoresFactory_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => LastFetchHighScoresFactory_jcell_instance
+  end function
 
+  subroutine LastFetchHighScoresFactory_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    LastFetchHighScoresFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      LastFetchHighScoresFactory_jcell_instance => jvalue
+    else
+      LastFetchHighScoresFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function LastFetchHighScoresFactory_jnew_0() result(this)
+    class(LastFetchHighScoresFactory), pointer :: this
+    class(NoHighScoresFactory), pointer :: jtemp3
+    allocate(this)
+    this%jclass = 'LastFetchHighScoresFactory'
+    jtemp3 => NoHighScoresFactory_jm_getInstance_0()
+    this%f_highScoresArray = jtemp3%f_NO_HIGH_SCORES
+  end function
 
-procedure TLastFetchHighScoresFactory.InitFields;
-begin
-  Self.highScoresArray := TNoHighScoresFactory.getInstance().NO_HIGH_SCORES;
-end;
-
-constructor TLastFetchHighScoresFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TLastFetchHighScoresFactory.getInstance: TLastFetchHighScoresFactory;
-begin
-        if (TLastFetchHighScoresFactory.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TLastFetchHighScoresFactory.instance := TLastFetchHighScoresFactory.Create();
-        end;
-        Exit(TLastFetchHighScoresFactory(TJava.ToObject(TLastFetchHighScoresFactory.instance)));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLastFetchHighScoresFactory.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+  recursive function LastFetchHighScoresFactory_jm_getInstance_0() result(jresult)
+    class(LastFetchHighScoresFactory), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(LastFetchHighScoresFactory_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call LastFetchHighScoresFactory_jsetstatic_instance(LastFetchHighScoresFactory_jnew_0())
+        end if
+        jresult => LastFetchHighScoresFactory_jcast(LastFetchHighScoresFactory_jstatic_instance())
+        return
+  end function
+end module LastFetchHighScoresFactory_m
 

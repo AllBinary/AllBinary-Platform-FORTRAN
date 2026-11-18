@@ -1,44 +1,58 @@
-// Generated Code Do Not Modify
-// package org.allbinary.device
-unit OpenGLESNullGraphicsFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.device
+module OpenGLESNullGraphicsFactory_m
+  use JR_m
+  use OpenGLESGraphics_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLESNullGraphicsFactory
+  end type
 
-interface
+  class(OpenGLESGraphics), pointer, save :: OpenGLESNullGraphicsFactory_jcell_instance => null()
+  logical, save :: OpenGLESNullGraphicsFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, OpenGLESGraphics;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLESNullGraphicsFactory = class(TObject)
-  public
-    class var instance: TOpenGLESGraphics;
-    constructor Create;
-        class function getInstance: TOpenGLESGraphics; static;
-  end;
+  function OpenGLESNullGraphicsFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLESNullGraphicsFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLESNullGraphicsFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLESNullGraphicsFactory_jstatic_instance() result(jresult)
+    class(OpenGLESGraphics), pointer :: jresult
+    if (.not. OpenGLESNullGraphicsFactory_jset_instance) then
+      OpenGLESNullGraphicsFactory_jset_instance = .true.
+      OpenGLESNullGraphicsFactory_jcell_instance => OpenGLESGraphics_jnew_0()
+    end if
+    jresult => OpenGLESNullGraphicsFactory_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine OpenGLESNullGraphicsFactory_jsetstatic_instance(jvalue)
+    class(OpenGLESGraphics), target, optional :: jvalue
+    OpenGLESNullGraphicsFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLESNullGraphicsFactory_jcell_instance => jvalue
+    else
+      OpenGLESNullGraphicsFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TOpenGLESNullGraphicsFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function OpenGLESNullGraphicsFactory_jnew_0() result(this)
+    class(OpenGLESNullGraphicsFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLESNullGraphicsFactory'
+  end function
 
-class function TOpenGLESNullGraphicsFactory.getInstance: TOpenGLESGraphics;
-begin
-        Exit(TOpenGLESNullGraphicsFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLESNullGraphicsFactory.instance := TOpenGLESGraphics.Create();
-  {AB:END}
-
-end.
+  recursive function OpenGLESNullGraphicsFactory_jm_getInstance_0() result(jresult)
+    class(OpenGLESGraphics), pointer :: jresult
+        jresult => OpenGLESNullGraphicsFactory_jstatic_instance()
+        return
+  end function
+end module OpenGLESNullGraphicsFactory_m
 

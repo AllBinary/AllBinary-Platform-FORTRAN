@@ -124,7 +124,7 @@
 
         <module>../../../allbinary_src/licensing/ApplicationConfigurationJavaLibraryFortranM</module>
         <module>../../../allbinary_src/licensing/ApplicationConfigurationNoFSJavaLibraryFortranM</module>
-        <module>../../input/AllBinaryMagneticFieldSensorJavaLibraryFortranM</module>
+        <!--<module>../../input/AllBinaryMagneticFieldSensorJavaLibraryFortranM</module>-->
         <!--<module>../../android/VirtualKeyboardJavaLibraryFortranM</module>-->
 
     </modules>

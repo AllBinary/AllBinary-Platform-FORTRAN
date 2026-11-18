@@ -50,6 +50,16 @@ contains
     jresult => CharacterSetData_jcell_instance
   end function
 
+  subroutine CharacterSetData_jsetstatic_instance(jvalue)
+    class(CharacterSetData), target, optional :: jvalue
+    CharacterSetData_jset_instance = .true.
+    if (present(jvalue)) then
+      CharacterSetData_jcell_instance => jvalue
+    else
+      CharacterSetData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function CharacterSetData_jnew_0() result(this)
     class(CharacterSetData), pointer :: this
     allocate(this)

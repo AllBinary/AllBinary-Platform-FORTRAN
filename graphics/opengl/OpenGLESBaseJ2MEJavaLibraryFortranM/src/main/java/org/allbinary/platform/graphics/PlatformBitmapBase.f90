@@ -1,59 +1,52 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.platform.graphics
-unit PlatformBitmapBase;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.platform.graphics
+module PlatformBitmapBase_m
+  use JR_m
+  use NullImage_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image;
-
-type
-  {AB:TYPES}
-  TPlatformBitmapBase = class(TObject)
-  public
-    constructor Create;
-        function getImage: TImage; virtual;
-  end;
-
-implementation
-uses
-  NullImage;
+  type, extends(JObject) :: PlatformBitmapBase
+  contains
+    procedure :: jm_getImage_0 => PlatformBitmapBase_jm_getImage_0
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TPlatformBitmapBase.Create;
-begin
-  inherited Create;
-end;
-    
+  function PlatformBitmapBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlatformBitmapBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlatformBitmapBase)
+      jresult => object
+    end select
+  end function
 
-function TPlatformBitmapBase.getImage: TImage;
-begin
-        Exit(TNullImage.NULL_IMAGE);
-end;
+  function PlatformBitmapBase_jnew_0() result(this)
+    class(PlatformBitmapBase), pointer :: this
+    allocate(this)
+    this%jclass = 'PlatformBitmapBase'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function PlatformBitmapBase_jm_getImage_0(this) result(jresult)
+    class(PlatformBitmapBase), target :: this
+    class(Image), pointer :: jresult
+        jresult => NullImage_jstatic_NULL_IMAGE()
+        return
+  end function
+end module PlatformBitmapBase_m
 

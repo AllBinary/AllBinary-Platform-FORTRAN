@@ -1,202 +1,289 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module RawKeyEventHandler_m
+  use JR_m
+  use LogUtil_m
+  use StringMaker_m
+  use EventStrings_m
+  use CommonStrings_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use RawKeyEventListener_m
+  implicit none
+
+  type, extends(JObject) :: RawKeyEventHandler
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(BasicArrayList), pointer :: f_eventListenerInterfaceList => null()
+  contains
+    procedure :: jm_removeAllListeners_0 => RawKeyEventHandler_jm_removeAllListeners_0
+    procedure :: jm_addListeners_1 => RawKeyEventHandler_jm_addListeners_1
+    procedure :: jm_addListenerSingleThreaded_1 => RawKeyEventHandler_jm_addListenerSingleThreaded_1
+    procedure :: jm_addListener_1 => RawKeyEventHandler_jm_addListener_1
+    procedure :: jm_removeListenerSingleThreaded_1 => RawKeyEventHandler_jm_removeListenerSingleThreaded_1
+    procedure :: jm_removeListener_1 => RawKeyEventHandler_jm_removeListener_1
+    procedure :: jm_fireEvent_3 => RawKeyEventHandler_jm_fireEvent_3
+    procedure :: jm_process_4 => RawKeyEventHandler_jm_process_4
+    procedure :: jm_getEventListenerInterfaceListP_0 => RawKeyEventHandler_jm_getEventListenerInterfaceListP_0
+    procedure :: jm_toString_0 => RawKeyEventHandler_jm_toString_0
+  end type
+
+  class(RawKeyEventHandler), pointer, save :: RawKeyEventHandler_jcell_instance => null()
+  logical, save :: RawKeyEventHandler_jset_instance = .false.
+  character(len=:), allocatable, save :: RawKeyEventHandler_jcell_TOTAL_LISTENERS
+  logical, save :: RawKeyEventHandler_jset_TOTAL_LISTENERS = .false.
+  character(len=:), allocatable, save :: RawKeyEventHandler_jcell_LISTENER_LABEL
+  logical, save :: RawKeyEventHandler_jset_LISTENER_LABEL = .false.
+
+contains
+
+  function RawKeyEventHandler_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RawKeyEventHandler), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RawKeyEventHandler)
+      jresult => object
+    end select
+  end function
+
+  function RawKeyEventHandler_jstatic_instance() result(jresult)
+    class(RawKeyEventHandler), pointer :: jresult
+    if (.not. RawKeyEventHandler_jset_instance) then
+      RawKeyEventHandler_jset_instance = .true.
+      RawKeyEventHandler_jcell_instance => RawKeyEventHandler_jnew_0()
+    end if
+    jresult => RawKeyEventHandler_jcell_instance
+  end function
+
+  subroutine RawKeyEventHandler_jsetstatic_instance(jvalue)
+    class(RawKeyEventHandler), target, optional :: jvalue
+    RawKeyEventHandler_jset_instance = .true.
+    if (present(jvalue)) then
+      RawKeyEventHandler_jcell_instance => jvalue
+    else
+      RawKeyEventHandler_jcell_instance => null()
+    end if
+  end subroutine
+
+  function RawKeyEventHandler_jstatic_TOTAL_LISTENERS() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. RawKeyEventHandler_jset_TOTAL_LISTENERS) then
+      RawKeyEventHandler_jset_TOTAL_LISTENERS = .true.
+      RawKeyEventHandler_jcell_TOTAL_LISTENERS = 'Total Listeners: '
+    end if
+    jresult = RawKeyEventHandler_jcell_TOTAL_LISTENERS
+  end function
+
+  subroutine RawKeyEventHandler_jsetstatic_TOTAL_LISTENERS(jvalue)
+    character(len=*), intent(in) :: jvalue
+    RawKeyEventHandler_jset_TOTAL_LISTENERS = .true.
+    RawKeyEventHandler_jcell_TOTAL_LISTENERS = jvalue
+  end subroutine
+
+  function RawKeyEventHandler_jstatic_LISTENER_LABEL() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. RawKeyEventHandler_jset_LISTENER_LABEL) then
+      RawKeyEventHandler_jset_LISTENER_LABEL = .true.
+      RawKeyEventHandler_jcell_LISTENER_LABEL = ' Listener: '
+    end if
+    jresult = RawKeyEventHandler_jcell_LISTENER_LABEL
+  end function
+
+  subroutine RawKeyEventHandler_jsetstatic_LISTENER_LABEL(jvalue)
+    character(len=*), intent(in) :: jvalue
+    RawKeyEventHandler_jset_LISTENER_LABEL = .true.
+    RawKeyEventHandler_jcell_LISTENER_LABEL = jvalue
+  end subroutine
+
+  recursive function RawKeyEventHandler_jnew_0() result(this)
+    class(RawKeyEventHandler), pointer :: this
+    allocate(this)
+    this%jclass = 'RawKeyEventHandler'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit RawKeyEventHandler;
+        this%f_eventListenerInterfaceList => BasicArrayListD_jnew_0()
+  end function
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  recursive function RawKeyEventHandler_jm_getInstance_0() result(jresult)
+    class(RawKeyEventHandler), pointer :: jresult
+        jresult => RawKeyEventHandler_jstatic_instance()
+        return
+  end function
 
-interface
+  recursive subroutine RawKeyEventHandler_jm_removeAllListeners_0(this)
+    class(RawKeyEventHandler), target :: this
+        this%f_eventListenerInterfaceList => BasicArrayListD_jnew_0()
+  end subroutine
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, BasicArrayList, RawKeyEventListener;
+  recursive subroutine RawKeyEventHandler_jm_addListeners_1(this, j_vector)
+    class(RawKeyEventHandler), target :: this
+    class(BasicArrayList), target, optional :: j_vector
+    class(RawKeyEventListener), pointer :: j_eventListenerInterface
+    integer(4) :: j_size
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue
+        j_size = j_vector%jm_size_0()
+        j_index = 0
+        do while ((j_index < j_size))
+            j_eventListenerInterface => RawKeyEventListener_jcast(j_vector%jm_get_1(j_index))
+            call this%jm_addListener_1(j_eventListenerInterface)
+            j_index = j_index + 1
+        end do
+  end subroutine
 
-type
-  {AB:TYPES}
-  TRawKeyEventHandler = class(TObject)
-  public
-    logUtil: TLogUtil;
-    eventListenerInterfaceList: TBasicArrayList;
-    class var instance: TRawKeyEventHandler;
-    class var TOTAL_LISTENERS: string;
-    class var LISTENER_LABEL: string;
-    procedure InitFields;
-        class function getInstance: TRawKeyEventHandler; static;
-        constructor Create;
-        procedure removeAllListeners; virtual;
-        procedure addListeners(vector: TBasicArrayList); virtual;
-        procedure addListenerSingleThreaded(eventListenerInterface: IRawKeyEventListener); virtual;
-        procedure addListener(eventListenerInterface: IRawKeyEventListener); virtual;
-        procedure removeListenerSingleThreaded(eventListenerInterface: IRawKeyEventListener); virtual;
-        procedure removeListener(eventListenerInterface: IRawKeyEventListener); virtual;
-        procedure fireEvent(keyCode: Integer; deviceId: Integer; repeated: Boolean); virtual;
-        procedure process(keyCode: Integer; deviceId: Integer; repeated: Boolean; eventListenerInterface: IRawKeyEventListener); virtual;
-        function getEventListenerInterfaceListP: TBasicArrayList; virtual;
-        function toString: string; virtual;
-  end;
+  recursive subroutine RawKeyEventHandler_jm_addListenerSingleThreaded_1(this, j_eventListenerInterface)
+    class(RawKeyEventHandler), target :: this
+    class(RawKeyEventListener), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_eventListenerInterfaceList%jm_contains_1(j_eventListenerInterface))) then
+            jdiscardBoolean = this%f_eventListenerInterfaceList%jm_add_1(j_eventListenerInterface)
+        end if
+  end subroutine
 
-implementation
-uses
-  StringMaker, EventStrings, CommonStrings, BasicArrayListD;
+  recursive subroutine RawKeyEventHandler_jm_addListener_1(this, j_eventListenerInterface)
+    class(RawKeyEventHandler), target :: this
+    class(RawKeyEventListener), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_eventListenerInterfaceList%jm_contains_1(j_eventListenerInterface))) then
+            jdiscardBoolean = this%f_eventListenerInterfaceList%jm_add_1(j_eventListenerInterface)
+        end if
+  end subroutine
 
+  recursive subroutine RawKeyEventHandler_jm_removeListenerSingleThreaded_1(this, j_eventListenerInterface)
+    class(RawKeyEventHandler), target :: this
+    class(RawKeyEventListener), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_eventListenerInterfaceList%jm_remove_1(j_eventListenerInterface)
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine RawKeyEventHandler_jm_removeListener_1(this, j_eventListenerInterface)
+    class(RawKeyEventHandler), target :: this
+    class(RawKeyEventListener), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_eventListenerInterfaceList%jm_remove_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TRawKeyEventHandler.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-end;
-    
+  recursive subroutine RawKeyEventHandler_jm_fireEvent_3(this, j_keyCode, j_deviceId, j_repeated)
+    class(RawKeyEventHandler), target :: this
+    integer(4), value :: j_keyCode
+    integer(4), value :: j_deviceId
+    logical, value :: j_repeated
+    class(RawKeyEventListener), pointer :: j_eventListenerInterface
+    integer(4) :: j_index
+    class(CommonStrings), pointer :: j_commonStrings
+    class(EventStrings), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue
+        j_index = 0
+        do while ((j_index < this%f_eventListenerInterfaceList%jm_size_0()))
+            continue ! try
+                j_eventListenerInterface => RawKeyEventListener_jcast(this%f_eventListenerInterfaceList%jm_get_1(j_index))
+                call this%jm_process_4(j_keyCode, j_deviceId, j_repeated, j_eventListenerInterface)
+            j_index = j_index + 1
+        end do
+  end subroutine
 
-class function TRawKeyEventHandler.getInstance: TRawKeyEventHandler;
-begin
-        Exit(TRawKeyEventHandler.instance);
-end;
-    
+  recursive subroutine RawKeyEventHandler_jm_process_4(this, j_keyCode, j_deviceId, j_repeated, j_eventListenerInterface)
+    class(RawKeyEventHandler), target :: this
+    integer(4), value :: j_keyCode
+    integer(4), value :: j_deviceId
+    logical, value :: j_repeated
+    class(RawKeyEventListener), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_eventListenerInterface%jm_onEventRaw_3(j_keyCode, j_deviceId, j_repeated)
+  end subroutine
 
-constructor TRawKeyEventHandler.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.eventListenerInterfaceList := TBasicArrayListD.Create();
-end;
-    
+  recursive function RawKeyEventHandler_jm_getEventListenerInterfaceListP_0(this) result(jresult)
+    class(RawKeyEventHandler), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_eventListenerInterfaceList
+        return
+  end function
 
-procedure TRawKeyEventHandler.removeAllListeners;
-begin
-        Self.eventListenerInterfaceList := TBasicArrayListD.Create();
-end;
-    
-
-procedure TRawKeyEventHandler.addListeners(vector: TBasicArrayList);
-var
-  eventListenerInterface: IRawKeyEventListener;
-  size: Integer;
-  index: Integer;
-begin
-        
-        size := vector.size();
-        for index := 0 to size - 1 do begin
-            eventListenerInterface := (TJava.ToObject(vector.get(index)) as IRawKeyEventListener);
-            Self.addListener(eventListenerInterface);
-        end;
-end;
-    
-
-procedure TRawKeyEventHandler.addListenerSingleThreaded(eventListenerInterface: IRawKeyEventListener);
-begin
-        if not (Self.eventListenerInterfaceList.contains(TJava.Box(eventListenerInterface))) then begin
-            Self.eventListenerInterfaceList.add(TJava.Box(eventListenerInterface));
-        end;
-end;
-    
-
-procedure TRawKeyEventHandler.addListener(eventListenerInterface: IRawKeyEventListener);
-begin
-        if not (Self.eventListenerInterfaceList.contains(TJava.Box(eventListenerInterface))) then begin
-            Self.eventListenerInterfaceList.add(TJava.Box(eventListenerInterface));
-        end;
-end;
-    
-
-procedure TRawKeyEventHandler.removeListenerSingleThreaded(eventListenerInterface: IRawKeyEventListener);
-begin
-        Self.eventListenerInterfaceList.remove(TJava.ToObject(eventListenerInterface));
-end;
-    
-
-procedure TRawKeyEventHandler.removeListener(eventListenerInterface: IRawKeyEventListener);
-begin
-        Self.eventListenerInterfaceList.remove(TJava.ToObject(eventListenerInterface));
-end;
-    
-
-// throws Exception
-procedure TRawKeyEventHandler.fireEvent(keyCode: Integer; deviceId: Integer; repeated: Boolean);
-var
-  eventListenerInterface: IRawKeyEventListener;
-  index: Integer;
-  commonStrings_: TCommonStrings;
-begin
-        
-        index := 0;
-        while (index) < (Self.eventListenerInterfaceList.size()) do begin
-            try
-                eventListenerInterface := (TJava.ToObject(Self.eventListenerInterfaceList.get(index)) as IRawKeyEventListener);
-                Self.process(keyCode, deviceId, repeated, eventListenerInterface);
-            except
-                on e: SysUtils.Exception do begin
-                commonStrings_ := TCommonStrings.getInstance();
-                Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-            Inc(index);
-        end;
-end;
-    
-
-// throws Exception
-procedure TRawKeyEventHandler.process(keyCode: Integer; deviceId: Integer; repeated: Boolean; eventListenerInterface: IRawKeyEventListener);
-begin
-        eventListenerInterface.onEventRaw(keyCode, deviceId, repeated);
-end;
-    
-
-function TRawKeyEventHandler.getEventListenerInterfaceListP: TBasicArrayList;
-begin
-        Exit(Self.eventListenerInterfaceList);
-end;
-    
-
-function TRawKeyEventHandler.toString: string;
-var
-  stringBuffer: TStringMaker;
-  eventListenerInterface: IRawKeyEventListener;
-  index: Integer;
-  commonStrings_: TCommonStrings;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append(TRawKeyEventHandler.TOTAL_LISTENERS);
-        stringBuffer.appendint(Self.eventListenerInterfaceList.size());
-        
-        index := 0;
-        while (index) < (Self.eventListenerInterfaceList.size()) do begin
-            try
-                eventListenerInterface := (TJava.ToObject(Self.eventListenerInterfaceList.get(index)) as IRawKeyEventListener);
-                stringBuffer.append(TRawKeyEventHandler.LISTENER_LABEL);
-                stringBuffer.append(TJava.ToString(TJava.ToObject(eventListenerInterface)));
-            except
-                on e: SysUtils.Exception do begin
-                commonStrings_ := TCommonStrings.getInstance();
-                Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.TOSTRING, TJava.Box(e));
-                end;
-            end;
-            Inc(index);
-        end;
-        Exit(stringBuffer.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TRawKeyEventHandler.instance := TRawKeyEventHandler.Create();
-  TRawKeyEventHandler.TOTAL_LISTENERS := 'Total Listeners: ';
-  TRawKeyEventHandler.LISTENER_LABEL := ' Listener: ';
-  {AB:END}
-
-end.
+  recursive function RawKeyEventHandler_jm_toString_0(this) result(jresult)
+    class(RawKeyEventHandler), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(RawKeyEventListener), pointer :: j_eventListenerInterface
+    integer(4) :: j_index
+    class(CommonStrings), pointer :: j_commonStrings
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(RawKeyEventHandler_jstatic_TOTAL_LISTENERS())
+        jdiscardRef => j_stringBuffer%jm_appendint_1(this%f_eventListenerInterfaceList%jm_size_0())
+        continue
+        j_index = 0
+        do while ((j_index < this%f_eventListenerInterfaceList%jm_size_0()))
+            continue ! try
+                j_eventListenerInterface => RawKeyEventListener_jcast(this%f_eventListenerInterfaceList%jm_get_1(j_index))
+                jdiscardRef => j_stringBuffer%jm_append_1(RawKeyEventHandler_jstatic_LISTENER_LABEL())
+                jdiscardRef => j_stringBuffer%jm_append_1(j_eventListenerInterface%jm_toString_0())
+            j_index = j_index + 1
+        end do
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module RawKeyEventHandler_m
 

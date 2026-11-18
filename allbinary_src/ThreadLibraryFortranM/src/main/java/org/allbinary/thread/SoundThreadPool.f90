@@ -45,6 +45,16 @@ contains
     jresult => SoundThreadPool_jcell_instance
   end function
 
+  subroutine SoundThreadPool_jsetstatic_instance(jvalue)
+    class(ThreadPool), target, optional :: jvalue
+    SoundThreadPool_jset_instance = .true.
+    if (present(jvalue)) then
+      SoundThreadPool_jcell_instance => jvalue
+    else
+      SoundThreadPool_jcell_instance => null()
+    end if
+  end subroutine
+
   function SoundThreadPool_jnew_0() result(this)
     class(SoundThreadPool), pointer :: this
     allocate(this)

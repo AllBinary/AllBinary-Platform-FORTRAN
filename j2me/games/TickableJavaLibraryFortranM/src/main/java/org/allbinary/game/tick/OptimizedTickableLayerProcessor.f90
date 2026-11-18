@@ -1,75 +1,88 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.tick
+module OptimizedTickableLayerProcessor_m
+  use JR_m
+  use AllBinaryGameLayer_m
+  use AllBinaryLayer_m
+  use AllBinaryLayerManager_m
+  use LayerProcessor_m
+  use OptimizedTickableLayerManager_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.tick
-unit OptimizedTickableLayerProcessor;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryLayer, AllBinaryLayerManager, LayerProcessor;
-
-type
-  {AB:TYPES}
-  TOptimizedTickableLayerProcessor = class(TLayerProcessor)
-  public
-        constructor Create;
-        procedure processAt(allBinaryLayerManager_: TAllBinaryLayerManager; layerInterface: TAllBinaryLayer; index: Integer); override;
-        function isProcessorLayer(layerInterface: TAllBinaryLayer): Boolean; override;
-  end;
-
-implementation
-uses
-  OptimizedTickableLayerManager, AllBinaryGameLayer;
+  type, extends(LayerProcessor) :: OptimizedTickableLayerProcessor
+  contains
+    procedure :: jm_processAt_3 => OptimizedTickableLayerProcessor_jm_processAt_3
+    procedure :: jm_isProcessorLayer_1 => OptimizedTickableLayerProcessor_jm_isProcessorLayer_1
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TOptimizedTickableLayerProcessor.Create;
-begin
-        inherited Create(TOptimizedTickableLayerManager.Create());
-end;
-    
+  function OptimizedTickableLayerProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OptimizedTickableLayerProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OptimizedTickableLayerProcessor)
+      jresult => object
+    end select
+  end function
 
-// throws Exception
-procedure TOptimizedTickableLayerProcessor.processAt(allBinaryLayerManager_: TAllBinaryLayerManager; layerInterface: TAllBinaryLayer; index: Integer);
-var
-  tickableInterface: TAllBinaryGameLayer;
-begin
-        tickableInterface := TAllBinaryGameLayer(TJava.ToObject(layerInterface));
-        tickableInterface.processTick(allBinaryLayerManager_);
-end;
-    
+  recursive function OptimizedTickableLayerProcessor_jnew_0() result(this)
+    class(OptimizedTickableLayerProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'OptimizedTickableLayerProcessor'
+        continue ! super()
+  end function
 
-function TOptimizedTickableLayerProcessor.isProcessorLayer(layerInterface: TAllBinaryLayer): Boolean;
-begin
-        if layerInterface.implmentsTickableInterface() then begin
-            Exit(True);
-        end else begin
-            Exit(False);
-        end;
-end;
+  recursive subroutine OptimizedTickableLayerProcessor_jm_processAt_3(this, j_allBinaryLayerManager, j_layerInterface, j_index)
+    class(OptimizedTickableLayerProcessor), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allBinaryLayerManager
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+    integer(4), value :: j_index
+    class(AllBinaryGameLayer), pointer :: j_tickableInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_tickableInterface => AllBinaryGameLayer_jcast(j_layerInterface)
+        call j_tickableInterface%jm_processTick_1(j_allBinaryLayerManager)
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function OptimizedTickableLayerProcessor_jm_isProcessorLayer_1(this, j_layerInterface) result(jresult)
+    class(OptimizedTickableLayerProcessor), target :: this
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+    logical :: jresult
+        if (j_layerInterface%jm_implmentsTickableInterface_0()) then
+            jresult = .true.
+            return
+        else
+            jresult = .false.
+            return
+        end if
+  end function
+end module OptimizedTickableLayerProcessor_m
 
-end.
+function OptimizedTickableLayerProcessor_jnew_0_jext() result(this)
+  use OptimizedTickableLayerProcessor_m, only: JObject, OptimizedTickableLayerProcessor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => OptimizedTickableLayerProcessor_jnew_0()
+end function
 

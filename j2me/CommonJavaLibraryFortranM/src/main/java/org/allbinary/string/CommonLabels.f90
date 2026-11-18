@@ -59,6 +59,16 @@ contains
     jresult => CommonLabels_jcell_instance
   end function
 
+  subroutine CommonLabels_jsetstatic_instance(jvalue)
+    class(CommonLabels), target, optional :: jvalue
+    CommonLabels_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonLabels_jcell_instance => jvalue
+    else
+      CommonLabels_jcell_instance => null()
+    end if
+  end subroutine
+
   function CommonLabels_jnew_0() result(this)
     class(CommonLabels), pointer :: this
     allocate(this)

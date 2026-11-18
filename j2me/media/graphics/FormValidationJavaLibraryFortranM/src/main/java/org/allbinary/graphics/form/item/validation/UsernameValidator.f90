@@ -1,50 +1,49 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item.validation
+module UsernameValidator_m
+  use JR_m
+  use ABTextFieldItem_m
+  use TextFieldItemValidator_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item.validation
-unit UsernameValidator;
+  type, extends(TextFieldItemValidator) :: UsernameValidator
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ABTextFieldItem, TextFieldItemValidator;
+  function UsernameValidator_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(UsernameValidator), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (UsernameValidator)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TUsernameValidator = class(TTextFieldItemValidator)
-  public
-        constructor Create(textFieldItem: TABTextFieldItem; min: Integer; max: Integer; allowOnEmpty: Boolean);
-  end;
-
-implementation
-
-{AB:CODE}
-    
-
-constructor TUsernameValidator.Create(textFieldItem: TABTextFieldItem; min: Integer; max: Integer; allowOnEmpty: Boolean);
-begin
-        inherited Create(textFieldItem, min, max, allowOnEmpty);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function UsernameValidator_jnew_4(j_textFieldItem, j_min, j_max, j_allowOnEmpty) result(this)
+    class(ABTextFieldItem), target, optional :: j_textFieldItem
+    integer(4), value :: j_min
+    integer(4), value :: j_max
+    logical, value :: j_allowOnEmpty
+    class(UsernameValidator), pointer :: this
+    allocate(this)
+    this%jclass = 'UsernameValidator'
+        continue ! super()
+  end function
+end module UsernameValidator_m
 

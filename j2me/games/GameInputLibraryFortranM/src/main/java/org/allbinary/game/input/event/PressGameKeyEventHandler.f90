@@ -1,128 +1,177 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module PressGameKeyEventHandler_m
+  use JR_m
+  use PlayerGameInput_m
+  use AllBinaryEventObject_m
+  use EventListenerInterface_m
+  use EventStrings_m
+  use BasicEventHandler_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use GameKeyEvent_m
+  use PressGameKeyEventListenerInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit PressGameKeyEventHandler;
+  type, extends(BasicEventHandler) :: PressGameKeyEventHandler
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_addListener_1 => PressGameKeyEventHandler_jm_addListener_1
+    procedure :: jm_removeAllListeners_0 => PressGameKeyEventHandler_jm_removeAllListeners_0
+    procedure :: jm_removeListener_1 => PressGameKeyEventHandler_jm_removeListener_1
+    procedure :: jm_fireEvent_1 => PressGameKeyEventHandler_jm_fireEvent_1
+    procedure :: jm_process_2 => PressGameKeyEventHandler_jm_process_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(PressGameKeyEventHandler), pointer, save :: PressGameKeyEventHandler_jcell_instance => null()
+  logical, save :: PressGameKeyEventHandler_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PlayerGameInput, AllBinaryEventObject, EventListenerInterface, BasicEventHandler, BasicArrayList;
+  function PressGameKeyEventHandler_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PressGameKeyEventHandler), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PressGameKeyEventHandler)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPressGameKeyEventHandler = class(TBasicEventHandler)
-  public
-    list: TBasicArrayList;
-    class var instance: TPressGameKeyEventHandler;
-    procedure InitFields;
-        class function getInstance: TPressGameKeyEventHandler; static;
-        constructor Create;
-        procedure addListener(playerGameInput_: TPlayerGameInput); virtual;
-        procedure removeAllListeners; override;
-        procedure removeListener(eventListenerInterface_: IEventListenerInterface); override;
-        procedure fireEvent(eventObject: TAllBinaryEventObject); override;
-        procedure process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface); override;
-  end;
+  function PressGameKeyEventHandler_jstatic_instance() result(jresult)
+    class(PressGameKeyEventHandler), pointer :: jresult
+    if (.not. PressGameKeyEventHandler_jset_instance) then
+      PressGameKeyEventHandler_jset_instance = .true.
+      PressGameKeyEventHandler_jcell_instance => PressGameKeyEventHandler_jnew_0()
+    end if
+    jresult => PressGameKeyEventHandler_jcell_instance
+  end function
 
-implementation
-uses
-  GameKeyEvent, PressGameKeyEventListenerInterface, LogUtil, EventStrings, BasicArrayListD;
+  subroutine PressGameKeyEventHandler_jsetstatic_instance(jvalue)
+    class(PressGameKeyEventHandler), target, optional :: jvalue
+    PressGameKeyEventHandler_jset_instance = .true.
+    if (present(jvalue)) then
+      PressGameKeyEventHandler_jcell_instance => jvalue
+    else
+      PressGameKeyEventHandler_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function PressGameKeyEventHandler_jnew_0() result(this)
+    class(PressGameKeyEventHandler), pointer :: this
+    allocate(this)
+    this%jclass = 'PressGameKeyEventHandler'
+    this%f_list => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-{AB:CODE}
+  recursive function PressGameKeyEventHandler_jm_getInstance_0() result(jresult)
+    class(PressGameKeyEventHandler), pointer :: jresult
+        jresult => PressGameKeyEventHandler_jstatic_instance()
+        return
+  end function
 
-procedure TPressGameKeyEventHandler.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
-    
+  recursive subroutine PressGameKeyEventHandler_jm_addListener_1(this, j_playerGameInput)
+    class(PressGameKeyEventHandler), target :: this
+    class(PlayerGameInput), target, optional :: j_playerGameInput
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_list%jm_contains_1(j_playerGameInput))) then
+            jdiscardBoolean = this%f_list%jm_add_1(j_playerGameInput)
+        end if
+  end subroutine
 
-class function TPressGameKeyEventHandler.getInstance: TPressGameKeyEventHandler;
-begin
-        Exit(TPressGameKeyEventHandler.instance);
-end;
-    
+  recursive subroutine PressGameKeyEventHandler_jm_removeAllListeners_0(this)
+    class(PressGameKeyEventHandler), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_list%jm_clear_0()
+        call this%BasicEventHandler%jm_removeAllListeners_0()
+  end subroutine
 
-constructor TPressGameKeyEventHandler.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine PressGameKeyEventHandler_jm_removeListener_1(this, j_eventListenerInterface)
+    class(PressGameKeyEventHandler), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListener_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TPressGameKeyEventHandler.addListener(playerGameInput_: TPlayerGameInput);
-begin
-        if not (Self.list.contains(TJava.Box(playerGameInput_))) then begin
-            Self.list.add(TJava.Box(playerGameInput_));
-        end;
-end;
-    
+  recursive subroutine PressGameKeyEventHandler_jm_fireEvent_1(this, j_eventObject)
+    class(PressGameKeyEventHandler), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(PlayerGameInput), pointer :: j_playerGameInput
+    integer(4) :: j_index
+    class(EventStrings), pointer :: jtemp1
+    integer(4) :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = this%f_list%jm_size_0()
+        do while ((jtemp2 >= 0))
+            continue ! try
+                j_playerGameInput => PlayerGameInput_jcast(this%f_list%f_objectArray((j_index) + 1)%v)
+                call j_playerGameInput%jm_onPressGameKeyEvent_1(GameKeyEvent_jcast(j_eventObject))
+        end do
+        call this%BasicEventHandler%jm_fireEvent_1(j_eventObject)
+  end subroutine
 
-procedure TPressGameKeyEventHandler.removeAllListeners;
-begin
-        Self.list.clear();
-        inherited removeAllListeners();
-end;
-    
+  recursive subroutine PressGameKeyEventHandler_jm_process_2(this, j_eventObject, j_eventListenerInterface)
+    class(PressGameKeyEventHandler), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(PressGameKeyEventListenerInterface), pointer :: j_pressGameKeyEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_pressGameKeyEventListenerInterface => PressGameKeyEventListenerInterface_jcast(j_eventListenerInterface)
+        call j_pressGameKeyEventListenerInterface%jm_onPressGameKeyEvent_1(GameKeyEvent_jcast(j_eventObject))
+  end subroutine
+end module PressGameKeyEventHandler_m
 
-procedure TPressGameKeyEventHandler.removeListener(eventListenerInterface_: IEventListenerInterface);
-begin
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListener(eventListenerInterface_);
-end;
-    
-
-// throws Exception
-procedure TPressGameKeyEventHandler.fireEvent(eventObject: TAllBinaryEventObject);
-var
-  playerGameInput_: TPlayerGameInput;
-  index: Integer;
-begin
-        index := Self.list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            try
-                playerGameInput_ := TPlayerGameInput(TJava.ToObject(Self.list.objectArray[index]));
-                playerGameInput_.onPressGameKeyEvent(TGameKeyEvent(TJava.ToObject(eventObject)));
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-        end;
-        inherited fireEvent(eventObject);
-end;
-    
-
-// throws Exception
-procedure TPressGameKeyEventHandler.process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface);
-var
-  pressGameKeyEventListenerInterface_: IPressGameKeyEventListenerInterface;
-begin
-        pressGameKeyEventListenerInterface_ := ((TJava.ToObject(eventListenerInterface_) as IPressGameKeyEventListenerInterface));
-        pressGameKeyEventListenerInterface_.onPressGameKeyEvent(TGameKeyEvent(TJava.ToObject(eventObject)));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPressGameKeyEventHandler.instance := TPressGameKeyEventHandler.Create();
-  {AB:END}
-
-end.
+function PressGameKeyEventHandler_jnew_0_jext() result(this)
+  use PressGameKeyEventHandler_m, only: JObject, PressGameKeyEventHandler_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => PressGameKeyEventHandler_jnew_0()
+end function
 

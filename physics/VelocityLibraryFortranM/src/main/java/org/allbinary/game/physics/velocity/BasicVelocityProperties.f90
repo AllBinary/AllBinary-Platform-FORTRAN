@@ -1,249 +1,336 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.physics.velocity
+module BasicVelocityProperties_m
+  use JR_m
+  use Direction_m
+  use DirectionUtil_m
+  use LogUtil_m
+  use BasicDecimal_m
+  use AxisMathVectorUtil_m
+  use StringMaker_m
+  use StringUtil_m
+  use Angle_m
+  use PositionStrings_m
+  use CommonSeps_m
+  use BasicVelocityInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.physics.velocity
-unit BasicVelocityProperties;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Direction, DirectionUtil, LogUtil, BasicDecimal, AxisMathVectorUtil, Angle, BasicVelocityInterface;
-
-type
-  {AB:TYPES}
-  TBasicVelocityProperties = class(TInterfacedObject, IBasicVelocityInterface)
-  public
-    logUtil: TLogUtil;
-    velocityXBasicDecimal: TBasicDecimal;
-    velocityYBasicDecimal: TBasicDecimal;
-    velocityZBasicDecimal: TBasicDecimal;
-    axisMathVectorUtil: TAxisMathVectorUtil;
-    directionUtil: TDirectionUtil;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create;
-        procedure zero; virtual;
-        function getVelocityXBasicDecimalP: TBasicDecimal; virtual;
-        function getVelocityYBasicDecimalP: TBasicDecimal; virtual;
-        function getVelocityZBasicDecimalP: TBasicDecimal; virtual;
-        procedure setVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal: TBasicDecimal; direction_: TDirection; otherDirection: TDirection); virtual;
-        procedure setVelocityWithDirection(magnitude: Int64; direction_: TDirection; otherDirection: TDirection); virtual;
-        procedure addVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal: TBasicDecimal; direction_: TDirection; otherDirection: TDirection); virtual;
-        procedure addVelocityWithDirection(magnitude: Int64; direction_: TDirection; otherDirection: TDirection); virtual;
-        procedure setVelocityWithBigDecimal(magnitudeBasicDecimal: TBasicDecimal; angle_: TAngle; otherAngle: TAngle); virtual;
-        procedure addVelocityWithBigDecimal(magnitudeBasicDecimal: TBasicDecimal; angle_: TAngle; otherAngle: TAngle); virtual;
-        procedure setVelocity(magnitude: Int64; angle_: TAngle; otherAngle: TAngle); virtual;
-        procedure addVelocity(magnitude: Int64; angle_: TAngle; otherAngle: TAngle); virtual;
-        procedure setVelocityi(magnitude: Int64; angle_: Integer; otherAngle: Integer); virtual;
-        procedure addVelocityi(magnitude: Int64; angle_: Integer; otherAngle: Integer); virtual;
-        function toString: string; virtual;
-  end;
-
-implementation
-uses
-  StringMaker, StringUtil, PositionStrings, CommonSeps;
+  type, extends(BasicVelocityInterface) :: BasicVelocityProperties
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(BasicDecimal), pointer :: f_velocityXBasicDecimal => null()
+    class(BasicDecimal), pointer :: f_velocityYBasicDecimal => null()
+    class(BasicDecimal), pointer :: f_velocityZBasicDecimal => null()
+    class(AxisMathVectorUtil), pointer :: f_axisMathVectorUtil => null()
+    class(DirectionUtil), pointer :: f_directionUtil => null()
+  contains
+    procedure :: jm_zero_0 => BasicVelocityProperties_jm_zero_0
+    procedure :: jm_getVelocityXBasicDecimalP_0 => BasicVelocityProperties_jm_getVelocityXBasicDecimalP_0
+    procedure :: jm_getVelocityYBasicDecimalP_0 => BasicVelocityProperties_jm_getVelocityYBasicDecimalP_0
+    procedure :: jm_getVelocityZBasicDecimalP_0 => BasicVelocityProperties_jm_getVelocityZBasicDecimalP_0
+    procedure :: jm_setVelocityWithBigDecimalAndDirection_3 => BasicVelocityProperties_jm_setVelocityWithBigDecimalAndDirection_3
+    procedure :: jm_setVelocityWithDirection_3 => BasicVelocityProperties_jm_setVelocityWithDirection_3
+    procedure :: jm_addVelocityWithBigDecimalAndDirection_3 => BasicVelocityProperties_jm_addVelocityWithBigDecimalAndDirection_3
+    procedure :: jm_addVelocityWithDirection_3 => BasicVelocityProperties_jm_addVelocityWithDirection_3
+    procedure :: jm_setVelocityWithBigDecimal_3 => BasicVelocityProperties_jm_setVelocityWithBigDecimal_3
+    procedure :: jm_addVelocityWithBigDecimal_3 => BasicVelocityProperties_jm_addVelocityWithBigDecimal_3
+    procedure :: jm_setVelocity_3 => BasicVelocityProperties_jm_setVelocity_3
+    procedure :: jm_addVelocity_3 => BasicVelocityProperties_jm_addVelocity_3
+    procedure :: jm_setVelocityi_3 => BasicVelocityProperties_jm_setVelocityi_3
+    procedure :: jm_addVelocityi_3 => BasicVelocityProperties_jm_addVelocityi_3
+    procedure :: jm_toString_0 => BasicVelocityProperties_jm_toString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TBasicVelocityProperties.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-  
-  
-  Self.axisMathVectorUtil := TAxisMathVectorUtil.getInstance();
-  Self.directionUtil := TDirectionUtil.getInstance();
-end;
+  function BasicVelocityProperties_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicVelocityProperties), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicVelocityProperties)
+      jresult => object
+    end select
+  end function
 
-function TBasicVelocityProperties.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function BasicVelocityProperties_jnew_0() result(this)
+    class(BasicVelocityProperties), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicVelocityProperties'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
-
-constructor TBasicVelocityProperties.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.velocityXBasicDecimal := TBasicDecimal.Create(0);
-        Self.velocityYBasicDecimal := TBasicDecimal.Create(0);
-        Self.velocityZBasicDecimal := TBasicDecimal.Create(0);
-end;
     
-
-procedure TBasicVelocityProperties.zero;
-begin
-        Self.velocityXBasicDecimal.setint(0);
-        Self.velocityYBasicDecimal.setint(0);
-        Self.velocityZBasicDecimal.setint(0);
-end;
     
+    this%f_axisMathVectorUtil => AxisMathVectorUtil_jm_getInstance_0()
+    this%f_directionUtil => DirectionUtil_jm_getInstance_0()
+        this%f_velocityXBasicDecimal => BasicDecimal_jnew_1(int(0, 8))
+        this%f_velocityYBasicDecimal => BasicDecimal_jnew_1(int(0, 8))
+        this%f_velocityZBasicDecimal => BasicDecimal_jnew_1(int(0, 8))
+  end function
 
-function TBasicVelocityProperties.getVelocityXBasicDecimalP: TBasicDecimal;
-begin
-        Exit(Self.velocityXBasicDecimal);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_zero_0(this)
+    class(BasicVelocityProperties), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_velocityXBasicDecimal%jm_setint_1(0)
+        call this%f_velocityYBasicDecimal%jm_setint_1(0)
+        call this%f_velocityZBasicDecimal%jm_setint_1(0)
+  end subroutine
 
-function TBasicVelocityProperties.getVelocityYBasicDecimalP: TBasicDecimal;
-begin
-        Exit(Self.velocityYBasicDecimal);
-end;
-    
+  recursive function BasicVelocityProperties_jm_getVelocityXBasicDecimalP_0(this) result(jresult)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), pointer :: jresult
+        jresult => this%f_velocityXBasicDecimal
+        return
+  end function
 
-function TBasicVelocityProperties.getVelocityZBasicDecimalP: TBasicDecimal;
-begin
-        Exit(Self.velocityZBasicDecimal);
-end;
-    
+  recursive function BasicVelocityProperties_jm_getVelocityYBasicDecimalP_0(this) result(jresult)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), pointer :: jresult
+        jresult => this%f_velocityYBasicDecimal
+        return
+  end function
 
-procedure TBasicVelocityProperties.setVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal: TBasicDecimal; direction_: TDirection; otherDirection: TDirection);
-var
-  angle_: TAngle;
-  otherAngle: TAngle;
-begin
-        angle_ := Self.directionUtil.getAngle(direction_);
-        otherAngle := Self.directionUtil.getAngle(otherDirection);
-        Self.setVelocityWithBigDecimal(magnitudeBasicDecimal, angle_, otherAngle);
-end;
-    
+  recursive function BasicVelocityProperties_jm_getVelocityZBasicDecimalP_0(this) result(jresult)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), pointer :: jresult
+        jresult => this%f_velocityZBasicDecimal
+        return
+  end function
 
-procedure TBasicVelocityProperties.setVelocityWithDirection(magnitude: Int64; direction_: TDirection; otherDirection: TDirection);
-var
-  angle_: TAngle;
-  otherAngle: TAngle;
-begin
-        angle_ := Self.directionUtil.getAngle(direction_);
-        otherAngle := Self.directionUtil.getAngle(otherDirection);
-        Self.setVelocity(magnitude, angle_, otherAngle);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_setVelocityWithBigDecimalAndDirection_3(this, j_magnitudeBasicDecimal, j_direction, j_otherDirection)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), target, optional :: j_magnitudeBasicDecimal
+    class(Direction), target, optional :: j_direction
+    class(Direction), target, optional :: j_otherDirection
+    class(Angle), pointer :: j_angle
+    class(Angle), pointer :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_angle => this%f_directionUtil%jm_getAngle_1(j_direction)
+        j_otherAngle => this%f_directionUtil%jm_getAngle_1(j_otherDirection)
+        call this%jm_setVelocityWithBigDecimal_3(j_magnitudeBasicDecimal, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.addVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal: TBasicDecimal; direction_: TDirection; otherDirection: TDirection);
-var
-  angle_: TAngle;
-  otherAngle: TAngle;
-begin
-        angle_ := Self.directionUtil.getAngle(direction_);
-        otherAngle := Self.directionUtil.getAngle(otherDirection);
-        Self.addVelocityWithBigDecimal(magnitudeBasicDecimal, angle_, otherAngle);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_setVelocityWithDirection_3(this, j_magnitude, j_direction, j_otherDirection)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    class(Direction), target, optional :: j_direction
+    class(Direction), target, optional :: j_otherDirection
+    class(Angle), pointer :: j_angle
+    class(Angle), pointer :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_angle => this%f_directionUtil%jm_getAngle_1(j_direction)
+        j_otherAngle => this%f_directionUtil%jm_getAngle_1(j_otherDirection)
+        call this%jm_setVelocity_3(j_magnitude, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.addVelocityWithDirection(magnitude: Int64; direction_: TDirection; otherDirection: TDirection);
-var
-  angle_: TAngle;
-  otherAngle: TAngle;
-begin
-        angle_ := Self.directionUtil.getAngle(direction_);
-        otherAngle := Self.directionUtil.getAngle(otherDirection);
-        Self.addVelocity(magnitude, angle_, otherAngle);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_addVelocityWithBigDecimalAndDirection_3(this, j_magnitudeBasicDecimal, j_direction, j_otherDirection)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), target, optional :: j_magnitudeBasicDecimal
+    class(Direction), target, optional :: j_direction
+    class(Direction), target, optional :: j_otherDirection
+    class(Angle), pointer :: j_angle
+    class(Angle), pointer :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_angle => this%f_directionUtil%jm_getAngle_1(j_direction)
+        j_otherAngle => this%f_directionUtil%jm_getAngle_1(j_otherDirection)
+        call this%jm_addVelocityWithBigDecimal_3(j_magnitudeBasicDecimal, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.setVelocityWithBigDecimal(magnitudeBasicDecimal: TBasicDecimal; angle_: TAngle; otherAngle: TAngle);
-var
-  magnitude: Int64;
-begin
-        magnitude := magnitudeBasicDecimal.getUnscaled();
-        Self.setVelocity(magnitude, angle_, otherAngle);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_addVelocityWithDirection_3(this, j_magnitude, j_direction, j_otherDirection)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    class(Direction), target, optional :: j_direction
+    class(Direction), target, optional :: j_otherDirection
+    class(Angle), pointer :: j_angle
+    class(Angle), pointer :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_angle => this%f_directionUtil%jm_getAngle_1(j_direction)
+        j_otherAngle => this%f_directionUtil%jm_getAngle_1(j_otherDirection)
+        call this%jm_addVelocity_3(j_magnitude, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.addVelocityWithBigDecimal(magnitudeBasicDecimal: TBasicDecimal; angle_: TAngle; otherAngle: TAngle);
-var
-  magnitude: Int64;
-begin
-        magnitude := magnitudeBasicDecimal.getUnscaled();
-        Self.addVelocity(magnitude, angle_, otherAngle);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_setVelocityWithBigDecimal_3(this, j_magnitudeBasicDecimal, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), target, optional :: j_magnitudeBasicDecimal
+    class(Angle), target, optional :: j_angle
+    class(Angle), target, optional :: j_otherAngle
+    integer(8) :: j_magnitude
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_magnitude = j_magnitudeBasicDecimal%jm_getUnscaled_0()
+        call this%jm_setVelocity_3(j_magnitude, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.setVelocity(magnitude: Int64; angle_: TAngle; otherAngle: TAngle);
-begin
-        Self.setVelocityi(magnitude, Integer(Trunc(angle_.getValue())), Integer(Trunc(otherAngle.getValue())));
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_addVelocityWithBigDecimal_3(this, j_magnitudeBasicDecimal, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    class(BasicDecimal), target, optional :: j_magnitudeBasicDecimal
+    class(Angle), target, optional :: j_angle
+    class(Angle), target, optional :: j_otherAngle
+    integer(8) :: j_magnitude
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_magnitude = j_magnitudeBasicDecimal%jm_getUnscaled_0()
+        call this%jm_addVelocity_3(j_magnitude, j_angle, j_otherAngle)
+  end subroutine
 
-procedure TBasicVelocityProperties.addVelocity(magnitude: Int64; angle_: TAngle; otherAngle: TAngle);
-begin
-        Self.addVelocityi(magnitude, Integer(Trunc(angle_.getValue())), Integer(Trunc(otherAngle.getValue())));
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_setVelocity_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    class(Angle), target, optional :: j_angle
+    class(Angle), target, optional :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setVelocityi_3(j_magnitude, j_angle%jm_getValue_0(), j_otherAngle%jm_getValue_0())
+  end subroutine
 
-procedure TBasicVelocityProperties.setVelocityi(magnitude: Int64; angle_: Integer; otherAngle: Integer);
-var
-  xVector: Int64;
-  yVector: Int64;
-  zVector: Int64;
-begin
-        xVector := ((Self.axisMathVectorUtil.calculateX(magnitude, angle_)) div (Self.velocityXBasicDecimal.getScaledFactorValue()));
-        yVector := ((Self.axisMathVectorUtil.calculateY(magnitude, angle_)) div (Self.velocityYBasicDecimal.getScaledFactorValue()));
-        zVector := ((Self.axisMathVectorUtil.calculateZ(magnitude, otherAngle)) div (Self.velocityZBasicDecimal.getScaledFactorValue()));
-        Self.velocityXBasicDecimal.setlong(xVector);
-        Self.velocityYBasicDecimal.setlong(yVector);
-        Self.velocityZBasicDecimal.setlong(zVector);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_addVelocity_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    class(Angle), target, optional :: j_angle
+    class(Angle), target, optional :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_addVelocityi_3(j_magnitude, j_angle%jm_getValue_0(), j_otherAngle%jm_getValue_0())
+  end subroutine
 
-procedure TBasicVelocityProperties.addVelocityi(magnitude: Int64; angle_: Integer; otherAngle: Integer);
-var
-  xVector: Int64;
-  yVector: Int64;
-  zVector: Int64;
-begin
-        xVector := ((Self.axisMathVectorUtil.calculateX(magnitude, angle_)) div (Self.velocityXBasicDecimal.getScaledFactorValue()));
-        yVector := ((Self.axisMathVectorUtil.calculateY(magnitude, angle_)) div (Self.velocityYBasicDecimal.getScaledFactorValue()));
-        zVector := ((Self.axisMathVectorUtil.calculateZ(magnitude, otherAngle)) div (Self.velocityZBasicDecimal.getScaledFactorValue()));
-        Self.velocityXBasicDecimal.addlong(xVector);
-        Self.velocityYBasicDecimal.addlong(yVector);
-        Self.velocityZBasicDecimal.addlong(zVector);
-end;
-    
+  recursive subroutine BasicVelocityProperties_jm_setVelocityi_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    integer(8) :: j_xVector
+    integer(8) :: j_yVector
+    integer(8) :: j_zVector
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_xVector = ((this%f_axisMathVectorUtil%jm_calculateX_2(j_magnitude, j_angle) / int(this%f_velocityXBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        j_yVector = ((this%f_axisMathVectorUtil%jm_calculateY_2(j_magnitude, j_angle) / int(this%f_velocityYBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        j_zVector = ((this%f_axisMathVectorUtil%jm_calculateZ_2(j_magnitude, j_otherAngle) / int(this%f_velocityZBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        call this%f_velocityXBasicDecimal%jm_setlong_1(j_xVector)
+        call this%f_velocityYBasicDecimal%jm_setlong_1(j_yVector)
+        call this%f_velocityZBasicDecimal%jm_setlong_1(j_zVector)
+  end subroutine
 
-function TBasicVelocityProperties.toString: string;
-var
-  commonSeps_: TCommonSeps;
-  positionStrings_: TPositionStrings;
-  stringBuffer: TStringMaker;
-  stringUtil_: TStringUtil;
-begin
-        commonSeps_ := TCommonSeps.getInstance();
-        positionStrings_ := TPositionStrings.getInstance();
-        stringBuffer := TStringMaker.Create();
-        stringUtil_ := TStringUtil.getInstance();
-        stringBuffer.append('Velocity ');
-        stringBuffer.append(positionStrings_.X_LABEL);
-        stringBuffer.append(stringUtil_.toString(Self.velocityXBasicDecimal));
-        stringBuffer.append(commonSeps_.SPACE);
-        stringBuffer.append(positionStrings_.Y_LABEL);
-        stringBuffer.append(stringUtil_.toString(Self.velocityYBasicDecimal));
-        stringBuffer.append(commonSeps_.SPACE);
-        stringBuffer.append(positionStrings_.Z_LABEL);
-        stringBuffer.append(stringUtil_.toString(Self.velocityZBasicDecimal));
-        Exit(stringBuffer.toString());
-end;
+  recursive subroutine BasicVelocityProperties_jm_addVelocityi_3(this, j_magnitude, j_angle, j_otherAngle)
+    class(BasicVelocityProperties), target :: this
+    integer(8), value :: j_magnitude
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    integer(8) :: j_xVector
+    integer(8) :: j_yVector
+    integer(8) :: j_zVector
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_xVector = ((this%f_axisMathVectorUtil%jm_calculateX_2(j_magnitude, j_angle) / int(this%f_velocityXBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        j_yVector = ((this%f_axisMathVectorUtil%jm_calculateY_2(j_magnitude, j_angle) / int(this%f_velocityYBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        j_zVector = ((this%f_axisMathVectorUtil%jm_calculateZ_2(j_magnitude, j_otherAngle) / int(this%f_velocityZBasicDecimal%jm_getScaledFactorValue_0(), 8)))
+        call this%f_velocityXBasicDecimal%jm_addlong_1(j_xVector)
+        call this%f_velocityYBasicDecimal%jm_addlong_1(j_yVector)
+        call this%f_velocityZBasicDecimal%jm_addlong_1(j_zVector)
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BasicVelocityProperties_jm_toString_0(this) result(jresult)
+    class(BasicVelocityProperties), target :: this
+    character(len=:), allocatable :: jresult
+    class(CommonSeps), pointer :: j_commonSeps
+    class(PositionStrings), pointer :: j_positionStrings
+    class(StringMaker), pointer :: j_stringBuffer
+    class(StringUtil), pointer :: j_stringUtil
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonSeps => CommonSeps_jm_getInstance_0()
+        j_positionStrings => PositionStrings_jm_getInstance_0()
+        j_stringBuffer => StringMaker_jnew_0()
+        j_stringUtil => StringUtil_jm_getInstance_0()
+        jdiscardRef => j_stringBuffer%jm_append_1('Velocity ')
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_X_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_stringUtil%jm_toString_1(this%f_velocityXBasicDecimal))
+        jdiscardRef => j_stringBuffer%jm_append_1(j_commonSeps%f_SPACE)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_Y_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_stringUtil%jm_toString_1(this%f_velocityYBasicDecimal))
+        jdiscardRef => j_stringBuffer%jm_append_1(j_commonSeps%f_SPACE)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_positionStrings%f_Z_LABEL)
+        jdiscardRef => j_stringBuffer%jm_append_1(j_stringUtil%jm_toString_1(this%f_velocityZBasicDecimal))
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
+end module BasicVelocityProperties_m
 

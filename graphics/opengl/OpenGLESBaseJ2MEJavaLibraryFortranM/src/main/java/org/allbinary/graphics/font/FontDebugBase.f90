@@ -1,71 +1,90 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.font
-unit FontDebugBase;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.font
+module FontDebugBase_m
+  use JR_m
+  use StringMaker_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: FontDebugBase
+    character(len=:), allocatable :: f_SET_FONT
+  contains
+    procedure :: jm_debugMetrics_4 => FontDebugBase_jm_debugMetrics_4
+    procedure :: jm_debugDpi_2 => FontDebugBase_jm_debugDpi_2
+    procedure :: jm_debugDimension_4 => FontDebugBase_jm_debugDimension_4
+  end type
 
-interface
+  class(FontDebugBase), pointer, save :: FontDebugBase_jcell_instanceBase => null()
+  logical, save :: FontDebugBase_jset_instanceBase = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Font, StringMaker;
+contains
 
-type
-  {AB:TYPES}
-  // OpenGLESBaseJ2MEJavaLibrary
-  TFontDebugBase = class(TObject)
-  public
-    SET_FONT: string;
-    class var instanceBase: TFontDebugBase;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TFontDebugBase; static;
-        procedure debugMetrics(currentFont: TFont; convertedTextSize: Single; displayMetrics: TObject; stringBuffer: TStringMaker); virtual;
-        procedure debugDpi(densityDpi: Integer; stringBuffer: TStringMaker); virtual;
-        procedure debugDimension(currentFont: TFont; convertedTextSize: Single; longestDimensionTotalPixels: Integer; stringBuffer: TStringMaker); virtual;
-  end;
+  function FontDebugBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(FontDebugBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (FontDebugBase)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function FontDebugBase_jstatic_instanceBase() result(jresult)
+    class(FontDebugBase), pointer :: jresult
+    if (.not. FontDebugBase_jset_instanceBase) then
+      FontDebugBase_jset_instanceBase = .true.
+      FontDebugBase_jcell_instanceBase => FontDebugBase_jnew_0()
+    end if
+    jresult => FontDebugBase_jcell_instanceBase
+  end function
 
-{AB:CODE}
+  subroutine FontDebugBase_jsetstatic_instanceBase(jvalue)
+    class(FontDebugBase), target, optional :: jvalue
+    FontDebugBase_jset_instanceBase = .true.
+    if (present(jvalue)) then
+      FontDebugBase_jcell_instanceBase => jvalue
+    else
+      FontDebugBase_jcell_instanceBase => null()
+    end if
+  end subroutine
 
-procedure TFontDebugBase.InitFields;
-begin
-  Self.SET_FONT := 'setFont';
-end;
+  function FontDebugBase_jnew_0() result(this)
+    class(FontDebugBase), pointer :: this
+    allocate(this)
+    this%jclass = 'FontDebugBase'
+    this%f_SET_FONT = ''
+    this%f_SET_FONT = 'setFont'
+  end function
 
-constructor TFontDebugBase.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function FontDebugBase_jm_getInstance_0() result(jresult)
+    class(FontDebugBase), pointer :: jresult
+        jresult => FontDebugBase_jstatic_instanceBase()
+        return
+  end function
 
-class function TFontDebugBase.getInstance: TFontDebugBase;
-begin
-        Exit(TFontDebugBase.instanceBase);
-end;
-    
+  recursive subroutine FontDebugBase_jm_debugMetrics_4(this, j_currentFont, j_convertedTextSize, j_displayMetrics, j_stringBuffer)
+    class(FontDebugBase), target :: this
+    class(Font), target, optional :: j_currentFont
+    real(4), value :: j_convertedTextSize
+    class(JObject), target, optional :: j_displayMetrics
+    class(StringMaker), target, optional :: j_stringBuffer
+    continue
+  end subroutine
 
-procedure TFontDebugBase.debugMetrics(currentFont: TFont; convertedTextSize: Single; displayMetrics: TObject; stringBuffer: TStringMaker);
-begin
-end;
-    
+  recursive subroutine FontDebugBase_jm_debugDpi_2(this, j_densityDpi, j_stringBuffer)
+    class(FontDebugBase), target :: this
+    integer(4), value :: j_densityDpi
+    class(StringMaker), target, optional :: j_stringBuffer
+    continue
+  end subroutine
 
-procedure TFontDebugBase.debugDpi(densityDpi: Integer; stringBuffer: TStringMaker);
-begin
-end;
-    
-
-procedure TFontDebugBase.debugDimension(currentFont: TFont; convertedTextSize: Single; longestDimensionTotalPixels: Integer; stringBuffer: TStringMaker);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TFontDebugBase.instanceBase := TFontDebugBase.Create();
-  {AB:END}
-
-end.
+  recursive subroutine FontDebugBase_jm_debugDimension_4(this, j_currentFont, j_convertedTextSize, j_longestDimensionTotalPixels, j_stringBuffer)
+    class(FontDebugBase), target :: this
+    class(Font), target, optional :: j_currentFont
+    real(4), value :: j_convertedTextSize
+    integer(4), value :: j_longestDimensionTotalPixels
+    class(StringMaker), target, optional :: j_stringBuffer
+    continue
+  end subroutine
+end module FontDebugBase_m
 

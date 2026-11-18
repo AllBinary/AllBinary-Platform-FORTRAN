@@ -1,55 +1,63 @@
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit PoolTypeFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module PoolTypeFactory_m
+  use JR_m
+  use PoolType_m
+  use CacheTypeFactory_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: PoolTypeFactory
+    class(PoolType), pointer :: f_VECTOR_POOL => null()
+  end type
 
-interface
+  class(PoolTypeFactory), pointer, save :: PoolTypeFactory_jcell_instance => null()
+  logical, save :: PoolTypeFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PoolType;
+contains
 
-type
-  {AB:TYPES}
-  TPoolTypeFactory = class(TObject)
-  public
-    VECTOR_POOL: TPoolType;
-    class var instance: TPoolTypeFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TPoolTypeFactory; static;
-  end;
+  function PoolTypeFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PoolTypeFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PoolTypeFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  CacheTypeFactory;
+  function PoolTypeFactory_jstatic_instance() result(jresult)
+    class(PoolTypeFactory), pointer :: jresult
+    if (.not. PoolTypeFactory_jset_instance) then
+      PoolTypeFactory_jset_instance = .true.
+      PoolTypeFactory_jcell_instance => PoolTypeFactory_jnew_0()
+    end if
+    jresult => PoolTypeFactory_jcell_instance
+  end function
 
+  subroutine PoolTypeFactory_jsetstatic_instance(jvalue)
+    class(PoolTypeFactory), target, optional :: jvalue
+    PoolTypeFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      PoolTypeFactory_jcell_instance => jvalue
+    else
+      PoolTypeFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function PoolTypeFactory_jnew_0() result(this)
+    class(PoolTypeFactory), pointer :: this
+    class(CacheTypeFactory), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'PoolTypeFactory'
+    jtemp1 => CacheTypeFactory_jm_getInstance_0()
+    this%f_VECTOR_POOL => PoolType_jnew_1(jtemp1%f_NO_CACHE)
+  end function
 
-procedure TPoolTypeFactory.InitFields;
-begin
-  Self.VECTOR_POOL := TPoolType.Create(TCacheTypeFactory.getInstance().NO_CACHE);
-end;
-
-constructor TPoolTypeFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TPoolTypeFactory.getInstance: TPoolTypeFactory;
-begin
-        Exit(TPoolTypeFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPoolTypeFactory.instance := TPoolTypeFactory.Create();
-  {AB:END}
-
-end.
+  recursive function PoolTypeFactory_jm_getInstance_0() result(jresult)
+    class(PoolTypeFactory), pointer :: jresult
+        jresult => PoolTypeFactory_jstatic_instance()
+        return
+  end function
+end module PoolTypeFactory_m
 

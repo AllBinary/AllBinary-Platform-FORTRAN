@@ -1,91 +1,88 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module DemoGameRunnable_m
+  use JR_m
+  use LogUtil_m
+  use CommonStrings_m
+  use GameTickTimeDelayHelper_m
+  use GameTickTimeDelayHelperFactory_m
+  use GameRunnable_m
+  use DemoCanvas_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit DemoGameRunnable;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, GameTickTimeDelayHelper, DemoCanvas, GameRunnable;
-
-type
-  {AB:TYPES}
-  TDemoGameRunnable = class(TGameRunnable)
-  public
-    logUtil: TLogUtil;
-    demoCanvas: TDemoCanvas;
-    gameTickTimeDelayHelper: TGameTickTimeDelayHelper;
-    procedure InitFields;
-        constructor Create(demoCanvas_: TDemoCanvas);
-        procedure run; override;
-        procedure processLoopSleep; override;
-  end;
-
-implementation
-uses
-  CommonStrings, GameTickTimeDelayHelperFactory;
+  type, extends(GameRunnable) :: DemoGameRunnable
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(DemoCanvas), pointer :: f_demoCanvas => null()
+    class(GameTickTimeDelayHelper), pointer :: f_gameTickTimeDelayHelper => null()
+  contains
+    procedure :: jm_run_0 => DemoGameRunnable_jm_run_0
+    procedure :: jm_processLoopSleep_0 => DemoGameRunnable_jm_processLoopSleep_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TDemoGameRunnable.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-  Self.gameTickTimeDelayHelper := TGameTickTimeDelayHelperFactory.getInstance();
-end;
+  function DemoGameRunnable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DemoGameRunnable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DemoGameRunnable)
+      jresult => object
+    end select
+  end function
+
+  recursive function DemoGameRunnable_jnew_1(j_demoCanvas) result(this)
+    class(DemoCanvas), target, optional :: j_demoCanvas
+    class(DemoGameRunnable), pointer :: this
+    allocate(this)
+    this%jclass = 'DemoGameRunnable'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
+    this%f_gameTickTimeDelayHelper => GameTickTimeDelayHelperFactory_jm_getInstance_0()
+        this%f_demoCanvas => j_demoCanvas
+  end function
 
-constructor TDemoGameRunnable.Create(demoCanvas_: TDemoCanvas);
-begin
-    inherited Create;
-    InitFields;
-        Self.demoCanvas := demoCanvas_;
-end;
-    
+  recursive subroutine DemoGameRunnable_jm_run_0(this)
+    class(DemoGameRunnable), target :: this
+    class(CommonStrings), pointer :: j_commonStrings
+    class(TimeDelayHelper), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            jtemp1 => this%f_demoCanvas%jm_getLoopTimeHelperP_0()
+            call jtemp1%jm_setStartTime_1(this%f_gameTickTimeDelayHelper%jm_setStartTime_0())
+            call this%f_demoCanvas%jm_processGame_0()
+  end subroutine
 
-procedure TDemoGameRunnable.run;
-var
-  commonStrings_: TCommonStrings;
-begin
-        try
-            Self.demoCanvas.getLoopTimeHelperP().setStartTime(Self.gameTickTimeDelayHelper.setStartTime());
-            Self.demoCanvas.processGame();
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.RUN, TJava.Box(e));
-            end;
-        end;
-end;
-    
-
-// throws Exception
-procedure TDemoGameRunnable.processLoopSleep;
-begin
-        Self.demoCanvas.processLoopSleep();
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine DemoGameRunnable_jm_processLoopSleep_0(this)
+    class(DemoGameRunnable), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_demoCanvas%jm_processLoopSleep_0()
+  end subroutine
+end module DemoGameRunnable_m
 

@@ -1,158 +1,201 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module GameKeyEvent_m
+  use JR_m
+  use NullUtil_m
+  use StringMaker_m
+  use AllBinaryEventObject_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit GameKeyEvent;
+  type, extends(AllBinaryEventObject) :: GameKeyEvent
+    integer(4) :: f_sourceId = 0
+    logical :: f_repeated = .false.
+    integer(4) :: f_key = 0
+    integer(4) :: f_gameActionKey = 0
+    integer(4) :: f_originalKey = 0
+  contains
+    procedure :: jm_init_1 => GameKeyEvent_jm_init_1
+    procedure :: jm_setRepeatEvents_1 => GameKeyEvent_jm_setRepeatEvents_1
+    procedure :: jm_hasRepeatEvents_0 => GameKeyEvent_jm_hasRepeatEvents_0
+    procedure :: jm_getKey_0 => GameKeyEvent_jm_getKey_0
+    procedure :: jm_toString_0 => GameKeyEvent_jm_toString_0
+    procedure :: jm_getOriginalKey_0 => GameKeyEvent_jm_getOriginalKey_0
+    procedure :: jm_setOriginalKey_1 => GameKeyEvent_jm_setOriginalKey_1
+    procedure :: jm_getGameActionKey_0 => GameKeyEvent_jm_getGameActionKey_0
+    procedure :: jm_setGameActionKey_1 => GameKeyEvent_jm_setGameActionKey_1
+    procedure :: jm_getSourceId_0 => GameKeyEvent_jm_getSourceId_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GameKeyEvent), pointer, save :: GameKeyEvent_jcell_NONE => null()
+  logical, save :: GameKeyEvent_jset_NONE = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject;
+  function GameKeyEvent_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameKeyEvent), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameKeyEvent)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameKeyEvent = class(TAllBinaryEventObject)
-  public
-    sourceId: Integer;
-    repeated: Boolean;
-    key: Integer;
-    gameActionKey: Integer;
-    originalKey: Integer;
-    class var NONE: TGameKeyEvent;
-    procedure InitFields;
-        class function createEvent(anyType: TObject; sourceId: Integer; key: Integer): TGameKeyEvent; static;
-        constructor Create(anyType: TObject; sourceId: Integer; originalKey: Integer; gameActionKey: Integer; key: Integer; repeated: Boolean);
-        procedure init(anyType: TObject); virtual;
-        procedure setRepeatEvents(repeated: Boolean);
-        function hasRepeatEvents: Boolean; virtual;
-        function getKey: Integer; virtual;
-        function toString: string; override;
-        function getOriginalKey: Integer; virtual;
-        procedure setOriginalKey(originalKey: Integer); virtual;
-        function getGameActionKey: Integer; virtual;
-        procedure setGameActionKey(gameActionKey: Integer); virtual;
-        function getSourceId: Integer; virtual;
-  end;
+  function GameKeyEvent_jstatic_NONE() result(jresult)
+    class(GameKeyEvent), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. GameKeyEvent_jset_NONE) then
+      GameKeyEvent_jset_NONE = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    GameKeyEvent_jcell_NONE => GameKeyEvent_jnew_6(jtemp1%f_NULL_OBJECT, (-1), (-1), (-1), (-1), .false.)
+    end if
+    jresult => GameKeyEvent_jcell_NONE
+  end function
 
-implementation
-uses
-  NullUtil, StringMaker;
+  subroutine GameKeyEvent_jsetstatic_NONE(jvalue)
+    class(GameKeyEvent), target, optional :: jvalue
+    GameKeyEvent_jset_NONE = .true.
+    if (present(jvalue)) then
+      GameKeyEvent_jcell_NONE => jvalue
+    else
+      GameKeyEvent_jcell_NONE => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TGameKeyEvent.InitFields;
-begin
-  
-  
-  
-  
-  
-end;
+  recursive function GameKeyEvent_jnew_6(j_anyType, j_sourceId, j_originalKey, j_gameActionKey, j_key, j_repeated) result(this)
+    class(JObject), target, optional :: j_anyType
+    integer(4), value :: j_sourceId
+    integer(4), value :: j_originalKey
+    integer(4), value :: j_gameActionKey
+    integer(4), value :: j_key
+    logical, value :: j_repeated
+    class(GameKeyEvent), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'GameKeyEvent'
     
-
-class function TGameKeyEvent.createEvent(anyType: TObject; sourceId: Integer; key: Integer): TGameKeyEvent;
-begin
-        Exit(TGameKeyEvent.Create(TJava.Box(anyType), sourceId, 0, 0, key, False));
-end;
     
-
-constructor TGameKeyEvent.Create(anyType: TObject; sourceId: Integer; originalKey: Integer; gameActionKey: Integer; key: Integer; repeated: Boolean);
-begin
-        inherited Create(anyType);
-        InitFields;
-        Self.sourceId := sourceId;
-        Self.setOriginalKey(originalKey);
-        Self.key := key;
-        Self.setGameActionKey(gameActionKey);
-        Self.setRepeatEvents(repeated);
-end;
     
-
-procedure TGameKeyEvent.init(anyType: TObject);
-begin
-        Self.setSource(TJava.Box(anyType));
-end;
     
-
-procedure TGameKeyEvent.setRepeatEvents(repeated: Boolean);
-begin
-        Self.repeated := repeated;
-end;
     
+        continue ! super()
+        this%f_sourceId = j_sourceId
+        call this%jm_setOriginalKey_1(j_originalKey)
+        this%f_key = j_key
+        call this%jm_setGameActionKey_1(j_gameActionKey)
+        call this%jm_setRepeatEvents_1(j_repeated)
+  end function
 
-function TGameKeyEvent.hasRepeatEvents: Boolean;
-begin
-        Exit(Self.repeated);
-end;
-    
+  recursive function GameKeyEvent_jm_createEvent_3(j_anyType, j_sourceId, j_key) result(jresult)
+    class(JObject), target, optional :: j_anyType
+    integer(4), value :: j_sourceId
+    integer(4), value :: j_key
+    class(GameKeyEvent), pointer :: jresult
+        jresult => GameKeyEvent_jnew_6(j_anyType, j_sourceId, 0, 0, j_key, .false.)
+        return
+  end function
 
-function TGameKeyEvent.getKey: Integer;
-begin
-        Exit(Self.key);
-end;
-    
+  recursive subroutine GameKeyEvent_jm_init_1(this, j_anyType)
+    class(GameKeyEvent), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setSource_1(j_anyType)
+  end subroutine
 
-function TGameKeyEvent.toString: string;
-var
-  stringBuffer: TStringMaker;
-begin
-        stringBuffer := TStringMaker.Create();
-        stringBuffer.append(''#10'Key: ');
-        stringBuffer.appendint(Self.getKey());
-        Exit(stringBuffer.toString());
-end;
-    
+  recursive subroutine GameKeyEvent_jm_setRepeatEvents_1(this, j_repeated)
+    class(GameKeyEvent), target :: this
+    logical, value :: j_repeated
+        this%f_repeated = j_repeated
+  end subroutine
 
-function TGameKeyEvent.getOriginalKey: Integer;
-begin
-        Exit(Self.originalKey);
-end;
-    
+  recursive function GameKeyEvent_jm_hasRepeatEvents_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    logical :: jresult
+        jresult = this%f_repeated
+        return
+  end function
 
-procedure TGameKeyEvent.setOriginalKey(originalKey: Integer);
-begin
-        Self.originalKey := originalKey;
-end;
-    
+  recursive function GameKeyEvent_jm_getKey_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_key
+        return
+  end function
 
-function TGameKeyEvent.getGameActionKey: Integer;
-begin
-        Exit(Self.gameActionKey);
-end;
-    
+  recursive function GameKeyEvent_jm_toString_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: j_stringBuffer
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuffer => StringMaker_jnew_0()
+        jdiscardRef => j_stringBuffer%jm_append_1(JR_unescape('\nKey: '))
+        jdiscardRef => j_stringBuffer%jm_appendint_1(this%jm_getKey_0())
+        jresult = j_stringBuffer%jm_toString_0()
+        return
+  end function
 
-procedure TGameKeyEvent.setGameActionKey(gameActionKey: Integer);
-begin
-        Self.gameActionKey := gameActionKey;
-end;
-    
+  recursive function GameKeyEvent_jm_getOriginalKey_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_originalKey
+        return
+  end function
 
-function TGameKeyEvent.getSourceId: Integer;
-begin
-        Exit(Self.sourceId);
-end;
+  recursive subroutine GameKeyEvent_jm_setOriginalKey_1(this, j_originalKey)
+    class(GameKeyEvent), target :: this
+    integer(4), value :: j_originalKey
+        this%f_originalKey = j_originalKey
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  TGameKeyEvent.NONE := TGameKeyEvent.Create(TJava.Box(TNullUtil.getInstance().NULL_OBJECT), -1, -1, -1, -1, False);
-  {AB:END}
+  recursive function GameKeyEvent_jm_getGameActionKey_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_gameActionKey
+        return
+  end function
 
-end.
+  recursive subroutine GameKeyEvent_jm_setGameActionKey_1(this, j_gameActionKey)
+    class(GameKeyEvent), target :: this
+    integer(4), value :: j_gameActionKey
+        this%f_gameActionKey = j_gameActionKey
+  end subroutine
+
+  recursive function GameKeyEvent_jm_getSourceId_0(this) result(jresult)
+    class(GameKeyEvent), target :: this
+    integer(4) :: jresult
+        jresult = this%f_sourceId
+        return
+  end function
+end module GameKeyEvent_m
 

@@ -1,71 +1,70 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module BasicArrayListResetablePool_m
+  use JR_m
+  use AbstractArrayListPool_m
+  use CacheableInterfaceFactoryInterface_m
+  use CacheableInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit BasicArrayListResetablePool;
+  type, extends(AbstractArrayListPool) :: BasicArrayListResetablePool
+  contains
+    procedure :: jm_clear_0 => BasicArrayListResetablePool_jm_clear_0
+    procedure :: jm_remove_1 => BasicArrayListResetablePool_jm_remove_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CacheableInterfaceFactoryInterface, CacheableInterface, AbstractArrayListPool;
+  function BasicArrayListResetablePool_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicArrayListResetablePool), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicArrayListResetablePool)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBasicArrayListResetablePool = class(TAbstractArrayListPool)
-  public
-        constructor Create(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface);
-        procedure clear; override;
-        function remove(key: TObject): ICacheableInterface; override;
-  end;
+  recursive function BasicArrayListResetablePool_jnew_1(j_cacheableInterfaceFactoryInterface) result(this)
+    class(CacheableInterfaceFactoryInterface), target, optional :: j_cacheableInterfaceFactoryInterface
+    class(BasicArrayListResetablePool), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicArrayListResetablePool'
+        continue ! super()
+  end function
 
-implementation
+  recursive subroutine BasicArrayListResetablePool_jm_clear_0(this)
+    class(BasicArrayListResetablePool), target :: this
+    continue
+  end subroutine
 
-{AB:CODE}
-    
-
-constructor TBasicArrayListResetablePool.Create(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface);
-begin
-        inherited Create(cacheableInterfaceFactoryInterface_);
-end;
-    
-
-procedure TBasicArrayListResetablePool.clear;
-begin
-end;
-    
-
-// throws Exception
-function TBasicArrayListResetablePool.remove(key: TObject): ICacheableInterface;
-var
-  size: Integer;
-begin
-        size := Self.buffers.size();
-        if (size) > (0) then begin
-            Exit((TJava.ToObject(Self.buffers.removeAt((size) - (1))) as ICacheableInterface));
-        end else begin
-            Exit(Self.cacheableInterfaceFactoryInterface.getInstance(key));
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BasicArrayListResetablePool_jm_remove_1(this, j_key) result(jresult)
+    class(BasicArrayListResetablePool), target :: this
+    class(JObject), target, optional :: j_key
+    class(CacheableInterface), pointer :: jresult
+    integer(4) :: j_size
+        j_size = this%f_buffers%jm_size_0()
+        if ((j_size > 0)) then
+            jresult => CacheableInterface_jcast(this%f_buffers%jm_removeAt_1((j_size - 1)))
+            return
+        else
+            jresult => this%f_cacheableInterfaceFactoryInterface%jm_getInstance_1(j_key)
+            return
+        end if
+  end function
+end module BasicArrayListResetablePool_m
 

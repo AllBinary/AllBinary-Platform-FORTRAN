@@ -1,78 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module NoButtonsBuilder_m
+  use JR_m
+  use LogUtil_m
+  use BasicArrayList_m
+  use BasicArrayListUtil_m
+  use BaseTouchInput_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit NoButtonsBuilder;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, BasicArrayList, BaseTouchInput;
-
-type
-  {AB:TYPES}
-  TNoButtonsBuilder = class(TBaseTouchInput)
-  public
-    logUtil: TLogUtil;
-    procedure InitFields;
-    constructor Create;
-        function getList: TBasicArrayList; override;
-  end;
-
-implementation
-uses
-  BasicArrayListUtil;
+  type, extends(BaseTouchInput) :: NoButtonsBuilder
+    class(LogUtil), pointer :: f_logUtil => null()
+  contains
+    procedure :: jm_getList_0 => NoButtonsBuilder_jm_getList_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TNoButtonsBuilder.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-end;
+  function NoButtonsBuilder_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoButtonsBuilder), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoButtonsBuilder)
+      jresult => object
+    end select
+  end function
 
-constructor TNoButtonsBuilder.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  function NoButtonsBuilder_jnew_0() result(this)
+    class(NoButtonsBuilder), pointer :: this
+    allocate(this)
+    this%jclass = 'NoButtonsBuilder'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+  end function
 
-function TNoButtonsBuilder.getList: TBasicArrayList;
-var
-  list: TBasicArrayList;
-begin
-        try
-            Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.commonStrings.CONSTRUCTOR_);
-            list := TBasicArrayListUtil.getInstance().getImmutableInstance();
-            Exit(list);
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), Self.commonStrings.GET_LIST, TJava.Box(e));
-            Exit(TBasicArrayListUtil.getInstance().getImmutableInstance());
-            end;
-        end;
-end;
+  recursive function NoButtonsBuilder_jm_getList_0(this) result(jresult)
+    class(NoButtonsBuilder), target :: this
+    class(BasicArrayList), pointer :: jresult
+    class(BasicArrayList), pointer :: j_list
+    class(BasicArrayListUtil), pointer :: jtemp1
+    class(BasicArrayListUtil), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_commonStrings%f_CONSTRUCTOR)
+            jtemp1 => BasicArrayListUtil_jm_getInstance_0()
+            j_list => jtemp1%jm_getImmutableInstance_0()
+            jresult => j_list
+            return
+  end function
+end module NoButtonsBuilder_m
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function NoButtonsBuilder_jnew_0_jext() result(this)
+  use NoButtonsBuilder_m, only: JObject, NoButtonsBuilder_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NoButtonsBuilder_jnew_0()
+end function
 

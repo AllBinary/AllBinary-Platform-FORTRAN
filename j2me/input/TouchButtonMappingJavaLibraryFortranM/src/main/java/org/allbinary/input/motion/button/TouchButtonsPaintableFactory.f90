@@ -1,59 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchButtonsPaintableFactory_m
+  use JR_m
+  use BasicColor_m
+  use Paintable_m
+  use TouchButtonsPaintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchButtonsPaintableFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicColor, Paintable;
-
-type
-  {AB:TYPES}
-  TTouchButtonsPaintableFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance(basicColor_: TBasicColor): TPaintable; static;
-  end;
-
-implementation
-uses
-  TouchButtonsPaintable;
+  type, extends(JObject) :: TouchButtonsPaintableFactory
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TTouchButtonsPaintableFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function TouchButtonsPaintableFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchButtonsPaintableFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchButtonsPaintableFactory)
+      jresult => object
+    end select
+  end function
 
-class function TTouchButtonsPaintableFactory.getInstance(basicColor_: TBasicColor): TPaintable;
-begin
-        Exit(TTouchButtonsPaintable.Create(basicColor_));
-end;
+  function TouchButtonsPaintableFactory_jnew_0() result(this)
+    class(TouchButtonsPaintableFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchButtonsPaintableFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function TouchButtonsPaintableFactory_jm_getInstance_1(j_basicColor) result(jresult)
+    class(BasicColor), target, optional :: j_basicColor
+    class(Paintable), pointer :: jresult
+        jresult => TouchButtonsPaintable_jnew_1(j_basicColor)
+        return
+  end function
+end module TouchButtonsPaintableFactory_m
 

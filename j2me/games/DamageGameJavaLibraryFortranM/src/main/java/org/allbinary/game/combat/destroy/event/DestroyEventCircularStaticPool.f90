@@ -1,89 +1,111 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.combat.destroy.event
+module DestroyEventCircularStaticPool_m
+  use JR_m
+  use AllBinaryGameCanvas_m
+  use AllBinaryLayer_m
+  use AllBinaryEventCircularPool_m
+  use DestroyEventFactory_m
+  use DestroyedEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.combat.destroy.event
-unit DestroyEventCircularStaticPool;
+  type, extends(JObject) :: DestroyEventCircularStaticPool
+    class(AllBinaryEventCircularPool), pointer :: f_EVENT_POOL => null()
+  contains
+    procedure :: jm_init_1 => DestroyEventCircularStaticPool_jm_init_1
+    procedure :: jm_getInstanceForLayer_1 => DestroyEventCircularStaticPool_jm_getInstanceForLayer_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(DestroyEventCircularStaticPool), pointer, save :: DestroyEventCircularStaticPool_jcell_instance => null()
+  logical, save :: DestroyEventCircularStaticPool_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryGameCanvas, AllBinaryLayer, AllBinaryEventCircularPool, DestroyedEvent;
+  function DestroyEventCircularStaticPool_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DestroyEventCircularStaticPool), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DestroyEventCircularStaticPool)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDestroyEventCircularStaticPool = class(TObject)
-  public
-    EVENT_POOL: TAllBinaryEventCircularPool;
-    class var instance: TDestroyEventCircularStaticPool;
-    procedure InitFields;
-        class function getInstance: TDestroyEventCircularStaticPool; static;
-        constructor Create;
-        procedure init(combatGameCanvas: TAllBinaryGameCanvas); virtual;
-        function getInstanceForLayer(layerInterface: TAllBinaryLayer): TDestroyedEvent; virtual;
-  end;
+  function DestroyEventCircularStaticPool_jstatic_instance() result(jresult)
+    class(DestroyEventCircularStaticPool), pointer :: jresult
+    if (.not. DestroyEventCircularStaticPool_jset_instance) then
+      DestroyEventCircularStaticPool_jset_instance = .true.
+      DestroyEventCircularStaticPool_jcell_instance => DestroyEventCircularStaticPool_jnew_0()
+    end if
+    jresult => DestroyEventCircularStaticPool_jcell_instance
+  end function
 
-implementation
-uses
-  DestroyEventFactory;
+  subroutine DestroyEventCircularStaticPool_jsetstatic_instance(jvalue)
+    class(DestroyEventCircularStaticPool), target, optional :: jvalue
+    DestroyEventCircularStaticPool_jset_instance = .true.
+    if (present(jvalue)) then
+      DestroyEventCircularStaticPool_jcell_instance => jvalue
+    else
+      DestroyEventCircularStaticPool_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function DestroyEventCircularStaticPool_jnew_0() result(this)
+    class(DestroyEventCircularStaticPool), pointer :: this
+    allocate(this)
+    this%jclass = 'DestroyEventCircularStaticPool'
+    this%f_EVENT_POOL => AllBinaryEventCircularPool_jnew_1(20)
+        continue
+  end function
 
-{AB:CODE}
+  recursive function DestroyEventCircularStaticPool_jm_getInstance_0() result(jresult)
+    class(DestroyEventCircularStaticPool), pointer :: jresult
+        jresult => DestroyEventCircularStaticPool_jstatic_instance()
+        return
+  end function
 
-procedure TDestroyEventCircularStaticPool.InitFields;
-begin
-  Self.EVENT_POOL := TAllBinaryEventCircularPool.Create(20);
-end;
-    
+  recursive subroutine DestroyEventCircularStaticPool_jm_init_1(this, j_combatGameCanvas)
+    class(DestroyEventCircularStaticPool), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_combatGameCanvas
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_EVENT_POOL%jm_initAllBinaryEventCircularPool_1(DestroyEventFactory_jnew_1(j_combatGameCanvas))
+  end subroutine
 
-class function TDestroyEventCircularStaticPool.getInstance: TDestroyEventCircularStaticPool;
-begin
-        Exit(TDestroyEventCircularStaticPool.instance);
-end;
-    
-
-constructor TDestroyEventCircularStaticPool.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-procedure TDestroyEventCircularStaticPool.init(combatGameCanvas: TAllBinaryGameCanvas);
-begin
-        Self.EVENT_POOL.initAllBinaryEventCircularPool(TDestroyEventFactory.Create(combatGameCanvas));
-end;
-    
-
-// throws Exception
-function TDestroyEventCircularStaticPool.getInstanceForLayer(layerInterface: TAllBinaryLayer): TDestroyedEvent;
-var
-  destroyedEvent_: TDestroyedEvent;
-begin
-        destroyedEvent_ := TDestroyedEvent(TJava.ToObject(Self.EVENT_POOL.getNextInstance()));
-        destroyedEvent_.setLayerInterfaceForCircularStaticPool(layerInterface);
-        Exit(destroyedEvent_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDestroyEventCircularStaticPool.instance := TDestroyEventCircularStaticPool.Create();
-  {AB:END}
-
-end.
+  recursive function DestroyEventCircularStaticPool_jm_getInstanceForLayer_1(this, j_layerInterface) result(jresult)
+    class(DestroyEventCircularStaticPool), target :: this
+    class(AllBinaryLayer), target, optional :: j_layerInterface
+    class(DestroyedEvent), pointer :: jresult
+    class(DestroyedEvent), pointer :: j_destroyedEvent
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_destroyedEvent => DestroyedEvent_jcast(this%f_EVENT_POOL%jm_getNextInstance_0())
+        call j_destroyedEvent%jm_setLayerInterfaceForCircularStaticPool_1(j_layerInterface)
+        jresult => j_destroyedEvent
+        return
+  end function
+end module DestroyEventCircularStaticPool_m
 

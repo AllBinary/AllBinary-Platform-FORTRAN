@@ -49,6 +49,16 @@ contains
     jresult => ResizableListenerHandler_jcell_instance
   end function
 
+  subroutine ResizableListenerHandler_jsetstatic_instance(jvalue)
+    class(ResizableListenerHandler), target, optional :: jvalue
+    ResizableListenerHandler_jset_instance = .true.
+    if (present(jvalue)) then
+      ResizableListenerHandler_jcell_instance => jvalue
+    else
+      ResizableListenerHandler_jcell_instance => null()
+    end if
+  end subroutine
+
   function ResizableListenerHandler_jnew_0() result(this)
     class(ResizableListenerHandler), pointer :: this
     allocate(this)

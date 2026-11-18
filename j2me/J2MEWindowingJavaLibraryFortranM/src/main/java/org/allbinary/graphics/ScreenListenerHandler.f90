@@ -51,6 +51,16 @@ contains
     jresult => ScreenListenerHandler_jcell_instance
   end function
 
+  subroutine ScreenListenerHandler_jsetstatic_instance(jvalue)
+    class(ScreenListenerHandler), target, optional :: jvalue
+    ScreenListenerHandler_jset_instance = .true.
+    if (present(jvalue)) then
+      ScreenListenerHandler_jcell_instance => jvalue
+    else
+      ScreenListenerHandler_jcell_instance => null()
+    end if
+  end subroutine
+
   function ScreenListenerHandler_jnew_0() result(this)
     class(ScreenListenerHandler), pointer :: this
     allocate(this)

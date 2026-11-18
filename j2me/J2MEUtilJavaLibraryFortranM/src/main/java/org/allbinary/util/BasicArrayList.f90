@@ -70,6 +70,12 @@ contains
     jresult = BasicArrayList_jcell_SIZE
   end function
 
+  subroutine BasicArrayList_jsetstatic_SIZE(jvalue)
+    character(len=*), intent(in) :: jvalue
+    BasicArrayList_jset_SIZE = .true.
+    BasicArrayList_jcell_SIZE = jvalue
+  end subroutine
+
   recursive function BasicArrayList_jnew_1(j_objectArray) result(this)
     type(JRef) :: j_objectArray(:)
     class(BasicArrayList), pointer :: this

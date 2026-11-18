@@ -52,6 +52,16 @@ contains
     jresult => PATH_GLOBALS_jcell_instance
   end function
 
+  subroutine PATH_GLOBALS_jsetstatic_instance(jvalue)
+    class(PATH_GLOBALS), target, optional :: jvalue
+    PATH_GLOBALS_jset_instance = .true.
+    if (present(jvalue)) then
+      PATH_GLOBALS_jcell_instance => jvalue
+    else
+      PATH_GLOBALS_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function PATH_GLOBALS_jnew_0() result(this)
     class(PATH_GLOBALS), pointer :: this
     class(StringMaker), pointer :: j_stringBuffer

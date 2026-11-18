@@ -1,59 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchButtonDownResource_m
+  use JR_m
+  use TouchButtonResource_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchButtonDownResource;
+  type, extends(TouchButtonResource) :: TouchButtonDownResource
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(TouchButtonResource), pointer, save :: TouchButtonDownResource_jcell_instance => null()
+  logical, save :: TouchButtonDownResource_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TouchButtonResource;
+  function TouchButtonDownResource_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchButtonDownResource), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchButtonDownResource)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TTouchButtonDownResource = class(TTouchButtonResource)
-  public
-    class var instance: TTouchButtonResource;
-        class function getInstance: TTouchButtonResource; static;
-        constructor Create;
-  end;
+  function TouchButtonDownResource_jstatic_instance() result(jresult)
+    class(TouchButtonResource), pointer :: jresult
+    if (.not. TouchButtonDownResource_jset_instance) then
+      TouchButtonDownResource_jset_instance = .true.
+      TouchButtonDownResource_jcell_instance => TouchButtonDownResource_jnew_0()
+    end if
+    jresult => TouchButtonDownResource_jcell_instance
+  end function
 
-implementation
+  subroutine TouchButtonDownResource_jsetstatic_instance(jvalue)
+    class(TouchButtonResource), target, optional :: jvalue
+    TouchButtonDownResource_jset_instance = .true.
+    if (present(jvalue)) then
+      TouchButtonDownResource_jcell_instance => jvalue
+    else
+      TouchButtonDownResource_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function TouchButtonDownResource_jnew_0() result(this)
+    class(TouchButtonDownResource), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchButtonDownResource'
+        continue ! super()
+  end function
 
-class function TTouchButtonDownResource.getInstance: TTouchButtonResource;
-begin
-        Exit(TTouchButtonDownResource.instance);
-end;
-    
+  recursive function TouchButtonDownResource_jm_getInstance_0() result(jresult)
+    class(TouchButtonResource), pointer :: jresult
+        jresult => TouchButtonDownResource_jstatic_instance()
+        return
+  end function
+end module TouchButtonDownResource_m
 
-constructor TTouchButtonDownResource.Create;
-begin
-        inherited Create('/touch_button_down_arrow_64_by_64.png', '/touch_button_down_arrow_hint_64_by_64.png');
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTouchButtonDownResource.instance := TTouchButtonDownResource.Create();
-  {AB:END}
-
-end.
+function TouchButtonDownResource_jnew_0_jext() result(this)
+  use TouchButtonDownResource_m, only: JObject, TouchButtonDownResource_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => TouchButtonDownResource_jnew_0()
+end function
 

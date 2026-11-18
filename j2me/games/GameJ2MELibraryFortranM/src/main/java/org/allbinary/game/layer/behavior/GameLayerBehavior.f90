@@ -1,49 +1,42 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.behavior
-unit GameLayerBehavior;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.behavior
+module GameLayerBehavior_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: GameLayerBehavior
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TGameLayerBehavior = class(TObject)
-  public
-    constructor Create;
-  end;
+  function GameLayerBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameLayerBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameLayerBehavior)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TGameLayerBehavior.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function GameLayerBehavior_jnew_0() result(this)
+    class(GameLayerBehavior), pointer :: this
+    allocate(this)
+    this%jclass = 'GameLayerBehavior'
+  end function
+end module GameLayerBehavior_m
 

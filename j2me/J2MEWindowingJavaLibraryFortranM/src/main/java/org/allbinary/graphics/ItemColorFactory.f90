@@ -47,6 +47,16 @@ contains
     jresult => ItemColorFactory_jcell_instance
   end function
 
+  subroutine ItemColorFactory_jsetstatic_instance(jvalue)
+    class(ItemColorFactory), target, optional :: jvalue
+    ItemColorFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ItemColorFactory_jcell_instance => jvalue
+    else
+      ItemColorFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function ItemColorFactory_jnew_0() result(this)
     class(ItemColorFactory), pointer :: this
     allocate(this)

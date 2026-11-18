@@ -1,139 +1,141 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module ThirdPartyInApplicationPurchase_m
+  use JR_m
+  use StringUtil_m
+  use ThirdPartyInApplicationPurchaseInterface_m
+  use LockableFeature_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit ThirdPartyInApplicationPurchase;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LockableFeature, ThirdPartyInApplicationPurchaseInterface;
-
-type
-  {AB:TYPES}
-  TThirdPartyInApplicationPurchase = class(TInterfacedObject, IThirdPartyInApplicationPurchaseInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        function isPurchased(lockableFeature_: TLockableFeature): Boolean; virtual;
-        procedure onCreate(anyType: TObject; stateObject: TObject); virtual;
-        procedure onDestroy; virtual;
-        procedure onStart; virtual;
-        procedure onActivityResult(requestCode: Integer; resultCode: Integer; dataObject: TObject); virtual;
-        procedure onSaveInstanceState(anyType: TObject); virtual;
-        procedure onStop; virtual;
-        procedure requestPurchase(lockableFeature_: TLockableFeature); virtual;
-        procedure requestReceipts; virtual;
-        procedure add(lockableFeature_: TLockableFeature); virtual;
-        function getUserName: string; virtual;
-        function isEnabled: Boolean; virtual;
-        procedure requestProducts; virtual;
-  end;
-
-implementation
-uses
-  StringUtil;
+  type, extends(ThirdPartyInApplicationPurchaseInterface) :: ThirdPartyInApplicationPurchase
+  contains
+    procedure :: jm_isPurchased_1 => ThirdPartyInApplicationPurchase_jm_isPurchased_1
+    procedure :: jm_onCreate_2 => ThirdPartyInApplicationPurchase_jm_onCreate_2
+    procedure :: jm_onDestroy_0 => ThirdPartyInApplicationPurchase_jm_onDestroy_0
+    procedure :: jm_onStart_0 => ThirdPartyInApplicationPurchase_jm_onStart_0
+    procedure :: jm_onActivityResult_3 => ThirdPartyInApplicationPurchase_jm_onActivityResult_3
+    procedure :: jm_onSaveInstanceState_1 => ThirdPartyInApplicationPurchase_jm_onSaveInstanceState_1
+    procedure :: jm_onStop_0 => ThirdPartyInApplicationPurchase_jm_onStop_0
+    procedure :: jm_requestPurchase_1 => ThirdPartyInApplicationPurchase_jm_requestPurchase_1
+    procedure :: jm_requestReceipts_0 => ThirdPartyInApplicationPurchase_jm_requestReceipts_0
+    procedure :: jm_add_1 => ThirdPartyInApplicationPurchase_jm_add_1
+    procedure :: jm_getUserName_0 => ThirdPartyInApplicationPurchase_jm_getUserName_0
+    procedure :: jm_isEnabled_0 => ThirdPartyInApplicationPurchase_jm_isEnabled_0
+    procedure :: jm_requestProducts_0 => ThirdPartyInApplicationPurchase_jm_requestProducts_0
+  end type
 
 
-{AB:CODE}
+contains
 
-function TThirdPartyInApplicationPurchase.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function ThirdPartyInApplicationPurchase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ThirdPartyInApplicationPurchase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ThirdPartyInApplicationPurchase)
+      jresult => object
+    end select
+  end function
 
-constructor TThirdPartyInApplicationPurchase.Create;
-begin
-  inherited Create;
-end;
-    
+  function ThirdPartyInApplicationPurchase_jnew_0() result(this)
+    class(ThirdPartyInApplicationPurchase), pointer :: this
+    allocate(this)
+    this%jclass = 'ThirdPartyInApplicationPurchase'
+  end function
 
-function TThirdPartyInApplicationPurchase.isPurchased(lockableFeature_: TLockableFeature): Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive function ThirdPartyInApplicationPurchase_jm_isPurchased_1(this, j_lockableFeature) result(jresult)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    class(LockableFeature), target, optional :: j_lockableFeature
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-procedure TThirdPartyInApplicationPurchase.onCreate(anyType: TObject; stateObject: TObject);
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onCreate_2(this, j_anyType, j_stateObject)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(JObject), target, optional :: j_stateObject
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.onDestroy;
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onDestroy_0(this)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.onStart;
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onStart_0(this)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.onActivityResult(requestCode: Integer; resultCode: Integer; dataObject: TObject);
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onActivityResult_3(this, j_requestCode, j_resultCode, j_dataObject)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    integer(4), value :: j_requestCode
+    integer(4), value :: j_resultCode
+    class(JObject), target, optional :: j_dataObject
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.onSaveInstanceState(anyType: TObject);
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onSaveInstanceState_1(this, j_anyType)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    class(JObject), target, optional :: j_anyType
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.onStop;
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_onStop_0(this)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.requestPurchase(lockableFeature_: TLockableFeature);
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_requestPurchase_1(this, j_lockableFeature)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    class(LockableFeature), target, optional :: j_lockableFeature
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.requestReceipts;
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_requestReceipts_0(this)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    continue
+  end subroutine
 
-procedure TThirdPartyInApplicationPurchase.add(lockableFeature_: TLockableFeature);
-begin
-end;
-    
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_add_1(this, j_lockableFeature)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    class(LockableFeature), target, optional :: j_lockableFeature
+    continue
+  end subroutine
 
-function TThirdPartyInApplicationPurchase.getUserName: string;
-begin
-        Exit(TStringUtil.getInstance().EMPTY_STRING);
-end;
-    
+  recursive function ThirdPartyInApplicationPurchase_jm_getUserName_0(this) result(jresult)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringUtil), pointer :: jtemp1
+        jtemp1 => StringUtil_jm_getInstance_0()
+        jresult = jtemp1%f_EMPTY_STRING
+        return
+  end function
 
-function TThirdPartyInApplicationPurchase.isEnabled: Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive function ThirdPartyInApplicationPurchase_jm_isEnabled_0(this) result(jresult)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-procedure TThirdPartyInApplicationPurchase.requestProducts;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine ThirdPartyInApplicationPurchase_jm_requestProducts_0(this)
+    class(ThirdPartyInApplicationPurchase), target :: this
+    continue
+  end subroutine
+end module ThirdPartyInApplicationPurchase_m
 

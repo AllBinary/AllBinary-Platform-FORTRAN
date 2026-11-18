@@ -1,44 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input.event
+module UpKeyEventListenerInterface_m
+  use JR_m
+  use EventListenerInterface_m
+  use Integer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input.event
-unit UpKeyEventListenerInterface;
+  type, extends(EventListenerInterface) :: UpKeyEventListenerInterface
+  contains
+    procedure :: jm_onUpKeyEvent_1 => UpKeyEventListenerInterface_jm_onUpKeyEvent_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, EventListenerInterface;
+  function UpKeyEventListenerInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(UpKeyEventListenerInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (UpKeyEventListenerInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IUpKeyEventListenerInterface = interface(IEventListenerInterface) ['IUpKeyEventListenerInterface']
-        procedure onUpKeyEvent(keyAsInteger: Integer);
-  end;
-  TUpKeyEventListenerInterface = IUpKeyEventListenerInterface;
+  function UpKeyEventListenerInterface_jnew_0() result(this)
+    class(UpKeyEventListenerInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'UpKeyEventListenerInterface'
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine UpKeyEventListenerInterface_jm_onUpKeyEvent_1(this, j_keyAsInteger)
+    class(UpKeyEventListenerInterface), target :: this
+    integer(4), value :: j_keyAsInteger
+    error stop 'AbstractMethodError: UpKeyEventListenerInterface.onUpKeyEvent'
+  end subroutine
+end module UpKeyEventListenerInterface_m
 

@@ -45,6 +45,16 @@ contains
     jresult => NullRunnable_jcell_instance
   end function
 
+  subroutine NullRunnable_jsetstatic_instance(jvalue)
+    class(NullRunnable), target, optional :: jvalue
+    NullRunnable_jset_instance = .true.
+    if (present(jvalue)) then
+      NullRunnable_jcell_instance => jvalue
+    else
+      NullRunnable_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function NullRunnable_jnew_0() result(this)
     class(NullRunnable), pointer :: this
     allocate(this)

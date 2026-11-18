@@ -1,46 +1,65 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module GameFeatureControlledInterface_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit GameFeatureControlledInterface;
+  type, extends(JObject) :: GameFeatureControlledInterface
+  contains
+    procedure :: jm_init_1 => GameFeatureControlledInterface_jm_init_1
+    procedure :: jm_isFeature_0 => GameFeatureControlledInterface_jm_isFeature_0
+    procedure :: jm_isLoadingLevel_1 => GameFeatureControlledInterface_jm_isLoadingLevel_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function GameFeatureControlledInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameFeatureControlledInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameFeatureControlledInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IGameFeatureControlledInterface = interface(IJavaObject) ['IGameFeatureControlledInterface']
-        procedure init(level: Integer);
-        function isFeature: Boolean;
-        function isLoadingLevel(level: Integer): Boolean;
-  end;
-  TGameFeatureControlledInterface = IGameFeatureControlledInterface;
+  function GameFeatureControlledInterface_jnew_0() result(this)
+    class(GameFeatureControlledInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'GameFeatureControlledInterface'
+  end function
 
-implementation
+  recursive subroutine GameFeatureControlledInterface_jm_init_1(this, j_level)
+    class(GameFeatureControlledInterface), target :: this
+    integer(4), value :: j_level
+    error stop 'AbstractMethodError: GameFeatureControlledInterface.init'
+  end subroutine
 
-{AB:CODE}
+  recursive function GameFeatureControlledInterface_jm_isFeature_0(this) result(jresult)
+    class(GameFeatureControlledInterface), target :: this
+    logical :: jresult
+    error stop 'AbstractMethodError: GameFeatureControlledInterface.isFeature'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function GameFeatureControlledInterface_jm_isLoadingLevel_1(this, j_level) result(jresult)
+    class(GameFeatureControlledInterface), target :: this
+    integer(4), value :: j_level
+    logical :: jresult
+    error stop 'AbstractMethodError: GameFeatureControlledInterface.isLoadingLevel'
+  end function
+end module GameFeatureControlledInterface_m
 

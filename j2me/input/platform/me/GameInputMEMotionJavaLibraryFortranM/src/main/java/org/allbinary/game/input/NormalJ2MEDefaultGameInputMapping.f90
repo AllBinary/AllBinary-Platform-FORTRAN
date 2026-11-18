@@ -1,81 +1,90 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module NormalJ2MEDefaultGameInputMapping_m
+  use JR_m
+  use GamePersistanceStrings_m
+  use InputToGameKeyMapping_m
+  use PersistentInputMapping_m
+  use GameKeyFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit NormalJ2MEDefaultGameInputMapping;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PersistentInputMapping;
-
-type
-  {AB:TYPES}
-  TNormalJ2MEDefaultGameInputMapping = class(TPersistentInputMapping)
-  public
-        constructor Create;
-  end;
-
-implementation
-uses
-  GameKeyFactory, GamePersistanceStrings, InputToGameKeyMapping;
+  type, extends(PersistentInputMapping) :: NormalJ2MEDefaultGameInputMapping
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TNormalJ2MEDefaultGameInputMapping.Create;
-var
-  inputToGameKeyMapping_: TInputToGameKeyMapping;
-  gameKeyFactory_: TGameKeyFactory;
-begin
-        inherited Create(TGamePersistanceStrings.getInstance().DEFAULT_INPUT_MAPPING_RECORD_ID);
-        inputToGameKeyMapping_ := Self.getInputMapping();
-        gameKeyFactory_ := TGameKeyFactory.getInstance();
-        inputToGameKeyMapping_.add(gameKeyFactory_.UP, gameKeyFactory_.KEY_NUM2);
-        inputToGameKeyMapping_.add(gameKeyFactory_.LEFT, gameKeyFactory_.KEY_NUM4);
-        inputToGameKeyMapping_.add(gameKeyFactory_.RIGHT, gameKeyFactory_.KEY_NUM6);
-        inputToGameKeyMapping_.add(gameKeyFactory_.DOWN, gameKeyFactory_.KEY_NUM8);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM1, gameKeyFactory_.GAME_A);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM3, gameKeyFactory_.GAME_B);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM7, gameKeyFactory_.GAME_C);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM9, gameKeyFactory_.GAME_D);
-        inputToGameKeyMapping_.add(gameKeyFactory_.LEVEL_DOWN, gameKeyFactory_.LEVEL_DOWN);
-        inputToGameKeyMapping_.add(gameKeyFactory_.LEVEL_UP, gameKeyFactory_.LEVEL_UP);
-        inputToGameKeyMapping_.add(gameKeyFactory_.UP, gameKeyFactory_.UP);
-        inputToGameKeyMapping_.add(gameKeyFactory_.DOWN, gameKeyFactory_.DOWN);
-        inputToGameKeyMapping_.add(gameKeyFactory_.LEFT, gameKeyFactory_.LEFT);
-        inputToGameKeyMapping_.add(gameKeyFactory_.RIGHT, gameKeyFactory_.RIGHT);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_POUND, gameKeyFactory_.KEY_POUND);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_STAR, gameKeyFactory_.KEY_STAR);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM1, gameKeyFactory_.KEY_NUM1);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM3, gameKeyFactory_.KEY_NUM3);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM5, gameKeyFactory_.KEY_NUM5);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM7, gameKeyFactory_.KEY_NUM7);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM9, gameKeyFactory_.KEY_NUM9);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM0, gameKeyFactory_.KEY_NUM0);
-        inputToGameKeyMapping_.add(gameKeyFactory_.KEY_NUM1, gameKeyFactory_.FIRE);
-end;
+  function NormalJ2MEDefaultGameInputMapping_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NormalJ2MEDefaultGameInputMapping), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NormalJ2MEDefaultGameInputMapping)
+      jresult => object
+    end select
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function NormalJ2MEDefaultGameInputMapping_jnew_0() result(this)
+    class(NormalJ2MEDefaultGameInputMapping), pointer :: this
+    class(InputToGameKeyMapping), pointer :: j_inputToGameKeyMapping
+    class(GameKeyFactory), pointer :: j_gameKeyFactory
+    class(GamePersistanceStrings), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'NormalJ2MEDefaultGameInputMapping'
+        jtemp1 => GamePersistanceStrings_jm_getInstance_0()
+        continue ! super()
+        j_inputToGameKeyMapping => this%jm_getInputMapping_0()
+        j_gameKeyFactory => GameKeyFactory_jm_getInstance_0()
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_UP, j_gameKeyFactory%f_KEY_NUM2)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_LEFT, j_gameKeyFactory%f_KEY_NUM4)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_RIGHT, j_gameKeyFactory%f_KEY_NUM6)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_DOWN, j_gameKeyFactory%f_KEY_NUM8)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM1, j_gameKeyFactory%f_GAME_A)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM3, j_gameKeyFactory%f_GAME_B)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM7, j_gameKeyFactory%f_GAME_C)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM9, j_gameKeyFactory%f_GAME_D)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_LEVEL_DOWN, j_gameKeyFactory%f_LEVEL_DOWN)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_LEVEL_UP, j_gameKeyFactory%f_LEVEL_UP)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_UP, j_gameKeyFactory%f_UP)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_DOWN, j_gameKeyFactory%f_DOWN)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_LEFT, j_gameKeyFactory%f_LEFT)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_RIGHT, j_gameKeyFactory%f_RIGHT)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_POUND, j_gameKeyFactory%f_KEY_POUND)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_STAR, j_gameKeyFactory%f_KEY_STAR)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM1, j_gameKeyFactory%f_KEY_NUM1)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM3, j_gameKeyFactory%f_KEY_NUM3)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM5, j_gameKeyFactory%f_KEY_NUM5)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM7, j_gameKeyFactory%f_KEY_NUM7)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM9, j_gameKeyFactory%f_KEY_NUM9)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM0, j_gameKeyFactory%f_KEY_NUM0)
+        call j_inputToGameKeyMapping%jm_add_2(j_gameKeyFactory%f_KEY_NUM1, j_gameKeyFactory%f_FIRE)
+  end function
+end module NormalJ2MEDefaultGameInputMapping_m
 
-end.
+function NormalJ2MEDefaultGameInputMapping_jnew_0_jext() result(this)
+  use NormalJ2MEDefaultGameInputMapping_m, only: JObject, NormalJ2MEDefaultGameInputMapping_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NormalJ2MEDefaultGameInputMapping_jnew_0()
+end function
 

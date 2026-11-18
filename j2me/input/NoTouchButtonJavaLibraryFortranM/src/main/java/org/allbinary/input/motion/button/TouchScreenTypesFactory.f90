@@ -1,72 +1,78 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchScreenTypesFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchScreenTypesFactory_m
+  use JR_m
+  use TouchScreenType_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: TouchScreenTypesFactory
+    class(TouchScreenType), pointer :: f_FINGER => null()
+    class(TouchScreenType), pointer :: f_NOTOUCH => null()
+    class(TouchScreenType), pointer :: f_STYLUS => null()
+    class(TouchScreenType), pointer :: f_UNDEFINED => null()
+  end type
 
-interface
+  class(TouchScreenTypesFactory), pointer, save :: TouchScreenTypesFactory_jcell_instance => null()
+  logical, save :: TouchScreenTypesFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TouchScreenType;
+contains
 
-type
-  {AB:TYPES}
-  TTouchScreenTypesFactory = class(TObject)
-  public
-    FINGER: TTouchScreenType;
-    NOTOUCH: TTouchScreenType;
-    STYLUS: TTouchScreenType;
-    UNDEFINED: TTouchScreenType;
-    class var instance: TTouchScreenTypesFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TTouchScreenTypesFactory; static;
-  end;
+  function TouchScreenTypesFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchScreenTypesFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchScreenTypesFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function TouchScreenTypesFactory_jstatic_instance() result(jresult)
+    class(TouchScreenTypesFactory), pointer :: jresult
+    if (.not. TouchScreenTypesFactory_jset_instance) then
+      TouchScreenTypesFactory_jset_instance = .true.
+      TouchScreenTypesFactory_jcell_instance => TouchScreenTypesFactory_jnew_0()
+    end if
+    jresult => TouchScreenTypesFactory_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine TouchScreenTypesFactory_jsetstatic_instance(jvalue)
+    class(TouchScreenTypesFactory), target, optional :: jvalue
+    TouchScreenTypesFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      TouchScreenTypesFactory_jcell_instance => jvalue
+    else
+      TouchScreenTypesFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TTouchScreenTypesFactory.InitFields;
-begin
-  Self.FINGER := TTouchScreenType.Create('Finger');
-  Self.NOTOUCH := TTouchScreenType.Create('No Touch');
-  Self.STYLUS := TTouchScreenType.Create('Stylus');
-  Self.UNDEFINED := TTouchScreenType.Create('Undefined');
-end;
+  function TouchScreenTypesFactory_jnew_0() result(this)
+    class(TouchScreenTypesFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchScreenTypesFactory'
+    this%f_FINGER => TouchScreenType_jnew_1('Finger')
+    this%f_NOTOUCH => TouchScreenType_jnew_1('No Touch')
+    this%f_STYLUS => TouchScreenType_jnew_1('Stylus')
+    this%f_UNDEFINED => TouchScreenType_jnew_1('Undefined')
+  end function
 
-constructor TTouchScreenTypesFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TTouchScreenTypesFactory.getInstance: TTouchScreenTypesFactory;
-begin
-        Exit(TTouchScreenTypesFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTouchScreenTypesFactory.instance := TTouchScreenTypesFactory.Create();
-  {AB:END}
-
-end.
+  recursive function TouchScreenTypesFactory_jm_getInstance_0() result(jresult)
+    class(TouchScreenTypesFactory), pointer :: jresult
+        jresult => TouchScreenTypesFactory_jstatic_instance()
+        return
+  end function
+end module TouchScreenTypesFactory_m
 

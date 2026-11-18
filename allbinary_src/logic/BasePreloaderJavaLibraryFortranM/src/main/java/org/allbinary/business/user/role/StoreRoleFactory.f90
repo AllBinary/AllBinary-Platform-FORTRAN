@@ -54,6 +54,16 @@ contains
     jresult => StoreRoleFactory_jcell_instance
   end function
 
+  subroutine StoreRoleFactory_jsetstatic_instance(jvalue)
+    class(StoreRoleFactory), target, optional :: jvalue
+    StoreRoleFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      StoreRoleFactory_jcell_instance => jvalue
+    else
+      StoreRoleFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function StoreRoleFactory_jnew_0() result(this)
     class(StoreRoleFactory), pointer :: this
     class(BasicUserRoleFactory), pointer :: j_basicUserRoleFactory

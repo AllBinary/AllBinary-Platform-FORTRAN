@@ -1,50 +1,46 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.io
+module AbDataOutputStream_m
+  use JR_m
+  use DataOutputStream_m
+  use OutputStream_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.io
-unit AbDataOutputStream;
+  type, extends(DataOutputStream) :: AbDataOutputStream
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function AbDataOutputStream_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AbDataOutputStream), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AbDataOutputStream)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAbDataOutputStream = class(TDataOutputStream)
-  public
-        constructor Create(out_: TOutputStream);
-  end;
-
-implementation
-
-{AB:CODE}
-    
-
-constructor TAbDataOutputStream.Create(out_: TOutputStream);
-begin
-        inherited Create(out_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function AbDataOutputStream_jnew_1(j_out) result(this)
+    class(OutputStream), target, optional :: j_out
+    class(AbDataOutputStream), pointer :: this
+    allocate(this)
+    this%jclass = 'AbDataOutputStream'
+        continue ! super()
+  end function
+end module AbDataOutputStream_m
 

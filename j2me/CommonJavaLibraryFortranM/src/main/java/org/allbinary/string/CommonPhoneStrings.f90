@@ -61,6 +61,16 @@ contains
     jresult => CommonPhoneStrings_jcell_instance
   end function
 
+  subroutine CommonPhoneStrings_jsetstatic_instance(jvalue)
+    class(CommonPhoneStrings), target, optional :: jvalue
+    CommonPhoneStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonPhoneStrings_jcell_instance => jvalue
+    else
+      CommonPhoneStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function CommonPhoneStrings_jnew_0() result(this)
     class(CommonPhoneStrings), pointer :: this
     allocate(this)

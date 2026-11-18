@@ -41,6 +41,16 @@ contains
     jresult => MathUtil_jcell_instance
   end function
 
+  subroutine MathUtil_jsetstatic_instance(jvalue)
+    class(MathUtil), target, optional :: jvalue
+    MathUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      MathUtil_jcell_instance => jvalue
+    else
+      MathUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function MathUtil_jnew_0() result(this)
     class(MathUtil), pointer :: this
     allocate(this)

@@ -49,6 +49,16 @@ contains
     jresult => FrameUtil_jcell_instance
   end function
 
+  subroutine FrameUtil_jsetstatic_instance(jvalue)
+    class(FrameUtil), target, optional :: jvalue
+    FrameUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      FrameUtil_jcell_instance => jvalue
+    else
+      FrameUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function FrameUtil_jnew_0() result(this)
     class(FrameUtil), pointer :: this
     allocate(this)

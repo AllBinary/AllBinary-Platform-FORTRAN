@@ -1,135 +1,140 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.resource
+module ResourceRelativeRelationshipFactory_m
+  use JR_m
+  use RelativeRelationship_m
+  use StdUtil_m
+  use ABHashtable_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use BasicArrayListUtil_m
+  use ResourceRelativeRelationshipFactoryInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.resource
-unit ResourceRelativeRelationshipFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, RelativeRelationship, ABHashtable, BasicArrayList, BasicArrayListUtil, ResourceRelativeRelationshipFactoryInterface, GameFeatureControlledInterface;
-
-type
-  {AB:TYPES}
-  TResourceRelativeRelationshipFactory = class(TInterfacedObject, IResourceRelativeRelationshipFactoryInterface, IGameFeatureControlledInterface)
-  public
-    basicArrayListUtil: TBasicArrayListUtil;
-    hashtable: TABHashtable<TObject, TObject>;
-    initialized: Boolean;
-    procedure InitFields;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure init(level: Integer); virtual;
-        function getResourceRelativeRelationshipList(resource: string): TBasicArrayList; virtual;
-        procedure addResourceRelativeRelationship(resource: string; hardPoint: TRelativeRelationship); virtual;
-        function isLoadingLevel(level: Integer): Boolean; virtual;
-        function isFeature: Boolean; virtual;
-        procedure setInitialized(initialized: Boolean); virtual;
-        function isInitialized: Boolean; virtual;
-  end;
-
-implementation
-uses
-  StdUtil, BasicArrayListD;
+  type, extends(ResourceRelativeRelationshipFactoryInterface) :: ResourceRelativeRelationshipFactory
+    class(BasicArrayListUtil), pointer :: f_basicArrayListUtil => null()
+    class(ABHashtable), pointer :: f_hashtable => null()
+    logical :: f_initialized = .false.
+  contains
+    procedure :: jm_init_1 => ResourceRelativeRelationshipFactory_jm_init_1
+    procedure :: jm_getResourceRelativeRelationshipList_1 => ResourceRelativeRelationshipFactory_jm_getResourceRelativeRelationshipList_1
+    procedure :: jm_addResourceRelativeRelationship_2 => ResourceRelativeRelationshipFactory_jm_addResourceRelativeRelationship_2
+    procedure :: jm_isLoadingLevel_1 => ResourceRelativeRelationshipFactory_jm_isLoadingLevel_1
+    procedure :: jm_isFeature_0 => ResourceRelativeRelationshipFactory_jm_isFeature_0
+    procedure :: jm_setInitialized_1 => ResourceRelativeRelationshipFactory_jm_setInitialized_1
+    procedure :: jm_isInitialized_0 => ResourceRelativeRelationshipFactory_jm_isInitialized_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TResourceRelativeRelationshipFactory.InitFields;
-begin
-  Self.basicArrayListUtil := TBasicArrayListUtil.getInstance();
-  Self.hashtable := TStdUtil.getInstance().createHashtable();
-  
-end;
+  function ResourceRelativeRelationshipFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ResourceRelativeRelationshipFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ResourceRelativeRelationshipFactory)
+      jresult => object
+    end select
+  end function
 
-function TResourceRelativeRelationshipFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TResourceRelativeRelationshipFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  function ResourceRelativeRelationshipFactory_jnew_0() result(this)
+    class(ResourceRelativeRelationshipFactory), pointer :: this
+    class(StdUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'ResourceRelativeRelationshipFactory'
+    this%f_basicArrayListUtil => BasicArrayListUtil_jm_getInstance_0()
+    jtemp1 => StdUtil_jm_getInstance_0()
+    this%f_hashtable => jtemp1%jm_createHashtable_0()
     
+  end function
 
-// throws Exception
-procedure TResourceRelativeRelationshipFactory.init(level: Integer);
-begin
-        Self.setInitialized(True);
-end;
-    
+  recursive subroutine ResourceRelativeRelationshipFactory_jm_init_1(this, j_level)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    integer(4), value :: j_level
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setInitialized_1(.true.)
+  end subroutine
 
-// throws Exception
-function TResourceRelativeRelationshipFactory.getResourceRelativeRelationshipList(resource: string): TBasicArrayList;
-var
-  listCanBeNull: TObject;
-begin
-        listCanBeNull := TJava.Box(Self.hashtable.get(TJava.Box(resource)));
-        if (listCanBeNull) = (nil) then begin
-            Exit(Self.basicArrayListUtil.getImmutableInstance());
-        end;
-        Exit(TBasicArrayList(TJava.ToObject(listCanBeNull)));
-end;
-    
+  recursive function ResourceRelativeRelationshipFactory_jm_getResourceRelativeRelationshipList_1(this, j_resource) result(jresult)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    character(len=*), intent(in) :: j_resource
+    class(BasicArrayList), pointer :: jresult
+    class(JObject), pointer :: j_listCanBeNull
+        j_listCanBeNull => this%f_hashtable%jm_get_1(j_resource)
+        if ((.not. associated(j_listCanBeNull))) then
+            jresult => this%f_basicArrayListUtil%jm_getImmutableInstance_0()
+            return
+        end if
+        jresult => BasicArrayList_jcast(j_listCanBeNull)
+        return
+  end function
 
-// throws Exception
-procedure TResourceRelativeRelationshipFactory.addResourceRelativeRelationship(resource: string; hardPoint: TRelativeRelationship);
-var
-  list: TBasicArrayList;
-begin
-        list := Self.getResourceRelativeRelationshipList(resource);
-        if (list) = (Self.basicArrayListUtil.getImmutableInstance()) then begin
-            list := TBasicArrayListD.Create();
-        end;
-        list.add(TJava.Box(hardPoint));
-        Self.hashtable.put(TJava.Box(resource), TJava.Box(list));
-end;
-    
+  recursive subroutine ResourceRelativeRelationshipFactory_jm_addResourceRelativeRelationship_2(this, j_resource, j_relativeRelationship)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    character(len=*), intent(in) :: j_resource
+    class(RelativeRelationship), target, optional :: j_relativeRelationship
+    class(BasicArrayList), pointer :: j_list
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_list => this%jm_getResourceRelativeRelationshipList_1(j_resource)
+        if (JR_same(j_list, this%f_basicArrayListUtil%jm_getImmutableInstance_0())) then
+            j_list => BasicArrayListD_jnew_0()
+        end if
+        jdiscardBoolean = j_list%jm_add_1(j_relativeRelationship)
+        jdiscardRef => this%f_hashtable%jm_put_2(j_resource, j_list)
+  end subroutine
 
-function TResourceRelativeRelationshipFactory.isLoadingLevel(level: Integer): Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive function ResourceRelativeRelationshipFactory_jm_isLoadingLevel_1(this, j_level) result(jresult)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    integer(4), value :: j_level
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-function TResourceRelativeRelationshipFactory.isFeature: Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive function ResourceRelativeRelationshipFactory_jm_isFeature_0(this) result(jresult)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-procedure TResourceRelativeRelationshipFactory.setInitialized(initialized: Boolean);
-begin
-        Self.initialized := initialized;
-end;
-    
+  recursive subroutine ResourceRelativeRelationshipFactory_jm_setInitialized_1(this, j_initialized)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    logical, value :: j_initialized
+        this%f_initialized = j_initialized
+  end subroutine
 
-function TResourceRelativeRelationshipFactory.isInitialized: Boolean;
-begin
-        Exit(Self.initialized);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function ResourceRelativeRelationshipFactory_jm_isInitialized_0(this) result(jresult)
+    class(ResourceRelativeRelationshipFactory), target :: this
+    logical :: jresult
+        jresult = this%f_initialized
+        return
+  end function
+end module ResourceRelativeRelationshipFactory_m
 

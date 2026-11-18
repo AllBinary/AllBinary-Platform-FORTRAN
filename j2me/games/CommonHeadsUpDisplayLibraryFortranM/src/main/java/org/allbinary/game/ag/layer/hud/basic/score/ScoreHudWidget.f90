@@ -1,73 +1,81 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.layer.hud.basic.score
+module ScoreHudWidget_m
+  use JR_m
+  use NumberStringHud_m
+  use BasicColor_m
+  use BasicColorFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.layer.hud.basic.score
-unit ScoreHudWidget;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, NumberStringHud, BasicColor;
-
-type
-  {AB:TYPES}
-  TScoreHudWidget = class(TNumberStringHud)
-  public
-        class function getInstance(maxscore: Integer; location: Integer; direction: Integer): TScoreHudWidget; static;
-        constructor Create(maxscore: Integer; location: Integer; direction: Integer; bufferZone: Integer; basicColor_: TBasicColor);
-        procedure updateMeasurement(graphics_: TGraphics); override;
-  end;
-
-implementation
-uses
-  Font, BasicColorFactory;
+  type, extends(NumberStringHud) :: ScoreHudWidget
+  contains
+    procedure :: jm_updateMeasurement_1 => ScoreHudWidget_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-// throws Exception
-class function TScoreHudWidget.getInstance(maxscore: Integer; location: Integer; direction: Integer): TScoreHudWidget;
-begin
-        Exit(TScoreHudWidget.Create(maxscore, location, direction, 2, TBasicColorFactory.getInstance().GREY));
-end;
-    
+  function ScoreHudWidget_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ScoreHudWidget), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ScoreHudWidget)
+      jresult => object
+    end select
+  end function
 
-constructor TScoreHudWidget.Create(maxscore: Integer; location: Integer; direction: Integer; bufferZone: Integer; basicColor_: TBasicColor);
-begin
-        inherited Create('Pts ', maxscore, location, direction, bufferZone, basicColor_);
-        Self.updateMaxHeight := 14;
-end;
-    
+  recursive function ScoreHudWidget_jnew_5(j_maxscore, j_location, j_direction, j_bufferZone, j_basicColor) result(this)
+    integer(4), value :: j_maxscore
+    integer(4), value :: j_location
+    integer(4), value :: j_direction
+    integer(4), value :: j_bufferZone
+    class(BasicColor), target, optional :: j_basicColor
+    class(ScoreHudWidget), pointer :: this
+    allocate(this)
+    this%jclass = 'ScoreHudWidget'
+        continue ! super()
+        this%f_updateMaxHeight = 14
+  end function
 
-procedure TScoreHudWidget.updateMeasurement(graphics_: TGraphics);
-var
-  font_: TFont;
-begin
-        font_ := graphics_.getFont();
-        Self.updateMaxWidth := (font_.getSize()) * (5);
-        inherited updateMeasurement(graphics_);
-end;
+  recursive function ScoreHudWidget_jm_getInstance_3(j_maxscore, j_location, j_direction) result(jresult)
+    integer(4), value :: j_maxscore
+    integer(4), value :: j_location
+    integer(4), value :: j_direction
+    class(ScoreHudWidget), pointer :: jresult
+    class(BasicColorFactory), pointer :: jtemp1
+        jtemp1 => BasicColorFactory_jm_getInstance_0()
+        jresult => ScoreHudWidget_jnew_5(j_maxscore, j_location, j_direction, 2, jtemp1%f_GREY)
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine ScoreHudWidget_jm_updateMeasurement_1(this, j_graphics)
+    class(ScoreHudWidget), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Font), pointer :: j_font
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_font => j_graphics%jm_getFont_0()
+        this%f_updateMaxWidth = (j_font%jm_getSize_0() * 5)
+        call this%NumberStringHud%jm_updateMeasurement_1(j_graphics)
+  end subroutine
+end module ScoreHudWidget_m
 

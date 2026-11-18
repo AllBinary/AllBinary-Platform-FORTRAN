@@ -1,69 +1,62 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.crypt.jcehelper
-unit NoCrypt;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.crypt.jcehelper
+module NoCrypt_m
+  use JR_m
+  use CryptInterface_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(CryptInterface) :: NoCrypt
+  contains
+    procedure :: jm_encrypt_1 => NoCrypt_jm_encrypt_1
+    procedure :: jm_decrypt_1 => NoCrypt_jm_decrypt_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CryptInterface;
+contains
 
-type
-  {AB:TYPES}
-  TNoCrypt = class(TInterfacedObject, ICryptInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        function encrypt(array_: TArray<ShortInt>): TArray<ShortInt>; virtual;
-        function decrypt(array_: TArray<ShortInt>): TArray<ShortInt>; virtual;
-  end;
+  function NoCrypt_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoCrypt), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoCrypt)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function NoCrypt_jnew_0() result(this)
+    class(NoCrypt), pointer :: this
+    allocate(this)
+    this%jclass = 'NoCrypt'
+  end function
 
-{AB:CODE}
+  recursive function NoCrypt_jm_encrypt_1(this, j_array) result(jresult)
+    class(NoCrypt), target :: this
+    integer(4) :: j_array(:)
+    integer(4), allocatable :: jresult(:)
+        jresult = j_array
+        return
+  end function
 
-function TNoCrypt.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TNoCrypt.Create;
-begin
-  inherited Create;
-end;
-    
-
-function TNoCrypt.encrypt(array_: TArray<ShortInt>): TArray<ShortInt>;
-begin
-        Exit(array_);
-end;
-    
-
-function TNoCrypt.decrypt(array_: TArray<ShortInt>): TArray<ShortInt>;
-begin
-        Exit(array_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function NoCrypt_jm_decrypt_1(this, j_array) result(jresult)
+    class(NoCrypt), target :: this
+    integer(4) :: j_array(:)
+    integer(4), allocatable :: jresult(:)
+        jresult = j_array
+        return
+  end function
+end module NoCrypt_m
 

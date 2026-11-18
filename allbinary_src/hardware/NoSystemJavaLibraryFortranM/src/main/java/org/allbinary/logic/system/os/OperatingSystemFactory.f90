@@ -54,6 +54,16 @@ contains
     jresult => OperatingSystemFactory_jcell_instance
   end function
 
+  subroutine OperatingSystemFactory_jsetstatic_instance(jvalue)
+    class(OperatingSystemFactory), target, optional :: jvalue
+    OperatingSystemFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      OperatingSystemFactory_jcell_instance => jvalue
+    else
+      OperatingSystemFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function OperatingSystemFactory_jnew_0() result(this)
     class(OperatingSystemFactory), pointer :: this
     allocate(this)

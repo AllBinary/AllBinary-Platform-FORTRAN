@@ -51,6 +51,16 @@ contains
     jresult => EnumerationUtil_jcell_instance
   end function
 
+  subroutine EnumerationUtil_jsetstatic_instance(jvalue)
+    class(EnumerationUtil), target, optional :: jvalue
+    EnumerationUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      EnumerationUtil_jcell_instance => jvalue
+    else
+      EnumerationUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function EnumerationUtil_jnew_0() result(this)
     class(EnumerationUtil), pointer :: this
     allocate(this)

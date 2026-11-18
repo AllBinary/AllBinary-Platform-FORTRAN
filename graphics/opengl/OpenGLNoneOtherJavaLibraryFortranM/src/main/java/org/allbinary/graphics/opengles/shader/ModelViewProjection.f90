@@ -1,68 +1,81 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit ModelViewProjection;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module ModelViewProjection_m
+  use JR_m
+  use NullUtil_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ModelViewProjection
+  contains
+    procedure :: jm_get_0 => ModelViewProjection_jm_get_0
+  end type
 
-interface
+  class(ModelViewProjection), pointer, save :: ModelViewProjection_jcell_instance => null()
+  logical, save :: ModelViewProjection_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TModelViewProjection = class(TObject)
-  public
-    class var instance: TModelViewProjection;
-    constructor Create;
-        class function getInstance: TModelViewProjection; static;
-        function get: TArray<Single>; virtual;
-  end;
+  function ModelViewProjection_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ModelViewProjection), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ModelViewProjection)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullUtil;
+  function ModelViewProjection_jstatic_instance() result(jresult)
+    class(ModelViewProjection), pointer :: jresult
+    if (.not. ModelViewProjection_jset_instance) then
+      ModelViewProjection_jset_instance = .true.
+      ModelViewProjection_jcell_instance => ModelViewProjection_jnew_0()
+    end if
+    jresult => ModelViewProjection_jcell_instance
+  end function
 
+  subroutine ModelViewProjection_jsetstatic_instance(jvalue)
+    class(ModelViewProjection), target, optional :: jvalue
+    ModelViewProjection_jset_instance = .true.
+    if (present(jvalue)) then
+      ModelViewProjection_jcell_instance => jvalue
+    else
+      ModelViewProjection_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function ModelViewProjection_jnew_0() result(this)
+    class(ModelViewProjection), pointer :: this
+    allocate(this)
+    this%jclass = 'ModelViewProjection'
+  end function
 
-constructor TModelViewProjection.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function ModelViewProjection_jm_getInstance_0() result(jresult)
+    class(ModelViewProjection), pointer :: jresult
+        jresult => ModelViewProjection_jstatic_instance()
+        return
+  end function
 
-class function TModelViewProjection.getInstance: TModelViewProjection;
-begin
-        Exit(TModelViewProjection.instance);
-end;
-    
-
-function TModelViewProjection.get: TArray<Single>;
-begin
-        Exit(TNullUtil.getInstance().NULL_FLOAT_ARRAY);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TModelViewProjection.instance := TModelViewProjection.Create();
-  {AB:END}
-
-end.
+  recursive function ModelViewProjection_jm_get_0(this) result(jresult)
+    class(ModelViewProjection), target :: this
+    real(4), allocatable :: jresult(:)
+    class(NullUtil), pointer :: jtemp1
+        jtemp1 => NullUtil_jm_getInstance_0()
+        jresult = jtemp1%f_NULL_FLOAT_ARRAY
+        return
+  end function
+end module ModelViewProjection_m
 

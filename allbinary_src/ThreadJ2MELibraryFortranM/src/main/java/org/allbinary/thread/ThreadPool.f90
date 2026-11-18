@@ -85,6 +85,12 @@ contains
     jresult = ThreadPool_jcell_ROOT_NAME
   end function
 
+  subroutine ThreadPool_jsetstatic_ROOT_NAME(jvalue)
+    character(len=*), intent(in) :: jvalue
+    ThreadPool_jset_ROOT_NAME = .true.
+    ThreadPool_jcell_ROOT_NAME = jvalue
+  end subroutine
+
   function ThreadPool_jstatic_NORMAL_PRIORITY() result(jresult)
     integer(4) :: jresult
     if (.not. ThreadPool_jset_NORMAL_PRIORITY) then
@@ -93,6 +99,12 @@ contains
     end if
     jresult = ThreadPool_jcell_NORMAL_PRIORITY
   end function
+
+  subroutine ThreadPool_jsetstatic_NORMAL_PRIORITY(jvalue)
+    integer(4), value :: jvalue
+    ThreadPool_jset_NORMAL_PRIORITY = .true.
+    ThreadPool_jcell_NORMAL_PRIORITY = jvalue
+  end subroutine
 
   recursive function ThreadPool_jnew_3(j_poolName, j_numThreads, j_priority) result(this)
     character(len=*), intent(in) :: j_poolName

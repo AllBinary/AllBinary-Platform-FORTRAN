@@ -1,64 +1,62 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.image
+module BottomToTopImageAnimationFactory_m
+  use JR_m
+  use Animation_m
+  use AnimationBehaviorFactory_m
+  use PrimitiveIntUtil_m
+  use BaseImageAnimationFactory_m
+  use BottomToTopImageAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.image
-unit BottomToTopImageAnimationFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, Animation, AnimationBehaviorFactory, BaseImageAnimationFactory;
-
-type
-  {AB:TYPES}
-  TBottomToTopImageAnimationFactory = class(TBaseImageAnimationFactory)
-  public
-        constructor Create(image_: TImage; animationBehaviorFactory_: TAnimationBehaviorFactory);
-        function getInstance(instanceId: Integer): TAnimation; override;
-  end;
-
-implementation
-uses
-  BottomToTopImageAnimation, PrimitiveIntUtil;
+  type, extends(BaseImageAnimationFactory) :: BottomToTopImageAnimationFactory
+  contains
+    procedure :: jm_getInstance_1 => BottomToTopImageAnimationFactory_jm_getInstance_1
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TBottomToTopImageAnimationFactory.Create(image_: TImage; animationBehaviorFactory_: TAnimationBehaviorFactory);
-begin
-        inherited Create(image_, TPrimitiveIntUtil.getArrayInstance(), image_.getWidth(), image_.getHeight(), 0, 0, animationBehaviorFactory_);
-end;
-    
+  function BottomToTopImageAnimationFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BottomToTopImageAnimationFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BottomToTopImageAnimationFactory)
+      jresult => object
+    end select
+  end function
 
-// throws Exception
-function TBottomToTopImageAnimationFactory.getInstance(instanceId: Integer): TAnimation;
-var
-  scaledImage: TImage;
-begin
-        scaledImage := Self.animationFactoryImageScaleUtil.createImage(Self.getImage(), Self.animationFactoryInitializationVisitor.width, Self.animationFactoryInitializationVisitor.height, Self.scaleProperties.scaleWidth, Self.scaleProperties.scaleHeight);
-        Exit(TBottomToTopImageAnimation.Create(scaledImage, Self.animationBehaviorFactory.getOrCreateInstance()));
-end;
+  recursive function BottomToTopImageAnimationFactory_jnew_2(j_image, j_animationBehaviorFactory) result(this)
+    class(Image), target, optional :: j_image
+    class(AnimationBehaviorFactory), target, optional :: j_animationBehaviorFactory
+    class(BottomToTopImageAnimationFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'BottomToTopImageAnimationFactory'
+        continue ! super()
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BottomToTopImageAnimationFactory_jm_getInstance_1(this, j_instanceId) result(jresult)
+    class(BottomToTopImageAnimationFactory), target :: this
+    integer(4), value :: j_instanceId
+    class(Animation), pointer :: jresult
+    class(Image), pointer :: j_scaledImage
+        j_scaledImage => this%f_animationFactoryImageScaleUtil%jm_createImage_5(this%jm_getImage_0(), this%f_animationFactoryInitializationVisitor%f_width, this%f_animationFactoryInitializationVisitor%f_height, this%f_scaleProperties%f_scaleWidth, this%f_scaleProperties%f_scaleHeight)
+        jresult => BottomToTopImageAnimation_jnew_2(j_scaledImage, this%f_animationBehaviorFactory%jm_getOrCreateInstance_0())
+        return
+  end function
+end module BottomToTopImageAnimationFactory_m
 

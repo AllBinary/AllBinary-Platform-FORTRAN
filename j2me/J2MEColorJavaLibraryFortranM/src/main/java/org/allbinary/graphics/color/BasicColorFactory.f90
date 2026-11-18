@@ -81,6 +81,16 @@ contains
     jresult => BasicColorFactory_jcell_instance
   end function
 
+  subroutine BasicColorFactory_jsetstatic_instance(jvalue)
+    class(BasicColorFactory), target, optional :: jvalue
+    BasicColorFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicColorFactory_jcell_instance => jvalue
+    else
+      BasicColorFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function BasicColorFactory_jnew_0() result(this)
     class(BasicColorFactory), pointer :: this
     class(BasicColorUtil), pointer :: jtemp5

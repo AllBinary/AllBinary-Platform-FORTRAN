@@ -1,71 +1,61 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary
+module J2MEUtil_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary
-unit J2MEUtil;
+  type, extends(JObject) :: J2MEUtil
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function J2MEUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(J2MEUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (J2MEUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TJ2MEUtil = class(TObject)
-  public
-        constructor Create;
-        class function isJ2ME: Boolean; static;
-        class function isJ2SE: Boolean; static;
-        class function isHTML: Boolean; static;
-  end;
+  recursive function J2MEUtil_jnew_0() result(this)
+    class(J2MEUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'J2MEUtil'
+        continue
+  end function
 
-implementation
+  recursive function J2MEUtil_jm_isJ2ME_0() result(jresult)
+    logical :: jresult
+        jresult = .true.
+        return
+  end function
 
-{AB:CODE}
-    
+  recursive function J2MEUtil_jm_isJ2SE_0() result(jresult)
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-constructor TJ2MEUtil.Create;
-begin
-    inherited Create;
-end;
-    
-
-class function TJ2MEUtil.isJ2ME: Boolean;
-begin
-        Exit(True);
-end;
-    
-
-class function TJ2MEUtil.isJ2SE: Boolean;
-begin
-        Exit(False);
-end;
-    
-
-class function TJ2MEUtil.isHTML: Boolean;
-begin
-        Exit(False);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function J2MEUtil_jm_isHTML_0() result(jresult)
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
+end module J2MEUtil_m
 

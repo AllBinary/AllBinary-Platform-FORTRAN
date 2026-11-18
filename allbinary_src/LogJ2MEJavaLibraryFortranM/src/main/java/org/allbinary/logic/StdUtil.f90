@@ -53,6 +53,16 @@ contains
     jresult => StdUtil_jcell_instance
   end function
 
+  subroutine StdUtil_jsetstatic_instance(jvalue)
+    class(StdUtil), target, optional :: jvalue
+    StdUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      StdUtil_jcell_instance => jvalue
+    else
+      StdUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function StdUtil_jnew_0() result(this)
     class(StdUtil), pointer :: this
     allocate(this)

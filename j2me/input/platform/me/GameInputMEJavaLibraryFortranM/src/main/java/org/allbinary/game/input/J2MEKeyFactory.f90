@@ -1,163 +1,203 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module J2MEKeyFactory_m
+  use JR_m
+  use GameKeyFactory_m
+  use GameKey_m
+  use InputFactory_m
+  use Input_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit J2MEKeyFactory;
+  type, extends(JObject) :: J2MEKeyFactory
+    class(GameKeyFactory), pointer :: f_gameKeyFactory => null()
+  contains
+    procedure :: jm_init_0 => J2MEKeyFactory_jm_init_0
+    procedure :: jm_isSubmission_1 => J2MEKeyFactory_jm_isSubmission_1
+    procedure :: jm_isDelete_1 => J2MEKeyFactory_jm_isDelete_1
+    procedure :: jm_isBackSpace_1 => J2MEKeyFactory_jm_isBackSpace_1
+    procedure :: jm_isUp_1 => J2MEKeyFactory_jm_isUp_1
+    procedure :: jm_isDown_1 => J2MEKeyFactory_jm_isDown_1
+    procedure :: jm_isLeft_1 => J2MEKeyFactory_jm_isLeft_1
+    procedure :: jm_isRight_1 => J2MEKeyFactory_jm_isRight_1
+    procedure :: jm_isEnter_1 => J2MEKeyFactory_jm_isEnter_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(J2MEKeyFactory), pointer, save :: J2MEKeyFactory_jcell_instance => null()
+  logical, save :: J2MEKeyFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameKeyFactory, Input;
+  function J2MEKeyFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(J2MEKeyFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (J2MEKeyFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TJ2MEKeyFactory = class(TObject)
-  public
-    gameKeyFactory: TGameKeyFactory;
-    class var instance: TJ2MEKeyFactory;
-    procedure InitFields;
-        class function getInstance: TJ2MEKeyFactory; static;
-        constructor Create;
-        procedure init; virtual;
-        function isSubmission(input_: TInput): Boolean; virtual;
-        function isDelete(input_: TInput): Boolean; virtual;
-        function isBackSpace(input_: TInput): Boolean; virtual;
-        function isUp(input_: TInput): Boolean; virtual;
-        function isDown(input_: TInput): Boolean; virtual;
-        function isLeft(input_: TInput): Boolean; virtual;
-        function isRight(input_: TInput): Boolean; virtual;
-        function isEnter(input_: TInput): Boolean; virtual;
-  end;
+  function J2MEKeyFactory_jstatic_instance() result(jresult)
+    class(J2MEKeyFactory), pointer :: jresult
+    if (.not. J2MEKeyFactory_jset_instance) then
+      J2MEKeyFactory_jset_instance = .true.
+      J2MEKeyFactory_jcell_instance => J2MEKeyFactory_jnew_0()
+    end if
+    jresult => J2MEKeyFactory_jcell_instance
+  end function
 
-implementation
-uses
-  GameKey, InputFactory;
+  subroutine J2MEKeyFactory_jsetstatic_instance(jvalue)
+    class(J2MEKeyFactory), target, optional :: jvalue
+    J2MEKeyFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      J2MEKeyFactory_jcell_instance => jvalue
+    else
+      J2MEKeyFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function J2MEKeyFactory_jnew_0() result(this)
+    class(J2MEKeyFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'J2MEKeyFactory'
+    this%f_gameKeyFactory => GameKeyFactory_jm_getInstance_0()
+        continue
+  end function
 
-{AB:CODE}
+  recursive function J2MEKeyFactory_jm_getInstance_0() result(jresult)
+    class(J2MEKeyFactory), pointer :: jresult
+        jresult => J2MEKeyFactory_jstatic_instance()
+        return
+  end function
 
-procedure TJ2MEKeyFactory.InitFields;
-begin
-  Self.gameKeyFactory := TGameKeyFactory.getInstance();
-end;
-    
+  recursive subroutine J2MEKeyFactory_jm_init_0(this)
+    class(J2MEKeyFactory), target :: this
+    type(JRef), allocatable :: j_gameKeyArray(:)
+    class(InputFactory), pointer :: j_inputFactory
+    integer(4) :: j_index
+    integer(4) :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_gameKeyArray = [JRef :: JRef(this%f_gameKeyFactory%f_DOWN), JRef(this%f_gameKeyFactory%f_FIRE), JRef(this%f_gameKeyFactory%f_GAME_A), JRef(this%f_gameKeyFactory%f_GAME_B), JRef(this%f_gameKeyFactory%f_GAME_C), JRef(this%f_gameKeyFactory%f_GAME_D), JRef(this%f_gameKeyFactory%f_KEY_NUM0), JRef(this%f_gameKeyFactory%f_KEY_NUM1), JRef(this%f_gameKeyFactory%f_KEY_NUM2), JRef(this%f_gameKeyFactory%f_KEY_NUM3), JRef(this%f_gameKeyFactory%f_KEY_NUM4), JRef(this%f_gameKeyFactory%f_KEY_NUM5), JRef(this%f_gameKeyFactory%f_KEY_NUM6), JRef(this%f_gameKeyFactory%f_KEY_NUM7), JRef(this%f_gameKeyFactory%f_KEY_NUM8), JRef(this%f_gameKeyFactory%f_KEY_NUM9), JRef(this%f_gameKeyFactory%f_KEY_POUND), JRef(this%f_gameKeyFactory%f_KEY_STAR), JRef(this%f_gameKeyFactory%f_LEFT), JRef(this%f_gameKeyFactory%f_LEVEL_DOWN), JRef(this%f_gameKeyFactory%f_LEVEL_UP), JRef(this%f_gameKeyFactory%f_NONE), JRef(this%f_gameKeyFactory%f_RIGHT), JRef(this%f_gameKeyFactory%f_UP)]
+        j_inputFactory => InputFactory_jm_getInstance_0()
+        j_index = j_index - 1
+        jtemp1 = j_index
+        j_index = size(j_gameKeyArray, 1)
+        do while ((jtemp1 >= 0))
+            associate (jstaticref1 => GameKey_jcast(j_gameKeyArray((j_index) + 1)%v))
+            call j_inputFactory%jm_add_2(jstaticref1%jm_getId_0(), GameKey_jcast(j_gameKeyArray((j_index) + 1)%v))
+            end associate
+        end do
+  end subroutine
 
-class function TJ2MEKeyFactory.getInstance: TJ2MEKeyFactory;
-begin
-        Exit(TJ2MEKeyFactory.instance);
-end;
-    
+  recursive function J2MEKeyFactory_jm_isSubmission_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_FIRE)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-constructor TJ2MEKeyFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function J2MEKeyFactory_jm_isDelete_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_GAME_D)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-procedure TJ2MEKeyFactory.init;
-var
-  gameKeyArray: TArray<TGameKey>;
-  inputFactory_: TInputFactory;
-  index: Integer;
-begin
-        gameKeyArray := TArray<TGameKey>.Create(Self.gameKeyFactory.DOWN, Self.gameKeyFactory.FIRE, Self.gameKeyFactory.GAME_A, Self.gameKeyFactory.GAME_B, Self.gameKeyFactory.GAME_C, Self.gameKeyFactory.GAME_D, Self.gameKeyFactory.KEY_NUM0, Self.gameKeyFactory.KEY_NUM1, Self.gameKeyFactory.KEY_NUM2, Self.gameKeyFactory.KEY_NUM3, Self.gameKeyFactory.KEY_NUM4, Self.gameKeyFactory.KEY_NUM5, Self.gameKeyFactory.KEY_NUM6, Self.gameKeyFactory.KEY_NUM7, Self.gameKeyFactory.KEY_NUM8, Self.gameKeyFactory.KEY_NUM9, Self.gameKeyFactory.KEY_POUND, Self.gameKeyFactory.KEY_STAR, Self.gameKeyFactory.LEFT, Self.gameKeyFactory.LEVEL_DOWN, Self.gameKeyFactory.LEVEL_UP, Self.gameKeyFactory.NONE, Self.gameKeyFactory.RIGHT, Self.gameKeyFactory.UP);
-        inputFactory_ := TInputFactory.getInstance();
-        index := System.Length(gameKeyArray);
-        while (TJava.PreDec(index)) >= (0) do begin
-            inputFactory_.add(gameKeyArray[index].getId(), gameKeyArray[index]);
-        end;
-end;
-    
+  recursive function J2MEKeyFactory_jm_isBackSpace_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-function TJ2MEKeyFactory.isSubmission(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.FIRE) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
+  recursive function J2MEKeyFactory_jm_isUp_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_UP)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-function TJ2MEKeyFactory.isDelete(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.GAME_D) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
+  recursive function J2MEKeyFactory_jm_isDown_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_DOWN)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-function TJ2MEKeyFactory.isBackSpace(input_: TInput): Boolean;
-begin
-        Exit(False);
-end;
-    
+  recursive function J2MEKeyFactory_jm_isLeft_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_LEFT)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-function TJ2MEKeyFactory.isUp(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.UP) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
+  recursive function J2MEKeyFactory_jm_isRight_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_RIGHT)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-function TJ2MEKeyFactory.isDown(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.DOWN) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
-
-function TJ2MEKeyFactory.isLeft(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.LEFT) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
-
-function TJ2MEKeyFactory.isRight(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.RIGHT) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
-
-function TJ2MEKeyFactory.isEnter(input_: TInput): Boolean;
-begin
-        if (input_) = (Self.gameKeyFactory.FIRE) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TJ2MEKeyFactory.instance := TJ2MEKeyFactory.Create();
-  {AB:END}
-
-end.
+  recursive function J2MEKeyFactory_jm_isEnter_1(this, j_input) result(jresult)
+    class(J2MEKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+        if (JR_same(j_input, this%f_gameKeyFactory%f_FIRE)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
+end module J2MEKeyFactory_m
 

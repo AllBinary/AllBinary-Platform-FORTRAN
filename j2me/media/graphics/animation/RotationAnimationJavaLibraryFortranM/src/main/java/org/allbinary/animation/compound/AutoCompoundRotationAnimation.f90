@@ -1,258 +1,430 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.compound
+module AutoCompoundRotationAnimation_m
+  use JR_m
+  use GL_m
+  use AnimationBehavior_m
+  use IndexedAnimation_m
+  use RotationAnimation_m
+  use Direction_m
+  use PrimitiveIntUtil_m
+  use Angle_m
+  use AngleFactory_m
+  use AngleInfo_m
+  use CircularIndexUtil_m
+  use CompoundAnimationInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.compound
-unit AutoCompoundRotationAnimation;
+  type, extends(RotationAnimation) :: AutoCompoundRotationAnimation
+    type(JRef), allocatable :: f_animationInterfaceArray(:)
+  contains
+    procedure :: jm_setFrame_1 => AutoCompoundRotationAnimation_jm_setFrame_1
+    procedure :: jm_getFrame_0 => AutoCompoundRotationAnimation_jm_getFrame_0
+    procedure :: jm_getAnimationSize_0 => AutoCompoundRotationAnimation_jm_getAnimationSize_0
+    procedure :: jm_getSize_0 => AutoCompoundRotationAnimation_jm_getSize_0
+    procedure :: jm_previousFrame_0 => AutoCompoundRotationAnimation_jm_previousFrame_0
+    procedure :: jm_nextFrame_0 => AutoCompoundRotationAnimation_jm_nextFrame_0
+    procedure :: jm_previousRotation_0 => AutoCompoundRotationAnimation_jm_previousRotation_0
+    procedure :: jm_nextRotation_0 => AutoCompoundRotationAnimation_jm_nextRotation_0
+    procedure :: jm_setSequence_1 => AutoCompoundRotationAnimation_jm_setSequence_1
+    procedure :: jm_getSequence_0 => AutoCompoundRotationAnimation_jm_getSequence_0
+    procedure :: jm_paintXY_3 => AutoCompoundRotationAnimation_jm_paintXY_3
+    procedure :: jm_paintThreedXYZ_4 => AutoCompoundRotationAnimation_jm_paintThreedXYZ_4
+    procedure :: jm_getCurrentAnimation_0 => AutoCompoundRotationAnimation_jm_getCurrentAnimation_0
+    procedure :: jm_nextAnimation_0 => AutoCompoundRotationAnimation_jm_nextAnimation_0
+    procedure :: jm_previousAnimation_0 => AutoCompoundRotationAnimation_jm_previousAnimation_0
+    procedure :: jm_setAnimation_1 => AutoCompoundRotationAnimation_jm_setAnimation_1
+    procedure :: jm_setFrameByDirection_1 => AutoCompoundRotationAnimation_jm_setFrameByDirection_1
+    procedure :: jm_setFrameToAngle_1 => AutoCompoundRotationAnimation_jm_setFrameToAngle_1
+    procedure :: jm_adjustFrameToAngle_1 => AutoCompoundRotationAnimation_jm_adjustFrameToAngle_1
+    procedure :: jm_adjustFrame_1 => AutoCompoundRotationAnimation_jm_adjustFrame_1
+    procedure :: jm_getAngleInfoP_0 => AutoCompoundRotationAnimation_jm_getAngleInfoP_0
+    procedure :: jm_getAnimationInterfaceArray_0 => AutoCompoundRotationAnimation_jm_getAnimationInterfaceArray_0
+    procedure :: jm_setAnimationInterfaceArray_1 => AutoCompoundRotationAnimation_jm_setAnimationInterfaceArray_1
+    procedure :: jm_set_1 => AutoCompoundRotationAnimation_jm_set_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL, Graphics, AnimationBehavior, IndexedAnimation, RotationAnimation, Direction, Angle, AngleInfo, CompoundAnimationInterface, AnimationInterface, LocationPaintableInterface;
-
-type
-  {AB:TYPES}
-  TAutoCompoundRotationAnimation = class(TRotationAnimation, ICompoundAnimationInterface, IAnimationInterface, ILocationPaintableInterface)
-  public
-    animationInterfaceArray: TArray<TRotationAnimation>;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(animationInterfaceArray: TArray<TRotationAnimation>; animationBehavior_: TAnimationBehavior);
-        procedure setFrame(index: Integer); virtual;
-        function getFrame: Integer; virtual;
-        function getAnimationSize: Integer; virtual;
-        function getSize: Integer; virtual;
-        procedure previousFrame; virtual;
-        procedure nextFrame; virtual;
-        procedure previousRotation; virtual;
-        procedure nextRotation; virtual;
-        procedure setSequence(sequence: TArray<Integer>); virtual;
-        function getSequence: TArray<Integer>; virtual;
-        procedure paintXY(graphics_: TGraphics; x: Integer; y: Integer); virtual;
-        procedure paintThreedXYZ(graphics_: TGraphics; x: Integer; y: Integer; z: Integer); virtual;
-        function getCurrentAnimation: TIndexedAnimation; virtual;
-        procedure nextAnimation; virtual;
-        procedure previousAnimation; virtual;
-        procedure setAnimation(index: Integer); virtual;
-        procedure setFrameByDirection(direction_: TDirection); virtual;
-        procedure setFrameToAngle(angle_: TAngle); virtual;
-        procedure adjustFrameToAngle(newAngle: TAngle); virtual;
-        procedure adjustFrame(angle_: SmallInt); virtual;
-        function getAngleInfoP: TAngleInfo; virtual;
-        function getAnimationInterfaceArray: TArray<TRotationAnimation>; virtual;
-        procedure setAnimationInterfaceArray(animationInterfaceArray: TArray<TRotationAnimation>); virtual;
-        procedure set_(gl_: IGL); virtual;
-  end;
-
-implementation
-uses
-  PrimitiveIntUtil, AngleFactory, CircularIndexUtil;
+  ! AutoCompoundRotationAnimation used as a CompoundAnimationInterface
+  type, extends(CompoundAnimationInterface) :: AutoCompoundRotationAnimation_jas_CompoundAnimationInterface
+    class(AutoCompoundRotationAnimation), pointer :: jtarget => null()
+  contains
+    procedure :: jm_getCurrentAnimation_0 => AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_getCurrentAnimation_0
+    procedure :: jm_nextAnimation_0 => AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_nextAnimation_0
+    procedure :: jm_previousAnimation_0 => AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_previousAnimation_0
+    procedure :: jm_setAnimation_1 => AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_setAnimation_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TAutoCompoundRotationAnimation.InitFields;
-begin
-  
-end;
+  function AutoCompoundRotationAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AutoCompoundRotationAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AutoCompoundRotationAnimation)
+      jresult => object
+    end select
+  end function
 
-function TAutoCompoundRotationAnimation.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jnew(object) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: object
+    class(AutoCompoundRotationAnimation_jas_CompoundAnimationInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'AutoCompoundRotationAnimation'
+    jresult%jtarget => object
+  end function
+
+  recursive function AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_getCurrentAnimation_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation_jas_CompoundAnimationInterface), target :: this
+    class(IndexedAnimation), pointer :: jresult
+    jresult => this%jtarget%jm_getCurrentAnimation_0()
+  end function
+
+  recursive subroutine AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_nextAnimation_0(this)
+    class(AutoCompoundRotationAnimation_jas_CompoundAnimationInterface), target :: this
+    call this%jtarget%jm_nextAnimation_0()
+  end subroutine
+
+  recursive subroutine AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_previousAnimation_0(this)
+    class(AutoCompoundRotationAnimation_jas_CompoundAnimationInterface), target :: this
+    call this%jtarget%jm_previousAnimation_0()
+  end subroutine
+
+  recursive subroutine AutoCompoundRotationAnimation_jas_CompoundAnimationInterface_jm_setAnimation_1(this, j_index)
+    class(AutoCompoundRotationAnimation_jas_CompoundAnimationInterface), target :: this
+    integer(4), value :: j_index
+    call this%jtarget%jm_setAnimation_1(j_index)
+  end subroutine
+
+  recursive function AutoCompoundRotationAnimation_jnew_2(j_animationInterfaceArray, j_animationBehavior) result(this)
+    type(JRef) :: j_animationInterfaceArray(:)
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(AutoCompoundRotationAnimation), pointer :: this
+    class(AngleFactory), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'AutoCompoundRotationAnimation'
     
+        jtemp1 => AngleFactory_jm_getInstance_0()
+        continue ! super()
+        this%f_animationInterfaceArray = j_animationInterfaceArray
+        this%f_circularIndexUtil => CircularIndexUtil_jm_createInstance_1(size(this%f_animationInterfaceArray, 1))
+  end function
 
-constructor TAutoCompoundRotationAnimation.Create(animationInterfaceArray: TArray<TRotationAnimation>; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(TAngleInfo.getInstance(TAngleFactory.getInstance().QUARTER_TOTAL_ANGLE), TCircularIndexUtil.createInstance(4), animationBehavior_);
-        InitFields;
-        Self.animationInterfaceArray := animationInterfaceArray;
-        Self.circularIndexUtil := TCircularIndexUtil.createInstance(System.Length(Self.animationInterfaceArray));
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setFrame_1(this, j_index)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4), value :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref1 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref1%jm_setFrame_1(j_index)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setFrame(index: Integer);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].setFrame(index);
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getFrame_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: jresult
+        associate (jstaticref2 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        jresult = jstaticref2%jm_getFrame_0()
+        end associate
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getFrame: Integer;
-begin
-        Exit(Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].getFrame());
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getAnimationSize_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: jresult
+        associate (jstaticref3 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        jresult = jstaticref3%jm_getAnimationSize_0()
+        end associate
+        return
+  end function
 
-// throws Exception
-function TAutoCompoundRotationAnimation.getAnimationSize: Integer;
-begin
-        Exit(Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].getAnimationSize());
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getSize_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: jresult
+        associate (jstaticref4 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        jresult = jstaticref4%jm_getSize_0()
+        end associate
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getSize: Integer;
-begin
-        Exit(Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].getSize());
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_previousFrame_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_previous_0()
+        associate (jstaticref5 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref5%jm_previousFrame_0()
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.previousFrame;
-begin
-        Self.circularIndexUtil.previous();
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].previousFrame();
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_nextFrame_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_next_0()
+        associate (jstaticref6 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref6%jm_nextFrame_0()
+        end associate
+  end subroutine
 
-// throws Exception
-procedure TAutoCompoundRotationAnimation.nextFrame;
-begin
-        Self.circularIndexUtil.next();
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].nextFrame();
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_previousRotation_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref7 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref7%jm_previousRotation_0()
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.previousRotation;
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].previousRotation();
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_nextRotation_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref8 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref8%jm_nextRotation_0()
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.nextRotation;
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].nextRotation();
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setSequence_1(this, j_sequence)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: j_sequence(:)
+    continue
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setSequence(sequence: TArray<Integer>);
-begin
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getSequence_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4), allocatable :: jresult(:)
+        jresult = PrimitiveIntUtil_jm_getArrayInstance_0()
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getSequence: TArray<Integer>;
-begin
-        Exit(TPrimitiveIntUtil.getArrayInstance());
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_paintXY_3(this, j_graphics, j_x, j_y)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref9 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref9%jm_paintXY_3(j_graphics, j_x, j_y)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.paintXY(graphics_: TGraphics; x: Integer; y: Integer);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].paintXY(graphics_, x, y);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_paintThreedXYZ_4(this, j_graphics, j_x, j_y, j_z)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_z
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref10 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref10%jm_paintThreedXYZ_4(j_graphics, j_x, j_y, j_z)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.paintThreedXYZ(graphics_: TGraphics; x: Integer; y: Integer; z: Integer);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].paintThreedXYZ(graphics_, x, y, z);
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getCurrentAnimation_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(IndexedAnimation), pointer :: jresult
+        jresult => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v)
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getCurrentAnimation: TIndexedAnimation;
-begin
-        Exit(Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()]);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_nextAnimation_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: j_frame
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_frame = this%jm_getFrame_0()
+        jdiscardInt = this%f_circularIndexUtil%jm_next_0()
+        call this%jm_setFrame_1(j_frame)
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.nextAnimation;
-var
-  frame: Integer;
-begin
-        frame := Self.getFrame();
-        Self.circularIndexUtil.next();
-        Self.setFrame(frame);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_previousAnimation_0(this)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4) :: j_frame
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_frame = this%jm_getFrame_0()
+        jdiscardInt = this%f_circularIndexUtil%jm_previous_0()
+        call this%jm_setFrame_1(j_frame)
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.previousAnimation;
-var
-  frame: Integer;
-begin
-        frame := Self.getFrame();
-        Self.circularIndexUtil.previous();
-        Self.setFrame(frame);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setAnimation_1(this, j_index)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4), value :: j_index
+    integer(4) :: j_frame
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_frame = this%jm_getFrame_0()
+        call this%f_circularIndexUtil%jm_setIndex_1(j_index)
+        call this%jm_setFrame_1(j_frame)
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setAnimation(index: Integer);
-var
-  frame: Integer;
-begin
-        frame := Self.getFrame();
-        Self.circularIndexUtil.setIndex(index);
-        Self.setFrame(frame);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setFrameByDirection_1(this, j_direction)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(Direction), target, optional :: j_direction
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref11 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref11%jm_setFrameByDirection_1(j_direction)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setFrameByDirection(direction_: TDirection);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].setFrameByDirection(direction_);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setFrameToAngle_1(this, j_angle)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(Angle), target, optional :: j_angle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref12 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref12%jm_setFrameToAngle_1(j_angle)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setFrameToAngle(angle_: TAngle);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].setFrameToAngle(angle_);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_adjustFrameToAngle_1(this, j_angle)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(Angle), target, optional :: j_angle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_adjustFrame_1(j_angle%jm_getValue_0())
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.adjustFrameToAngle(newAngle: TAngle);
-begin
-        Self.adjustFrame(newAngle.getValue());
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_adjustFrame_1(this, j_angle)
+    class(AutoCompoundRotationAnimation), target :: this
+    integer(4), value :: j_angle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref13 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        call jstaticref13%jm_adjustFrame_1(j_angle)
+        end associate
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.adjustFrame(angle_: SmallInt);
-begin
-        Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].adjustFrame(angle_);
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getAngleInfoP_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(AngleInfo), pointer :: jresult
+        associate (jstaticref14 => RotationAnimation_jcast(this%f_animationInterfaceArray((this%f_circularIndexUtil%jm_getIndex_0()) + 1)%v))
+        jresult => jstaticref14%jm_getAngleInfoP_0()
+        end associate
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getAngleInfoP: TAngleInfo;
-begin
-        Exit(Self.animationInterfaceArray[Self.circularIndexUtil.getIndex()].getAngleInfoP());
-end;
-    
+  recursive function AutoCompoundRotationAnimation_jm_getAnimationInterfaceArray_0(this) result(jresult)
+    class(AutoCompoundRotationAnimation), target :: this
+    type(JRef), allocatable :: jresult(:)
+        jresult = this%f_animationInterfaceArray
+        return
+  end function
 
-function TAutoCompoundRotationAnimation.getAnimationInterfaceArray: TArray<TRotationAnimation>;
-begin
-        Exit(Self.animationInterfaceArray);
-end;
-    
+  recursive subroutine AutoCompoundRotationAnimation_jm_setAnimationInterfaceArray_1(this, j_animationInterfaceArray)
+    class(AutoCompoundRotationAnimation), target :: this
+    type(JRef) :: j_animationInterfaceArray(:)
+        this%f_animationInterfaceArray = j_animationInterfaceArray
+  end subroutine
 
-procedure TAutoCompoundRotationAnimation.setAnimationInterfaceArray(animationInterfaceArray: TArray<TRotationAnimation>);
-begin
-        Self.animationInterfaceArray := animationInterfaceArray;
-end;
-    
-
-// throws Exception
-procedure TAutoCompoundRotationAnimation.set_(gl_: IGL);
-var
-  index: Integer;
-begin
-        index := System.Length(Self.animationInterfaceArray);
-        while (TJava.PreDec(index)) >= (0) do begin
-            Self.animationInterfaceArray[index].set_(gl_);
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine AutoCompoundRotationAnimation_jm_set_1(this, j_gl)
+    class(AutoCompoundRotationAnimation), target :: this
+    class(GL), target, optional :: j_gl
+    integer(4) :: j_index
+    integer(4) :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = size(this%f_animationInterfaceArray, 1)
+        do while ((jtemp2 >= 0))
+            associate (jstaticref15 => RotationAnimation_jcast(this%f_animationInterfaceArray((j_index) + 1)%v))
+            call jstaticref15%jm_set_1(j_gl)
+            end associate
+        end do
+  end subroutine
+end module AutoCompoundRotationAnimation_m
 

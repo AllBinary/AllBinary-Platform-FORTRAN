@@ -1,107 +1,119 @@
-// Generated Code Do Not Modify
-// package org.allbinary.device
-unit OpenGLESGraphics;
+! Generated Code Do Not Modify
+! package org.allbinary.device
+module OpenGLESGraphics_m
+  use JR_m
+  use GL_m
+  use GL10_m
+  use FontDebugBase_m
+  use OpenGLSurfaceChangedInterface_m
+  use CommonStrings_m
+  use GraphicsInterface_m
+  use NullGL10_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(OpenGLSurfaceChangedInterface) :: OpenGLESGraphics
+    class(CommonStrings), pointer :: f_commonStrings => null()
+    class(GL10), pointer :: f_gl => null()
+  contains
+    procedure :: jm_updateGL_1 => OpenGLESGraphics_jm_updateGL_1
+    procedure :: jm_set_1 => OpenGLESGraphics_jm_set_1
+    procedure :: jm_init_0 => OpenGLESGraphics_jm_init_0
+    procedure :: jm_update_0 => OpenGLESGraphics_jm_update_0
+    procedure :: jm_setOrthoginalMode_0 => OpenGLESGraphics_jm_setOrthoginalMode_0
+    procedure :: jm_setCameraMode_0 => OpenGLESGraphics_jm_setCameraMode_0
+    procedure :: jm_getGlP_0 => OpenGLESGraphics_jm_getGlP_0
+    procedure :: jm_setFontDebug_2 => OpenGLESGraphics_jm_setFontDebug_2
+  end type
 
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL, GL10, Font, FontDebugBase, OpenGLSurfaceChangedInterface, CommonStrings, GraphicsInterface;
-
-type
-  {AB:TYPES}
-  TOpenGLESGraphics = class(TInterfacedObject, IOpenGLSurfaceChangedInterface, IGraphicsInterface)
-  public
-    commonStrings: TCommonStrings;
-    gl: IGL10;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create;
-        procedure updateGL(gl_: IGL); virtual;
-        procedure set_(gl_: IGL); virtual;
-        procedure init; virtual;
-        procedure update; virtual;
-        procedure setOrthoginalMode; virtual;
-        procedure setCameraMode; virtual;
-        function getGlP: IGL10; virtual;
-        procedure setFontDebug(font_: TFont; fontDebug: TFontDebugBase); virtual;
-  end;
-
-implementation
-uses
-  NullGL10;
+  ! OpenGLESGraphics used as a GraphicsInterface
+  type, extends(GraphicsInterface) :: OpenGLESGraphics_jas_GraphicsInterface
+    class(OpenGLESGraphics), pointer :: jtarget => null()
+  contains
+    procedure :: jm_setFontDebug_2 => OpenGLESGraphics_jas_GraphicsInterface_jm_setFontDebug_2
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TOpenGLESGraphics.InitFields;
-begin
-  Self.commonStrings := TCommonStrings.getInstance();
-  Self.gl := TNullGL10.NULL_GL10;
-end;
+  function OpenGLESGraphics_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLESGraphics), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLESGraphics)
+      jresult => object
+    end select
+  end function
 
-function TOpenGLESGraphics.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  function OpenGLESGraphics_jas_GraphicsInterface_jnew(object) result(jresult)
+    class(OpenGLESGraphics), target :: object
+    class(OpenGLESGraphics_jas_GraphicsInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'OpenGLESGraphics'
+    jresult%jtarget => object
+  end function
 
-constructor TOpenGLESGraphics.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine OpenGLESGraphics_jas_GraphicsInterface_jm_setFontDebug_2(this, j_font, j_fontDebug)
+    class(OpenGLESGraphics_jas_GraphicsInterface), target :: this
+    class(Font), target, optional :: j_font
+    class(FontDebugBase), target, optional :: j_fontDebug
+    call this%jtarget%jm_setFontDebug_2(j_font, j_fontDebug)
+  end subroutine
 
-procedure TOpenGLESGraphics.updateGL(gl_: IGL);
-begin
-end;
-    
+  recursive function OpenGLESGraphics_jnew_0() result(this)
+    class(OpenGLESGraphics), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLESGraphics'
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+    this%f_gl => NullGL10_jstatic_NULL_GL10()
+        continue
+  end function
 
-procedure TOpenGLESGraphics.set_(gl_: IGL);
-begin
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_updateGL_1(this, j_gl)
+    class(OpenGLESGraphics), target :: this
+    class(GL), target, optional :: j_gl
+    continue
+  end subroutine
 
-// throws Exception
-procedure TOpenGLESGraphics.init;
-begin
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_set_1(this, j_gl)
+    class(OpenGLESGraphics), target :: this
+    class(GL), target, optional :: j_gl
+    continue
+  end subroutine
 
-// throws Exception
-procedure TOpenGLESGraphics.update;
-begin
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_init_0(this)
+    class(OpenGLESGraphics), target :: this
+    continue
+  end subroutine
 
-procedure TOpenGLESGraphics.setOrthoginalMode;
-begin
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_update_0(this)
+    class(OpenGLESGraphics), target :: this
+    continue
+  end subroutine
 
-procedure TOpenGLESGraphics.setCameraMode;
-begin
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_setOrthoginalMode_0(this)
+    class(OpenGLESGraphics), target :: this
+    continue
+  end subroutine
 
-function TOpenGLESGraphics.getGlP: IGL10;
-begin
-        Exit(Self.gl);
-end;
-    
+  recursive subroutine OpenGLESGraphics_jm_setCameraMode_0(this)
+    class(OpenGLESGraphics), target :: this
+    continue
+  end subroutine
 
-procedure TOpenGLESGraphics.setFontDebug(font_: TFont; fontDebug: TFontDebugBase);
-begin
-        raise SysUtils.Exception.Create('');
-end;
+  recursive function OpenGLESGraphics_jm_getGlP_0(this) result(jresult)
+    class(OpenGLESGraphics), target :: this
+    class(GL10), pointer :: jresult
+        jresult => this%f_gl
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine OpenGLESGraphics_jm_setFontDebug_2(this, j_font, j_fontDebug)
+    class(OpenGLESGraphics), target :: this
+    class(Font), target, optional :: j_font
+    class(FontDebugBase), target, optional :: j_fontDebug
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end subroutine
+end module OpenGLESGraphics_m
 

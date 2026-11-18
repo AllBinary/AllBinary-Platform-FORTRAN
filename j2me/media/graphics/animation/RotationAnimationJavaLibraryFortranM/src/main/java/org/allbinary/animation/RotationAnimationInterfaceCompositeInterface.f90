@@ -1,45 +1,59 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module RotationAnimationInterfaceCompositeInterface_m
+  use JR_m
+  use IndexedAnimationInterfaceCompositeInterface_m
+  use RotationAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit RotationAnimationInterfaceCompositeInterface;
+  type, extends(IndexedAnimationInterfaceCompositeInterface) :: RotationAnimationInterfaceCompositeInterface
+  contains
+    procedure :: jm_getRotationAnimationInterface_0 => RotationAnimationInterfaceCompositeInterface_jm_getRotationAnimationInterface_0
+    procedure :: jm_setFrame_1 => RotationAnimationInterfaceCompositeInterface_jm_setFrame_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, RotationAnimation, IndexedAnimationInterfaceCompositeInterface;
+  function RotationAnimationInterfaceCompositeInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RotationAnimationInterfaceCompositeInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RotationAnimationInterfaceCompositeInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IRotationAnimationInterfaceCompositeInterface = interface(IIndexedAnimationInterfaceCompositeInterface) ['IRotationAnimationInterfaceCompositeInterface']
-        function getRotationAnimationInterface: TRotationAnimation;
-        procedure setFrame(index: Integer);
-  end;
-  TRotationAnimationInterfaceCompositeInterface = IRotationAnimationInterfaceCompositeInterface;
+  function RotationAnimationInterfaceCompositeInterface_jnew_0() result(this)
+    class(RotationAnimationInterfaceCompositeInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'RotationAnimationInterfaceCompositeInterface'
+  end function
 
-implementation
+  recursive function RotationAnimationInterfaceCompositeInterface_jm_getRotationAnimationInterface_0(this) result(jresult)
+    class(RotationAnimationInterfaceCompositeInterface), target :: this
+    class(RotationAnimation), pointer :: jresult
+    error stop 'AbstractMethodError: RotationAnimationInterfaceCompositeInterface.getRotationAnimationInterface'
+  end function
 
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine RotationAnimationInterfaceCompositeInterface_jm_setFrame_1(this, j_index)
+    class(RotationAnimationInterfaceCompositeInterface), target :: this
+    integer(4), value :: j_index
+    error stop 'AbstractMethodError: RotationAnimationInterfaceCompositeInterface.setFrame'
+  end subroutine
+end module RotationAnimationInterfaceCompositeInterface_m
 

@@ -1,51 +1,45 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles
-unit OpenGLProcessor;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles
+module OpenGLProcessor_m
+  use JR_m
+  use GL10_m
+  use LogUtil_m
+  use CommonStrings_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLProcessor
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(CommonStrings), pointer :: f_commonStrings => null()
+  contains
+    procedure :: jm_process_1 => OpenGLProcessor_jm_process_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10, LogUtil, CommonStrings;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLProcessor = class(TObject)
-  public
-    logUtil: TLogUtil;
-    commonStrings: TCommonStrings;
-    procedure InitFields;
-    constructor Create;
-        procedure process(gl: IGL10); virtual;
-  end;
+  function OpenGLProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLProcessor)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLProcessor_jnew_0() result(this)
+    class(OpenGLProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLProcessor'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+  end function
 
-{AB:CODE}
-
-procedure TOpenGLProcessor.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.commonStrings := TCommonStrings.getInstance();
-end;
-
-constructor TOpenGLProcessor.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-procedure TOpenGLProcessor.process(gl: IGL10);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine OpenGLProcessor_jm_process_1(this, j_gl)
+    class(OpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
+end module OpenGLProcessor_m
 

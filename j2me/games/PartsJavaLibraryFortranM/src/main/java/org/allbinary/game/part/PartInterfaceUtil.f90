@@ -1,58 +1,66 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.part
+module PartInterfaceUtil_m
+  use JR_m
+  use PartInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.part
-unit PartInterfaceUtil;
+  type, extends(JObject) :: PartInterfaceUtil
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type(JRef), allocatable, save :: PartInterfaceUtil_jcell_SINGLETON(:)
+  logical, save :: PartInterfaceUtil_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PartInterface;
+  function PartInterfaceUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PartInterfaceUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PartInterfaceUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPartInterfaceUtil = class(TObject)
-  public
-    class var SINGLETON: TArray<IPartInterface>;
-    constructor Create;
-        class function getZeroArray: TArray<IPartInterface>; static;
-  end;
+  function PartInterfaceUtil_jstatic_SINGLETON() result(jresult)
+    type(JRef), allocatable :: jresult(:)
+    if (.not. PartInterfaceUtil_jset_SINGLETON) then
+      PartInterfaceUtil_jset_SINGLETON = .true.
+      PartInterfaceUtil_jcell_SINGLETON = JR_newRefArray(0)
+    end if
+    jresult = PartInterfaceUtil_jcell_SINGLETON
+  end function
 
-implementation
+  subroutine PartInterfaceUtil_jsetstatic_SINGLETON(jvalue)
+    type(JRef) :: jvalue(:)
+    PartInterfaceUtil_jset_SINGLETON = .true.
+    PartInterfaceUtil_jcell_SINGLETON = jvalue
+  end subroutine
 
-{AB:CODE}
+  function PartInterfaceUtil_jnew_0() result(this)
+    class(PartInterfaceUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'PartInterfaceUtil'
+  end function
 
-constructor TPartInterfaceUtil.Create;
-begin
-  inherited Create;
-end;
-    
-
-class function TPartInterfaceUtil.getZeroArray: TArray<IPartInterface>;
-begin
-        Exit(TPartInterfaceUtil.SINGLETON);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPartInterfaceUtil.SINGLETON := nil;
-  {AB:END}
-
-end.
+  recursive function PartInterfaceUtil_jm_getZeroArray_0() result(jresult)
+    type(JRef), allocatable :: jresult(:)
+        jresult = PartInterfaceUtil_jstatic_SINGLETON()
+        return
+  end function
+end module PartInterfaceUtil_m
 

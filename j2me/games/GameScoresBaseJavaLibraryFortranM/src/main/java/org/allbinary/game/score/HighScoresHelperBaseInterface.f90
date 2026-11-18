@@ -1,46 +1,66 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.score
-unit HighScoresHelperBaseInterface;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.score
+module HighScoresHelperBaseInterface_m
+  use JR_m
+  use HighScoresResultsListener_m
+  use HighScores_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(HighScoresResultsListener) :: HighScoresHelperBaseInterface
+  contains
+    procedure :: jm_setSelectedHighScores_1 => HighScoresHelperBaseInterface_jm_setSelectedHighScores_1
+    procedure :: jm_getHighScoresArray_0 => HighScoresHelperBaseInterface_jm_getHighScoresArray_0
+    procedure :: jm_getSelectedHighScores_0 => HighScoresHelperBaseInterface_jm_getSelectedHighScores_0
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, HighScores, HighScoresResultsListener;
+contains
 
-type
-  {AB:TYPES}
-  IHighScoresHelperBaseInterface = interface(IHighScoresResultsListener) ['IHighScoresHelperBaseInterface']
-        procedure setSelectedHighScores(selectedHighScores: THighScores);
-        function getHighScoresArray: TArray<THighScores>;
-        function getSelectedHighScores: THighScores;
-  end;
-  THighScoresHelperBaseInterface = IHighScoresHelperBaseInterface;
+  function HighScoresHelperBaseInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HighScoresHelperBaseInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HighScoresHelperBaseInterface)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function HighScoresHelperBaseInterface_jnew_0() result(this)
+    class(HighScoresHelperBaseInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'HighScoresHelperBaseInterface'
+  end function
 
-{AB:CODE}
+  recursive subroutine HighScoresHelperBaseInterface_jm_setSelectedHighScores_1(this, j_selectedHighScores)
+    class(HighScoresHelperBaseInterface), target :: this
+    class(HighScores), target, optional :: j_selectedHighScores
+    error stop 'AbstractMethodError: HighScoresHelperBaseInterface.setSelectedHighScores'
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function HighScoresHelperBaseInterface_jm_getHighScoresArray_0(this) result(jresult)
+    class(HighScoresHelperBaseInterface), target :: this
+    type(JRef), allocatable :: jresult(:)
+    error stop 'AbstractMethodError: HighScoresHelperBaseInterface.getHighScoresArray'
+  end function
 
-end.
+  recursive function HighScoresHelperBaseInterface_jm_getSelectedHighScores_0(this) result(jresult)
+    class(HighScoresHelperBaseInterface), target :: this
+    class(HighScores), pointer :: jresult
+    error stop 'AbstractMethodError: HighScoresHelperBaseInterface.getSelectedHighScores'
+  end function
+end module HighScoresHelperBaseInterface_m
 

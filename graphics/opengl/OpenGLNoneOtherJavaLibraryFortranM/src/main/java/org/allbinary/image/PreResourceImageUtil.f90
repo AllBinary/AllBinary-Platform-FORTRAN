@@ -1,77 +1,96 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.image
+module PreResourceImageUtil_m
+  use JR_m
+  use GL_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.image
-unit PreResourceImageUtil;
+  type, extends(JObject) :: PreResourceImageUtil
+  contains
+    procedure :: jm_encapsulate_1 => PreResourceImageUtil_jm_encapsulate_1
+    procedure :: jm_updateGL_2 => PreResourceImageUtil_jm_updateGL_2
+    procedure :: jm_update_2 => PreResourceImageUtil_jm_update_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(PreResourceImageUtil), pointer, save :: PreResourceImageUtil_jcell_instance => null()
+  logical, save :: PreResourceImageUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL, Graphics, Image;
+  function PreResourceImageUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PreResourceImageUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PreResourceImageUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPreResourceImageUtil = class(TObject)
-  public
-    class var instance: TPreResourceImageUtil;
-    constructor Create;
-        class function getInstance: TPreResourceImageUtil; static;
-        function encapsulate(image_: TImage): TImage; virtual;
-        procedure updateGL(gl_: IGL; image_: TImage); virtual;
-        procedure update(graphics_: TGraphics; image_: TImage); virtual;
-  end;
+  function PreResourceImageUtil_jstatic_instance() result(jresult)
+    class(PreResourceImageUtil), pointer :: jresult
+    if (.not. PreResourceImageUtil_jset_instance) then
+      PreResourceImageUtil_jset_instance = .true.
+      PreResourceImageUtil_jcell_instance => PreResourceImageUtil_jnew_0()
+    end if
+    jresult => PreResourceImageUtil_jcell_instance
+  end function
 
-implementation
+  subroutine PreResourceImageUtil_jsetstatic_instance(jvalue)
+    class(PreResourceImageUtil), target, optional :: jvalue
+    PreResourceImageUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      PreResourceImageUtil_jcell_instance => jvalue
+    else
+      PreResourceImageUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function PreResourceImageUtil_jnew_0() result(this)
+    class(PreResourceImageUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'PreResourceImageUtil'
+  end function
 
-constructor TPreResourceImageUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function PreResourceImageUtil_jm_getInstance_0() result(jresult)
+    class(PreResourceImageUtil), pointer :: jresult
+        jresult => PreResourceImageUtil_jstatic_instance()
+        return
+  end function
 
-class function TPreResourceImageUtil.getInstance: TPreResourceImageUtil;
-begin
-        Exit(TPreResourceImageUtil.instance);
-end;
-    
+  recursive function PreResourceImageUtil_jm_encapsulate_1(this, j_image) result(jresult)
+    class(PreResourceImageUtil), target :: this
+    class(Image), target, optional :: j_image
+    class(Image), pointer :: jresult
+        jresult => j_image
+        return
+  end function
 
-function TPreResourceImageUtil.encapsulate(image_: TImage): TImage;
-begin
-        Exit(image_);
-end;
-    
+  recursive subroutine PreResourceImageUtil_jm_updateGL_2(this, j_gl, j_image)
+    class(PreResourceImageUtil), target :: this
+    class(GL), target, optional :: j_gl
+    class(Image), target, optional :: j_image
+    continue
+  end subroutine
 
-procedure TPreResourceImageUtil.updateGL(gl_: IGL; image_: TImage);
-begin
-end;
-    
-
-procedure TPreResourceImageUtil.update(graphics_: TGraphics; image_: TImage);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPreResourceImageUtil.instance := TPreResourceImageUtil.Create();
-  {AB:END}
-
-end.
+  recursive subroutine PreResourceImageUtil_jm_update_2(this, j_graphics, j_image)
+    class(PreResourceImageUtil), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Image), target, optional :: j_image
+    continue
+  end subroutine
+end module PreResourceImageUtil_m
 

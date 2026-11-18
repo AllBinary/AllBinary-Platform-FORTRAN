@@ -54,6 +54,16 @@ contains
     jresult => BasicColorUtil_jcell_instance
   end function
 
+  subroutine BasicColorUtil_jsetstatic_instance(jvalue)
+    class(BasicColorUtil), target, optional :: jvalue
+    BasicColorUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicColorUtil_jcell_instance => jvalue
+    else
+      BasicColorUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function BasicColorUtil_jnew_0() result(this)
     class(BasicColorUtil), pointer :: this
     allocate(this)

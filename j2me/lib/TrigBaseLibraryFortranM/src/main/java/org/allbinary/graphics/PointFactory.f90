@@ -50,6 +50,16 @@ contains
     jresult => PointFactory_jcell_instance
   end function
 
+  subroutine PointFactory_jsetstatic_instance(jvalue)
+    class(PointFactory), target, optional :: jvalue
+    PointFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      PointFactory_jcell_instance => jvalue
+    else
+      PointFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function PointFactory_jnew_0() result(this)
     class(PointFactory), pointer :: this
     allocate(this)

@@ -1,79 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.loader
+module WebappClassLoaderInfo_m
+  use JR_m
+  use NullUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.loader
-unit WebappClassLoaderInfo;
+  type, extends(JObject) :: WebappClassLoaderInfo
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: WebappClassLoaderInfo_jcell_classLoader => null()
+  logical, save :: WebappClassLoaderInfo_jset_classLoader = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function WebappClassLoaderInfo_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(WebappClassLoaderInfo), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (WebappClassLoaderInfo)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TWebappClassLoaderInfo = class(TObject)
-  public
-    class var classLoader: TObject;
-        constructor Create;
-        class procedure setLoader(classLoader: TClassLoader); static;
-        class function getLoader: TClassLoader; static;
-  end;
+  function WebappClassLoaderInfo_jstatic_classLoader() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. WebappClassLoaderInfo_jset_classLoader) then
+      WebappClassLoaderInfo_jset_classLoader = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    WebappClassLoaderInfo_jcell_classLoader => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => WebappClassLoaderInfo_jcell_classLoader
+  end function
 
-implementation
-uses
-  NullUtil;
+  subroutine WebappClassLoaderInfo_jsetstatic_classLoader(jvalue)
+    class(JObject), target, optional :: jvalue
+    WebappClassLoaderInfo_jset_classLoader = .true.
+    if (present(jvalue)) then
+      WebappClassLoaderInfo_jcell_classLoader => jvalue
+    else
+      WebappClassLoaderInfo_jcell_classLoader => null()
+    end if
+  end subroutine
 
+  recursive function WebappClassLoaderInfo_jnew_0() result(this)
+    class(WebappClassLoaderInfo), pointer :: this
+    allocate(this)
+    this%jclass = 'WebappClassLoaderInfo'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive subroutine WebappClassLoaderInfo_jm_setLoader_1(j_classLoader)
+    class(ClassLoader), target, optional :: j_classLoader
+        call WebappClassLoaderInfo_jsetstatic_classLoader(j_classLoader)
+  end subroutine
 
-constructor TWebappClassLoaderInfo.Create;
-begin
-    inherited Create;
-end;
-    
-
-class procedure TWebappClassLoaderInfo.setLoader(classLoader: TClassLoader);
-begin
-    TJava.MonitorEnter(nil);
-    try
-        TWebappClassLoaderInfo.classLoader := classLoader;
-    finally
-    TJava.MonitorExit(nil);
-    end;
-end;
-    
-
-class function TWebappClassLoaderInfo.getLoader: TClassLoader;
-begin
-    TJava.MonitorEnter(nil);
-    try
-        Exit(TClassLoader(TJava.ToObject(TWebappClassLoaderInfo.classLoader)));
-    finally
-    TJava.MonitorExit(nil);
-    end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TWebappClassLoaderInfo.classLoader := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+  recursive function WebappClassLoaderInfo_jm_getLoader_0() result(jresult)
+    class(ClassLoader), pointer :: jresult
+        jresult => ClassLoader_jcast(WebappClassLoaderInfo_jstatic_classLoader())
+        return
+  end function
+end module WebappClassLoaderInfo_m
 

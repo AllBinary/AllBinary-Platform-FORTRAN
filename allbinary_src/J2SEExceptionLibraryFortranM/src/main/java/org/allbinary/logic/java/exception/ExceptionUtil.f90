@@ -51,6 +51,16 @@ contains
     jresult => ExceptionUtil_jcell_instance
   end function
 
+  subroutine ExceptionUtil_jsetstatic_instance(jvalue)
+    class(ExceptionUtil), target, optional :: jvalue
+    ExceptionUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ExceptionUtil_jcell_instance => jvalue
+    else
+      ExceptionUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function ExceptionUtil_jstatic_PRETEND_EXCEPTION() result(jresult)
     class(JObject), pointer :: jresult
     if (.not. ExceptionUtil_jset_PRETEND_EXCEPTION) then
@@ -59,6 +69,16 @@ contains
     end if
     jresult => ExceptionUtil_jcell_PRETEND_EXCEPTION
   end function
+
+  subroutine ExceptionUtil_jsetstatic_PRETEND_EXCEPTION(jvalue)
+    class(JObject), target, optional :: jvalue
+    ExceptionUtil_jset_PRETEND_EXCEPTION = .true.
+    if (present(jvalue)) then
+      ExceptionUtil_jcell_PRETEND_EXCEPTION => jvalue
+    else
+      ExceptionUtil_jcell_PRETEND_EXCEPTION => null()
+    end if
+  end subroutine
 
   recursive function ExceptionUtil_jnew_0() result(this)
     class(ExceptionUtil), pointer :: this

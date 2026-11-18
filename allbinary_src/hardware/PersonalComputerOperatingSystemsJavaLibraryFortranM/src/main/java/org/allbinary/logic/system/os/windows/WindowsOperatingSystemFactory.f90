@@ -56,6 +56,16 @@ contains
     jresult => WindowsOperatingSystemFactory_jcell_instance
   end function
 
+  subroutine WindowsOperatingSystemFactory_jsetstatic_instance(jvalue)
+    class(WindowsOperatingSystemFactory), target, optional :: jvalue
+    WindowsOperatingSystemFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      WindowsOperatingSystemFactory_jcell_instance => jvalue
+    else
+      WindowsOperatingSystemFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function WindowsOperatingSystemFactory_jnew_0() result(this)
     class(WindowsOperatingSystemFactory), pointer :: this
     allocate(this)

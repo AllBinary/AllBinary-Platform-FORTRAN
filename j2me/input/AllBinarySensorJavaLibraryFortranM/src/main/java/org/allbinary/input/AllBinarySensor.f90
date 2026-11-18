@@ -1,121 +1,147 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input
+module AllBinarySensor_m
+  use JR_m
+  use ForcedLogUtil_m
+  use LogUtil_m
+  use CommonStrings_m
+  use AllBinarySensorListener_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input
-unit AllBinarySensor;
+  type, extends(AllBinarySensorListener) :: AllBinarySensor
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(CommonStrings), pointer :: f_commonStrings => null()
+  contains
+    procedure :: jm_init_0 => AllBinarySensor_jm_init_0
+    procedure :: jm_update_0 => AllBinarySensor_jm_update_0
+    procedure :: jm_getId_0 => AllBinarySensor_jm_getId_0
+    procedure :: jm_shutdown_0 => AllBinarySensor_jm_shutdown_0
+    procedure :: jm_onSensorChange_0 => AllBinarySensor_jm_onSensorChange_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AllBinarySensor), pointer, save :: AllBinarySensor_jcell_NULL_ALLBINARY_SENSOR => null()
+  logical, save :: AllBinarySensor_jset_NULL_ALLBINARY_SENSOR = .false.
+  integer(4), save :: AllBinarySensor_jcell_max
+  logical, save :: AllBinarySensor_jset_max = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, CommonStrings, AllBinarySensorListener;
+  function AllBinarySensor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AllBinarySensor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AllBinarySensor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAllBinarySensor = class(TInterfacedObject, IAllBinarySensorListener)
-  public
-    logUtil: TLogUtil;
-    commonStrings: TCommonStrings;
-    class var NULL_ALLBINARY_SENSOR: TAllBinarySensor;
-    class var max: Integer;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create;
-        procedure init; virtual;
-        procedure update; virtual;
-        class procedure setMax(max: Integer); static;
-        class function getMax: Integer; static;
-        function getId: Integer; virtual;
-        procedure shutdown; virtual;
-        procedure onSensorChange; virtual;
-  end;
+  function AllBinarySensor_jstatic_NULL_ALLBINARY_SENSOR() result(jresult)
+    class(AllBinarySensor), pointer :: jresult
+    if (.not. AllBinarySensor_jset_NULL_ALLBINARY_SENSOR) then
+      AllBinarySensor_jset_NULL_ALLBINARY_SENSOR = .true.
+      AllBinarySensor_jcell_NULL_ALLBINARY_SENSOR => AllBinarySensor_jnew_0()
+    end if
+    jresult => AllBinarySensor_jcell_NULL_ALLBINARY_SENSOR
+  end function
 
-implementation
-uses
-  ForcedLogUtil;
+  subroutine AllBinarySensor_jsetstatic_NULL_ALLBINARY_SENSOR(jvalue)
+    class(AllBinarySensor), target, optional :: jvalue
+    AllBinarySensor_jset_NULL_ALLBINARY_SENSOR = .true.
+    if (present(jvalue)) then
+      AllBinarySensor_jcell_NULL_ALLBINARY_SENSOR => jvalue
+    else
+      AllBinarySensor_jcell_NULL_ALLBINARY_SENSOR => null()
+    end if
+  end subroutine
 
+  function AllBinarySensor_jstatic_max() result(jresult)
+    integer(4) :: jresult
+    if (.not. AllBinarySensor_jset_max) then
+      AllBinarySensor_jset_max = .true.
+      AllBinarySensor_jcell_max = 100
+    end if
+    jresult = AllBinarySensor_jcell_max
+  end function
 
-{AB:CODE}
+  subroutine AllBinarySensor_jsetstatic_max(jvalue)
+    integer(4), value :: jvalue
+    AllBinarySensor_jset_max = .true.
+    AllBinarySensor_jcell_max = jvalue
+  end subroutine
 
-procedure TAllBinarySensor.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.commonStrings := TCommonStrings.getInstance();
-end;
+  recursive function AllBinarySensor_jnew_0() result(this)
+    class(AllBinarySensor), pointer :: this
+    allocate(this)
+    this%jclass = 'AllBinarySensor'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_commonStrings => CommonStrings_jm_getInstance_0()
+        continue
+  end function
 
-function TAllBinarySensor.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  recursive subroutine AllBinarySensor_jm_init_0(this)
+    class(AllBinarySensor), target :: this
+    continue
+  end subroutine
 
-constructor TAllBinarySensor.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine AllBinarySensor_jm_update_0(this)
+    class(AllBinarySensor), target :: this
+    continue
+  end subroutine
 
-procedure TAllBinarySensor.init;
-begin
-end;
-    
+  recursive subroutine AllBinarySensor_jm_setMax_1(j_max)
+    integer(4), value :: j_max
+        call AllBinarySensor_jsetstatic_max(j_max)
+  end subroutine
 
-// throws Exception
-procedure TAllBinarySensor.update;
-begin
-end;
-    
+  recursive function AllBinarySensor_jm_getMax_0() result(jresult)
+    integer(4) :: jresult
+        jresult = AllBinarySensor_jstatic_max()
+        return
+  end function
 
-class procedure TAllBinarySensor.setMax(max: Integer);
-begin
-        TAllBinarySensor.max := max;
-end;
-    
+  recursive function AllBinarySensor_jm_getId_0(this) result(jresult)
+    class(AllBinarySensor), target :: this
+    integer(4) :: jresult
+        jresult = AllBinarySensor_jm_getMax_0()
+        return
+  end function
 
-class function TAllBinarySensor.getMax: Integer;
-begin
-        Exit(TAllBinarySensor.max);
-end;
-    
+  recursive subroutine AllBinarySensor_jm_shutdown_0(this)
+    class(AllBinarySensor), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, 'shutdown')
+  end subroutine
 
-function TAllBinarySensor.getId: Integer;
-begin
-        Exit(TAllBinarySensor.getMax());
-end;
-    
-
-procedure TAllBinarySensor.shutdown;
-begin
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), 'shutdown');
-end;
-    
-
-procedure TAllBinarySensor.onSensorChange;
-begin
-        TForcedLogUtil.log(Self.commonStrings.NOT_IMPLEMENTED, TJava.Box(Self));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAllBinarySensor.NULL_ALLBINARY_SENSOR := TAllBinarySensor.Create();
-  TAllBinarySensor.max := 100;
-  {AB:END}
-
-end.
+  recursive subroutine AllBinarySensor_jm_onSensorChange_0(this)
+    class(AllBinarySensor), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call ForcedLogUtil_jm_log_2(this%f_commonStrings%f_NOT_IMPLEMENTED, this)
+  end subroutine
+end module AllBinarySensor_m
 

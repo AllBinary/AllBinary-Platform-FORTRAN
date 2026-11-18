@@ -1,153 +1,148 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.emulator.device
+module TrueTypeFontUtilBase_m
+  use JR_m
+  use AvianUtil_m
+  use StringUtil_m
+  implicit none
+
+  type, extends(JObject) :: TrueTypeFontUtilBase
+    character(len=:), allocatable :: f_shortPattern
+    integer(4), allocatable :: f_patternAsBytes(:)
+    character(len=:), allocatable :: f_pattern
+    integer(4), allocatable :: f_charArray(:)
+    integer(4), allocatable :: f__characterWidth(:)
+    integer(4), allocatable :: f_characterArray(:)
+    integer(4) :: f_size = 0
+    integer(4) :: f_lastCapIndex = 0
+    class(Font), pointer :: f_currentFont => null()
+    integer(4) :: f_scale = 0
+    integer(4) :: f_CELLS_PER_ROW = 0
+    integer(4) :: f_fontSize = 0
+    integer(4) :: f_baseCharWidth = 0
+    integer(4) :: f_cellSize = 0
+    integer(4) :: f_textureSize = 0
+    integer(4) :: f_actualCellsPerRow = 0
+  contains
+    procedure :: jm_getAsTextureSize_1 => TrueTypeFontUtilBase_jm_getAsTextureSize_1
+    procedure :: jm_getCellSize_1 => TrueTypeFontUtilBase_jm_getCellSize_1
+    procedure :: jm_getYOffset_0 => TrueTypeFontUtilBase_jm_getYOffset_0
+  end type
+
+
+contains
+
+  function TrueTypeFontUtilBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TrueTypeFontUtilBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TrueTypeFontUtilBase)
+      jresult => object
+    end select
+  end function
+
+  recursive function TrueTypeFontUtilBase_jnew_1(j_scale) result(this)
+    integer(4), value :: j_scale
+    class(TrueTypeFontUtilBase), pointer :: this
+    character(len=:), allocatable :: j_shortPattern
+    integer(4), allocatable :: j_shortPatterAsByteArray(:)
+    class(StringUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'TrueTypeFontUtilBase'
+    this%f_shortPattern = ''
+    this%f_pattern = ''
     
-}
-// Generated Code Do Not Modify
-// package org.allbinary.emulator.device
-unit TrueTypeFontUtilBase;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Font;
-
-type
-  {AB:TYPES}
-  TTrueTypeFontUtilBase = class(TObject)
-  public
-    shortPattern: string;
-    patternAsBytes: TArray<ShortInt>;
-    pattern: string;
-    charArray: TArray<SmallInt>;
-    _characterWidth: TArray<Integer>;
-    characterArray: TArray<WideChar>;
-    size: Integer;
-    lastCapIndex: Integer;
-    currentFont: TFont;
-    scale: Integer;
-    CELLS_PER_ROW: Integer;
-    fontSize: Integer;
-    baseCharWidth: Integer;
-    cellSize: Integer;
-    textureSize: Integer;
-    actualCellsPerRow: Integer;
-    procedure InitFields;
-        constructor Create(scale: Integer);
-        function getAsTextureSize(textureSize: Integer): Integer; virtual;
-        function getCellSize(cellSize: Integer): Integer; virtual;
-        function getYOffset: Integer; virtual;
-  end;
-
-implementation
-uses
-  AvianUtil, StringUtil;
-
-
-{AB:CODE}
-
-procedure TTrueTypeFontUtilBase.InitFields;
-begin
-  
-  Self.patternAsBytes := TArray<ShortInt>.Create(32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 32, 32, 32, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 32, 32, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 32, 32, 32, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 32, 32, 32, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 32, 32, 32, 33, 36, 37, 96, ShortInt(-62), ShortInt(-84), ShortInt(-62), ShortInt(-84), 34, ShortInt(-62), ShortInt(-93), ShortInt(-62), ShortInt(-93), 94, 38, 42, 40, 32, 32, 32, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 32, 32, 32, 64, 126, 44, 47, 60, 62, 92, 124, ShortInt(-62), ShortInt(-82), ShortInt(-62), ShortInt(-82), ShortInt(-62), ShortInt(-87), ShortInt(-62), ShortInt(-87));
-  Self.pattern := TJava.NewString(Self.patternAsBytes);
-  Self.charArray := TArray<SmallInt>.Create($0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $6f, $50, $56, $6b, $51, $52, $5a, $6a, $5c, $60, $5b, $62, $72, $63, $4b, $73, $1, $2, $3, $4, $5, $6, $7, $8, $9, $a, $6c, $69, $74, $64, $75, $4c, $70, $b, $c, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $65, $76, $66, $59, $61, $53, $2b, $2c, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $3a, $3b, $3c, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $4a, $67, $77, $68, $71, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $58, $0, $0, $0, $0, $0, $7b, $0, $0, $55, $0, $79, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0, $0);
-  Self._characterWidth := TJava.NewArray<Integer>(System.Length(Self.pattern));
-  Self.characterArray := TJava.NewArray<WideChar>(1);
-  Self.size := System.Length(Self.pattern);
-  Self.lastCapIndex := (Pos(TJava.ToString('Z'), Self.pattern) - 1);
-  Self.currentFont := TFont.getDefaultFont();
-  
-  
-  
-  
-  
-  
-  
-end;
+    this%f_patternAsBytes = [integer(4) :: 32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 32, 32, 32, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 32, 32, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 32, 32, 32, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 32, 32, 32, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 32, 32, 32, 33, 36, 37, 96, JR_i8((-62)), JR_i8((-84)), JR_i8((-62)), JR_i8((-84)), 34, JR_i8((-62)), JR_i8((-93)), JR_i8((-62)), JR_i8((-93)), 94, 38, 42, 40, 32, 32, 32, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 32, 32, 32, 64, 126, 44, 47, 60, 62, 92, 124, JR_i8((-62)), JR_i8((-82)), JR_i8((-62)), JR_i8((-82)), JR_i8((-62)), JR_i8((-87)), JR_i8((-62)), JR_i8((-87))]
+    this%f_pattern = this%f_patternAsBytes
+    this%f_charArray = [integer(4) :: int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'6f', 4), int(z'50', 4), int(z'56', 4), int(z'6b', 4), int(z'51', 4), int(z'52', 4), int(z'5a', 4), int(z'6a', 4), int(z'5c', 4), int(z'60', 4), int(z'5b', 4), int(z'62', 4), int(z'72', 4), int(z'63', 4), int(z'4b', 4), int(z'73', 4), int(z'1', 4), int(z'2', 4), int(z'3', 4), int(z'4', 4), int(z'5', 4), int(z'6', 4), int(z'7', 4), int(z'8', 4), int(z'9', 4), int(z'a', 4), int(z'6c', 4), int(z'69', 4), int(z'74', 4), int(z'64', 4), int(z'75', 4), int(z'4c', 4), int(z'70', 4), int(z'b', 4), int(z'c', 4), int(z'10', 4), int(z'11', 4), int(z'12', 4), int(z'13', 4), int(z'14', 4), int(z'15', 4), int(z'16', 4), int(z'17', 4), int(z'18', 4), int(z'19', 4), int(z'1a', 4), int(z'1b', 4), int(z'1c', 4), int(z'20', 4), int(z'21', 4), int(z'22', 4), int(z'23', 4), int(z'24', 4), int(z'25', 4), int(z'26', 4), int(z'27', 4), int(z'28', 4), int(z'29', 4), int(z'2a', 4), int(z'65', 4), int(z'76', 4), int(z'66', 4), int(z'59', 4), int(z'61', 4), int(z'53', 4), int(z'2b', 4), int(z'2c', 4), int(z'30', 4), int(z'31', 4), int(z'32', 4), int(z'33', 4), int(z'34', 4), int(z'35', 4), int(z'36', 4), int(z'37', 4), int(z'38', 4), int(z'39', 4), int(z'3a', 4), int(z'3b', 4), int(z'3c', 4), int(z'40', 4), int(z'41', 4), int(z'42', 4), int(z'43', 4), int(z'44', 4), int(z'45', 4), int(z'46', 4), int(z'47', 4), int(z'48', 4), int(z'49', 4), int(z'4a', 4), int(z'67', 4), int(z'77', 4), int(z'68', 4), int(z'71', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'58', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'7b', 4), int(z'0', 4), int(z'0', 4), int(z'55', 4), int(z'0', 4), int(z'79', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4), int(z'0', 4)]
+    this%f__characterWidth = JR_newIntArray(len(this%f_pattern))
+    this%f_characterArray = JR_newIntArray(1)
+    this%f_size = len(this%f_pattern)
+    this%f_lastCapIndex = JR_indexOf(this%f_pattern, iachar('Z'))
+    this%f_currentFont => Font_jm_getDefaultFont_0()
     
-
-constructor TTrueTypeFontUtilBase.Create(scale: Integer);
-var
-  shortPattern: string;
-  shortPatterAsByteArray: TArray<ShortInt>;
-begin
-    inherited Create;
-    InitFields;
-        shortPattern := TStringUtil.getInstance().EMPTY_STRING;
-        if TAvianUtil.isAvian() then begin
-            shortPatterAsByteArray := TArray<ShortInt>.Create(32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, ShortInt(-62), ShortInt(-84), ShortInt(-62), ShortInt(-84), 34, ShortInt(-62), ShortInt(-93), ShortInt(-62), ShortInt(-93), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, ShortInt(-62), ShortInt(-82), ShortInt(-62), ShortInt(-82), ShortInt(-62), ShortInt(-87), ShortInt(-62), ShortInt(-87));
-            shortPattern := TJava.NewString(shortPatterAsByteArray);
-        end else begin
-            shortPatterAsByteArray := TArray<ShortInt>.Create(32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, ShortInt(-62), ShortInt(-84), 34, ShortInt(-62), ShortInt(-93), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, ShortInt(-62), ShortInt(-82), ShortInt(-62), ShortInt(-87));
-            shortPattern := TJava.NewString(shortPatterAsByteArray);
-        end;
-        Self.shortPattern := shortPattern;
-        Self.scale := scale;
-        Self.CELLS_PER_ROW := 16;
-        Self.fontSize := (((20) + (6))) * (Self.scale);
-        Self.baseCharWidth := (Self.fontSize) + (((6) * (Self.scale)));
-        Self.cellSize := (Self.fontSize) + (((6) * (Self.scale)));
-        Self.textureSize := Self.getAsTextureSize((Self.CELLS_PER_ROW) * (Self.cellSize));
-        Self.actualCellsPerRow := (Self.textureSize) div (Self.cellSize);
-end;
     
-
-function TTrueTypeFontUtilBase.getAsTextureSize(textureSize: Integer): Integer;
-begin
-        if (textureSize) <= (64) then begin
-            textureSize := 64;
-        end else if (textureSize) <= (128) then begin
-            textureSize := 128;
-        end else if (textureSize) <= (256) then begin
-            textureSize := 256;
-        end else if (textureSize) <= (512) then begin
-            textureSize := 512;
-        end else if (textureSize) <= (1024) then begin
-            textureSize := 1024;
-        end;
-        Exit(textureSize);
-end;
     
-
-function TTrueTypeFontUtilBase.getCellSize(cellSize: Integer): Integer;
-begin
-        if (cellSize) <= (16) then begin
-            cellSize := 16;
-        end else if (cellSize) <= (32) then begin
-            cellSize := 32;
-        end else if (cellSize) <= (64) then begin
-            cellSize := 64;
-        end else if (cellSize) <= (128) then begin
-            cellSize := 128;
-        end else if (cellSize) <= (256) then begin
-            cellSize := 256;
-        end;
-        Exit(cellSize);
-end;
     
+    
+    
+    
+        jtemp1 => StringUtil_jm_getInstance_0()
+        j_shortPattern = jtemp1%f_EMPTY_STRING
+        if (AvianUtil_jm_isAvian_0()) then
+            j_shortPatterAsByteArray = [integer(4) :: 32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, JR_i8((-62)), JR_i8((-84)), JR_i8((-62)), JR_i8((-84)), 34, JR_i8((-62)), JR_i8((-93)), JR_i8((-62)), JR_i8((-93)), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, JR_i8((-62)), JR_i8((-82)), JR_i8((-62)), JR_i8((-82)), JR_i8((-62)), JR_i8((-87)), JR_i8((-62)), JR_i8((-87))]
+            j_shortPattern = j_shortPatterAsByteArray
+        else
+            j_shortPatterAsByteArray = [integer(4) :: 32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, JR_i8((-62)), JR_i8((-84)), 34, JR_i8((-62)), JR_i8((-93)), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, JR_i8((-62)), JR_i8((-82)), JR_i8((-62)), JR_i8((-87))]
+            j_shortPattern = j_shortPatterAsByteArray
+        end if
+        this%f_shortPattern = j_shortPattern
+        this%f_scale = j_scale
+        this%f_CELLS_PER_ROW = 16
+        this%f_fontSize = (((20 + 6)) * this%f_scale)
+        this%f_baseCharWidth = (this%f_fontSize + ((6 * this%f_scale)))
+        this%f_cellSize = (this%f_fontSize + ((6 * this%f_scale)))
+        this%f_textureSize = this%jm_getAsTextureSize_1((this%f_CELLS_PER_ROW * this%f_cellSize))
+        this%f_actualCellsPerRow = (this%f_textureSize / this%f_cellSize)
+  end function
 
-function TTrueTypeFontUtilBase.getYOffset: Integer;
-begin
-        Exit(((((Self.scale) - (1))) * (Self.cellSize)));
-end;
+  recursive function TrueTypeFontUtilBase_jm_getAsTextureSize_1(this, j_textureSize) result(jresult)
+    class(TrueTypeFontUtilBase), target :: this
+    integer(4), value :: j_textureSize
+    integer(4) :: jresult
+        if ((j_textureSize <= 64)) then
+            j_textureSize = 64
+        else if ((j_textureSize <= 128)) then
+            j_textureSize = 128
+        else if ((j_textureSize <= 256)) then
+            j_textureSize = 256
+        else if ((j_textureSize <= 512)) then
+            j_textureSize = 512
+        else if ((j_textureSize <= 1024)) then
+            j_textureSize = 1024
+        end if
+        jresult = j_textureSize
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function TrueTypeFontUtilBase_jm_getCellSize_1(this, j_cellSize) result(jresult)
+    class(TrueTypeFontUtilBase), target :: this
+    integer(4), value :: j_cellSize
+    integer(4) :: jresult
+        if ((j_cellSize <= 16)) then
+            j_cellSize = 16
+        else if ((j_cellSize <= 32)) then
+            j_cellSize = 32
+        else if ((j_cellSize <= 64)) then
+            j_cellSize = 64
+        else if ((j_cellSize <= 128)) then
+            j_cellSize = 128
+        else if ((j_cellSize <= 256)) then
+            j_cellSize = 256
+        end if
+        jresult = j_cellSize
+        return
+  end function
 
-end.
+  recursive function TrueTypeFontUtilBase_jm_getYOffset_0(this) result(jresult)
+    class(TrueTypeFontUtilBase), target :: this
+    integer(4) :: jresult
+        jresult = ((((this%f_scale - 1)) * this%f_cellSize))
+        return
+  end function
+end module TrueTypeFontUtilBase_m
 

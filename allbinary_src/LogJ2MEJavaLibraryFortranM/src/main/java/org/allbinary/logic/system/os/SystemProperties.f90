@@ -54,6 +54,16 @@ contains
     jresult => SystemProperties_jcell_instance
   end function
 
+  subroutine SystemProperties_jsetstatic_instance(jvalue)
+    class(SystemProperties), target, optional :: jvalue
+    SystemProperties_jset_instance = .true.
+    if (present(jvalue)) then
+      SystemProperties_jcell_instance => jvalue
+    else
+      SystemProperties_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SystemProperties_jnew_0() result(this)
     class(SystemProperties), pointer :: this
     allocate(this)

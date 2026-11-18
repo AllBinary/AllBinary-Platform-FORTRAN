@@ -52,6 +52,16 @@ contains
     jresult => PositionStrings_jcell_instance
   end function
 
+  subroutine PositionStrings_jsetstatic_instance(jvalue)
+    class(PositionStrings), target, optional :: jvalue
+    PositionStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      PositionStrings_jcell_instance => jvalue
+    else
+      PositionStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function PositionStrings_jnew_0() result(this)
     class(PositionStrings), pointer :: this
     allocate(this)

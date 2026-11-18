@@ -1,59 +1,46 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2026 AllBinary 
-  
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-  
-  Created By: Travis Berthelot 
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics
-unit OpenGLBitmapConfig;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2026 AllBinary 
+! 
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+! 
+! Created By: Travis Berthelot 
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics
+module OpenGLBitmapConfig_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLBitmapConfig
+    class(JObject), pointer :: f_bitmapConfig => null()
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLBitmapConfig = class(TObject)
-  public
-    bitmapConfig: TObject;
-    procedure InitFields;
-        constructor Create(bitmapConfig: TObject);
-  end;
+  function OpenGLBitmapConfig_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLBitmapConfig), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLBitmapConfig)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-procedure TOpenGLBitmapConfig.InitFields;
-begin
-  
-end;
+  recursive function OpenGLBitmapConfig_jnew_1(j_bitmapConfig) result(this)
+    class(JObject), target, optional :: j_bitmapConfig
+    class(OpenGLBitmapConfig), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLBitmapConfig'
     
-
-constructor TOpenGLBitmapConfig.Create(bitmapConfig: TObject);
-begin
-    inherited Create;
-    InitFields;
-        Self.bitmapConfig := TJava.Box(bitmapConfig);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+        this%f_bitmapConfig => j_bitmapConfig
+  end function
+end module OpenGLBitmapConfig_m
 

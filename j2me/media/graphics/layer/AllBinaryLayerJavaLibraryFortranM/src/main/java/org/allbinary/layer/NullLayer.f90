@@ -1,65 +1,86 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer
+module NullLayer_m
+  use JR_m
+  use ABLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer
-unit NullLayer;
+  type, extends(ABLayer) :: NullLayer
+  contains
+    procedure :: jm_paint_1 => NullLayer_jm_paint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(NullLayer), pointer, save :: NullLayer_jcell_instance => null()
+  logical, save :: NullLayer_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, ABLayer;
+  function NullLayer_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullLayer), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullLayer)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TNullLayer = class(TABLayer)
-  public
-    class var instance: TNullLayer;
-        class function getInstance: TNullLayer; static;
-        constructor Create;
-        procedure paint(graphics_: TGraphics); override;
-  end;
+  function NullLayer_jstatic_instance() result(jresult)
+    class(NullLayer), pointer :: jresult
+    if (.not. NullLayer_jset_instance) then
+      NullLayer_jset_instance = .true.
+      NullLayer_jcell_instance => NullLayer_jnew_0()
+    end if
+    jresult => NullLayer_jcell_instance
+  end function
 
-implementation
+  subroutine NullLayer_jsetstatic_instance(jvalue)
+    class(NullLayer), target, optional :: jvalue
+    NullLayer_jset_instance = .true.
+    if (present(jvalue)) then
+      NullLayer_jcell_instance => jvalue
+    else
+      NullLayer_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function NullLayer_jnew_0() result(this)
+    class(NullLayer), pointer :: this
+    allocate(this)
+    this%jclass = 'NullLayer'
+        continue ! super()
+  end function
 
-class function TNullLayer.getInstance: TNullLayer;
-begin
-        Exit(TNullLayer.instance);
-end;
-    
+  recursive function NullLayer_jm_getInstance_0() result(jresult)
+    class(NullLayer), pointer :: jresult
+        jresult => NullLayer_jstatic_instance()
+        return
+  end function
 
-constructor TNullLayer.Create;
-begin
-        inherited Create(0, 0);
-end;
-    
+  recursive subroutine NullLayer_jm_paint_1(this, j_graphics)
+    class(NullLayer), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module NullLayer_m
 
-procedure TNullLayer.paint(graphics_: TGraphics);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullLayer.instance := TNullLayer.Create();
-  {AB:END}
-
-end.
+function NullLayer_jnew_0_jext() result(this)
+  use NullLayer_m, only: JObject, NullLayer_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NullLayer_jnew_0()
+end function
 

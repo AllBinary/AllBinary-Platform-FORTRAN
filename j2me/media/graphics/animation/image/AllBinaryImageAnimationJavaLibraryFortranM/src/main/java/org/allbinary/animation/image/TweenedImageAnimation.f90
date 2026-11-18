@@ -1,162 +1,203 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.image
+module TweenedImageAnimation_m
+  use JR_m
+  use DisposalUtil_m
+  use AnimationBehavior_m
+  use IndexedAnimation_m
+  use Anchor_m
+  use PrimitiveIntUtil_m
+  use CircularIndexUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.image
-unit TweenedImageAnimation;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Image, AnimationBehavior, IndexedAnimation, CircularIndexUtil;
-
-type
-  {AB:TYPES}
-  TTweenedImageAnimation = class(TIndexedAnimation)
-  public
-    image: TImage;
-    dx: Integer;
-    dy: Integer;
-    totalFrames: Integer;
-    circularIndexUtil: TCircularIndexUtil;
-    anchor: Integer;
-    procedure InitFields;
-        constructor Create(image_: TImage; dx: Integer; dy: Integer; totalFrames: Integer; animationBehavior_: TAnimationBehavior);
-        function getAnimationSize: Integer; override;
-        procedure nextFrame; override;
-        procedure previousFrame; override;
-        procedure setFrame(index: Integer); override;
-        function getFrame: Integer; override;
-        function getSize: Integer; override;
-        procedure setSequence(sequence: TArray<Integer>); override;
-        function getSequence: TArray<Integer>; override;
-        procedure paintXY(graphics_: TGraphics; x: Integer; y: Integer); override;
-        procedure close; virtual;
-        procedure finalize; virtual;
-  end;
-
-implementation
-uses
-  DisposalUtil, Anchor, PrimitiveIntUtil;
+  type, extends(IndexedAnimation) :: TweenedImageAnimation
+    class(Image), pointer :: f_image => null()
+    integer(4) :: f_dx = 0
+    integer(4) :: f_dy = 0
+    integer(4) :: f_totalFrames = 0
+    class(CircularIndexUtil), pointer :: f_circularIndexUtil => null()
+    integer(4) :: f_anchor = 0
+  contains
+    procedure :: jm_getAnimationSize_0 => TweenedImageAnimation_jm_getAnimationSize_0
+    procedure :: jm_nextFrame_0 => TweenedImageAnimation_jm_nextFrame_0
+    procedure :: jm_previousFrame_0 => TweenedImageAnimation_jm_previousFrame_0
+    procedure :: jm_setFrame_1 => TweenedImageAnimation_jm_setFrame_1
+    procedure :: jm_getFrame_0 => TweenedImageAnimation_jm_getFrame_0
+    procedure :: jm_getSize_0 => TweenedImageAnimation_jm_getSize_0
+    procedure :: jm_setSequence_1 => TweenedImageAnimation_jm_setSequence_1
+    procedure :: jm_getSequence_0 => TweenedImageAnimation_jm_getSequence_0
+    procedure :: jm_paintXY_3 => TweenedImageAnimation_jm_paintXY_3
+    procedure :: jm_close_0 => TweenedImageAnimation_jm_close_0
+    procedure :: jm_finalize_0 => TweenedImageAnimation_jm_finalize_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TTweenedImageAnimation.InitFields;
-begin
-  
-  
-  
-  
-  
-  Self.anchor := TAnchor.TOP_LEFT;
-end;
+  function TweenedImageAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TweenedImageAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TweenedImageAnimation)
+      jresult => object
+    end select
+  end function
+
+  recursive function TweenedImageAnimation_jnew_5(j_image, j_dx, j_dy, j_totalFrames, j_animationBehavior) result(this)
+    class(Image), target, optional :: j_image
+    integer(4), value :: j_dx
+    integer(4), value :: j_dy
+    integer(4), value :: j_totalFrames
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(TweenedImageAnimation), pointer :: this
+    allocate(this)
+    this%jclass = 'TweenedImageAnimation'
     
-
-constructor TTweenedImageAnimation.Create(image_: TImage; dx: Integer; dy: Integer; totalFrames: Integer; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(animationBehavior_);
-        InitFields;
-        Self.image := image_;
-        Self.dx := dx;
-        Self.dy := dy;
-        Self.totalFrames := totalFrames;
-        Self.circularIndexUtil := TCircularIndexUtil.createInstance(Self.totalFrames);
-end;
     
-
-// throws Exception
-function TTweenedImageAnimation.getAnimationSize: Integer;
-begin
-        Exit(Self.getSize());
-end;
     
-
-procedure TTweenedImageAnimation.nextFrame;
-begin
-        Self.circularIndexUtil.next();
-end;
     
-
-procedure TTweenedImageAnimation.previousFrame;
-begin
-        Self.circularIndexUtil.previous();
-end;
     
+    this%f_anchor = Anchor_jstatic_TOP_LEFT()
+        continue ! super()
+        this%f_image => j_image
+        this%f_dx = j_dx
+        this%f_dy = j_dy
+        this%f_totalFrames = j_totalFrames
+        this%f_circularIndexUtil => CircularIndexUtil_jm_createInstance_1(this%f_totalFrames)
+  end function
 
-procedure TTweenedImageAnimation.setFrame(index: Integer);
-begin
-        Self.circularIndexUtil.setIndex(index);
-end;
-    
+  recursive function TweenedImageAnimation_jm_getAnimationSize_0(this) result(jresult)
+    class(TweenedImageAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%jm_getSize_0()
+        return
+  end function
 
-function TTweenedImageAnimation.getFrame: Integer;
-begin
-        Exit(Self.circularIndexUtil.getIndex());
-end;
-    
+  recursive subroutine TweenedImageAnimation_jm_nextFrame_0(this)
+    class(TweenedImageAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_next_0()
+  end subroutine
 
-function TTweenedImageAnimation.getSize: Integer;
-begin
-        Exit(Self.totalFrames);
-end;
-    
+  recursive subroutine TweenedImageAnimation_jm_previousFrame_0(this)
+    class(TweenedImageAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_previous_0()
+  end subroutine
 
-procedure TTweenedImageAnimation.setSequence(sequence: TArray<Integer>);
-begin
-end;
-    
+  recursive subroutine TweenedImageAnimation_jm_setFrame_1(this, j_index)
+    class(TweenedImageAnimation), target :: this
+    integer(4), value :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_circularIndexUtil%jm_setIndex_1(j_index)
+  end subroutine
 
-function TTweenedImageAnimation.getSequence: TArray<Integer>;
-begin
-        Exit(TPrimitiveIntUtil.getArrayInstance());
-end;
-    
+  recursive function TweenedImageAnimation_jm_getFrame_0(this) result(jresult)
+    class(TweenedImageAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_circularIndexUtil%jm_getIndex_0()
+        return
+  end function
 
-procedure TTweenedImageAnimation.paintXY(graphics_: TGraphics; x: Integer; y: Integer);
-var
-  frame: Integer;
-  currentX: Integer;
-  currentY: Integer;
-begin
-        frame := Self.getFrame();
-        currentX := (Self.dx) * (frame);
-        currentY := (Self.dy) * (frame);
-        graphics_.drawImage(Self.image, (x) + (currentX), (y) + (currentY), Self.anchor);
-end;
-    
+  recursive function TweenedImageAnimation_jm_getSize_0(this) result(jresult)
+    class(TweenedImageAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_totalFrames
+        return
+  end function
 
-// throws Exception
-procedure TTweenedImageAnimation.close;
-begin
-        TDisposalUtil.getInstance().disposeImage(Self.image);
-end;
-    
+  recursive subroutine TweenedImageAnimation_jm_setSequence_1(this, j_sequence)
+    class(TweenedImageAnimation), target :: this
+    integer(4) :: j_sequence(:)
+    continue
+  end subroutine
 
-// throws Throwable
-procedure TTweenedImageAnimation.finalize;
-begin
-        TDisposalUtil.getInstance().disposeImage(Self.image);
-end;
+  recursive function TweenedImageAnimation_jm_getSequence_0(this) result(jresult)
+    class(TweenedImageAnimation), target :: this
+    integer(4), allocatable :: jresult(:)
+        jresult = PrimitiveIntUtil_jm_getArrayInstance_0()
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine TweenedImageAnimation_jm_paintXY_3(this, j_graphics, j_x, j_y)
+    class(TweenedImageAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4) :: j_frame
+    integer(4) :: j_currentX
+    integer(4) :: j_currentY
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_frame = this%jm_getFrame_0()
+        j_currentX = (this%f_dx * j_frame)
+        j_currentY = (this%f_dy * j_frame)
+        call j_graphics%jm_drawImage_4(this%f_image, (j_x + j_currentX), (j_y + j_currentY), this%f_anchor)
+  end subroutine
 
-end.
+  recursive subroutine TweenedImageAnimation_jm_close_0(this)
+    class(TweenedImageAnimation), target :: this
+    class(DisposalUtil), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => DisposalUtil_jm_getInstance_0()
+        call jtemp1%jm_disposeImage_1(this%f_image)
+  end subroutine
+
+  recursive subroutine TweenedImageAnimation_jm_finalize_0(this)
+    class(TweenedImageAnimation), target :: this
+    class(DisposalUtil), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp2 => DisposalUtil_jm_getInstance_0()
+        call jtemp2%jm_disposeImage_1(this%f_image)
+  end subroutine
+end module TweenedImageAnimation_m
 

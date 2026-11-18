@@ -1,62 +1,77 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles
-unit OpenGLThreadUtil;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles
+module OpenGLThreadUtil_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLThreadUtil
+  contains
+    procedure :: jm_set_1 => OpenGLThreadUtil_jm_set_1
+    procedure :: jm_onPause_0 => OpenGLThreadUtil_jm_onPause_0
+    procedure :: jm_onResume_0 => OpenGLThreadUtil_jm_onResume_0
+  end type
 
-interface
+  class(OpenGLThreadUtil), pointer, save :: OpenGLThreadUtil_jcell_instance => null()
+  logical, save :: OpenGLThreadUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLThreadUtil = class(TObject)
-  public
-    class var instance: TOpenGLThreadUtil;
-    constructor Create;
-        class function getInstance: TOpenGLThreadUtil; static;
-        procedure set_(glSurfaceView: TObject); virtual;
-        procedure onPause; virtual;
-        procedure onResume; virtual;
-  end;
+  function OpenGLThreadUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLThreadUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLThreadUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLThreadUtil_jstatic_instance() result(jresult)
+    class(OpenGLThreadUtil), pointer :: jresult
+    if (.not. OpenGLThreadUtil_jset_instance) then
+      OpenGLThreadUtil_jset_instance = .true.
+      OpenGLThreadUtil_jcell_instance => OpenGLThreadUtil_jnew_0()
+    end if
+    jresult => OpenGLThreadUtil_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine OpenGLThreadUtil_jsetstatic_instance(jvalue)
+    class(OpenGLThreadUtil), target, optional :: jvalue
+    OpenGLThreadUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLThreadUtil_jcell_instance => jvalue
+    else
+      OpenGLThreadUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TOpenGLThreadUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  function OpenGLThreadUtil_jnew_0() result(this)
+    class(OpenGLThreadUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLThreadUtil'
+  end function
 
-class function TOpenGLThreadUtil.getInstance: TOpenGLThreadUtil;
-begin
-        Exit(TOpenGLThreadUtil.instance);
-end;
-    
+  recursive function OpenGLThreadUtil_jm_getInstance_0() result(jresult)
+    class(OpenGLThreadUtil), pointer :: jresult
+        jresult => OpenGLThreadUtil_jstatic_instance()
+        return
+  end function
 
-procedure TOpenGLThreadUtil.set_(glSurfaceView: TObject);
-begin
-end;
-    
+  recursive subroutine OpenGLThreadUtil_jm_set_1(this, j_glSurfaceView)
+    class(OpenGLThreadUtil), target :: this
+    class(JObject), target, optional :: j_glSurfaceView
+    continue
+  end subroutine
 
-procedure TOpenGLThreadUtil.onPause;
-begin
-end;
-    
+  recursive subroutine OpenGLThreadUtil_jm_onPause_0(this)
+    class(OpenGLThreadUtil), target :: this
+    continue
+  end subroutine
 
-procedure TOpenGLThreadUtil.onResume;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLThreadUtil.instance := TOpenGLThreadUtil.Create();
-  {AB:END}
-
-end.
+  recursive subroutine OpenGLThreadUtil_jm_onResume_0(this)
+    class(OpenGLThreadUtil), target :: this
+    continue
+  end subroutine
+end module OpenGLThreadUtil_m
 

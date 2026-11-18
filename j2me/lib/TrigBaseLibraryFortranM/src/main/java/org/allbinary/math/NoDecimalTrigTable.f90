@@ -64,6 +64,16 @@ contains
     jresult => NoDecimalTrigTable_jcell_instance
   end function
 
+  subroutine NoDecimalTrigTable_jsetstatic_instance(jvalue)
+    class(NoDecimalTrigTable), target, optional :: jvalue
+    NoDecimalTrigTable_jset_instance = .true.
+    if (present(jvalue)) then
+      NoDecimalTrigTable_jcell_instance => jvalue
+    else
+      NoDecimalTrigTable_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function NoDecimalTrigTable_jnew_0() result(this)
     class(NoDecimalTrigTable), pointer :: this
     integer(4) :: j_TOTAL_ANGLE

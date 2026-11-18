@@ -60,6 +60,12 @@ contains
     jresult = AngleIncrementInfo_jcell_INCREMENT
   end function
 
+  subroutine AngleIncrementInfo_jsetstatic_INCREMENT(jvalue)
+    character(len=*), intent(in) :: jvalue
+    AngleIncrementInfo_jset_INCREMENT = .true.
+    AngleIncrementInfo_jcell_INCREMENT = jvalue
+  end subroutine
+
   recursive function AngleIncrementInfo_jnew_1(j_angleIncrement) result(this)
     integer(4), value :: j_angleIncrement
     class(AngleIncrementInfo), pointer :: this

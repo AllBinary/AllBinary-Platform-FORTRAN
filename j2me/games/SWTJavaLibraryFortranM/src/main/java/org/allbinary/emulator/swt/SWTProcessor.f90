@@ -1,77 +1,89 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.emulator.swt
-unit SWTProcessor;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.emulator.swt
+module SWTProcessor_m
+  use JR_m
+  use NullRunnable_m
+  use SwtDisplay_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: SWTProcessor
+    class(JObject), pointer :: f_runnable => null()
+  contains
+    procedure :: jm_process_1 => SWTProcessor_jm_process_1
+  end type
 
-interface
+  class(SWTProcessor), pointer, save :: SWTProcessor_jcell_instance => null()
+  logical, save :: SWTProcessor_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, SwtDisplay;
+contains
 
-type
-  {AB:TYPES}
-  TSWTProcessor = class(TObject)
-  public
-    runnable: IRunnable;
-    class var instance: TSWTProcessor;
-    procedure InitFields;
-        class function getInstance: TSWTProcessor; static;
-        constructor Create;
-        procedure process(display: TSwtDisplay); virtual;
-  end;
+  function SWTProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SWTProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SWTProcessor)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullRunnable;
+  function SWTProcessor_jstatic_instance() result(jresult)
+    class(SWTProcessor), pointer :: jresult
+    if (.not. SWTProcessor_jset_instance) then
+      SWTProcessor_jset_instance = .true.
+      SWTProcessor_jcell_instance => SWTProcessor_jnew_0()
+    end if
+    jresult => SWTProcessor_jcell_instance
+  end function
 
+  subroutine SWTProcessor_jsetstatic_instance(jvalue)
+    class(SWTProcessor), target, optional :: jvalue
+    SWTProcessor_jset_instance = .true.
+    if (present(jvalue)) then
+      SWTProcessor_jcell_instance => jvalue
+    else
+      SWTProcessor_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function SWTProcessor_jnew_0() result(this)
+    class(SWTProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'SWTProcessor'
+    this%f_runnable => NullRunnable_jm_getInstance_0()
+        continue
+  end function
 
-procedure TSWTProcessor.InitFields;
-begin
-  Self.runnable := TNullRunnable.getInstance();
-end;
-    
+  recursive function SWTProcessor_jm_getInstance_0() result(jresult)
+    class(SWTProcessor), pointer :: jresult
+        jresult => SWTProcessor_jstatic_instance()
+        return
+  end function
 
-class function TSWTProcessor.getInstance: TSWTProcessor;
-begin
-        Exit(TSWTProcessor.instance);
-end;
-    
-
-constructor TSWTProcessor.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-procedure TSWTProcessor.process(display: TSwtDisplay);
-begin
-        display.sleep();
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TSWTProcessor.instance := TSWTProcessor.Create();
-  {AB:END}
-
-end.
+  recursive subroutine SWTProcessor_jm_process_1(this, j_display)
+    class(SWTProcessor), target :: this
+    class(SwtDisplay), target, optional :: j_display
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_display%jm_sleep_0()
+  end subroutine
+end module SWTProcessor_m
 

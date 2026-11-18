@@ -1,102 +1,122 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration
+module GameConfigurationSingleton_m
+  use JR_m
+  use StdUtil_m
+  use ABHashtable_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use GameConfiguration_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration
-unit GameConfigurationSingleton;
+  type, extends(JObject) :: GameConfigurationSingleton
+    class(BasicArrayList), pointer :: f_list => null()
+    class(ABHashtable), pointer :: f_hashtable => null()
+  contains
+    procedure :: jm_getInstanceByName_1 => GameConfigurationSingleton_jm_getInstanceByName_1
+    procedure :: jm_getOptionsBasicArrayList_0 => GameConfigurationSingleton_jm_getOptionsBasicArrayList_0
+    procedure :: jm_add_1 => GameConfigurationSingleton_jm_add_1
+    procedure :: jm_getHashtable_0 => GameConfigurationSingleton_jm_getHashtable_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GameConfigurationSingleton), pointer, save :: GameConfigurationSingleton_jcell_SINGLETON => null()
+  logical, save :: GameConfigurationSingleton_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ABHashtable, BasicArrayList, GameConfiguration;
+  function GameConfigurationSingleton_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameConfigurationSingleton), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameConfigurationSingleton)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameConfigurationSingleton = class(TObject)
-  public
-    list: TBasicArrayList;
-    hashtable: TABHashtable<TObject, TObject>;
-    class var SINGLETON: TGameConfigurationSingleton;
-    procedure InitFields;
-        class function getInstance: TGameConfigurationSingleton; static;
-        constructor Create;
-        function getInstanceByName(name: string): TGameConfiguration; virtual;
-        function getOptionsBasicArrayList: TBasicArrayList; virtual;
-        procedure add(gameConfiguration_: TGameConfiguration); virtual;
-        function getHashtable: TABHashtable<TObject, TObject>; virtual;
-  end;
+  function GameConfigurationSingleton_jstatic_SINGLETON() result(jresult)
+    class(GameConfigurationSingleton), pointer :: jresult
+    if (.not. GameConfigurationSingleton_jset_SINGLETON) then
+      GameConfigurationSingleton_jset_SINGLETON = .true.
+      GameConfigurationSingleton_jcell_SINGLETON => GameConfigurationSingleton_jnew_0()
+    end if
+    jresult => GameConfigurationSingleton_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  StdUtil, BasicArrayListD;
+  subroutine GameConfigurationSingleton_jsetstatic_SINGLETON(jvalue)
+    class(GameConfigurationSingleton), target, optional :: jvalue
+    GameConfigurationSingleton_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      GameConfigurationSingleton_jcell_SINGLETON => jvalue
+    else
+      GameConfigurationSingleton_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TGameConfigurationSingleton.InitFields;
-begin
-  
-  
-end;
+  recursive function GameConfigurationSingleton_jnew_0() result(this)
+    class(GameConfigurationSingleton), pointer :: this
+    class(StdUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'GameConfigurationSingleton'
     
-
-class function TGameConfigurationSingleton.getInstance: TGameConfigurationSingleton;
-begin
-        Exit(TGameConfigurationSingleton.SINGLETON);
-end;
     
+        this%f_list => BasicArrayListD_jnew_0()
+        jtemp1 => StdUtil_jm_getInstance_0()
+        this%f_hashtable => jtemp1%jm_createHashtable_0()
+  end function
 
-constructor TGameConfigurationSingleton.Create;
-begin
-    inherited Create;
-    InitFields;
-        Self.list := TBasicArrayListD.Create();
-        Self.hashtable := TStdUtil.getInstance().createHashtable();
-end;
-    
+  recursive function GameConfigurationSingleton_jm_getInstance_0() result(jresult)
+    class(GameConfigurationSingleton), pointer :: jresult
+        jresult => GameConfigurationSingleton_jstatic_SINGLETON()
+        return
+  end function
 
-function TGameConfigurationSingleton.getInstanceByName(name: string): TGameConfiguration;
-begin
-        Exit(TGameConfiguration(TJava.ToObject(Self.hashtable.get(TJava.Box(name)))));
-end;
-    
+  recursive function GameConfigurationSingleton_jm_getInstanceByName_1(this, j_name) result(jresult)
+    class(GameConfigurationSingleton), target :: this
+    character(len=*), intent(in) :: j_name
+    class(GameConfiguration), pointer :: jresult
+        jresult => GameConfiguration_jcast(this%f_hashtable%jm_get_1(j_name))
+        return
+  end function
 
-function TGameConfigurationSingleton.getOptionsBasicArrayList: TBasicArrayList;
-begin
-        Exit(Self.list);
-end;
-    
+  recursive function GameConfigurationSingleton_jm_getOptionsBasicArrayList_0(this) result(jresult)
+    class(GameConfigurationSingleton), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_list
+        return
+  end function
 
-procedure TGameConfigurationSingleton.add(gameConfiguration_: TGameConfiguration);
-begin
-        Self.list.add(TJava.Box(gameConfiguration_));
-end;
-    
+  recursive subroutine GameConfigurationSingleton_jm_add_1(this, j_gameConfiguration)
+    class(GameConfigurationSingleton), target :: this
+    class(GameConfiguration), target, optional :: j_gameConfiguration
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_add_1(j_gameConfiguration)
+  end subroutine
 
-function TGameConfigurationSingleton.getHashtable: TABHashtable<TObject, TObject>;
-begin
-        Exit(Self.hashtable);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameConfigurationSingleton.SINGLETON := TGameConfigurationSingleton.Create();
-  {AB:END}
-
-end.
+  recursive function GameConfigurationSingleton_jm_getHashtable_0(this) result(jresult)
+    class(GameConfigurationSingleton), target :: this
+    class(ABHashtable), pointer :: jresult
+        jresult => this%f_hashtable
+        return
+  end function
+end module GameConfigurationSingleton_m
 

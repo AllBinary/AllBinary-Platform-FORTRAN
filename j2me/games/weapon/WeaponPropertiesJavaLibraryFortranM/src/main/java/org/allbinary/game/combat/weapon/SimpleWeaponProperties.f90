@@ -1,112 +1,110 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.combat.weapon
+module SimpleWeaponProperties_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.combat.weapon
-unit SimpleWeaponProperties;
+  type, extends(JObject) :: SimpleWeaponProperties
+    integer(4) :: f_damage = 0
+    integer(4) :: f_dissipation = 0
+    integer(4) :: f_range = 0
+  contains
+    procedure :: jm_set_1 => SimpleWeaponProperties_jm_set_1
+    procedure :: jm_setDamage_1 => SimpleWeaponProperties_jm_setDamage_1
+    procedure :: jm_getDamage_0 => SimpleWeaponProperties_jm_getDamage_0
+    procedure :: jm_setDissipation_1 => SimpleWeaponProperties_jm_setDissipation_1
+    procedure :: jm_getDissipation_0 => SimpleWeaponProperties_jm_getDissipation_0
+    procedure :: jm_getRange_0 => SimpleWeaponProperties_jm_getRange_0
+    procedure :: jm_setRange_1 => SimpleWeaponProperties_jm_setRange_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function SimpleWeaponProperties_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SimpleWeaponProperties), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SimpleWeaponProperties)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TSimpleWeaponProperties = class(TObject)
-  public
-    damage: Integer;
-    dissipation: SmallInt;
-    range: Integer;
-    procedure InitFields;
-    constructor Create;
-        procedure set_(simpleWeaponProperties_: TSimpleWeaponProperties); virtual;
-        procedure setDamage(damage: Integer); virtual;
-        function getDamage: Integer; virtual;
-        procedure setDissipation(dissipation: SmallInt); virtual;
-        function getDissipation: SmallInt; virtual;
-        function getRange: Integer; virtual;
-        procedure setRange(range: Integer); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TSimpleWeaponProperties.InitFields;
-begin
-  
-  
-  
-end;
-
-constructor TSimpleWeaponProperties.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  function SimpleWeaponProperties_jnew_0() result(this)
+    class(SimpleWeaponProperties), pointer :: this
+    allocate(this)
+    this%jclass = 'SimpleWeaponProperties'
     
-
-procedure TSimpleWeaponProperties.set_(simpleWeaponProperties_: TSimpleWeaponProperties);
-begin
-        Self.setDamage(simpleWeaponProperties_.getDamage());
-        Self.setDissipation(simpleWeaponProperties_.getDissipation());
-        Self.setRange(simpleWeaponProperties_.getRange());
-end;
     
-
-procedure TSimpleWeaponProperties.setDamage(damage: Integer);
-begin
-        Self.damage := damage;
-end;
     
+  end function
 
-function TSimpleWeaponProperties.getDamage: Integer;
-begin
-        Exit(Self.damage);
-end;
-    
+  recursive subroutine SimpleWeaponProperties_jm_set_1(this, j_simpleWeaponProperties)
+    class(SimpleWeaponProperties), target :: this
+    class(SimpleWeaponProperties), target, optional :: j_simpleWeaponProperties
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setDamage_1(j_simpleWeaponProperties%jm_getDamage_0())
+        call this%jm_setDissipation_1(j_simpleWeaponProperties%jm_getDissipation_0())
+        call this%jm_setRange_1(j_simpleWeaponProperties%jm_getRange_0())
+  end subroutine
 
-procedure TSimpleWeaponProperties.setDissipation(dissipation: SmallInt);
-begin
-        Self.dissipation := dissipation;
-end;
-    
+  recursive subroutine SimpleWeaponProperties_jm_setDamage_1(this, j_damage)
+    class(SimpleWeaponProperties), target :: this
+    integer(4), value :: j_damage
+        this%f_damage = j_damage
+  end subroutine
 
-function TSimpleWeaponProperties.getDissipation: SmallInt;
-begin
-        Exit(Self.dissipation);
-end;
-    
+  recursive function SimpleWeaponProperties_jm_getDamage_0(this) result(jresult)
+    class(SimpleWeaponProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_damage
+        return
+  end function
 
-function TSimpleWeaponProperties.getRange: Integer;
-begin
-        Exit(Self.range);
-end;
-    
+  recursive subroutine SimpleWeaponProperties_jm_setDissipation_1(this, j_dissipation)
+    class(SimpleWeaponProperties), target :: this
+    integer(4), value :: j_dissipation
+        this%f_dissipation = j_dissipation
+  end subroutine
 
-procedure TSimpleWeaponProperties.setRange(range: Integer);
-begin
-        Self.range := range;
-end;
+  recursive function SimpleWeaponProperties_jm_getDissipation_0(this) result(jresult)
+    class(SimpleWeaponProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_dissipation
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function SimpleWeaponProperties_jm_getRange_0(this) result(jresult)
+    class(SimpleWeaponProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_range
+        return
+  end function
 
-end.
+  recursive subroutine SimpleWeaponProperties_jm_setRange_1(this, j_range)
+    class(SimpleWeaponProperties), target :: this
+    integer(4), value :: j_range
+        this%f_range = j_range
+  end subroutine
+end module SimpleWeaponProperties_m
 

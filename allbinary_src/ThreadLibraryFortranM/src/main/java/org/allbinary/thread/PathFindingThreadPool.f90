@@ -51,6 +51,16 @@ contains
     jresult => PathFindingThreadPool_jcell_instance
   end function
 
+  subroutine PathFindingThreadPool_jsetstatic_instance(jvalue)
+    class(ThreadPool), target, optional :: jvalue
+    PathFindingThreadPool_jset_instance = .true.
+    if (present(jvalue)) then
+      PathFindingThreadPool_jcell_instance => jvalue
+    else
+      PathFindingThreadPool_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function PathFindingThreadPool_jnew_3(j_poolName, j_numThreads, j_priority) result(this)
     character(len=*), intent(in) :: j_poolName
     integer(4), value :: j_numThreads

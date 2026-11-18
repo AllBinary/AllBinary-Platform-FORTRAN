@@ -55,6 +55,16 @@ contains
     jresult => LogFactory_jcell_LOG
   end function
 
+  subroutine LogFactory_jsetstatic_LOG(jvalue)
+    class(Log), target, optional :: jvalue
+    LogFactory_jset_LOG = .true.
+    if (present(jvalue)) then
+      LogFactory_jcell_LOG => jvalue
+    else
+      LogFactory_jcell_LOG => null()
+    end if
+  end subroutine
+
   function LogFactory_jnew_0() result(this)
     class(LogFactory), pointer :: this
     allocate(this)

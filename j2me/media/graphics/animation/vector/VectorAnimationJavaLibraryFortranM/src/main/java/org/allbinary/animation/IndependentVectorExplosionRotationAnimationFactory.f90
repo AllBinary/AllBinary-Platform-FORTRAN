@@ -1,105 +1,104 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module IndependentVectorExplosionRotationAnimationFactory_m
+  use JR_m
+  use BasicColor_m
+  use NullUtil_m
+  use VectorInfo_m
+  use ProceduralAnimationInterfaceFactoryInterface_m
+  use VectorAnimationFactoryInterface_m
+  use VectorRotationGenerator_m
+  use VectorExplosionGenerator_m
+  use IndexedAnimation_m
+  use Animation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit IndependentVectorExplosionRotationAnimationFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicColor, VectorInfo, VectorAnimationFactoryInterface, VectorExplosionGenerator, Animation, ProceduralAnimationInterfaceFactoryInterface, BasicAnimationInterfaceFactoryInterface;
-
-type
-  {AB:TYPES}
-  TIndependentVectorExplosionRotationAnimationFactory = class(TInterfacedObject, IProceduralAnimationInterfaceFactoryInterface, IBasicAnimationInterfaceFactoryInterface)
-  public
-    framePoints: TArray<TArray<TArray<Integer>>>;
-    vectorInfo: TVectorInfo;
-    basicColor: TBasicColor;
-    vectorAnimationFactoryInterface: IVectorAnimationFactoryInterface;
-    vectorExplosionGenerator: TVectorExplosionGenerator;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(vectorInfo_: TVectorInfo; basicColor_: TBasicColor; vectorAnimationFactoryInterface_: IVectorAnimationFactoryInterface);
-        procedure init; virtual;
-        function getInstanceAnimation(animationInterface: TAnimation): TAnimation; virtual;
-  end;
-
-implementation
-uses
-  VectorRotationGenerator, IndexedAnimation, NullUtil;
+  type, extends(ProceduralAnimationInterfaceFactoryInterface) :: IndependentVectorExplosionRotationAnimationFactory
+    integer(4), allocatable :: f_framePoints(:,:,:)
+    class(VectorInfo), pointer :: f_vectorInfo => null()
+    class(BasicColor), pointer :: f_basicColor => null()
+    class(VectorAnimationFactoryInterface), pointer :: f_vectorAnimationFactoryInterface => null()
+    class(VectorExplosionGenerator), pointer :: f_vectorExplosionGenerator => null()
+  contains
+    procedure :: jm_init_0 => IndependentVectorExplosionRotationAnimationFactory_jm_init_0
+    procedure :: jm_getInstanceAnimation_1 => IndependentVectorExplosionRotationAnimationFactory_jm_getInstanceAnimation_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TIndependentVectorExplosionRotationAnimationFactory.InitFields;
-begin
-  Self.framePoints := TNullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY;
-  
-  
-  
-  Self.vectorExplosionGenerator := TVectorExplosionGenerator.getInstance();
-end;
+  function IndependentVectorExplosionRotationAnimationFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(IndependentVectorExplosionRotationAnimationFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (IndependentVectorExplosionRotationAnimationFactory)
+      jresult => object
+    end select
+  end function
 
-function TIndependentVectorExplosionRotationAnimationFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function IndependentVectorExplosionRotationAnimationFactory_jnew_3(j_vectorInfo, j_basicColor, j_vectorAnimationFactoryInterface) result(this)
+    class(VectorInfo), target, optional :: j_vectorInfo
+    class(BasicColor), target, optional :: j_basicColor
+    class(VectorAnimationFactoryInterface), target, optional :: j_vectorAnimationFactoryInterface
+    class(IndependentVectorExplosionRotationAnimationFactory), pointer :: this
+    class(NullUtil), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'IndependentVectorExplosionRotationAnimationFactory'
+    jtemp1 => NullUtil_jm_getInstance_0()
+    this%f_framePoints = jtemp1%f_NULL_INT_ARRAY_ARRAY_ARRAY
     
-
-constructor TIndependentVectorExplosionRotationAnimationFactory.Create(vectorInfo_: TVectorInfo; basicColor_: TBasicColor; vectorAnimationFactoryInterface_: IVectorAnimationFactoryInterface);
-begin
-    inherited Create;
-    InitFields;
-        Self.vectorInfo := vectorInfo_;
-        Self.basicColor := basicColor_;
-        Self.vectorAnimationFactoryInterface := vectorAnimationFactoryInterface_;
-        Self.init();
-end;
     
-
-// throws Exception
-procedure TIndependentVectorExplosionRotationAnimationFactory.init;
-begin
-        Self.framePoints := TVectorRotationGenerator.getInstance().getInstance(Self.vectorInfo);
-end;
     
+    this%f_vectorExplosionGenerator => VectorExplosionGenerator_jm_getInstance_0()
+        this%f_vectorInfo => j_vectorInfo
+        this%f_basicColor => j_basicColor
+        this%f_vectorAnimationFactoryInterface => j_vectorAnimationFactoryInterface
+        call this%jm_init_0()
+  end function
 
-// throws Exception
-function TIndependentVectorExplosionRotationAnimationFactory.getInstanceAnimation(animationInterface: TAnimation): TAnimation;
-var
-  frame: Integer;
-  rotationAnimationInterface: TIndexedAnimation;
-  points: TArray<TArray<TArray<Integer>>>;
-begin
-        frame := 0;
-        if (animationInterface) <> (nil) then begin
-            rotationAnimationInterface := TIndexedAnimation(TJava.ToObject(animationInterface));
-            frame := rotationAnimationInterface.getFrame();
-        end;
-        points := Self.vectorExplosionGenerator.getInstance(Self.framePoints[frame], 6, Self.vectorExplosionGenerator.ROTATION);
-        Exit(Self.vectorAnimationFactoryInterface.getInstance(points, Self.basicColor));
-end;
+  recursive subroutine IndependentVectorExplosionRotationAnimationFactory_jm_init_0(this)
+    class(IndependentVectorExplosionRotationAnimationFactory), target :: this
+    class(VectorRotationGenerator), pointer :: jtemp2
+        jtemp2 => VectorRotationGenerator_jm_getInstance_0()
+        this%f_framePoints = jtemp2%jm_getInstance_1(this%f_vectorInfo)
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function IndependentVectorExplosionRotationAnimationFactory_jm_getInstanceAnimation_1(this, j_animationInterface) result(jresult)
+    class(IndependentVectorExplosionRotationAnimationFactory), target :: this
+    class(Animation), target, optional :: j_animationInterface
+    class(Animation), pointer :: jresult
+    integer(4) :: j_frame
+    class(IndexedAnimation), pointer :: j_rotationAnimationInterface
+    integer(4), allocatable :: j_points(:,:,:)
+        j_frame = 0
+        if (present(j_animationInterface)) then
+            j_rotationAnimationInterface => IndexedAnimation_jcast(j_animationInterface)
+            j_frame = j_rotationAnimationInterface%jm_getFrame_0()
+        end if
+        j_points = this%f_vectorExplosionGenerator%jm_getInstance_3(this%f_framePoints((j_frame) + 1, :), 6, this%f_vectorExplosionGenerator%f_ROTATION)
+        jresult => this%f_vectorAnimationFactoryInterface%jm_getInstance_2(j_points, this%f_basicColor)
+        return
+  end function
+end module IndependentVectorExplosionRotationAnimationFactory_m
 

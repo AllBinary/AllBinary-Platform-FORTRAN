@@ -1,90 +1,88 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.physics.acceleration
+module BasicAccelerationProperties_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.physics.acceleration
-unit BasicAccelerationProperties;
+  type, extends(JObject) :: BasicAccelerationProperties
+    integer(4) :: f_forward = 0
+    integer(4) :: f_reverse = 0
+  contains
+    procedure :: jm_setReverse_1 => BasicAccelerationProperties_jm_setReverse_1
+    procedure :: jm_getReverse_0 => BasicAccelerationProperties_jm_getReverse_0
+    procedure :: jm_setForward_1 => BasicAccelerationProperties_jm_setForward_1
+    procedure :: jm_getForward_0 => BasicAccelerationProperties_jm_getForward_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function BasicAccelerationProperties_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicAccelerationProperties), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicAccelerationProperties)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBasicAccelerationProperties = class(TObject)
-  public
-    forward: Integer;
-    reverse: Integer;
-    procedure InitFields;
-        constructor Create(forward: Integer; reverse: Integer);
-        procedure setReverse(reverse: Integer); virtual;
-        function getReverse: Integer; virtual;
-        procedure setForward(forward: Integer); virtual;
-        function getForward: Integer; virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TBasicAccelerationProperties.InitFields;
-begin
-  
-  
-end;
+  recursive function BasicAccelerationProperties_jnew_2(j_forward, j_reverse) result(this)
+    integer(4), value :: j_forward
+    integer(4), value :: j_reverse
+    class(BasicAccelerationProperties), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'BasicAccelerationProperties'
     
-
-constructor TBasicAccelerationProperties.Create(forward: Integer; reverse: Integer);
-begin
-    inherited Create;
-    InitFields;
-        Self.setForward(forward);
-        Self.setReverse(reverse);
-end;
     
+        call this%jm_setForward_1(j_forward)
+        call this%jm_setReverse_1(j_reverse)
+  end function
 
-procedure TBasicAccelerationProperties.setReverse(reverse: Integer);
-begin
-        Self.reverse := reverse;
-end;
-    
+  recursive subroutine BasicAccelerationProperties_jm_setReverse_1(this, j_reverse)
+    class(BasicAccelerationProperties), target :: this
+    integer(4), value :: j_reverse
+        this%f_reverse = j_reverse
+  end subroutine
 
-function TBasicAccelerationProperties.getReverse: Integer;
-begin
-        Exit(Self.reverse);
-end;
-    
+  recursive function BasicAccelerationProperties_jm_getReverse_0(this) result(jresult)
+    class(BasicAccelerationProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_reverse
+        return
+  end function
 
-procedure TBasicAccelerationProperties.setForward(forward: Integer);
-begin
-        Self.forward := forward;
-end;
-    
+  recursive subroutine BasicAccelerationProperties_jm_setForward_1(this, j_forward)
+    class(BasicAccelerationProperties), target :: this
+    integer(4), value :: j_forward
+        this%f_forward = j_forward
+  end subroutine
 
-function TBasicAccelerationProperties.getForward: Integer;
-begin
-        Exit(Self.forward);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BasicAccelerationProperties_jm_getForward_0(this) result(jresult)
+    class(BasicAccelerationProperties), target :: this
+    integer(4) :: jresult
+        jresult = this%f_forward
+        return
+  end function
+end module BasicAccelerationProperties_m
 

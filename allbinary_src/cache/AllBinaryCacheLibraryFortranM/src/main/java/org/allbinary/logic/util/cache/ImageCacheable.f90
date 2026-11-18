@@ -1,75 +1,68 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module ImageCacheable_m
+  use JR_m
+  use StringUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit ImageCacheable;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
-
-type
-  {AB:TYPES}
-  TImageCacheable = class(TObject)
-  public
-    name: string;
-    procedure InitFields;
-        constructor Create(name: string; anyType: TObject);
-        function getKey: TObject; virtual;
-        function toString: string; virtual;
-  end;
-
-implementation
-uses
-  StringUtil;
+  type, extends(JObject) :: ImageCacheable
+    character(len=:), allocatable :: f_name
+  contains
+    procedure :: jm_getKey_0 => ImageCacheable_jm_getKey_0
+    procedure :: jm_toString_0 => ImageCacheable_jm_toString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TImageCacheable.InitFields;
-begin
-  Self.name := TStringUtil.getInstance().EMPTY_STRING;
-end;
-    
+  function ImageCacheable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ImageCacheable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ImageCacheable)
+      jresult => object
+    end select
+  end function
 
-constructor TImageCacheable.Create(name: string; anyType: TObject);
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function ImageCacheable_jnew_2(j_name, j_anyType) result(this)
+    character(len=*), intent(in) :: j_name
+    class(JObject), target, optional :: j_anyType
+    class(ImageCacheable), pointer :: this
+    class(StringUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'ImageCacheable'
+    this%f_name = ''
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_name = jtemp1%f_EMPTY_STRING
+        continue
+  end function
 
-function TImageCacheable.getKey: TObject;
-begin
-        Exit(TJava.Box(Self.name));
-end;
-    
+  recursive function ImageCacheable_jm_getKey_0(this) result(jresult)
+    class(ImageCacheable), target :: this
+    class(JObject), pointer :: jresult
+        jresult => this%f_name
+        return
+  end function
 
-function TImageCacheable.toString: string;
-begin
-        Exit(Self.name);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function ImageCacheable_jm_toString_0(this) result(jresult)
+    class(ImageCacheable), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_name
+        return
+  end function
+end module ImageCacheable_m
 

@@ -1,74 +1,70 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.ai.tactical
+module BasicRandomAIFactory_m
+  use JR_m
+  use ArtificialIntelligenceInterface_m
+  use ArtificialIntelligenceInterfaceFactoryInterface_m
+  use BasicAI_m
+  use InputProbability_m
+  use GameInput_m
+  use AllBinaryLayer_m
+  use Visitor_m
+  use ABHashtable_m
+  use BasicRandomAI_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.ai.tactical
-unit BasicRandomAIFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ArtificialIntelligenceInterface, ArtificialIntelligenceInterfaceFactoryInterface, GameInput, AllBinaryLayer, ABHashtable;
-
-type
-  {AB:TYPES}
-  TBasicRandomAIFactory = class(TInterfacedObject, IArtificialIntelligenceInterfaceFactoryInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        function getInstance(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput): IArtificialIntelligenceInterface; virtual;
-  end;
-
-implementation
-uses
-  BasicRandomAI, BasicAI, InputProbability, Visitor;
+  type, extends(ArtificialIntelligenceInterfaceFactoryInterface) :: BasicRandomAIFactory
+  contains
+    procedure :: jm_getInstance_3 => BasicRandomAIFactory_jm_getInstance_3
+  end type
 
 
-{AB:CODE}
+contains
 
-function TBasicRandomAIFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function BasicRandomAIFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicRandomAIFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicRandomAIFactory)
+      jresult => object
+    end select
+  end function
 
-constructor TBasicRandomAIFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function BasicRandomAIFactory_jnew_0() result(this)
+    class(BasicRandomAIFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicRandomAIFactory'
+  end function
 
-// throws Exception
-function TBasicRandomAIFactory.getInstance(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput): IArtificialIntelligenceInterface;
-var
-  visitor_: TVisitor;
-  inputProbability_: TInputProbability;
-begin
-        visitor_ := TVisitor(TJava.ToObject(hashtable.get(TJava.Box(TJava.Box(TBasicAI.AI_VISITOR)))));
-        if (visitor_) = (nil) then begin
-            raise SysUtils.Exception.Create('No Visitor Provided');
-        end;
-        inputProbability_ := TInputProbability(TJava.ToObject(hashtable.get(TJava.Box(TJava.Box(TInputProbability.INPUT_PROBABILITY)))));
-        Exit(TBasicRandomAI.Create(ownerLayerInterface, gameInput_, inputProbability_, visitor_));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function BasicRandomAIFactory_jm_getInstance_3(this, j_hashtable, j_ownerLayerInterface, j_gameInput) result(jresult)
+    class(BasicRandomAIFactory), target :: this
+    class(ABHashtable), target, optional :: j_hashtable
+    class(AllBinaryLayer), target, optional :: j_ownerLayerInterface
+    class(GameInput), target, optional :: j_gameInput
+    class(ArtificialIntelligenceInterface), pointer :: jresult
+    class(Visitor), pointer :: j_visitor
+    class(InputProbability), pointer :: j_inputProbability
+        j_visitor => Visitor_jcast(j_hashtable%jm_get_1(BasicAI_jstatic_AI_VISITOR()))
+        if ((.not. associated(j_visitor))) then
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        j_inputProbability => InputProbability_jcast(j_hashtable%jm_get_1(InputProbability_jstatic_INPUT_PROBABILITY()))
+        jresult => BasicRandomAI_jnew_4(j_ownerLayerInterface, j_gameInput, j_inputProbability, j_visitor)
+        return
+  end function
+end module BasicRandomAIFactory_m
 

@@ -1,80 +1,77 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.transition.shake
+module ShakeAnimationListener_m
+  use JR_m
+  use ShakeEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.transition.shake
-unit ShakeAnimationListener;
+  type, extends(JObject) :: ShakeAnimationListener
+  contains
+    procedure :: jm_onSmallShakeEvent_0 => ShakeAnimationListener_jm_onSmallShakeEvent_0
+    procedure :: jm_onMediumShakeEvent_0 => ShakeAnimationListener_jm_onMediumShakeEvent_0
+    procedure :: jm_onLargeShakeEvent_0 => ShakeAnimationListener_jm_onLargeShakeEvent_0
+    procedure :: jm_onShakeEvent_1 => ShakeAnimationListener_jm_onShakeEvent_1
+    procedure :: jm_getType_0 => ShakeAnimationListener_jm_getType_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ShakeEvent;
+  function ShakeAnimationListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ShakeAnimationListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ShakeAnimationListener)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TShakeAnimationListener = class(TObject)
-  public
-    constructor Create;
-        procedure onSmallShakeEvent; virtual;
-        procedure onMediumShakeEvent; virtual;
-        procedure onLargeShakeEvent; virtual;
-        procedure onShakeEvent(shakeEvent_: TShakeEvent); virtual;
-        function getType: Integer; virtual;
-  end;
+  function ShakeAnimationListener_jnew_0() result(this)
+    class(ShakeAnimationListener), pointer :: this
+    allocate(this)
+    this%jclass = 'ShakeAnimationListener'
+  end function
 
-implementation
+  recursive subroutine ShakeAnimationListener_jm_onSmallShakeEvent_0(this)
+    class(ShakeAnimationListener), target :: this
+    continue
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine ShakeAnimationListener_jm_onMediumShakeEvent_0(this)
+    class(ShakeAnimationListener), target :: this
+    continue
+  end subroutine
 
-constructor TShakeAnimationListener.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine ShakeAnimationListener_jm_onLargeShakeEvent_0(this)
+    class(ShakeAnimationListener), target :: this
+    continue
+  end subroutine
 
-procedure TShakeAnimationListener.onSmallShakeEvent;
-begin
-end;
-    
+  recursive subroutine ShakeAnimationListener_jm_onShakeEvent_1(this, j_shakeEvent)
+    class(ShakeAnimationListener), target :: this
+    class(ShakeEvent), target, optional :: j_shakeEvent
+    continue
+  end subroutine
 
-procedure TShakeAnimationListener.onMediumShakeEvent;
-begin
-end;
-    
-
-procedure TShakeAnimationListener.onLargeShakeEvent;
-begin
-end;
-    
-
-procedure TShakeAnimationListener.onShakeEvent(shakeEvent_: TShakeEvent);
-begin
-end;
-    
-
-function TShakeAnimationListener.getType: Integer;
-begin
-        Exit(0);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function ShakeAnimationListener_jm_getType_0(this) result(jresult)
+    class(ShakeAnimationListener), target :: this
+    integer(4) :: jresult
+        jresult = 0
+        return
+  end function
+end module ShakeAnimationListener_m
 

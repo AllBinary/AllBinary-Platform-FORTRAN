@@ -1,148 +1,177 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit DemoGameBehavior;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module DemoGameBehavior_m
+  use JR_m
+  use GameTypeFactory_m
+  use NullPaintable_m
+  use LogUtil_m
+  use AbeClientInformationInterface_m
+  use CommonStrings_m
+  use AllBinaryGameCanvas_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: DemoGameBehavior
+    class(LogUtil), pointer :: f_logUtil => null()
+  contains
+    procedure :: jm_init_0 => DemoGameBehavior_jm_init_0
+    procedure :: jm_pause_1 => DemoGameBehavior_jm_pause_1
+    procedure :: jm_unPause_1 => DemoGameBehavior_jm_unPause_1
+    procedure :: jm_updateTouch_1 => DemoGameBehavior_jm_updateTouch_1
+    procedure :: jm_updateScreenButtonPaintable_1 => DemoGameBehavior_jm_updateScreenButtonPaintable_1
+    procedure :: jm_setGameState_1 => DemoGameBehavior_jm_setGameState_1
+    procedure :: jm_removeAllGameKeyInputListeners_1 => DemoGameBehavior_jm_removeAllGameKeyInputListeners_1
+    procedure :: jm_updateEndGameProcessor_1 => DemoGameBehavior_jm_updateEndGameProcessor_1
+    procedure :: jm_buildGame_1 => DemoGameBehavior_jm_buildGame_1
+    procedure :: jm_run_1 => DemoGameBehavior_jm_run_1
+    procedure :: jm_setHighScore_6 => DemoGameBehavior_jm_setHighScore_6
+  end type
 
-interface
+  class(DemoGameBehavior), pointer, save :: DemoGameBehavior_jcell_instance => null()
+  logical, save :: DemoGameBehavior_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, AbeClientInformationInterface, AllBinaryGameCanvas;
+contains
 
-type
-  {AB:TYPES}
-  TDemoGameBehavior = class(TObject)
-  public
-    logUtil: TLogUtil;
-    class var instance: TDemoGameBehavior;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TDemoGameBehavior; static;
-        procedure init; virtual;
-        procedure pause(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure unPause(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure updateTouch(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure updateScreenButtonPaintable(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure setGameState(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure removeAllGameKeyInputListeners(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure updateEndGameProcessor(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure buildGame(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure run(allBinaryGameCanvas_: TAllBinaryGameCanvas); virtual;
-        procedure setHighScore(abeClientInformation: IAbeClientInformationInterface; allBinaryGameCanvas_: TAllBinaryGameCanvas; name: string; score: Int64; autoSubmit: Boolean; isLast: Boolean); virtual;
-  end;
+  function DemoGameBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DemoGameBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DemoGameBehavior)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  GameTypeFactory, NullPaintable, CommonStrings;
+  function DemoGameBehavior_jstatic_instance() result(jresult)
+    class(DemoGameBehavior), pointer :: jresult
+    if (.not. DemoGameBehavior_jset_instance) then
+      DemoGameBehavior_jset_instance = .true.
+      DemoGameBehavior_jcell_instance => DemoGameBehavior_jnew_0()
+    end if
+    jresult => DemoGameBehavior_jcell_instance
+  end function
 
+  subroutine DemoGameBehavior_jsetstatic_instance(jvalue)
+    class(DemoGameBehavior), target, optional :: jvalue
+    DemoGameBehavior_jset_instance = .true.
+    if (present(jvalue)) then
+      DemoGameBehavior_jcell_instance => jvalue
+    else
+      DemoGameBehavior_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function DemoGameBehavior_jnew_0() result(this)
+    class(DemoGameBehavior), pointer :: this
+    allocate(this)
+    this%jclass = 'DemoGameBehavior'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+  end function
 
-procedure TDemoGameBehavior.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-end;
+  recursive function DemoGameBehavior_jm_getInstance_0() result(jresult)
+    class(DemoGameBehavior), pointer :: jresult
+        jresult => DemoGameBehavior_jstatic_instance()
+        return
+  end function
 
-constructor TDemoGameBehavior.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_init_0(this)
+    class(DemoGameBehavior), target :: this
+    continue
+  end subroutine
 
-class function TDemoGameBehavior.getInstance: TDemoGameBehavior;
-begin
-        Exit(TDemoGameBehavior.instance);
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_pause_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.init;
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_unPause_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-procedure TDemoGameBehavior.pause(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_updateTouch_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-procedure TDemoGameBehavior.unPause(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_updateScreenButtonPaintable_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_allBinaryGameCanvas%jm_setTouchPaintableP_1(NullPaintable_jm_getInstance_0())
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.updateTouch(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_setGameState_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.updateScreenButtonPaintable(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-        allBinaryGameCanvas_.setTouchPaintableP(TNullPaintable.getInstance());
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_removeAllGameKeyInputListeners_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.setGameState(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_updateEndGameProcessor_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-procedure TDemoGameBehavior.removeAllGameKeyInputListeners(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_buildGame_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    continue
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.updateEndGameProcessor(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
+  recursive subroutine DemoGameBehavior_jm_run_1(this, j_allBinaryGameCanvas)
+    class(DemoGameBehavior), target :: this
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    class(CommonStrings), pointer :: j_commonStrings
+    class(GameTypeFactory), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonStrings => CommonStrings_jm_getInstance_0()
+        jtemp1 => GameTypeFactory_jm_getInstance_0()
+        call this%f_logUtil%jm_putF_3(JR_toString(jtemp1%f_BOT), this, j_commonStrings%f_RUN)
+  end subroutine
 
-// throws Exception
-procedure TDemoGameBehavior.buildGame(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-begin
-end;
-    
-
-// throws Exception
-procedure TDemoGameBehavior.run(allBinaryGameCanvas_: TAllBinaryGameCanvas);
-var
-  commonStrings_: TCommonStrings;
-begin
-        commonStrings_ := TCommonStrings.getInstance();
-        Self.logUtil.putF(TGameTypeFactory.getInstance().BOT.toString(), TJava.Box(Self), commonStrings_.RUN);
-end;
-    
-
-// throws Exception
-procedure TDemoGameBehavior.setHighScore(abeClientInformation: IAbeClientInformationInterface; allBinaryGameCanvas_: TAllBinaryGameCanvas; name: string; score: Int64; autoSubmit: Boolean; isLast: Boolean);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDemoGameBehavior.instance := TDemoGameBehavior.Create();
-  {AB:END}
-
-end.
+  recursive subroutine DemoGameBehavior_jm_setHighScore_6(this, j_abeClientInformation, j_allBinaryGameCanvas, j_name, j_score, j_autoSubmit, j_isLast)
+    class(DemoGameBehavior), target :: this
+    class(AbeClientInformationInterface), target, optional :: j_abeClientInformation
+    class(AllBinaryGameCanvas), target, optional :: j_allBinaryGameCanvas
+    character(len=*), intent(in) :: j_name
+    integer(8), value :: j_score
+    logical, value :: j_autoSubmit
+    logical, value :: j_isLast
+    continue
+  end subroutine
+end module DemoGameBehavior_m
 

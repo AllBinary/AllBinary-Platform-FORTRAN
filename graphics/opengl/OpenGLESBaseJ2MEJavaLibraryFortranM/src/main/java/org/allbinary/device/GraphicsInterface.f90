@@ -1,44 +1,52 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.device
-unit GraphicsInterface;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.device
+module GraphicsInterface_m
+  use JR_m
+  use FontDebugBase_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: GraphicsInterface
+  contains
+    procedure :: jm_setFontDebug_2 => GraphicsInterface_jm_setFontDebug_2
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Font, FontDebugBase;
+contains
 
-type
-  {AB:TYPES}
-  IGraphicsInterface = interface(IJavaObject) ['IGraphicsInterface']
-        procedure setFontDebug(font_: TFont; fontDebug: TFontDebugBase);
-  end;
-  TGraphicsInterface = IGraphicsInterface;
+  function GraphicsInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GraphicsInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GraphicsInterface)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function GraphicsInterface_jnew_0() result(this)
+    class(GraphicsInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'GraphicsInterface'
+  end function
 
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine GraphicsInterface_jm_setFontDebug_2(this, j_font, j_fontDebug)
+    class(GraphicsInterface), target :: this
+    class(Font), target, optional :: j_font
+    class(FontDebugBase), target, optional :: j_fontDebug
+    error stop 'AbstractMethodError: GraphicsInterface.setFontDebug'
+  end subroutine
+end module GraphicsInterface_m
 

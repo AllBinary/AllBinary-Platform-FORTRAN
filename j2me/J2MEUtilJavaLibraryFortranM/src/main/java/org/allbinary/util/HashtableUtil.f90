@@ -54,6 +54,16 @@ contains
     jresult => HashtableUtil_jcell_instance
   end function
 
+  subroutine HashtableUtil_jsetstatic_instance(jvalue)
+    class(HashtableUtil), target, optional :: jvalue
+    HashtableUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      HashtableUtil_jcell_instance => jvalue
+    else
+      HashtableUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function HashtableUtil_jnew_0() result(this)
     class(HashtableUtil), pointer :: this
     allocate(this)

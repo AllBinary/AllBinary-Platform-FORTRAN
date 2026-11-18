@@ -1,129 +1,150 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.ai
+module KeyPressesAI_m
+  use JR_m
+  use GameInput_m
+  use AllBinaryLayer_m
+  use AllBinaryLayerManager_m
+  use HashtableUtil_m
+  use BasicAI_m
+  use ABHashtable_m
+  use Integer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.ai
-unit KeyPressesAI;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameInput, AllBinaryLayer, AllBinaryLayerManager, BasicAI, ABHashtable;
-
-type
-  {AB:TYPES}
-  TKeyPressesAI = class(TBasicAI)
-  public
-    on_: Boolean;
-    keys: TArray<Integer>;
-    procedure InitFields;
-        constructor Create(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput);
-        procedure processAI(allBinaryLayerManager_: TAllBinaryLayerManager); override;
-        procedure toggle; virtual;
-        procedure disable; virtual;
-        procedure enable; virtual;
-        procedure setOn(on_: Boolean);
-        function isOn: Boolean; virtual;
-  end;
-
-implementation
-uses
-  HashtableUtil;
+  type, extends(BasicAI) :: KeyPressesAI
+    logical :: f_on = .false.
+    integer(4), allocatable :: f_keys(:)
+  contains
+    procedure :: jm_processAI_1 => KeyPressesAI_jm_processAI_1
+    procedure :: jm_toggle_0 => KeyPressesAI_jm_toggle_0
+    procedure :: jm_disable_0 => KeyPressesAI_jm_disable_0
+    procedure :: jm_enable_0 => KeyPressesAI_jm_enable_0
+    procedure :: jm_setOn_1 => KeyPressesAI_jm_setOn_1
+    procedure :: jm_isOn_0 => KeyPressesAI_jm_isOn_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TKeyPressesAI.InitFields;
-begin
-  Self.on_ := True;
-  
-end;
+  function KeyPressesAI_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(KeyPressesAI), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (KeyPressesAI)
+      jresult => object
+    end select
+  end function
+
+  recursive function KeyPressesAI_jnew_3(j_hashtable, j_ownerLayerInterface, j_gameInput) result(this)
+    class(ABHashtable), target, optional :: j_hashtable
+    class(AllBinaryLayer), target, optional :: j_ownerLayerInterface
+    class(GameInput), target, optional :: j_gameInput
+    class(KeyPressesAI), pointer :: this
+    type(JRef), allocatable :: j_objectArray(:)
+    integer(4) :: j_size
+    integer(4) :: j_index
+    class(HashtableUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'KeyPressesAI'
+    this%f_on = .true.
     
+        continue ! super()
+        this%f_keys = JR_newIntArray(j_hashtable%jm_size_0())
+        jtemp1 => HashtableUtil_jm_getInstance_0()
+        j_objectArray = jtemp1%jm_getKeysAsArray_1(j_hashtable)
+        j_size = size(j_objectArray, 1)
+        j_index = 0
+        do while ((j_index < j_size))
+            this%f_keys((j_index) + 1) = JR_unboxInt(j_hashtable%jm_get_1(j_objectArray((j_index) + 1)%v))
+            j_index = j_index + 1
+        end do
+  end function
 
-constructor TKeyPressesAI.Create(hashtable: TABHashtable<TObject, TObject>; ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput);
-var
-  objectArray: TArray<TObject>;
-  size: Integer;
-  index: Integer;
-begin
-        inherited Create(ownerLayerInterface, gameInput_);
-        InitFields;
-        Self.keys := TJava.NewArray<Integer>(hashtable.size());
-        objectArray := THashtableUtil.getInstance().getKeysAsArray(hashtable);
-        size := System.Length(objectArray);
-        for index := 0 to size - 1 do begin
-            Self.keys[index] := Integer(hashtable.get(TJava.Box(TJava.Box(objectArray[index]))));
-        end;
-end;
-    
+  recursive subroutine KeyPressesAI_jm_processAI_1(this, j_layerManager)
+    class(KeyPressesAI), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_layerManager
+    integer(4) :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if (this%f_on) then
+            j_index = 0
+            do while ((j_index < size(this%f_keys, 1)))
+                call this%BasicAI%jm_processKeyAI_1(int(this%f_keys((j_index) + 1), 4))
+                j_index = j_index + 1
+            end do
+        end if
+  end subroutine
 
-// throws Exception
-procedure TKeyPressesAI.processAI(allBinaryLayerManager_: TAllBinaryLayerManager);
-var
-  index: Integer;
-begin
-        if Self.on_ then begin
-            for index := 0 to System.Length(Self.keys) - 1 do begin
-                inherited processKeyAI(Self.keys[index].intValue());
-            end;
-        end;
-end;
-    
+  recursive subroutine KeyPressesAI_jm_toggle_0(this)
+    class(KeyPressesAI), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if (this%jm_isOn_0()) then
+            call this%jm_setOn_1(.false.)
+        else
+            call this%jm_setOn_1(.true.)
+        end if
+  end subroutine
 
-// throws Exception
-procedure TKeyPressesAI.toggle;
-begin
-        if Self.isOn() then begin
-            Self.setOn(False);
-        end else begin
-            Self.setOn(True);
-        end;
-end;
-    
+  recursive subroutine KeyPressesAI_jm_disable_0(this)
+    class(KeyPressesAI), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setOn_1(.false.)
+  end subroutine
 
-// throws Exception
-procedure TKeyPressesAI.disable;
-begin
-        Self.setOn(False);
-end;
-    
+  recursive subroutine KeyPressesAI_jm_enable_0(this)
+    class(KeyPressesAI), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setOn_1(.true.)
+  end subroutine
 
-// throws Exception
-procedure TKeyPressesAI.enable;
-begin
-        Self.setOn(True);
-end;
-    
+  recursive subroutine KeyPressesAI_jm_setOn_1(this, j_on)
+    class(KeyPressesAI), target :: this
+    logical, value :: j_on
+        this%f_on = j_on
+  end subroutine
 
-procedure TKeyPressesAI.setOn(on_: Boolean);
-begin
-        Self.on_ := on_;
-end;
-    
-
-function TKeyPressesAI.isOn: Boolean;
-begin
-        Exit(Self.on_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function KeyPressesAI_jm_isOn_0(this) result(jresult)
+    class(KeyPressesAI), target :: this
+    logical :: jresult
+        jresult = this%f_on
+        return
+  end function
+end module KeyPressesAI_m
 

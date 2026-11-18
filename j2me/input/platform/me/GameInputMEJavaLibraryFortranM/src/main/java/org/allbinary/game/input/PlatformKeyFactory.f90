@@ -1,127 +1,178 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module PlatformKeyFactory_m
+  use JR_m
+  use NullUtil_m
+  use J2MEGameKey_m
+  use J2MEKeyFactory_m
+  use Input_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit PlatformKeyFactory;
+  type, extends(JObject) :: PlatformKeyFactory
+  contains
+    procedure :: jm_getString_1 => PlatformKeyFactory_jm_getString_1
+    procedure :: jm_isSubmission_1 => PlatformKeyFactory_jm_isSubmission_1
+    procedure :: jm_isDelete_1 => PlatformKeyFactory_jm_isDelete_1
+    procedure :: jm_isBackSpace_1 => PlatformKeyFactory_jm_isBackSpace_1
+    procedure :: jm_isLeft_1 => PlatformKeyFactory_jm_isLeft_1
+    procedure :: jm_isRight_1 => PlatformKeyFactory_jm_isRight_1
+    procedure :: jm_isUp_1 => PlatformKeyFactory_jm_isUp_1
+    procedure :: jm_isDown_1 => PlatformKeyFactory_jm_isDown_1
+    procedure :: jm_isEnter_1 => PlatformKeyFactory_jm_isEnter_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: PlatformKeyFactory_jcell_instance => null()
+  logical, save :: PlatformKeyFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Input;
+  function PlatformKeyFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlatformKeyFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlatformKeyFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPlatformKeyFactory = class(TObject)
-  public
-    class var instance: TObject;
-    constructor Create;
-        class function getInstance: TPlatformKeyFactory; static;
-        function getString(keyCode: Integer): string; virtual;
-        function isSubmission(input_: TInput): Boolean; virtual;
-        function isDelete(input_: TInput): Boolean; virtual;
-        function isBackSpace(input_: TInput): Boolean; virtual;
-        function isLeft(input_: TInput): Boolean; virtual;
-        function isRight(input_: TInput): Boolean; virtual;
-        function isUp(input_: TInput): Boolean; virtual;
-        function isDown(input_: TInput): Boolean; virtual;
-        function isEnter(input_: TInput): Boolean; virtual;
-  end;
+  function PlatformKeyFactory_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. PlatformKeyFactory_jset_instance) then
+      PlatformKeyFactory_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    PlatformKeyFactory_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => PlatformKeyFactory_jcell_instance
+  end function
 
-implementation
-uses
-  J2MEGameKey, J2MEKeyFactory, NullUtil;
+  subroutine PlatformKeyFactory_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    PlatformKeyFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      PlatformKeyFactory_jcell_instance => jvalue
+    else
+      PlatformKeyFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  function PlatformKeyFactory_jnew_0() result(this)
+    class(PlatformKeyFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'PlatformKeyFactory'
+  end function
 
-{AB:CODE}
+  recursive function PlatformKeyFactory_jm_getInstance_0() result(jresult)
+    class(PlatformKeyFactory), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(PlatformKeyFactory_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call PlatformKeyFactory_jsetstatic_instance(PlatformKeyFactory_jnew_0())
+        end if
+        jresult => PlatformKeyFactory_jcast(PlatformKeyFactory_jstatic_instance())
+        return
+  end function
 
-constructor TPlatformKeyFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function PlatformKeyFactory_jm_getString_1(this, j_keyCode) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    integer(4), value :: j_keyCode
+    character(len=:), allocatable :: jresult
+        jresult = J2MEGameKey_jm_getString_1(j_keyCode)
+        return
+  end function
 
-class function TPlatformKeyFactory.getInstance: TPlatformKeyFactory;
-begin
-        if (TPlatformKeyFactory.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TPlatformKeyFactory.instance := TPlatformKeyFactory.Create();
-        end;
-        Exit(TPlatformKeyFactory(TJava.ToObject(TPlatformKeyFactory.instance)));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isSubmission_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp3
+        jtemp3 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp3%jm_isSubmission_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.getString(keyCode: Integer): string;
-begin
-        Exit(TJ2MEGameKey.getString(keyCode));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isDelete_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp4
+        jtemp4 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp4%jm_isDelete_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isSubmission(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isSubmission(input_));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isBackSpace_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp5
+        jtemp5 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp5%jm_isBackSpace_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isDelete(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isDelete(input_));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isLeft_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp6
+        jtemp6 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp6%jm_isLeft_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isBackSpace(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isBackSpace(input_));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isRight_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp7
+        jtemp7 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp7%jm_isRight_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isLeft(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isLeft(input_));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isUp_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp8
+        jtemp8 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp8%jm_isUp_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isRight(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isRight(input_));
-end;
-    
+  recursive function PlatformKeyFactory_jm_isDown_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp9
+        jtemp9 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp9%jm_isDown_1(j_input)
+        return
+  end function
 
-function TPlatformKeyFactory.isUp(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isUp(input_));
-end;
-    
-
-function TPlatformKeyFactory.isDown(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isDown(input_));
-end;
-    
-
-function TPlatformKeyFactory.isEnter(input_: TInput): Boolean;
-begin
-        Exit(TJ2MEKeyFactory.getInstance().isEnter(input_));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPlatformKeyFactory.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+  recursive function PlatformKeyFactory_jm_isEnter_1(this, j_input) result(jresult)
+    class(PlatformKeyFactory), target :: this
+    class(Input), target, optional :: j_input
+    logical :: jresult
+    class(J2MEKeyFactory), pointer :: jtemp10
+        jtemp10 => J2MEKeyFactory_jm_getInstance_0()
+        jresult = jtemp10%jm_isEnter_1(j_input)
+        return
+  end function
+end module PlatformKeyFactory_m
 

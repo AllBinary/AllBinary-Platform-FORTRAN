@@ -1,76 +1,83 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.image.opengles
-unit OpenGLESImageExclusionUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.image.opengles
+module OpenGLESImageExclusionUtil_m
+  use JR_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLESImageExclusionUtil
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_isCustomScaling_1 => OpenGLESImageExclusionUtil_jm_isCustomScaling_1
+  end type
 
-interface
+  class(OpenGLESImageExclusionUtil), pointer, save :: OpenGLESImageExclusionUtil_jcell_instance => null()
+  logical, save :: OpenGLESImageExclusionUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, BasicArrayList;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLESImageExclusionUtil = class(TObject)
-  public
-    list: TBasicArrayList;
-    class var instance: TOpenGLESImageExclusionUtil;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TOpenGLESImageExclusionUtil; static;
-        function isCustomScaling(image_: TImage): Boolean; virtual;
-  end;
+  function OpenGLESImageExclusionUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLESImageExclusionUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLESImageExclusionUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  BasicArrayListD;
+  function OpenGLESImageExclusionUtil_jstatic_instance() result(jresult)
+    class(OpenGLESImageExclusionUtil), pointer :: jresult
+    if (.not. OpenGLESImageExclusionUtil_jset_instance) then
+      OpenGLESImageExclusionUtil_jset_instance = .true.
+      OpenGLESImageExclusionUtil_jcell_instance => OpenGLESImageExclusionUtil_jnew_0()
+    end if
+    jresult => OpenGLESImageExclusionUtil_jcell_instance
+  end function
 
+  subroutine OpenGLESImageExclusionUtil_jsetstatic_instance(jvalue)
+    class(OpenGLESImageExclusionUtil), target, optional :: jvalue
+    OpenGLESImageExclusionUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLESImageExclusionUtil_jcell_instance => jvalue
+    else
+      OpenGLESImageExclusionUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function OpenGLESImageExclusionUtil_jnew_0() result(this)
+    class(OpenGLESImageExclusionUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLESImageExclusionUtil'
+    this%f_list => BasicArrayListD_jnew_0()
+  end function
 
-procedure TOpenGLESImageExclusionUtil.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
+  recursive function OpenGLESImageExclusionUtil_jm_getInstance_0() result(jresult)
+    class(OpenGLESImageExclusionUtil), pointer :: jresult
+        jresult => OpenGLESImageExclusionUtil_jstatic_instance()
+        return
+  end function
 
-constructor TOpenGLESImageExclusionUtil.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TOpenGLESImageExclusionUtil.getInstance: TOpenGLESImageExclusionUtil;
-begin
-        Exit(TOpenGLESImageExclusionUtil.instance);
-end;
-    
-
-function TOpenGLESImageExclusionUtil.isCustomScaling(image_: TImage): Boolean;
-begin
-        Exit(False);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLESImageExclusionUtil.instance := TOpenGLESImageExclusionUtil.Create();
-  {AB:END}
-
-end.
+  recursive function OpenGLESImageExclusionUtil_jm_isCustomScaling_1(this, j_image) result(jresult)
+    class(OpenGLESImageExclusionUtil), target :: this
+    class(Image), target, optional :: j_image
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
+end module OpenGLESImageExclusionUtil_m
 

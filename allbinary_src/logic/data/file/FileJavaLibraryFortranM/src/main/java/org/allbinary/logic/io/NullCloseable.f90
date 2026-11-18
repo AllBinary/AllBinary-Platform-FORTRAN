@@ -1,64 +1,72 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.io
-unit NullCloseable;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.logic.io
+module NullCloseable_m
+  use JR_m
+  use Closeable_m
+  use IOException_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: NullCloseable
+  contains
+    procedure :: jm_close_0 => NullCloseable_jm_close_0
+  end type
 
-interface
+  class(NullCloseable), pointer, save :: NullCloseable_jcell_NULL_CLOSEABLE => null()
+  logical, save :: NullCloseable_jset_NULL_CLOSEABLE = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TNullCloseable = class(TInterfacedObject, ICloseable)
-  public
-    class var NULL_CLOSEABLE: TNullCloseable;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure close; virtual;
-  end;
+  function NullCloseable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullCloseable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullCloseable)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function NullCloseable_jstatic_NULL_CLOSEABLE() result(jresult)
+    class(NullCloseable), pointer :: jresult
+    if (.not. NullCloseable_jset_NULL_CLOSEABLE) then
+      NullCloseable_jset_NULL_CLOSEABLE = .true.
+      NullCloseable_jcell_NULL_CLOSEABLE => NullCloseable_jnew_0()
+    end if
+    jresult => NullCloseable_jcell_NULL_CLOSEABLE
+  end function
 
-{AB:CODE}
+  subroutine NullCloseable_jsetstatic_NULL_CLOSEABLE(jvalue)
+    class(NullCloseable), target, optional :: jvalue
+    NullCloseable_jset_NULL_CLOSEABLE = .true.
+    if (present(jvalue)) then
+      NullCloseable_jcell_NULL_CLOSEABLE => jvalue
+    else
+      NullCloseable_jcell_NULL_CLOSEABLE => null()
+    end if
+  end subroutine
 
-function TNullCloseable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function NullCloseable_jnew_0() result(this)
+    class(NullCloseable), pointer :: this
+    allocate(this)
+    this%jclass = 'NullCloseable'
+  end function
 
-constructor TNullCloseable.Create;
-begin
-  inherited Create;
-end;
-    
-
-// throws IOException
-procedure TNullCloseable.close;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullCloseable.NULL_CLOSEABLE := TNullCloseable.Create();
-  {AB:END}
-
-end.
+  recursive subroutine NullCloseable_jm_close_0(this)
+    class(NullCloseable), target :: this
+    continue
+  end subroutine
+end module NullCloseable_m
 

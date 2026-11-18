@@ -1,53 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer.relationship
+module MiddleRelativeLayerRelationship_m
+  use JR_m
+  use PointFactory_m
+  use AllBinaryLayer_m
+  use BasicArrayListUtil_m
+  use RelativeLayerRelationship_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer.relationship
-unit MiddleRelativeLayerRelationship;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryLayer, RelativeLayerRelationship;
-
-type
-  {AB:TYPES}
-  TMiddleRelativeLayerRelationship = class(TRelativeLayerRelationship)
-  public
-        constructor Create(layer: TAllBinaryLayer);
-  end;
-
-implementation
-uses
-  PointFactory, BasicArrayListUtil;
+  type, extends(RelativeLayerRelationship) :: MiddleRelativeLayerRelationship
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TMiddleRelativeLayerRelationship.Create(layer: TAllBinaryLayer);
-begin
-        inherited Create(layer, TPointFactory.getInstance().createXY(layer.getHalfWidth(), layer.getHalfHeight()), TBasicArrayListUtil.getInstance().getImmutableInstance());
-end;
+  function MiddleRelativeLayerRelationship_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MiddleRelativeLayerRelationship), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MiddleRelativeLayerRelationship)
+      jresult => object
+    end select
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function MiddleRelativeLayerRelationship_jnew_1(j_layer) result(this)
+    class(AllBinaryLayer), target, optional :: j_layer
+    class(MiddleRelativeLayerRelationship), pointer :: this
+    class(PointFactory), pointer :: jtemp1
+    class(BasicArrayListUtil), pointer :: jtemp2
+    allocate(this)
+    this%jclass = 'MiddleRelativeLayerRelationship'
+        jtemp1 => PointFactory_jm_getInstance_0()
+        jtemp2 => BasicArrayListUtil_jm_getInstance_0()
+        continue ! super()
+  end function
+end module MiddleRelativeLayerRelationship_m
 

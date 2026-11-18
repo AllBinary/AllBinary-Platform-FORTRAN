@@ -1,65 +1,94 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.trackball.action
+module RightTrackballInputToGameKeyEventAction_m
+  use JR_m
+  use PlatformInputMappingFactory_m
+  use GameKeyCompleteMotionGestureInputEvent_m
+  use TrackballMotionGestureFactory_m
+  use NullUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.trackball.action
-unit RightTrackballInputToGameKeyEventAction;
+  type, extends(GameKeyCompleteMotionGestureInputEvent) :: RightTrackballInputToGameKeyEventAction
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(JObject), pointer, save :: RightTrackballInputToGameKeyEventAction_jcell_instance => null()
+  logical, save :: RightTrackballInputToGameKeyEventAction_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameKeyCompleteMotionGestureInputEvent;
+  function RightTrackballInputToGameKeyEventAction_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RightTrackballInputToGameKeyEventAction), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RightTrackballInputToGameKeyEventAction)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TRightTrackballInputToGameKeyEventAction = class(TGameKeyCompleteMotionGestureInputEvent)
-  public
-    class var instance: TObject;
-        class function getInstance: TGameKeyCompleteMotionGestureInputEvent; static;
-        constructor Create;
-  end;
+  function RightTrackballInputToGameKeyEventAction_jstatic_instance() result(jresult)
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    if (.not. RightTrackballInputToGameKeyEventAction_jset_instance) then
+      RightTrackballInputToGameKeyEventAction_jset_instance = .true.
+      jtemp1 => NullUtil_jm_getInstance_0()
+    RightTrackballInputToGameKeyEventAction_jcell_instance => jtemp1%f_NULL_OBJECT
+    end if
+    jresult => RightTrackballInputToGameKeyEventAction_jcell_instance
+  end function
 
-implementation
-uses
-  PlatformInputMappingFactory, TrackballMotionGestureFactory, NullUtil;
+  subroutine RightTrackballInputToGameKeyEventAction_jsetstatic_instance(jvalue)
+    class(JObject), target, optional :: jvalue
+    RightTrackballInputToGameKeyEventAction_jset_instance = .true.
+    if (present(jvalue)) then
+      RightTrackballInputToGameKeyEventAction_jcell_instance => jvalue
+    else
+      RightTrackballInputToGameKeyEventAction_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function RightTrackballInputToGameKeyEventAction_jnew_0() result(this)
+    class(RightTrackballInputToGameKeyEventAction), pointer :: this
+    class(TrackballMotionGestureFactory), pointer :: jtemp3
+    class(PersistentInputMapping), pointer :: jtemp4
+    class(PlatformInputMappingFactory), pointer :: jtemp5
+    allocate(this)
+    this%jclass = 'RightTrackballInputToGameKeyEventAction'
+        jtemp5 => PlatformInputMappingFactory_jm_getInstance_0()
+        jtemp3 => TrackballMotionGestureFactory_jm_getInstance_0()
+        jtemp4 => jtemp5%jm_getPersistentInputMappingInstance_0()
+        continue ! super()
+  end function
 
-{AB:CODE}
-    
+  recursive function RightTrackballInputToGameKeyEventAction_jm_getInstance_0() result(jresult)
+    class(GameKeyCompleteMotionGestureInputEvent), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        if (JR_same(RightTrackballInputToGameKeyEventAction_jstatic_instance(), jtemp2%f_NULL_OBJECT)) then
+            call RightTrackballInputToGameKeyEventAction_jsetstatic_instance(RightTrackballInputToGameKeyEventAction_jnew_0())
+        end if
+        jresult => GameKeyCompleteMotionGestureInputEvent_jcast(RightTrackballInputToGameKeyEventAction_jstatic_instance())
+        return
+  end function
+end module RightTrackballInputToGameKeyEventAction_m
 
-class function TRightTrackballInputToGameKeyEventAction.getInstance: TGameKeyCompleteMotionGestureInputEvent;
-begin
-        if (TRightTrackballInputToGameKeyEventAction.instance) = (TNullUtil.getInstance().NULL_OBJECT) then begin
-            TRightTrackballInputToGameKeyEventAction.instance := TRightTrackballInputToGameKeyEventAction.Create();
-        end;
-        Exit(TGameKeyCompleteMotionGestureInputEvent(TJava.ToObject(TRightTrackballInputToGameKeyEventAction.instance)));
-end;
-    
-
-constructor TRightTrackballInputToGameKeyEventAction.Create;
-begin
-        inherited Create('Right Action', TTrackballMotionGestureFactory.getInstance().RIGHT, TPlatformInputMappingFactory.getInstance().getPersistentInputMappingInstance().getInputMapping());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TRightTrackballInputToGameKeyEventAction.instance := TJava.Box(TNullUtil.getInstance().NULL_OBJECT);
-  {AB:END}
-
-end.
+function RightTrackballInputToGameKeyEventAction_jnew_0_jext() result(this)
+  use RightTrackballInputToGameKeyEventAction_m, only: JObject, RightTrackballInputToGameKeyEventAction_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => RightTrackballInputToGameKeyEventAction_jnew_0()
+end function
 

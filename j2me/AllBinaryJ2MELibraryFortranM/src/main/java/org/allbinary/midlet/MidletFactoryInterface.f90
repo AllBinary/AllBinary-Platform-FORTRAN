@@ -1,59 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.midlet
+module MidletFactoryInterface_m
+  use JR_m
+  use AllBinaryMidlet_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.midlet
-unit MidletFactoryInterface;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, MIDlet;
-
-type
-  {AB:TYPES}
-  IMidletFactoryInterface = class(TObject)
-  public
-    constructor Create;
-        function getInstance: TMIDlet; virtual;
-  end;
-
-implementation
-uses
-  AllBinaryMidlet;
+  type, extends(JObject) :: MidletFactoryInterface
+  contains
+    procedure :: jm_getInstance_0 => MidletFactoryInterface_jm_getInstance_0
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor IMidletFactoryInterface.Create;
-begin
-  inherited Create;
-end;
-    
+  function MidletFactoryInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MidletFactoryInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MidletFactoryInterface)
+      jresult => object
+    end select
+  end function
 
-function IMidletFactoryInterface.getInstance: TMIDlet;
-begin
-        Exit(TAllBinaryMidlet.getNullInstance());
-end;
+  function MidletFactoryInterface_jnew_0() result(this)
+    class(MidletFactoryInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'MidletFactoryInterface'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function MidletFactoryInterface_jm_getInstance_0(this) result(jresult)
+    class(MidletFactoryInterface), target :: this
+    class(MIDlet), pointer :: jresult
+        jresult => AllBinaryMidlet_jm_getNullInstance_0()
+        return
+  end function
+end module MidletFactoryInterface_m
 

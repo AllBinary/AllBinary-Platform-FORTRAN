@@ -57,6 +57,16 @@ contains
     jresult => SystemHardwareFactory_jcell_instance
   end function
 
+  subroutine SystemHardwareFactory_jsetstatic_instance(jvalue)
+    class(SystemHardwareFactory), target, optional :: jvalue
+    SystemHardwareFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      SystemHardwareFactory_jcell_instance => jvalue
+    else
+      SystemHardwareFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SystemHardwareFactory_jnew_0() result(this)
     class(SystemHardwareFactory), pointer :: this
     allocate(this)

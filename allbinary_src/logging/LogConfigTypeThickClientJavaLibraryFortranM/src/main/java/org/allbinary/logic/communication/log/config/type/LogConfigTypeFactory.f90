@@ -1,88 +1,103 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.communication.log.config.type
-unit LogConfigTypeFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.logic.communication.log.config.type
+module LogConfigTypeFactory_m
+  use JR_m
+  use LogConfigType_m
+  use LogConfigTypes_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: LogConfigTypeFactory
+    character(len=:), allocatable :: f_NO_DESCRIPTION
+    class(LogConfigType), pointer :: f_OS => null()
+    class(LogConfigType), pointer :: f_FACTORYERROR => null()
+    class(LogConfigType), pointer :: f_FILE => null()
+    class(LogConfigType), pointer :: f_FILEERROR => null()
+    class(LogConfigType), pointer :: f_IDLOGGING => null()
+    class(LogConfigType), pointer :: f_REPLACE => null()
+    class(LogConfigType), pointer :: f_REPLACE_INFO => null()
+    class(LogConfigType), pointer :: f_REPLACEERROR => null()
+  end type
 
-interface
+  class(LogConfigTypeFactory), pointer, save :: LogConfigTypeFactory_jcell_instance => null()
+  logical, save :: LogConfigTypeFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogConfigType;
+contains
 
-type
-  {AB:TYPES}
-  TLogConfigTypeFactory = class(TObject)
-  public
-    NO_DESCRIPTION: string;
-    OS: TLogConfigType;
-    FACTORYERROR: TLogConfigType;
-    FILE_: TLogConfigType;
-    FILEERROR: TLogConfigType;
-    IDLOGGING: TLogConfigType;
-    REPLACE: TLogConfigType;
-    REPLACE_INFO: TLogConfigType;
-    REPLACEERROR: TLogConfigType;
-    class var instance: TLogConfigTypeFactory;
-    procedure InitFields;
-        class function getInstance: TLogConfigTypeFactory; static;
-        constructor Create;
-  end;
+  function LogConfigTypeFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LogConfigTypeFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LogConfigTypeFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  LogConfigTypes;
+  function LogConfigTypeFactory_jstatic_instance() result(jresult)
+    class(LogConfigTypeFactory), pointer :: jresult
+    if (.not. LogConfigTypeFactory_jset_instance) then
+      LogConfigTypeFactory_jset_instance = .true.
+      LogConfigTypeFactory_jcell_instance => LogConfigTypeFactory_jnew_0()
+    end if
+    jresult => LogConfigTypeFactory_jcell_instance
+  end function
 
+  subroutine LogConfigTypeFactory_jsetstatic_instance(jvalue)
+    class(LogConfigTypeFactory), target, optional :: jvalue
+    LogConfigTypeFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      LogConfigTypeFactory_jcell_instance => jvalue
+    else
+      LogConfigTypeFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function LogConfigTypeFactory_jnew_0() result(this)
+    class(LogConfigTypeFactory), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'LogConfigTypeFactory'
+    this%f_NO_DESCRIPTION = ''
+    this%f_NO_DESCRIPTION = 'No Description'
+    this%f_OS => LogConfigType_jnew_2('Operating System', this%f_NO_DESCRIPTION)
+    this%f_FACTORYERROR => LogConfigType_jnew_2('Factory Error', this%f_NO_DESCRIPTION)
+    this%f_FILE => LogConfigType_jnew_2('File', this%f_NO_DESCRIPTION)
+    this%f_FILEERROR => LogConfigType_jnew_2('File Error', this%f_NO_DESCRIPTION)
+    this%f_IDLOGGING => LogConfigType_jnew_2('ID Logging', this%f_NO_DESCRIPTION)
+    this%f_REPLACE => LogConfigType_jnew_2('Replace', this%f_NO_DESCRIPTION)
+    this%f_REPLACE_INFO => LogConfigType_jnew_2('Replace Info', this%f_NO_DESCRIPTION)
+    this%f_REPLACEERROR => LogConfigType_jnew_2('Replace Error', this%f_NO_DESCRIPTION)
+        associate (jstatic_N66575 => LogConfigTypes_jstatic_LOGGING())
+        jdiscardBoolean = jstatic_N66575%jm_add_1(this%f_OS)
+        end associate
+        associate (jstatic_N66614 => LogConfigTypes_jstatic_LOGGING())
+        jdiscardBoolean = jstatic_N66614%jm_add_1(this%f_FACTORYERROR)
+        end associate
+  end function
 
-procedure TLogConfigTypeFactory.InitFields;
-begin
-  Self.NO_DESCRIPTION := 'No Description';
-  Self.OS := TLogConfigType.Create('Operating System', Self.NO_DESCRIPTION);
-  Self.FACTORYERROR := TLogConfigType.Create('Factory Error', Self.NO_DESCRIPTION);
-  Self.FILE_ := TLogConfigType.Create('File', Self.NO_DESCRIPTION);
-  Self.FILEERROR := TLogConfigType.Create('File Error', Self.NO_DESCRIPTION);
-  Self.IDLOGGING := TLogConfigType.Create('ID Logging', Self.NO_DESCRIPTION);
-  Self.REPLACE := TLogConfigType.Create('Replace', Self.NO_DESCRIPTION);
-  Self.REPLACE_INFO := TLogConfigType.Create('Replace Info', Self.NO_DESCRIPTION);
-  Self.REPLACEERROR := TLogConfigType.Create('Replace Error', Self.NO_DESCRIPTION);
-end;
-    
-
-class function TLogConfigTypeFactory.getInstance: TLogConfigTypeFactory;
-begin
-        Exit(TLogConfigTypeFactory.instance);
-end;
-    
-
-constructor TLogConfigTypeFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-        TLogConfigTypes.LOGGING.add(Self.OS);
-        TLogConfigTypes.LOGGING.add(Self.FACTORYERROR);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLogConfigTypeFactory.instance := TLogConfigTypeFactory.Create();
-  {AB:END}
-
-end.
+  recursive function LogConfigTypeFactory_jm_getInstance_0() result(jresult)
+    class(LogConfigTypeFactory), pointer :: jresult
+        jresult => LogConfigTypeFactory_jstatic_instance()
+        return
+  end function
+end module LogConfigTypeFactory_m
 

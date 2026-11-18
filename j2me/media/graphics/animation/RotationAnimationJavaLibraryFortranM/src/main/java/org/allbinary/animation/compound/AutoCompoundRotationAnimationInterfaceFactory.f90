@@ -1,67 +1,70 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.compound
+module AutoCompoundRotationAnimationInterfaceFactory_m
+  use JR_m
+  use Animation_m
+  use AnimationBehaviorFactory_m
+  use AnimationInterfaceFactoryInterface_m
+  use RotationAnimation_m
+  use CompoundAnimationInterfaceFactory_m
+  use AutoCompoundRotationAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.compound
-unit AutoCompoundRotationAnimationInterfaceFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Animation, AnimationBehaviorFactory, AnimationInterfaceFactoryInterface, CompoundAnimationInterfaceFactory;
-
-type
-  {AB:TYPES}
-  TAutoCompoundRotationAnimationInterfaceFactory = class(TCompoundAnimationInterfaceFactory)
-  public
-        constructor Create(basicAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>; animationBehaviorFactory_: TAnimationBehaviorFactory);
-        function createArray(size: Integer): TArray<TAnimation>; override;
-        function createAnimation(animationInterfaceArray: TArray<TAnimation>): TAnimation; override;
-  end;
-
-implementation
-uses
-  AutoCompoundRotationAnimation, RotationAnimation;
+  type, extends(CompoundAnimationInterfaceFactory) :: AutoCompoundRotationAnimationInterfaceFactory
+  contains
+    procedure :: jm_createArray_1 => AutoCompoundRotationAnimationInterfaceFactory_jm_createArray_1
+    procedure :: jm_createAnimation_1 => AutoCompoundRotationAnimationInterfaceFactory_jm_createAnimation_1
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TAutoCompoundRotationAnimationInterfaceFactory.Create(basicAnimationInterfaceFactoryInterfaceArray: TArray<IAnimationInterfaceFactoryInterface>; animationBehaviorFactory_: TAnimationBehaviorFactory);
-begin
-        inherited Create(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory_);
-end;
-    
+  function AutoCompoundRotationAnimationInterfaceFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AutoCompoundRotationAnimationInterfaceFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AutoCompoundRotationAnimationInterfaceFactory)
+      jresult => object
+    end select
+  end function
 
-function TAutoCompoundRotationAnimationInterfaceFactory.createArray(size: Integer): TArray<TAnimation>;
-begin
-        Exit(TJava.NewArray<TAnimation>(size));
-end;
-    
+  recursive function AutoCompoundRotationAnimationInterfaceFactory_jnew_2(j_basicAnimationInterfaceFactoryInterfaceArray, j_animationBehaviorFactory) result(this)
+    type(JRef) :: j_basicAnimationInterfaceFactoryInterfaceArray(:)
+    class(AnimationBehaviorFactory), target, optional :: j_animationBehaviorFactory
+    class(AutoCompoundRotationAnimationInterfaceFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'AutoCompoundRotationAnimationInterfaceFactory'
+        continue ! super()
+  end function
 
-function TAutoCompoundRotationAnimationInterfaceFactory.createAnimation(animationInterfaceArray: TArray<TAnimation>): TAnimation;
-begin
-        Exit(TAutoCompoundRotationAnimation.Create(TArray<TRotationAnimation>(animationInterfaceArray), Self.animationBehaviorFactory.getOrCreateInstance()));
-end;
+  recursive function AutoCompoundRotationAnimationInterfaceFactory_jm_createArray_1(this, j_size) result(jresult)
+    class(AutoCompoundRotationAnimationInterfaceFactory), target :: this
+    integer(4), value :: j_size
+    type(JRef), allocatable :: jresult(:)
+        jresult = JR_newRefArray(j_size)
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function AutoCompoundRotationAnimationInterfaceFactory_jm_createAnimation_1(this, j_animationInterfaceArray) result(jresult)
+    class(AutoCompoundRotationAnimationInterfaceFactory), target :: this
+    type(JRef) :: j_animationInterfaceArray(:)
+    class(Animation), pointer :: jresult
+        jresult => AutoCompoundRotationAnimation_jnew_2(j_animationInterfaceArray, this%f_animationBehaviorFactory%jm_getOrCreateInstance_0())
+        return
+  end function
+end module AutoCompoundRotationAnimationInterfaceFactory_m
 

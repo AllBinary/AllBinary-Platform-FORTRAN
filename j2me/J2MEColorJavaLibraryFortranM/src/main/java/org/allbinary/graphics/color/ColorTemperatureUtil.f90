@@ -49,6 +49,16 @@ contains
     jresult => ColorTemperatureUtil_jcell_instance
   end function
 
+  subroutine ColorTemperatureUtil_jsetstatic_instance(jvalue)
+    class(ColorTemperatureUtil), target, optional :: jvalue
+    ColorTemperatureUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ColorTemperatureUtil_jcell_instance => jvalue
+    else
+      ColorTemperatureUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function ColorTemperatureUtil_jnew_0() result(this)
     class(ColorTemperatureUtil), pointer :: this
     allocate(this)

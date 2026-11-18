@@ -1,127 +1,126 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.business.init
+module LicenseInitInfoUtil_m
+  use JR_m
+  use LicenseInitInfo_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.business.init
-unit LicenseInitInfoUtil;
+  type, extends(JObject) :: LicenseInitInfoUtil
+    character(len=:), allocatable :: f_INITFILENAME
+    character(len=:), allocatable :: f_ABOUT
+    character(len=:), allocatable :: f_PRIVACY_POLICY
+    character(len=:), allocatable :: f_OFFICIAL_ALLBINARY_SERVICES_SERVER
+  contains
+    procedure :: jm_setFilePath_1 => LicenseInitInfoUtil_jm_setFilePath_1
+    procedure :: jm_write_1 => LicenseInitInfoUtil_jm_write_1
+    procedure :: jm_read_0 => LicenseInitInfoUtil_jm_read_0
+    procedure :: jm_readAgain_1 => LicenseInitInfoUtil_jm_readAgain_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LicenseInitInfoUtil), pointer, save :: LicenseInitInfoUtil_jcell_instance => null()
+  logical, save :: LicenseInitInfoUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LicenseInitInfo;
+  function LicenseInitInfoUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LicenseInitInfoUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LicenseInitInfoUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLicenseInitInfoUtil = class(TObject)
-  public
-    INITFILENAME: string;
-    ABOUT: string;
-    PRIVACY_POLICY: string;
-    OFFICIAL_ALLBINARY_SERVICES_SERVER: string;
-    class var instance: TLicenseInitInfoUtil;
-    procedure InitFields;
-        class function getInstance: TLicenseInitInfoUtil; static;
-        procedure setFilePath(filePath: string); virtual;
-        constructor Create;
-        procedure write(initData: TLicenseInitInfo); virtual;
-        function read: TLicenseInitInfo; virtual;
-        function readAgain(initializeCounter: Integer): TLicenseInitInfo; virtual;
-  end;
+  function LicenseInitInfoUtil_jstatic_instance() result(jresult)
+    class(LicenseInitInfoUtil), pointer :: jresult
+    if (.not. LicenseInitInfoUtil_jset_instance) then
+      LicenseInitInfoUtil_jset_instance = .true.
+      LicenseInitInfoUtil_jcell_instance => LicenseInitInfoUtil_jnew_0()
+    end if
+    jresult => LicenseInitInfoUtil_jcell_instance
+  end function
 
-implementation
+  subroutine LicenseInitInfoUtil_jsetstatic_instance(jvalue)
+    class(LicenseInitInfoUtil), target, optional :: jvalue
+    LicenseInitInfoUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      LicenseInitInfoUtil_jcell_instance => jvalue
+    else
+      LicenseInitInfoUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function LicenseInitInfoUtil_jnew_0() result(this)
+    class(LicenseInitInfoUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'LicenseInitInfoUtil'
+    this%f_INITFILENAME = ''
+    this%f_ABOUT = ''
+    this%f_PRIVACY_POLICY = ''
+    this%f_OFFICIAL_ALLBINARY_SERVICES_SERVER = ''
+    this%f_INITFILENAME = 'licenseinitdata.dat'
+    this%f_ABOUT = 'about'
+    this%f_PRIVACY_POLICY = 'privacy_policy'
+    this%f_OFFICIAL_ALLBINARY_SERVICES_SERVER = 'https://services.allbinary.com/LicServ/serverssl.php'
+        continue
+  end function
 
-procedure TLicenseInitInfoUtil.InitFields;
-begin
-  Self.INITFILENAME := 'licenseinitdata.dat';
-  Self.ABOUT := 'about';
-  Self.PRIVACY_POLICY := 'privacy_policy';
-  Self.OFFICIAL_ALLBINARY_SERVICES_SERVER := 'https://services.allbinary.com/LicServ/serverssl.php';
-end;
-    
+  recursive function LicenseInitInfoUtil_jm_getInstance_0() result(jresult)
+    class(LicenseInitInfoUtil), pointer :: jresult
+        jresult => LicenseInitInfoUtil_jstatic_instance()
+        return
+  end function
 
-class function TLicenseInitInfoUtil.getInstance: TLicenseInitInfoUtil;
-begin
-        Exit(TLicenseInitInfoUtil.instance);
-end;
-    
+  recursive subroutine LicenseInitInfoUtil_jm_setFilePath_1(this, j_filePath)
+    class(LicenseInitInfoUtil), target :: this
+    character(len=*), intent(in) :: j_filePath
+    continue
+  end subroutine
 
-procedure TLicenseInitInfoUtil.setFilePath(filePath: string);
-begin
-    TJava.MonitorEnter(Self);
-    try
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine LicenseInitInfoUtil_jm_write_1(this, j_initData)
+    class(LicenseInitInfoUtil), target :: this
+    class(LicenseInitInfo), target, optional :: j_initData
+    continue
+  end subroutine
 
-constructor TLicenseInitInfoUtil.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function LicenseInitInfoUtil_jm_read_0(this) result(jresult)
+    class(LicenseInitInfoUtil), target :: this
+    class(LicenseInitInfo), pointer :: jresult
+        jresult => this%jm_readAgain_1(0)
+        return
+  end function
 
-// throws Exception
-procedure TLicenseInitInfoUtil.write(initData: TLicenseInitInfo);
-begin
-    TJava.MonitorEnter(Self);
-    try
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
-
-// throws Exception
-function TLicenseInitInfoUtil.read: TLicenseInitInfo;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Exit(Self.readAgain(0));
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
-
-// throws Exception
-function TLicenseInitInfoUtil.readAgain(initializeCounter: Integer): TLicenseInitInfo;
-var
-  licenseInitInfo_: TLicenseInitInfo;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        licenseInitInfo_ := TLicenseInitInfo.Create();
-        licenseInitInfo_.clearServers();
-        licenseInitInfo_.addServer(Self.OFFICIAL_ALLBINARY_SERVICES_SERVER);
-        Exit(licenseInitInfo_);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLicenseInitInfoUtil.instance := TLicenseInitInfoUtil.Create();
-  {AB:END}
-
-end.
+  recursive function LicenseInitInfoUtil_jm_readAgain_1(this, j_initializeCounter) result(jresult)
+    class(LicenseInitInfoUtil), target :: this
+    integer(4), value :: j_initializeCounter
+    class(LicenseInitInfo), pointer :: jresult
+    class(LicenseInitInfo), pointer :: j_licenseInitInfo
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_licenseInitInfo => LicenseInitInfo_jnew_0()
+        call j_licenseInitInfo%jm_clearServers_0()
+        call j_licenseInitInfo%jm_addServer_1(this%f_OFFICIAL_ALLBINARY_SERVICES_SERVER)
+        jresult => j_licenseInitInfo
+        return
+  end function
+end module LicenseInitInfoUtil_m
 

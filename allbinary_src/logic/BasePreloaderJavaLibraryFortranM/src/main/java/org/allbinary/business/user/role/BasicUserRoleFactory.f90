@@ -66,6 +66,16 @@ contains
     jresult => BasicUserRoleFactory_jcell_instance
   end function
 
+  subroutine BasicUserRoleFactory_jsetstatic_instance(jvalue)
+    class(BasicUserRoleFactory), target, optional :: jvalue
+    BasicUserRoleFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicUserRoleFactory_jcell_instance => jvalue
+    else
+      BasicUserRoleFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function BasicUserRoleFactory_jnew_0() result(this)
     class(BasicUserRoleFactory), pointer :: this
     allocate(this)

@@ -1,53 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+! 
+! Generated Code Do Not Modify
+! package org.allbinary.game.tick
+module TickableLayerManager_m
+  use JR_m
+  use ABLayerManager_m
+  use LayerManagerNoDebug_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-  
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.tick
-unit TickableLayerManager;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ABLayerManager;
-
-type
-  {AB:TYPES}
-  TTickableLayerManager = class(TABLayerManager)
-  public
-        constructor Create;
-  end;
-
-implementation
-uses
-  LayerManagerNoDebug;
+  type, extends(ABLayerManager) :: TickableLayerManager
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TTickableLayerManager.Create;
-begin
-        inherited Create(TLayerManagerNoDebug.getInstance());
-end;
+  function TickableLayerManager_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TickableLayerManager), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TickableLayerManager)
+      jresult => object
+    end select
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function TickableLayerManager_jnew_0() result(this)
+    class(TickableLayerManager), pointer :: this
+    allocate(this)
+    this%jclass = 'TickableLayerManager'
+        continue ! super()
+  end function
+end module TickableLayerManager_m
 
-end.
+function TickableLayerManager_jnew_0_jext() result(this)
+  use TickableLayerManager_m, only: JObject, TickableLayerManager_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => TickableLayerManager_jnew_0()
+end function
 

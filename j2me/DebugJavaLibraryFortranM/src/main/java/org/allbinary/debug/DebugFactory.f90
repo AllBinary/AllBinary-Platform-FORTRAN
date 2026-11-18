@@ -1,59 +1,50 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.debug
+module DebugFactory_m
+  use JR_m
+  use NoDebug_m
+  use DebugInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.debug
-unit DebugFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, DebugInterface;
-
-type
-  {AB:TYPES}
-  TDebugFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance: IDebugInterface; static;
-  end;
-
-implementation
-uses
-  NoDebug;
+  type, extends(JObject) :: DebugFactory
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TDebugFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function DebugFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DebugFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DebugFactory)
+      jresult => object
+    end select
+  end function
 
-class function TDebugFactory.getInstance: IDebugInterface;
-begin
-        Exit(TNoDebug.getInstance());
-end;
+  function DebugFactory_jnew_0() result(this)
+    class(DebugFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'DebugFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function DebugFactory_jm_getInstance_0() result(jresult)
+    class(DebugInterface), pointer :: jresult
+        jresult => NoDebug_jm_getInstance_0()
+        return
+  end function
+end module DebugFactory_m
 

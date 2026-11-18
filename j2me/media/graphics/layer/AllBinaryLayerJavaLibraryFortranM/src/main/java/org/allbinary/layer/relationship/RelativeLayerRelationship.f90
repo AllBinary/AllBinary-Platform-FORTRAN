@@ -1,80 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer.relationship
+module RelativeLayerRelationship_m
+  use JR_m
+  use GPoint_m
+  use RelativeRelationship_m
+  use AllBinaryLayer_m
+  use BasicArrayList_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer.relationship
-unit RelativeLayerRelationship;
+  type, extends(RelativeRelationship) :: RelativeLayerRelationship
+    class(AllBinaryLayer), pointer :: f_layer => null()
+  contains
+    procedure :: jm_getX_0 => RelativeLayerRelationship_jm_getX_0
+    procedure :: jm_getY_0 => RelativeLayerRelationship_jm_getY_0
+    procedure :: jm_getZ_0 => RelativeLayerRelationship_jm_getZ_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GPoint, RelativeRelationship, AllBinaryLayer, BasicArrayList;
+  function RelativeLayerRelationship_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(RelativeLayerRelationship), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (RelativeLayerRelationship)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TRelativeLayerRelationship = class(TRelativeRelationship)
-  public
-    layer: TAllBinaryLayer;
-    procedure InitFields;
-        constructor Create(layer: TAllBinaryLayer; point: TGPoint; typesAllowedList: TBasicArrayList);
-        function getX: Integer; override;
-        function getY: Integer; override;
-        function getZ: Integer; override;
-  end;
+  recursive function RelativeLayerRelationship_jnew_3(j_layer, j_point, j_typesAllowedList) result(this)
+    class(AllBinaryLayer), target, optional :: j_layer
+    class(GPoint), target, optional :: j_point
+    class(BasicArrayList), target, optional :: j_typesAllowedList
+    class(RelativeLayerRelationship), pointer :: this
+    allocate(this)
+    this%jclass = 'RelativeLayerRelationship'
+    this%f_layer => AllBinaryLayer_jstatic_NULL_ALLBINARY_LAYER()
+        continue ! super()
+        this%f_layer => j_layer
+  end function
 
-implementation
+  recursive function RelativeLayerRelationship_jm_getX_0(this) result(jresult)
+    class(RelativeLayerRelationship), target :: this
+    integer(4) :: jresult
+        jresult = (this%f_layer%jm_getXP_0() + this%RelativeRelationship%jm_getX_0())
+        return
+  end function
 
-{AB:CODE}
+  recursive function RelativeLayerRelationship_jm_getY_0(this) result(jresult)
+    class(RelativeLayerRelationship), target :: this
+    integer(4) :: jresult
+        jresult = (this%f_layer%jm_getYP_0() + this%RelativeRelationship%jm_getY_0())
+        return
+  end function
 
-procedure TRelativeLayerRelationship.InitFields;
-begin
-  Self.layer := TAllBinaryLayer.NULL_ALLBINARY_LAYER;
-end;
-    
-
-constructor TRelativeLayerRelationship.Create(layer: TAllBinaryLayer; point: TGPoint; typesAllowedList: TBasicArrayList);
-begin
-        inherited Create(point, typesAllowedList);
-        InitFields;
-        Self.layer := layer;
-end;
-    
-
-function TRelativeLayerRelationship.getX: Integer;
-begin
-        Exit((Self.layer.getXP()) + (inherited getX()));
-end;
-    
-
-function TRelativeLayerRelationship.getY: Integer;
-begin
-        Exit((Self.layer.getYP()) + (inherited getY()));
-end;
-    
-
-function TRelativeLayerRelationship.getZ: Integer;
-begin
-        Exit((Self.layer.getZP()) + (inherited getZ()));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function RelativeLayerRelationship_jm_getZ_0(this) result(jresult)
+    class(RelativeLayerRelationship), target :: this
+    integer(4) :: jresult
+        jresult = (this%f_layer%jm_getZP_0() + this%RelativeRelationship%jm_getZ_0())
+        return
+  end function
+end module RelativeLayerRelationship_m
 

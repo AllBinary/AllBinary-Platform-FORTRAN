@@ -47,6 +47,16 @@ contains
     jresult => RectangleCollisionUtil_jcell_instance
   end function
 
+  subroutine RectangleCollisionUtil_jsetstatic_instance(jvalue)
+    class(RectangleCollisionUtil), target, optional :: jvalue
+    RectangleCollisionUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      RectangleCollisionUtil_jcell_instance => jvalue
+    else
+      RectangleCollisionUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function RectangleCollisionUtil_jnew_0() result(this)
     class(RectangleCollisionUtil), pointer :: this
     allocate(this)

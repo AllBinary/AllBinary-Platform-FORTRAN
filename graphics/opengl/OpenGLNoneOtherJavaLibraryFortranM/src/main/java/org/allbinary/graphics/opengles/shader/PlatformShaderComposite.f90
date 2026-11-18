@@ -1,53 +1,57 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit PlatformShaderComposite;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module PlatformShaderComposite_m
+  use JR_m
+  use NullOpenGLProcessorFactory_m
+  use OpenGLProcessor_m
+  use ShaderComposite_m
+  use Shader_m
+  use CompositeShaderUpdater_m
+  use ShaderInitializer_m
+  use ModelViewProjection_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, OpenGLProcessor, CompositeShaderUpdater, ShaderInitializer, ModelViewProjection, Shader, ShaderComposite;
-
-type
-  {AB:TYPES}
-  TPlatformShaderComposite = class(TShaderComposite)
-  public
-        constructor Create(requiresOpenGLVersion: string; shaderArray: TArray<TShader>; compositeShaderUpdater_: TCompositeShaderUpdater; shaderInitializer_: TShaderInitializer; modelViewProjection_: TModelViewProjection; colorOpenGLProcessor: TOpenGLProcessor; vertexOpenGLProcessor: TOpenGLProcessor);
-  end;
-
-implementation
-uses
-  NullOpenGLProcessorFactory;
+  type, extends(ShaderComposite) :: PlatformShaderComposite
+  end type
 
 
-{AB:CODE}
-    
+contains
 
-constructor TPlatformShaderComposite.Create(requiresOpenGLVersion: string; shaderArray: TArray<TShader>; compositeShaderUpdater_: TCompositeShaderUpdater; shaderInitializer_: TShaderInitializer; modelViewProjection_: TModelViewProjection; colorOpenGLProcessor: TOpenGLProcessor; vertexOpenGLProcessor: TOpenGLProcessor);
-begin
-        inherited Create(requiresOpenGLVersion, shaderArray, compositeShaderUpdater_, shaderInitializer_, modelViewProjection_, colorOpenGLProcessor, vertexOpenGLProcessor, TNullOpenGLProcessorFactory.getInstance());
-end;
+  function PlatformShaderComposite_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlatformShaderComposite), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlatformShaderComposite)
+      jresult => object
+    end select
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function PlatformShaderComposite_jnew_7(j_requiresOpenGLVersion, j_shaderArray, j_compositeShaderUpdater, j_shaderInitializer, j_modelViewProjection, j_colorOpenGLProcessor, j_vertexOpenGLProcessor) result(this)
+    character(len=*), intent(in) :: j_requiresOpenGLVersion
+    type(JRef) :: j_shaderArray(:)
+    class(CompositeShaderUpdater), target, optional :: j_compositeShaderUpdater
+    class(ShaderInitializer), target, optional :: j_shaderInitializer
+    class(ModelViewProjection), target, optional :: j_modelViewProjection
+    class(OpenGLProcessor), target, optional :: j_colorOpenGLProcessor
+    class(OpenGLProcessor), target, optional :: j_vertexOpenGLProcessor
+    class(PlatformShaderComposite), pointer :: this
+    allocate(this)
+    this%jclass = 'PlatformShaderComposite'
+        continue ! super()
+  end function
+end module PlatformShaderComposite_m
 

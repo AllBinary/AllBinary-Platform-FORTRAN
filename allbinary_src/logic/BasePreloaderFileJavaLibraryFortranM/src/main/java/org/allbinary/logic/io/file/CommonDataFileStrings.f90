@@ -1,442 +1,636 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2026 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.io.file
-unit CommonDataFileStrings;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2026 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.logic.io.file
+module CommonDataFileStrings_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: CommonDataFileStrings
+    character(len=:), allocatable :: f_XML
+    character(len=:), allocatable :: f__XML
+    character(len=:), allocatable :: f_JSON
+    character(len=:), allocatable :: f__JSON
+    character(len=:), allocatable :: f_XSL
+    character(len=:), allocatable :: f__XSL
+    character(len=:), allocatable :: f_JAVA
+    character(len=:), allocatable :: f__JAVA
+    character(len=:), allocatable :: f_KT
+    character(len=:), allocatable :: f__KT
+    character(len=:), allocatable :: f_TS
+    character(len=:), allocatable :: f__TS
+    character(len=:), allocatable :: f_JS
+    character(len=:), allocatable :: f__JS
+    character(len=:), allocatable :: f_CPP
+    character(len=:), allocatable :: f__CPP
+    character(len=:), allocatable :: f_H
+    character(len=:), allocatable :: f__H
+    character(len=:), allocatable :: f_PY
+    character(len=:), allocatable :: f__PY
+    character(len=:), allocatable :: f_GO
+    character(len=:), allocatable :: f__GO
+    character(len=:), allocatable :: f_CS
+    character(len=:), allocatable :: f__CS
+    character(len=:), allocatable :: f_ADB
+    character(len=:), allocatable :: f__ADB
+    character(len=:), allocatable :: f_ADS
+    character(len=:), allocatable :: f__ADS
+    character(len=:), allocatable :: f_ADA
+    character(len=:), allocatable :: f__ADA
+    character(len=:), allocatable :: f_RUST
+    character(len=:), allocatable :: f__RUST
+    character(len=:), allocatable :: f_C
+    character(len=:), allocatable :: f__C
+    character(len=:), allocatable :: f_CSHARP
+    character(len=:), allocatable :: f__CSHARP
+    character(len=:), allocatable :: f_ERL
+    character(len=:), allocatable :: f__ERL
+    character(len=:), allocatable :: f_HS
+    character(len=:), allocatable :: f__HS
+    character(len=:), allocatable :: f_HX
+    character(len=:), allocatable :: f__HX
+    character(len=:), allocatable :: f_LUA
+    character(len=:), allocatable :: f__LUA
+    character(len=:), allocatable :: f_PAS
+    character(len=:), allocatable :: f__PAS
+    character(len=:), allocatable :: f_ML
+    character(len=:), allocatable :: f__ML
+    character(len=:), allocatable :: f_PL
+    character(len=:), allocatable :: f__PL
+    character(len=:), allocatable :: f_RB
+    character(len=:), allocatable :: f__RB
+    character(len=:), allocatable :: f_ZIG
+    character(len=:), allocatable :: f__ZIG
+    character(len=:), allocatable :: f_PM
+    character(len=:), allocatable :: f__PM
+    character(len=:), allocatable :: f_KTS
+    character(len=:), allocatable :: f__KTS
+    character(len=:), allocatable :: f_CBL
+    character(len=:), allocatable :: f__CBL
+    character(len=:), allocatable :: f_COB
+    character(len=:), allocatable :: f__COB
+    character(len=:), allocatable :: f_F90
+    character(len=:), allocatable :: f__F90
+    character(len=:), allocatable :: f_F
+    character(len=:), allocatable :: f__F
+    character(len=:), allocatable :: f_DART
+    character(len=:), allocatable :: f__DART
+    character(len=:), allocatable :: f_EX
+    character(len=:), allocatable :: f__EX
+    character(len=:), allocatable :: f_EXS
+    character(len=:), allocatable :: f__EXS
+    character(len=:), allocatable :: f_M
+    character(len=:), allocatable :: f__M
+    character(len=:), allocatable :: f_SWIFT
+    character(len=:), allocatable :: f__SWIFT
+    character(len=:), allocatable :: f_ASM
+    character(len=:), allocatable :: f__ASM
+    character(len=:), allocatable :: f_S
+    character(len=:), allocatable :: f__S
+    character(len=:), allocatable :: f_NIM
+    character(len=:), allocatable :: f__NIM
+    character(len=:), allocatable :: f_VALA
+    character(len=:), allocatable :: f__VALA
+    character(len=:), allocatable :: f_LISP
+    character(len=:), allocatable :: f__LISP
+    character(len=:), allocatable :: f_RKT
+    character(len=:), allocatable :: f__RKT
+    character(len=:), allocatable :: f_SCM
+    character(len=:), allocatable :: f__SCM
+    character(len=:), allocatable :: f_AS
+    character(len=:), allocatable :: f__AS
+    character(len=:), allocatable :: f_OBX
+    character(len=:), allocatable :: f__OBX
+    character(len=:), allocatable :: f_SCALA
+    character(len=:), allocatable :: f__SCALA
+    character(len=:), allocatable :: f_GROOVY
+    character(len=:), allocatable :: f__GROOVY
+    character(len=:), allocatable :: f_JL
+    character(len=:), allocatable :: f__JL
+    character(len=:), allocatable :: f_TCL
+    character(len=:), allocatable :: f__TCL
+    character(len=:), allocatable :: f_WREN
+    character(len=:), allocatable :: f__WREN
+    character(len=:), allocatable :: f_JANET
+    character(len=:), allocatable :: f__JANET
+    character(len=:), allocatable :: f_GR
+    character(len=:), allocatable :: f__GR
+    character(len=:), allocatable :: f_ELM
+    character(len=:), allocatable :: f__ELM
+    character(len=:), allocatable :: f_KOTLIN
+    character(len=:), allocatable :: f_TYPESCRIPT
+    character(len=:), allocatable :: f_JAVASCRIPT
+    character(len=:), allocatable :: f_C_PLUS_PLUS
+    character(len=:), allocatable :: f_PYTHON
+    character(len=:), allocatable :: f_C_SHARP
+    character(len=:), allocatable :: f_RUST_NAME
+    character(len=:), allocatable :: f_RUBY
+    character(len=:), allocatable :: f_PERL
+    character(len=:), allocatable :: f_OBJECT_PASCAL
+    character(len=:), allocatable :: f_OCAML
+    character(len=:), allocatable :: f_HASKELL
+    character(len=:), allocatable :: f_HAXE
+    character(len=:), allocatable :: f_ERLANG
+    character(len=:), allocatable :: f_COBOL
+    character(len=:), allocatable :: f_FORTRAN
+    character(len=:), allocatable :: f_ELIXIR
+    character(len=:), allocatable :: f_OBJECTIVE_C
+    character(len=:), allocatable :: f_RACKET
+    character(len=:), allocatable :: f_SCHEME
+    character(len=:), allocatable :: f_ACTIONSCRIPT
+    character(len=:), allocatable :: f_OBERON_PLUS
+    character(len=:), allocatable :: f_JULIA
+    character(len=:), allocatable :: f_GRAIN
+    character(len=:), allocatable :: f_CPLUSPLUS
+    character(len=:), allocatable :: f_GOLANG
+    character(len=:), allocatable :: f_CSHARP_ALIAS
+    character(len=:), allocatable :: f_C23
+    character(len=:), allocatable :: f_PASCAL
+    character(len=:), allocatable :: f_OBJECT_PASCAL_ALIAS
+    character(len=:), allocatable :: f_OBJC
+    character(len=:), allocatable :: f_OBJECTIVE_C_ALIAS
+    character(len=:), allocatable :: f_ASSEMBLY
+    character(len=:), allocatable :: f_COMMON_LISP
+    character(len=:), allocatable :: f_OBERON
+    character(len=:), allocatable :: f_OBERON_PLUS_ALIAS
+    character(len=:), allocatable :: f_KT_SHORT_NAME
+    character(len=:), allocatable :: f_TS_SHORT_NAME
+    character(len=:), allocatable :: f_JS_SHORT_NAME
+    character(len=:), allocatable :: f_CPP_SHORT_NAME
+    character(len=:), allocatable :: f_PY_SHORT_NAME
+    character(len=:), allocatable :: f_GO_SHORT_NAME
+    character(len=:), allocatable :: f_CS_SHORT_NAME
+    character(len=:), allocatable :: f_ADA_SHORT_NAME
+    character(len=:), allocatable :: f_RUST_SHORT_NAME
+    character(len=:), allocatable :: f_LUA_SHORT_NAME
+    character(len=:), allocatable :: f_C_SHORT_NAME
+    character(len=:), allocatable :: f_ZIG_SHORT_NAME
+    character(len=:), allocatable :: f_RB_SHORT_NAME
+    character(len=:), allocatable :: f_PL_SHORT_NAME
+    character(len=:), allocatable :: f_PAS_SHORT_NAME
+    character(len=:), allocatable :: f_ML_SHORT_NAME
+    character(len=:), allocatable :: f_HS_SHORT_NAME
+    character(len=:), allocatable :: f_HX_SHORT_NAME
+    character(len=:), allocatable :: f_ERL_SHORT_NAME
+    character(len=:), allocatable :: f_CBL_SHORT_NAME
+    character(len=:), allocatable :: f_F90_SHORT_NAME
+    character(len=:), allocatable :: f_DART_SHORT_NAME
+    character(len=:), allocatable :: f_EX_SHORT_NAME
+    character(len=:), allocatable :: f_OBJC_SHORT_NAME
+    character(len=:), allocatable :: f_SWIFT_SHORT_NAME
+    character(len=:), allocatable :: f_ASM_SHORT_NAME
+    character(len=:), allocatable :: f_NIM_SHORT_NAME
+    character(len=:), allocatable :: f_VALA_SHORT_NAME
+    character(len=:), allocatable :: f_LISP_SHORT_NAME
+    character(len=:), allocatable :: f_RKT_SHORT_NAME
+    character(len=:), allocatable :: f_SCM_SHORT_NAME
+    character(len=:), allocatable :: f_AS_SHORT_NAME
+    character(len=:), allocatable :: f_OBX_SHORT_NAME
+    character(len=:), allocatable :: f_SCALA_SHORT_NAME
+    character(len=:), allocatable :: f_GROOVY_SHORT_NAME
+    character(len=:), allocatable :: f_JL_SHORT_NAME
+    character(len=:), allocatable :: f_TCL_SHORT_NAME
+    character(len=:), allocatable :: f_WREN_SHORT_NAME
+    character(len=:), allocatable :: f_JANET_SHORT_NAME
+    character(len=:), allocatable :: f_GR_SHORT_NAME
+    character(len=:), allocatable :: f_ELM_SHORT_NAME
+    character(len=:), allocatable :: f_UNCRYPTED_EXTENSION
+    character(len=:), allocatable :: f_ENCRYPTED_EXTENSION
+  end type
 
-interface
+  class(CommonDataFileStrings), pointer, save :: CommonDataFileStrings_jcell_instance => null()
+  logical, save :: CommonDataFileStrings_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TCommonDataFileStrings = class(TObject)
-  public
-    XML: string;
-    _XML: string;
-    JSON: string;
-    _JSON: string;
-    XSL: string;
-    _XSL: string;
-    JAVA: string;
-    _JAVA: string;
-    KT: string;
-    _KT: string;
-    TS: string;
-    _TS: string;
-    JS: string;
-    _JS: string;
-    CPP: string;
-    _CPP: string;
-    H: string;
-    _H: string;
-    PY: string;
-    _PY: string;
-    GO: string;
-    _GO: string;
-    CS: string;
-    _CS: string;
-    ADB: string;
-    _ADB: string;
-    ADS: string;
-    _ADS: string;
-    ADA: string;
-    _ADA: string;
-    RUST: string;
-    _RUST: string;
-    C: string;
-    _C: string;
-    CSHARP: string;
-    _CSHARP: string;
-    ERL: string;
-    _ERL: string;
-    HS: string;
-    _HS: string;
-    HX: string;
-    _HX: string;
-    LUA: string;
-    _LUA: string;
-    PAS: string;
-    _PAS: string;
-    ML: string;
-    _ML: string;
-    PL: string;
-    _PL: string;
-    RB: string;
-    _RB: string;
-    ZIG: string;
-    _ZIG: string;
-    PM: string;
-    _PM: string;
-    KTS: string;
-    _KTS: string;
-    CBL: string;
-    _CBL: string;
-    COB: string;
-    _COB: string;
-    F90: string;
-    _F90: string;
-    F: string;
-    _F: string;
-    DART: string;
-    _DART: string;
-    EX: string;
-    _EX: string;
-    EXS: string;
-    _EXS: string;
-    M: string;
-    _M: string;
-    SWIFT: string;
-    _SWIFT: string;
-    ASM_: string;
-    _ASM: string;
-    S: string;
-    _S: string;
-    NIM: string;
-    _NIM: string;
-    VALA: string;
-    _VALA: string;
-    LISP: string;
-    _LISP: string;
-    RKT: string;
-    _RKT: string;
-    SCM: string;
-    _SCM: string;
-    AS: string;
-    _AS: string;
-    OBX: string;
-    _OBX: string;
-    SCALA: string;
-    _SCALA: string;
-    GROOVY: string;
-    _GROOVY: string;
-    JL: string;
-    _JL: string;
-    TCL: string;
-    _TCL: string;
-    WREN: string;
-    _WREN: string;
-    JANET: string;
-    _JANET: string;
-    GR: string;
-    _GR: string;
-    ELM: string;
-    _ELM: string;
-    KOTLIN: string;
-    TYPESCRIPT: string;
-    JAVASCRIPT: string;
-    C_PLUS_PLUS: string;
-    PYTHON: string;
-    C_SHARP: string;
-    RUST_NAME: string;
-    RUBY: string;
-    PERL: string;
-    OBJECT_PASCAL: string;
-    OCAML: string;
-    HASKELL: string;
-    HAXE: string;
-    ERLANG: string;
-    COBOL: string;
-    FORTRAN: string;
-    ELIXIR: string;
-    OBJECTIVE_C: string;
-    RACKET: string;
-    SCHEME: string;
-    ACTIONSCRIPT: string;
-    OBERON_PLUS: string;
-    JULIA: string;
-    GRAIN: string;
-    CPLUSPLUS: string;
-    GOLANG: string;
-    CSHARP_ALIAS: string;
-    C23: string;
-    PASCAL: string;
-    OBJECT_PASCAL_ALIAS: string;
-    OBJC: string;
-    OBJECTIVE_C_ALIAS: string;
-    ASSEMBLY: string;
-    COMMON_LISP: string;
-    OBERON: string;
-    OBERON_PLUS_ALIAS: string;
-    KT_SHORT_NAME: string;
-    TS_SHORT_NAME: string;
-    JS_SHORT_NAME: string;
-    CPP_SHORT_NAME: string;
-    PY_SHORT_NAME: string;
-    GO_SHORT_NAME: string;
-    CS_SHORT_NAME: string;
-    ADA_SHORT_NAME: string;
-    RUST_SHORT_NAME: string;
-    LUA_SHORT_NAME: string;
-    C_SHORT_NAME: string;
-    ZIG_SHORT_NAME: string;
-    RB_SHORT_NAME: string;
-    PL_SHORT_NAME: string;
-    PAS_SHORT_NAME: string;
-    ML_SHORT_NAME: string;
-    HS_SHORT_NAME: string;
-    HX_SHORT_NAME: string;
-    ERL_SHORT_NAME: string;
-    CBL_SHORT_NAME: string;
-    F90_SHORT_NAME: string;
-    DART_SHORT_NAME: string;
-    EX_SHORT_NAME: string;
-    OBJC_SHORT_NAME: string;
-    SWIFT_SHORT_NAME: string;
-    ASM_SHORT_NAME: string;
-    NIM_SHORT_NAME: string;
-    VALA_SHORT_NAME: string;
-    LISP_SHORT_NAME: string;
-    RKT_SHORT_NAME: string;
-    SCM_SHORT_NAME: string;
-    AS_SHORT_NAME: string;
-    OBX_SHORT_NAME: string;
-    SCALA_SHORT_NAME: string;
-    GROOVY_SHORT_NAME: string;
-    JL_SHORT_NAME: string;
-    TCL_SHORT_NAME: string;
-    WREN_SHORT_NAME: string;
-    JANET_SHORT_NAME: string;
-    GR_SHORT_NAME: string;
-    ELM_SHORT_NAME: string;
-    UNCRYPTED_EXTENSION: string;
-    ENCRYPTED_EXTENSION: string;
-    class var instance: TCommonDataFileStrings;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TCommonDataFileStrings; static;
-  end;
+  function CommonDataFileStrings_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CommonDataFileStrings), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CommonDataFileStrings)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function CommonDataFileStrings_jstatic_instance() result(jresult)
+    class(CommonDataFileStrings), pointer :: jresult
+    if (.not. CommonDataFileStrings_jset_instance) then
+      CommonDataFileStrings_jset_instance = .true.
+      CommonDataFileStrings_jcell_instance => CommonDataFileStrings_jnew_0()
+    end if
+    jresult => CommonDataFileStrings_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine CommonDataFileStrings_jsetstatic_instance(jvalue)
+    class(CommonDataFileStrings), target, optional :: jvalue
+    CommonDataFileStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonDataFileStrings_jcell_instance => jvalue
+    else
+      CommonDataFileStrings_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TCommonDataFileStrings.InitFields;
-begin
-  Self.XML := 'xml';
-  Self._XML := '.xml';
-  Self.JSON := 'json';
-  Self._JSON := '.json';
-  Self.XSL := 'xsl';
-  Self._XSL := '.xsl';
-  Self.JAVA := 'java';
-  Self._JAVA := '.java';
-  Self.KT := 'kt';
-  Self._KT := '.kt';
-  Self.TS := 'ts';
-  Self._TS := '.ts';
-  Self.JS := 'js';
-  Self._JS := '.js';
-  Self.CPP := 'cpp';
-  Self._CPP := '.cpp';
-  Self.H := 'h';
-  Self._H := '.h';
-  Self.PY := 'py';
-  Self._PY := '.py';
-  Self.GO := 'go';
-  Self._GO := '.go';
-  Self.CS := 'cs';
-  Self._CS := '.cs';
-  Self.ADB := 'adb';
-  Self._ADB := '.adb';
-  Self.ADS := 'ads';
-  Self._ADS := '.ads';
-  Self.ADA := 'ada';
-  Self._ADA := '.ada';
-  Self.RUST := 'rs';
-  Self._RUST := '.rs';
-  Self.C := 'c';
-  Self._C := '.c';
-  Self.CSHARP := 'cs';
-  Self._CSHARP := '.cs';
-  Self.ERL := 'erl';
-  Self._ERL := '.erl';
-  Self.HS := 'hs';
-  Self._HS := '.hs';
-  Self.HX := 'hx';
-  Self._HX := '.hx';
-  Self.LUA := 'lua';
-  Self._LUA := '.lua';
-  Self.PAS := 'pas';
-  Self._PAS := '.pas';
-  Self.ML := 'ml';
-  Self._ML := '.ml';
-  Self.PL := 'pl';
-  Self._PL := '.pl';
-  Self.RB := 'rb';
-  Self._RB := '.rb';
-  Self.ZIG := 'zig';
-  Self._ZIG := '.zig';
-  Self.PM := 'pm';
-  Self._PM := '.pm';
-  Self.KTS := 'kts';
-  Self._KTS := '.kts';
-  Self.CBL := 'cbl';
-  Self._CBL := '.cbl';
-  Self.COB := 'cob';
-  Self._COB := '.cob';
-  Self.F90 := 'f90';
-  Self._F90 := '.f90';
-  Self.F := 'f';
-  Self._F := '.f';
-  Self.DART := 'dart';
-  Self._DART := '.dart';
-  Self.EX := 'ex';
-  Self._EX := '.ex';
-  Self.EXS := 'exs';
-  Self._EXS := '.exs';
-  Self.M := 'm';
-  Self._M := '.m';
-  Self.SWIFT := 'swift';
-  Self._SWIFT := '.swift';
-  Self.ASM_ := 'asm';
-  Self._ASM := '.asm';
-  Self.S := 's';
-  Self._S := '.s';
-  Self.NIM := 'nim';
-  Self._NIM := '.nim';
-  Self.VALA := 'vala';
-  Self._VALA := '.vala';
-  Self.LISP := 'lisp';
-  Self._LISP := '.lisp';
-  Self.RKT := 'rkt';
-  Self._RKT := '.rkt';
-  Self.SCM := 'scm';
-  Self._SCM := '.scm';
-  Self.AS := 'as';
-  Self._AS := '.as';
-  Self.OBX := 'obx';
-  Self._OBX := '.obx';
-  Self.SCALA := 'scala';
-  Self._SCALA := '.scala';
-  Self.GROOVY := 'groovy';
-  Self._GROOVY := '.groovy';
-  Self.JL := 'jl';
-  Self._JL := '.jl';
-  Self.TCL := 'tcl';
-  Self._TCL := '.tcl';
-  Self.WREN := 'wren';
-  Self._WREN := '.wren';
-  Self.JANET := 'janet';
-  Self._JANET := '.janet';
-  Self.GR := 'gr';
-  Self._GR := '.gr';
-  Self.ELM := 'elm';
-  Self._ELM := '.elm';
-  Self.KOTLIN := 'kotlin';
-  Self.TYPESCRIPT := 'typescript';
-  Self.JAVASCRIPT := 'javascript';
-  Self.C_PLUS_PLUS := 'c++';
-  Self.PYTHON := 'python';
-  Self.C_SHARP := 'c#';
-  Self.RUST_NAME := 'rust';
-  Self.RUBY := 'ruby';
-  Self.PERL := 'perl';
-  Self.OBJECT_PASCAL := 'objectpascal';
-  Self.OCAML := 'ocaml';
-  Self.HASKELL := 'haskell';
-  Self.HAXE := 'haxe';
-  Self.ERLANG := 'erlang';
-  Self.COBOL := 'cobol';
-  Self.FORTRAN := 'fortran';
-  Self.ELIXIR := 'elixir';
-  Self.OBJECTIVE_C := 'objective-c';
-  Self.RACKET := 'racket';
-  Self.SCHEME := 'scheme';
-  Self.ACTIONSCRIPT := 'actionscript';
-  Self.OBERON_PLUS := 'oberon+';
-  Self.JULIA := 'julia';
-  Self.GRAIN := 'grain';
-  Self.CPLUSPLUS := 'cplusplus';
-  Self.GOLANG := 'golang';
-  Self.CSHARP_ALIAS := 'csharp';
-  Self.C23 := 'c23';
-  Self.PASCAL := 'pascal';
-  Self.OBJECT_PASCAL_ALIAS := 'object pascal';
-  Self.OBJC := 'objc';
-  Self.OBJECTIVE_C_ALIAS := 'objectivec';
-  Self.ASSEMBLY := 'assembly';
-  Self.COMMON_LISP := 'common lisp';
-  Self.OBERON := 'oberon';
-  Self.OBERON_PLUS_ALIAS := 'oberonplus';
-  Self.KT_SHORT_NAME := 'Kt';
-  Self.TS_SHORT_NAME := 'Ts';
-  Self.JS_SHORT_NAME := 'Js';
-  Self.CPP_SHORT_NAME := 'Cpp';
-  Self.PY_SHORT_NAME := 'Py';
-  Self.GO_SHORT_NAME := 'Go';
-  Self.CS_SHORT_NAME := 'Cs';
-  Self.ADA_SHORT_NAME := 'Ada';
-  Self.RUST_SHORT_NAME := 'Rust';
-  Self.LUA_SHORT_NAME := 'Lua';
-  Self.C_SHORT_NAME := 'C';
-  Self.ZIG_SHORT_NAME := 'Zig';
-  Self.RB_SHORT_NAME := 'Rb';
-  Self.PL_SHORT_NAME := 'Pl';
-  Self.PAS_SHORT_NAME := 'Pas';
-  Self.ML_SHORT_NAME := 'Ml';
-  Self.HS_SHORT_NAME := 'Hs';
-  Self.HX_SHORT_NAME := 'Hx';
-  Self.ERL_SHORT_NAME := 'Erl';
-  Self.CBL_SHORT_NAME := 'Cbl';
-  Self.F90_SHORT_NAME := 'F90';
-  Self.DART_SHORT_NAME := 'Dart';
-  Self.EX_SHORT_NAME := 'Ex';
-  Self.OBJC_SHORT_NAME := 'ObjC';
-  Self.SWIFT_SHORT_NAME := 'Swift';
-  Self.ASM_SHORT_NAME := 'Asm';
-  Self.NIM_SHORT_NAME := 'Nim';
-  Self.VALA_SHORT_NAME := 'Vala';
-  Self.LISP_SHORT_NAME := 'Lisp';
-  Self.RKT_SHORT_NAME := 'Rkt';
-  Self.SCM_SHORT_NAME := 'Scm';
-  Self.AS_SHORT_NAME := 'As';
-  Self.OBX_SHORT_NAME := 'Obx';
-  Self.SCALA_SHORT_NAME := 'Scala';
-  Self.GROOVY_SHORT_NAME := 'Groovy';
-  Self.JL_SHORT_NAME := 'Jl';
-  Self.TCL_SHORT_NAME := 'Tcl';
-  Self.WREN_SHORT_NAME := 'Wren';
-  Self.JANET_SHORT_NAME := 'Janet';
-  Self.GR_SHORT_NAME := 'Gr';
-  Self.ELM_SHORT_NAME := 'Elm';
-  Self.UNCRYPTED_EXTENSION := Self.XML;
-  Self.ENCRYPTED_EXTENSION := 'abd';
-end;
+  function CommonDataFileStrings_jnew_0() result(this)
+    class(CommonDataFileStrings), pointer :: this
+    allocate(this)
+    this%jclass = 'CommonDataFileStrings'
+    this%f_XML = ''
+    this%f__XML = ''
+    this%f_JSON = ''
+    this%f__JSON = ''
+    this%f_XSL = ''
+    this%f__XSL = ''
+    this%f_JAVA = ''
+    this%f__JAVA = ''
+    this%f_KT = ''
+    this%f__KT = ''
+    this%f_TS = ''
+    this%f__TS = ''
+    this%f_JS = ''
+    this%f__JS = ''
+    this%f_CPP = ''
+    this%f__CPP = ''
+    this%f_H = ''
+    this%f__H = ''
+    this%f_PY = ''
+    this%f__PY = ''
+    this%f_GO = ''
+    this%f__GO = ''
+    this%f_CS = ''
+    this%f__CS = ''
+    this%f_ADB = ''
+    this%f__ADB = ''
+    this%f_ADS = ''
+    this%f__ADS = ''
+    this%f_ADA = ''
+    this%f__ADA = ''
+    this%f_RUST = ''
+    this%f__RUST = ''
+    this%f_C = ''
+    this%f__C = ''
+    this%f_CSHARP = ''
+    this%f__CSHARP = ''
+    this%f_ERL = ''
+    this%f__ERL = ''
+    this%f_HS = ''
+    this%f__HS = ''
+    this%f_HX = ''
+    this%f__HX = ''
+    this%f_LUA = ''
+    this%f__LUA = ''
+    this%f_PAS = ''
+    this%f__PAS = ''
+    this%f_ML = ''
+    this%f__ML = ''
+    this%f_PL = ''
+    this%f__PL = ''
+    this%f_RB = ''
+    this%f__RB = ''
+    this%f_ZIG = ''
+    this%f__ZIG = ''
+    this%f_PM = ''
+    this%f__PM = ''
+    this%f_KTS = ''
+    this%f__KTS = ''
+    this%f_CBL = ''
+    this%f__CBL = ''
+    this%f_COB = ''
+    this%f__COB = ''
+    this%f_F90 = ''
+    this%f__F90 = ''
+    this%f_F = ''
+    this%f__F = ''
+    this%f_DART = ''
+    this%f__DART = ''
+    this%f_EX = ''
+    this%f__EX = ''
+    this%f_EXS = ''
+    this%f__EXS = ''
+    this%f_M = ''
+    this%f__M = ''
+    this%f_SWIFT = ''
+    this%f__SWIFT = ''
+    this%f_ASM = ''
+    this%f__ASM = ''
+    this%f_S = ''
+    this%f__S = ''
+    this%f_NIM = ''
+    this%f__NIM = ''
+    this%f_VALA = ''
+    this%f__VALA = ''
+    this%f_LISP = ''
+    this%f__LISP = ''
+    this%f_RKT = ''
+    this%f__RKT = ''
+    this%f_SCM = ''
+    this%f__SCM = ''
+    this%f_AS = ''
+    this%f__AS = ''
+    this%f_OBX = ''
+    this%f__OBX = ''
+    this%f_SCALA = ''
+    this%f__SCALA = ''
+    this%f_GROOVY = ''
+    this%f__GROOVY = ''
+    this%f_JL = ''
+    this%f__JL = ''
+    this%f_TCL = ''
+    this%f__TCL = ''
+    this%f_WREN = ''
+    this%f__WREN = ''
+    this%f_JANET = ''
+    this%f__JANET = ''
+    this%f_GR = ''
+    this%f__GR = ''
+    this%f_ELM = ''
+    this%f__ELM = ''
+    this%f_KOTLIN = ''
+    this%f_TYPESCRIPT = ''
+    this%f_JAVASCRIPT = ''
+    this%f_C_PLUS_PLUS = ''
+    this%f_PYTHON = ''
+    this%f_C_SHARP = ''
+    this%f_RUST_NAME = ''
+    this%f_RUBY = ''
+    this%f_PERL = ''
+    this%f_OBJECT_PASCAL = ''
+    this%f_OCAML = ''
+    this%f_HASKELL = ''
+    this%f_HAXE = ''
+    this%f_ERLANG = ''
+    this%f_COBOL = ''
+    this%f_FORTRAN = ''
+    this%f_ELIXIR = ''
+    this%f_OBJECTIVE_C = ''
+    this%f_RACKET = ''
+    this%f_SCHEME = ''
+    this%f_ACTIONSCRIPT = ''
+    this%f_OBERON_PLUS = ''
+    this%f_JULIA = ''
+    this%f_GRAIN = ''
+    this%f_CPLUSPLUS = ''
+    this%f_GOLANG = ''
+    this%f_CSHARP_ALIAS = ''
+    this%f_C23 = ''
+    this%f_PASCAL = ''
+    this%f_OBJECT_PASCAL_ALIAS = ''
+    this%f_OBJC = ''
+    this%f_OBJECTIVE_C_ALIAS = ''
+    this%f_ASSEMBLY = ''
+    this%f_COMMON_LISP = ''
+    this%f_OBERON = ''
+    this%f_OBERON_PLUS_ALIAS = ''
+    this%f_KT_SHORT_NAME = ''
+    this%f_TS_SHORT_NAME = ''
+    this%f_JS_SHORT_NAME = ''
+    this%f_CPP_SHORT_NAME = ''
+    this%f_PY_SHORT_NAME = ''
+    this%f_GO_SHORT_NAME = ''
+    this%f_CS_SHORT_NAME = ''
+    this%f_ADA_SHORT_NAME = ''
+    this%f_RUST_SHORT_NAME = ''
+    this%f_LUA_SHORT_NAME = ''
+    this%f_C_SHORT_NAME = ''
+    this%f_ZIG_SHORT_NAME = ''
+    this%f_RB_SHORT_NAME = ''
+    this%f_PL_SHORT_NAME = ''
+    this%f_PAS_SHORT_NAME = ''
+    this%f_ML_SHORT_NAME = ''
+    this%f_HS_SHORT_NAME = ''
+    this%f_HX_SHORT_NAME = ''
+    this%f_ERL_SHORT_NAME = ''
+    this%f_CBL_SHORT_NAME = ''
+    this%f_F90_SHORT_NAME = ''
+    this%f_DART_SHORT_NAME = ''
+    this%f_EX_SHORT_NAME = ''
+    this%f_OBJC_SHORT_NAME = ''
+    this%f_SWIFT_SHORT_NAME = ''
+    this%f_ASM_SHORT_NAME = ''
+    this%f_NIM_SHORT_NAME = ''
+    this%f_VALA_SHORT_NAME = ''
+    this%f_LISP_SHORT_NAME = ''
+    this%f_RKT_SHORT_NAME = ''
+    this%f_SCM_SHORT_NAME = ''
+    this%f_AS_SHORT_NAME = ''
+    this%f_OBX_SHORT_NAME = ''
+    this%f_SCALA_SHORT_NAME = ''
+    this%f_GROOVY_SHORT_NAME = ''
+    this%f_JL_SHORT_NAME = ''
+    this%f_TCL_SHORT_NAME = ''
+    this%f_WREN_SHORT_NAME = ''
+    this%f_JANET_SHORT_NAME = ''
+    this%f_GR_SHORT_NAME = ''
+    this%f_ELM_SHORT_NAME = ''
+    this%f_UNCRYPTED_EXTENSION = ''
+    this%f_ENCRYPTED_EXTENSION = ''
+    this%f_XML = 'xml'
+    this%f__XML = '.xml'
+    this%f_JSON = 'json'
+    this%f__JSON = '.json'
+    this%f_XSL = 'xsl'
+    this%f__XSL = '.xsl'
+    this%f_JAVA = 'java'
+    this%f__JAVA = '.java'
+    this%f_KT = 'kt'
+    this%f__KT = '.kt'
+    this%f_TS = 'ts'
+    this%f__TS = '.ts'
+    this%f_JS = 'js'
+    this%f__JS = '.js'
+    this%f_CPP = 'cpp'
+    this%f__CPP = '.cpp'
+    this%f_H = 'h'
+    this%f__H = '.h'
+    this%f_PY = 'py'
+    this%f__PY = '.py'
+    this%f_GO = 'go'
+    this%f__GO = '.go'
+    this%f_CS = 'cs'
+    this%f__CS = '.cs'
+    this%f_ADB = 'adb'
+    this%f__ADB = '.adb'
+    this%f_ADS = 'ads'
+    this%f__ADS = '.ads'
+    this%f_ADA = 'ada'
+    this%f__ADA = '.ada'
+    this%f_RUST = 'rs'
+    this%f__RUST = '.rs'
+    this%f_C = 'c'
+    this%f__C = '.c'
+    this%f_CSHARP = 'cs'
+    this%f__CSHARP = '.cs'
+    this%f_ERL = 'erl'
+    this%f__ERL = '.erl'
+    this%f_HS = 'hs'
+    this%f__HS = '.hs'
+    this%f_HX = 'hx'
+    this%f__HX = '.hx'
+    this%f_LUA = 'lua'
+    this%f__LUA = '.lua'
+    this%f_PAS = 'pas'
+    this%f__PAS = '.pas'
+    this%f_ML = 'ml'
+    this%f__ML = '.ml'
+    this%f_PL = 'pl'
+    this%f__PL = '.pl'
+    this%f_RB = 'rb'
+    this%f__RB = '.rb'
+    this%f_ZIG = 'zig'
+    this%f__ZIG = '.zig'
+    this%f_PM = 'pm'
+    this%f__PM = '.pm'
+    this%f_KTS = 'kts'
+    this%f__KTS = '.kts'
+    this%f_CBL = 'cbl'
+    this%f__CBL = '.cbl'
+    this%f_COB = 'cob'
+    this%f__COB = '.cob'
+    this%f_F90 = 'f90'
+    this%f__F90 = '.f90'
+    this%f_F = 'f'
+    this%f__F = '.f'
+    this%f_DART = 'dart'
+    this%f__DART = '.dart'
+    this%f_EX = 'ex'
+    this%f__EX = '.ex'
+    this%f_EXS = 'exs'
+    this%f__EXS = '.exs'
+    this%f_M = 'm'
+    this%f__M = '.m'
+    this%f_SWIFT = 'swift'
+    this%f__SWIFT = '.swift'
+    this%f_ASM = 'asm'
+    this%f__ASM = '.asm'
+    this%f_S = 's'
+    this%f__S = '.s'
+    this%f_NIM = 'nim'
+    this%f__NIM = '.nim'
+    this%f_VALA = 'vala'
+    this%f__VALA = '.vala'
+    this%f_LISP = 'lisp'
+    this%f__LISP = '.lisp'
+    this%f_RKT = 'rkt'
+    this%f__RKT = '.rkt'
+    this%f_SCM = 'scm'
+    this%f__SCM = '.scm'
+    this%f_AS = 'as'
+    this%f__AS = '.as'
+    this%f_OBX = 'obx'
+    this%f__OBX = '.obx'
+    this%f_SCALA = 'scala'
+    this%f__SCALA = '.scala'
+    this%f_GROOVY = 'groovy'
+    this%f__GROOVY = '.groovy'
+    this%f_JL = 'jl'
+    this%f__JL = '.jl'
+    this%f_TCL = 'tcl'
+    this%f__TCL = '.tcl'
+    this%f_WREN = 'wren'
+    this%f__WREN = '.wren'
+    this%f_JANET = 'janet'
+    this%f__JANET = '.janet'
+    this%f_GR = 'gr'
+    this%f__GR = '.gr'
+    this%f_ELM = 'elm'
+    this%f__ELM = '.elm'
+    this%f_KOTLIN = 'kotlin'
+    this%f_TYPESCRIPT = 'typescript'
+    this%f_JAVASCRIPT = 'javascript'
+    this%f_C_PLUS_PLUS = 'c++'
+    this%f_PYTHON = 'python'
+    this%f_C_SHARP = 'c#'
+    this%f_RUST_NAME = 'rust'
+    this%f_RUBY = 'ruby'
+    this%f_PERL = 'perl'
+    this%f_OBJECT_PASCAL = 'objectpascal'
+    this%f_OCAML = 'ocaml'
+    this%f_HASKELL = 'haskell'
+    this%f_HAXE = 'haxe'
+    this%f_ERLANG = 'erlang'
+    this%f_COBOL = 'cobol'
+    this%f_FORTRAN = 'fortran'
+    this%f_ELIXIR = 'elixir'
+    this%f_OBJECTIVE_C = 'objective-c'
+    this%f_RACKET = 'racket'
+    this%f_SCHEME = 'scheme'
+    this%f_ACTIONSCRIPT = 'actionscript'
+    this%f_OBERON_PLUS = 'oberon+'
+    this%f_JULIA = 'julia'
+    this%f_GRAIN = 'grain'
+    this%f_CPLUSPLUS = 'cplusplus'
+    this%f_GOLANG = 'golang'
+    this%f_CSHARP_ALIAS = 'csharp'
+    this%f_C23 = 'c23'
+    this%f_PASCAL = 'pascal'
+    this%f_OBJECT_PASCAL_ALIAS = 'object pascal'
+    this%f_OBJC = 'objc'
+    this%f_OBJECTIVE_C_ALIAS = 'objectivec'
+    this%f_ASSEMBLY = 'assembly'
+    this%f_COMMON_LISP = 'common lisp'
+    this%f_OBERON = 'oberon'
+    this%f_OBERON_PLUS_ALIAS = 'oberonplus'
+    this%f_KT_SHORT_NAME = 'Kt'
+    this%f_TS_SHORT_NAME = 'Ts'
+    this%f_JS_SHORT_NAME = 'Js'
+    this%f_CPP_SHORT_NAME = 'Cpp'
+    this%f_PY_SHORT_NAME = 'Py'
+    this%f_GO_SHORT_NAME = 'Go'
+    this%f_CS_SHORT_NAME = 'Cs'
+    this%f_ADA_SHORT_NAME = 'Ada'
+    this%f_RUST_SHORT_NAME = 'Rust'
+    this%f_LUA_SHORT_NAME = 'Lua'
+    this%f_C_SHORT_NAME = 'C'
+    this%f_ZIG_SHORT_NAME = 'Zig'
+    this%f_RB_SHORT_NAME = 'Rb'
+    this%f_PL_SHORT_NAME = 'Pl'
+    this%f_PAS_SHORT_NAME = 'Pas'
+    this%f_ML_SHORT_NAME = 'Ml'
+    this%f_HS_SHORT_NAME = 'Hs'
+    this%f_HX_SHORT_NAME = 'Hx'
+    this%f_ERL_SHORT_NAME = 'Erl'
+    this%f_CBL_SHORT_NAME = 'Cbl'
+    this%f_F90_SHORT_NAME = 'F90'
+    this%f_DART_SHORT_NAME = 'Dart'
+    this%f_EX_SHORT_NAME = 'Ex'
+    this%f_OBJC_SHORT_NAME = 'ObjC'
+    this%f_SWIFT_SHORT_NAME = 'Swift'
+    this%f_ASM_SHORT_NAME = 'Asm'
+    this%f_NIM_SHORT_NAME = 'Nim'
+    this%f_VALA_SHORT_NAME = 'Vala'
+    this%f_LISP_SHORT_NAME = 'Lisp'
+    this%f_RKT_SHORT_NAME = 'Rkt'
+    this%f_SCM_SHORT_NAME = 'Scm'
+    this%f_AS_SHORT_NAME = 'As'
+    this%f_OBX_SHORT_NAME = 'Obx'
+    this%f_SCALA_SHORT_NAME = 'Scala'
+    this%f_GROOVY_SHORT_NAME = 'Groovy'
+    this%f_JL_SHORT_NAME = 'Jl'
+    this%f_TCL_SHORT_NAME = 'Tcl'
+    this%f_WREN_SHORT_NAME = 'Wren'
+    this%f_JANET_SHORT_NAME = 'Janet'
+    this%f_GR_SHORT_NAME = 'Gr'
+    this%f_ELM_SHORT_NAME = 'Elm'
+    this%f_UNCRYPTED_EXTENSION = this%f_XML
+    this%f_ENCRYPTED_EXTENSION = 'abd'
+  end function
 
-constructor TCommonDataFileStrings.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TCommonDataFileStrings.getInstance: TCommonDataFileStrings;
-begin
-        Exit(TCommonDataFileStrings.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TCommonDataFileStrings.instance := TCommonDataFileStrings.Create();
-  {AB:END}
-
-end.
+  recursive function CommonDataFileStrings_jm_getInstance_0() result(jresult)
+    class(CommonDataFileStrings), pointer :: jresult
+        jresult => CommonDataFileStrings_jstatic_instance()
+        return
+  end function
+end module CommonDataFileStrings_m
 

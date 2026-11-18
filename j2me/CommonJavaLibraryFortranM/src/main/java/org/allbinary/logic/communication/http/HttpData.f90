@@ -49,6 +49,16 @@ contains
     jresult => HttpData_jcell_instance
   end function
 
+  subroutine HttpData_jsetstatic_instance(jvalue)
+    class(HttpData), target, optional :: jvalue
+    HttpData_jset_instance = .true.
+    if (present(jvalue)) then
+      HttpData_jcell_instance => jvalue
+    else
+      HttpData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function HttpData_jnew_0() result(this)
     class(HttpData), pointer :: this
     class(CommonSeps), pointer :: j_commonSeps

@@ -1,91 +1,92 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module GameFeatureItemCommandListener_m
+  use JR_m
+  use GameConfigurationGauge_m
+  use GameConfigurationUtil_m
+  use GameOptionsForm_m
+  use LogUtil_m
+  use StringMaker_m
+  use MidletStrings_m
+  use CommonLabels_m
+  use CommonStrings_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit GameFeatureItemCommandListener;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Command, Item, ItemCommandListener, GameOptionsForm, LogUtil;
-
-type
-  {AB:TYPES}
-  TGameFeatureItemCommandListener = class(TInterfacedObject, IItemCommandListener)
-  public
-    logUtil: TLogUtil;
-    gameOptionsForm: TGameOptionsForm;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(gameOptionsForm_: TGameOptionsForm);
-        procedure commandAction(command_: TCommand; item_: TItem); virtual;
-  end;
-
-implementation
-uses
-  GameConfigurationGauge, GameConfigurationUtil, StringMaker, MidletStrings, CommonLabels, CommonStrings;
+  type, extends(ItemCommandListener) :: GameFeatureItemCommandListener
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(GameOptionsForm), pointer :: f_gameOptionsForm => null()
+  contains
+    procedure :: jm_commandAction_2 => GameFeatureItemCommandListener_jm_commandAction_2
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TGameFeatureItemCommandListener.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-end;
+  function GameFeatureItemCommandListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameFeatureItemCommandListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameFeatureItemCommandListener)
+      jresult => object
+    end select
+  end function
 
-function TGameFeatureItemCommandListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function GameFeatureItemCommandListener_jnew_1(j_gameOptionsForm) result(this)
+    class(GameOptionsForm), target, optional :: j_gameOptionsForm
+    class(GameFeatureItemCommandListener), pointer :: this
+    allocate(this)
+    this%jclass = 'GameFeatureItemCommandListener'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
+        this%f_gameOptionsForm => j_gameOptionsForm
+  end function
 
-constructor TGameFeatureItemCommandListener.Create(gameOptionsForm_: TGameOptionsForm);
-begin
-    inherited Create;
-    InitFields;
-        Self.gameOptionsForm := gameOptionsForm_;
-end;
-    
-
-procedure TGameFeatureItemCommandListener.commandAction(command_: TCommand; item_: TItem);
-var
-  itemLabel: string;
-  commonStrings_: TCommonStrings;
-begin
-        try
-            itemLabel := item_.getLabel();
-            Self.logUtil.putF(TStringMaker.Create().append(TCommonLabels.getInstance().ITEM_LABEL).append(itemLabel).toString(), TJava.Box(Self), TMidletStrings.getInstance().COMMAND_ACTION);
-            if (TJava.ToObject(item_) is TGameConfigurationGauge) then begin
-                TGameConfigurationUtil.getInstance().change(Self.gameOptionsForm, TGameConfigurationGauge(TJava.ToObject(item_)));
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), TMidletStrings.getInstance().COMMAND_ACTION, TJava.Box(e));
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine GameFeatureItemCommandListener_jm_commandAction_2(this, j_command, j_item)
+    class(GameFeatureItemCommandListener), target :: this
+    class(Command), target, optional :: j_command
+    class(Item), target, optional :: j_item
+    character(len=:), allocatable :: j_itemLabel
+    class(CommonStrings), pointer :: j_commonStrings
+    class(StringMaker), pointer :: jtemp1
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+    class(CommonLabels), pointer :: jtemp4
+    class(MidletStrings), pointer :: jtemp5
+    class(GameConfigurationUtil), pointer :: jtemp6
+    class(MidletStrings), pointer :: jtemp7
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            j_itemLabel = j_item%jm_getLabel_0()
+            jtemp4 => CommonLabels_jm_getInstance_0()
+            jtemp3 => StringMaker_jnew_0()
+            jtemp2 => jtemp3%jm_append_1(jtemp4%f_ITEM_LABEL)
+            jtemp1 => jtemp2%jm_append_1(j_itemLabel)
+            jtemp5 => MidletStrings_jm_getInstance_0()
+            call this%f_logUtil%jm_putF_3(jtemp1%jm_toString_0(), this, jtemp5%f_COMMAND_ACTION)
+            if ((JR_className(j_item) == 'GameConfigurationGauge')) then
+                jtemp6 => GameConfigurationUtil_jm_getInstance_0()
+                call jtemp6%jm_change_2(this%f_gameOptionsForm, GameConfigurationGauge_jcast(j_item))
+            end if
+  end subroutine
+end module GameFeatureItemCommandListener_m
 

@@ -1,85 +1,91 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.graphics.hud
+module BasicHudFactory_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.graphics.hud
-unit BasicHudFactory;
+  type, extends(JObject) :: BasicHudFactory
+    character(len=:), allocatable :: f_DIRECTION_EXCEPTION
+    integer(4) :: f_VERTICAL = 0
+    integer(4) :: f_HORIZONTAL = 0
+    integer(4) :: f_BOTTOMLEFT = 0
+    integer(4) :: f_BOTTOMRIGHT = 0
+    integer(4) :: f_TOPLEFT = 0
+    integer(4) :: f_TOPRIGHT = 0
+    integer(4) :: f_BOTTOMCENTER = 0
+    integer(4) :: f_TOPCENTER = 0
+    integer(4) :: f_ABSOLUTE = 0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(BasicHudFactory), pointer, save :: BasicHudFactory_jcell_instance => null()
+  logical, save :: BasicHudFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function BasicHudFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicHudFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicHudFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TBasicHudFactory = class(TObject)
-  public
-    DIRECTION_EXCEPTION: string;
-    VERTICAL: Integer;
-    HORIZONTAL: Integer;
-    BOTTOMLEFT: Integer;
-    BOTTOMRIGHT: Integer;
-    TOPLEFT: Integer;
-    TOPRIGHT: Integer;
-    BOTTOMCENTER: Integer;
-    TOPCENTER: Integer;
-    ABSOLUTE_: Integer;
-    class var instance: TBasicHudFactory;
-    procedure InitFields;
-        class function getInstance: TBasicHudFactory; static;
-        constructor Create;
-  end;
+  function BasicHudFactory_jstatic_instance() result(jresult)
+    class(BasicHudFactory), pointer :: jresult
+    if (.not. BasicHudFactory_jset_instance) then
+      BasicHudFactory_jset_instance = .true.
+      BasicHudFactory_jcell_instance => BasicHudFactory_jnew_0()
+    end if
+    jresult => BasicHudFactory_jcell_instance
+  end function
 
-implementation
+  subroutine BasicHudFactory_jsetstatic_instance(jvalue)
+    class(BasicHudFactory), target, optional :: jvalue
+    BasicHudFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicHudFactory_jcell_instance => jvalue
+    else
+      BasicHudFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function BasicHudFactory_jnew_0() result(this)
+    class(BasicHudFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicHudFactory'
+    this%f_DIRECTION_EXCEPTION = ''
+    this%f_DIRECTION_EXCEPTION = 'Only Horizontal Direction is Allowed Currently'
+    this%f_VERTICAL = 0
+    this%f_HORIZONTAL = 1
+    this%f_BOTTOMLEFT = 0
+    this%f_BOTTOMRIGHT = 1
+    this%f_TOPLEFT = 2
+    this%f_TOPRIGHT = 3
+    this%f_BOTTOMCENTER = 4
+    this%f_TOPCENTER = 5
+    this%f_ABSOLUTE = 6
+        continue
+  end function
 
-procedure TBasicHudFactory.InitFields;
-begin
-  Self.DIRECTION_EXCEPTION := 'Only Horizontal Direction is Allowed Currently';
-  Self.VERTICAL := 0;
-  Self.HORIZONTAL := 1;
-  Self.BOTTOMLEFT := 0;
-  Self.BOTTOMRIGHT := 1;
-  Self.TOPLEFT := 2;
-  Self.TOPRIGHT := 3;
-  Self.BOTTOMCENTER := 4;
-  Self.TOPCENTER := 5;
-  Self.ABSOLUTE_ := 6;
-end;
-    
-
-class function TBasicHudFactory.getInstance: TBasicHudFactory;
-begin
-        Exit(TBasicHudFactory.instance);
-end;
-    
-
-constructor TBasicHudFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TBasicHudFactory.instance := TBasicHudFactory.Create();
-  {AB:END}
-
-end.
+  recursive function BasicHudFactory_jm_getInstance_0() result(jresult)
+    class(BasicHudFactory), pointer :: jresult
+        jresult => BasicHudFactory_jstatic_instance()
+        return
+  end function
+end module BasicHudFactory_m
 

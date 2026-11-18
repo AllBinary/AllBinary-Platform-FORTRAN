@@ -1,73 +1,66 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.paint
+module Paintable_m
+  use JR_m
+  use BasicColor_m
+  use PaintableInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.paint
-unit Paintable;
+  type, extends(PaintableInterface) :: Paintable
+  contains
+    procedure :: jm_setBasicColorP_1 => Paintable_jm_setBasicColorP_1
+    procedure :: jm_paint_1 => Paintable_jm_paint_1
+    procedure :: jm_paintThreed_1 => Paintable_jm_paintThreed_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, BasicColor, PaintableInterface;
+  function Paintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Paintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Paintable)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPaintable = class(TInterfacedObject, IPaintableInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        procedure setBasicColorP(basicColor_: TBasicColor); virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure paintThreed(graphics_: TGraphics); virtual;
-  end;
+  function Paintable_jnew_0() result(this)
+    class(Paintable), pointer :: this
+    allocate(this)
+    this%jclass = 'Paintable'
+  end function
 
-implementation
+  recursive subroutine Paintable_jm_setBasicColorP_1(this, j_basicColor)
+    class(Paintable), target :: this
+    class(BasicColor), target, optional :: j_basicColor
+    continue
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine Paintable_jm_paint_1(this, j_graphics)
+    class(Paintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-function TPaintable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TPaintable.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TPaintable.setBasicColorP(basicColor_: TBasicColor);
-begin
-end;
-    
-
-procedure TPaintable.paint(graphics_: TGraphics);
-begin
-end;
-    
-
-procedure TPaintable.paintThreed(graphics_: TGraphics);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine Paintable_jm_paintThreed_1(this, j_graphics)
+    class(Paintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module Paintable_m
 

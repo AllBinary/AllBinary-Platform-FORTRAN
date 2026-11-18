@@ -1,73 +1,71 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form
+module FormPaintable_m
+  use JR_m
+  use Paintable_m
+  use PaintableForm_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form
-unit FormPaintable;
+  type, extends(Paintable) :: FormPaintable
+    class(PaintableForm), pointer :: f_form => null()
+  contains
+    procedure :: jm_paint_1 => FormPaintable_jm_paint_1
+    procedure :: jm_getForm_0 => FormPaintable_jm_getForm_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Paintable, PaintableForm;
+  function FormPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(FormPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (FormPaintable)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TFormPaintable = class(TPaintable)
-  public
-    form: TPaintableForm;
-    procedure InitFields;
-        constructor Create(form: TPaintableForm);
-        procedure paint(graphics_: TGraphics); override;
-        function getForm: TPaintableForm; virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TFormPaintable.InitFields;
-begin
-  
-end;
+  recursive function FormPaintable_jnew_1(j_form) result(this)
+    class(PaintableForm), target, optional :: j_form
+    class(FormPaintable), pointer :: this
+    allocate(this)
+    this%jclass = 'FormPaintable'
     
+        this%f_form => j_form
+  end function
 
-constructor TFormPaintable.Create(form: TPaintableForm);
-begin
-    inherited Create;
-    InitFields;
-        Self.form := form;
-end;
-    
+  recursive subroutine FormPaintable_jm_paint_1(this, j_graphics)
+    class(FormPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_form%jm_paint_1(j_graphics)
+  end subroutine
 
-procedure TFormPaintable.paint(graphics_: TGraphics);
-begin
-        Self.form.paint(graphics_);
-end;
-    
-
-function TFormPaintable.getForm: TPaintableForm;
-begin
-        Exit(Self.form);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function FormPaintable_jm_getForm_0(this) result(jresult)
+    class(FormPaintable), target :: this
+    class(PaintableForm), pointer :: jresult
+        jresult => this%f_form
+        return
+  end function
+end module FormPaintable_m
 

@@ -1,77 +1,83 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game
+module GameTypeFactory_m
+  use JR_m
+  use StringUtil_m
+  use GameType_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game
-unit GameTypeFactory;
+  type, extends(JObject) :: GameTypeFactory
+    type(JRef), allocatable :: f_NULL_GAME_TYPE_ARRAY(:)
+    class(GameType), pointer :: f_NONE => null()
+    class(GameType), pointer :: f_SINGLE_PLAYER => null()
+    class(GameType), pointer :: f_MULTI_PLAYER => null()
+    class(GameType), pointer :: f_BOT => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GameTypeFactory), pointer, save :: GameTypeFactory_jcell_instance => null()
+  logical, save :: GameTypeFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameType;
+  function GameTypeFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameTypeFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameTypeFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameTypeFactory = class(TObject)
-  public
-    NULL_GAME_TYPE_ARRAY: TArray<TGameType>;
-    NONE: TGameType;
-    SINGLE_PLAYER: TGameType;
-    MULTI_PLAYER: TGameType;
-    BOT: TGameType;
-    class var instance: TGameTypeFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TGameTypeFactory; static;
-  end;
+  function GameTypeFactory_jstatic_instance() result(jresult)
+    class(GameTypeFactory), pointer :: jresult
+    if (.not. GameTypeFactory_jset_instance) then
+      GameTypeFactory_jset_instance = .true.
+      GameTypeFactory_jcell_instance => GameTypeFactory_jnew_0()
+    end if
+    jresult => GameTypeFactory_jcell_instance
+  end function
 
-implementation
-uses
-  StringUtil;
+  subroutine GameTypeFactory_jsetstatic_instance(jvalue)
+    class(GameTypeFactory), target, optional :: jvalue
+    GameTypeFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      GameTypeFactory_jcell_instance => jvalue
+    else
+      GameTypeFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  function GameTypeFactory_jnew_0() result(this)
+    class(GameTypeFactory), pointer :: this
+    class(StringUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'GameTypeFactory'
+    this%f_NULL_GAME_TYPE_ARRAY = JR_newRefArray(0)
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_NONE => GameType_jnew_1(jtemp1%f_NULL_STRING)
+    this%f_SINGLE_PLAYER => GameType_jnew_1('Single Player')
+    this%f_MULTI_PLAYER => GameType_jnew_1('Multi Player')
+    this%f_BOT => GameType_jnew_1('Artificial Player')
+  end function
 
-{AB:CODE}
-
-procedure TGameTypeFactory.InitFields;
-begin
-  Self.NULL_GAME_TYPE_ARRAY := nil;
-  Self.NONE := TGameType.Create(TStringUtil.getInstance().NULL_STRING);
-  Self.SINGLE_PLAYER := TGameType.Create('Single Player');
-  Self.MULTI_PLAYER := TGameType.Create('Multi Player');
-  Self.BOT := TGameType.Create('Artificial Player');
-end;
-
-constructor TGameTypeFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TGameTypeFactory.getInstance: TGameTypeFactory;
-begin
-        Exit(TGameTypeFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameTypeFactory.instance := TGameTypeFactory.Create();
-  {AB:END}
-
-end.
+  recursive function GameTypeFactory_jm_getInstance_0() result(jresult)
+    class(GameTypeFactory), pointer :: jresult
+        jresult => GameTypeFactory_jstatic_instance()
+        return
+  end function
+end module GameTypeFactory_m
 

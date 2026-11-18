@@ -1,66 +1,54 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.layer.pickup.health
+module HealLayerFactory_m
+  use JR_m
+  use AllBinaryLayer_m
+  use AllBinaryLayerFactoryInterface_m
+  use HealLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.layer.pickup.health
-unit HealLayerFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryLayer, AllBinaryLayerFactoryInterface;
-
-type
-  {AB:TYPES}
-  THealLayerFactory = class(TInterfacedObject, IAllBinaryLayerFactoryInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        function getInstance: TAllBinaryLayer; virtual;
-  end;
-
-implementation
-uses
-  HealLayer;
+  type, extends(AllBinaryLayerFactoryInterface) :: HealLayerFactory
+  contains
+    procedure :: jm_getInstance_0 => HealLayerFactory_jm_getInstance_0
+  end type
 
 
-{AB:CODE}
+contains
 
-function THealLayerFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function HealLayerFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(HealLayerFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (HealLayerFactory)
+      jresult => object
+    end select
+  end function
 
-constructor THealLayerFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function HealLayerFactory_jnew_0() result(this)
+    class(HealLayerFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'HealLayerFactory'
+  end function
 
-// throws Exception
-function THealLayerFactory.getInstance: TAllBinaryLayer;
-begin
-        Exit(THealLayer.Create());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function HealLayerFactory_jm_getInstance_0(this) result(jresult)
+    class(HealLayerFactory), target :: this
+    class(AllBinaryLayer), pointer :: jresult
+        jresult => HealLayer_jnew_0()
+        return
+  end function
+end module HealLayerFactory_m
 

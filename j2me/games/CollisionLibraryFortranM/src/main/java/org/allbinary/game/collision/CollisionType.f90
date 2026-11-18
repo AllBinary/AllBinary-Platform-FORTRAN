@@ -1,66 +1,56 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.collision
+module CollisionType_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.collision
-unit CollisionType;
+  type, extends(JObject) :: CollisionType
+    character(len=:), allocatable :: f_name
+  contains
+    procedure :: jm_toString_0 => CollisionType_jm_toString_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function CollisionType_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CollisionType), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CollisionType)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCollisionType = class(TObject)
-  public
-    name: string;
-    procedure InitFields;
-        constructor Create(name: string);
-        function toString: string; virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TCollisionType.InitFields;
-begin
-  
-end;
+  recursive function CollisionType_jnew_1(j_name) result(this)
+    character(len=*), intent(in) :: j_name
+    class(CollisionType), pointer :: this
+    allocate(this)
+    this%jclass = 'CollisionType'
+    this%f_name = ''
     
+        this%f_name = j_name
+  end function
 
-constructor TCollisionType.Create(name: string);
-begin
-    inherited Create;
-    InitFields;
-        Self.name := name;
-end;
-    
-
-function TCollisionType.toString: string;
-begin
-        Exit(Self.name);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function CollisionType_jm_toString_0(this) result(jresult)
+    class(CollisionType), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_name
+        return
+  end function
+end module CollisionType_m
 

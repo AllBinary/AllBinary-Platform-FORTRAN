@@ -1,84 +1,95 @@
-// Generated Code Do Not Modify
-// package org.allbinary.physics.movement
-unit PreciseConstantVelocityMovement;
+! Generated Code Do Not Modify
+! package org.allbinary.physics.movement
+module PreciseConstantVelocityMovement_m
+  use JR_m
+  use AllBinaryGameLayer_m
+  use BasicVelocityProperties_m
+  use BasicDecimal_m
+  use MathUtil_m
+  use ScaleFactorFactory_m
+  use BasicConstantVelocityMovement_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryGameLayer, BasicVelocityProperties, BasicDecimal, BasicConstantVelocityMovement;
-
-type
-  {AB:TYPES}
-  TPreciseConstantVelocityMovement = class(TBasicConstantVelocityMovement)
-  public
-    accumulatedX: Integer;
-    accumulatedY: Integer;
-    accumulatedZ: Integer;
-    factorValue: Integer;
-    procedure InitFields;
-        constructor Create(basicDecimal_: TBasicDecimal; velocityProperties: TBasicVelocityProperties);
-        procedure init(speedBasicDecimal: TBasicDecimal; angle: Integer; otherAngle: Integer); override;
-        procedure process(layer: TAllBinaryGameLayer); override;
-  end;
-
-implementation
-uses
-  MathUtil, ScaleFactorFactory;
+  type, extends(BasicConstantVelocityMovement) :: PreciseConstantVelocityMovement
+    integer(4) :: f_accumulatedX = 0
+    integer(4) :: f_accumulatedY = 0
+    integer(4) :: f_accumulatedZ = 0
+    integer(4) :: f_factorValue = 0
+  contains
+    procedure :: jm_init_3 => PreciseConstantVelocityMovement_jm_init_3
+    procedure :: jm_process_1 => PreciseConstantVelocityMovement_jm_process_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TPreciseConstantVelocityMovement.InitFields;
-begin
-  
-  
-  
-  Self.factorValue := TScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
-end;
+  function PreciseConstantVelocityMovement_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PreciseConstantVelocityMovement), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PreciseConstantVelocityMovement)
+      jresult => object
+    end select
+  end function
+
+  recursive function PreciseConstantVelocityMovement_jnew_2(j_basicDecimal, j_velocityProperties) result(this)
+    class(BasicDecimal), target, optional :: j_basicDecimal
+    class(BasicVelocityProperties), target, optional :: j_velocityProperties
+    class(PreciseConstantVelocityMovement), pointer :: this
+    class(ScaleFactorFactory), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'PreciseConstantVelocityMovement'
     
-
-constructor TPreciseConstantVelocityMovement.Create(basicDecimal_: TBasicDecimal; velocityProperties: TBasicVelocityProperties);
-begin
-        inherited Create(basicDecimal_, velocityProperties);
-        InitFields;
-end;
     
-
-procedure TPreciseConstantVelocityMovement.init(speedBasicDecimal: TBasicDecimal; angle: Integer; otherAngle: Integer);
-begin
-end;
     
+    jtemp1 => ScaleFactorFactory_jm_getInstance_0()
+    this%f_factorValue = jtemp1%f_DEFAULT_SCALE_VALUE
+        continue ! super()
+  end function
 
-// throws Exception
-procedure TPreciseConstantVelocityMovement.process(layer: TAllBinaryGameLayer);
-var
-  mathUtil_: TMathUtil;
-  velocityProperties: TBasicVelocityProperties;
-begin
-        mathUtil_ := TMathUtil.getInstance();
-        velocityProperties := Self.getVelocityProperties();
-        Self.accumulatedX := Integer(Trunc(((Self.accumulatedX) + (velocityProperties.getVelocityXBasicDecimalP().getUnscaled()))));
-        Self.accumulatedY := Integer(Trunc(((Self.accumulatedY) + (velocityProperties.getVelocityYBasicDecimalP().getUnscaled()))));
-        Self.accumulatedZ := Integer(Trunc(((Self.accumulatedZ) + (velocityProperties.getVelocityZBasicDecimalP().getUnscaled()))));
-        layer.moveDXYZ((Self.accumulatedX) div (Self.factorValue), (Self.accumulatedY) div (Self.factorValue), (Self.accumulatedZ) div (Self.factorValue));
-        if (mathUtil_.abs(Self.accumulatedX)) > (Self.factorValue) then begin
-            Self.accumulatedX := 0;
-        end;
-        if (mathUtil_.abs(Self.accumulatedY)) > (Self.factorValue) then begin
-            Self.accumulatedY := 0;
-        end;
-        if (mathUtil_.abs(Self.accumulatedZ)) > (Self.factorValue) then begin
-            Self.accumulatedZ := 0;
-        end;
-end;
+  recursive subroutine PreciseConstantVelocityMovement_jm_init_3(this, j_speedBasicDecimal, j_angle, j_otherAngle)
+    class(PreciseConstantVelocityMovement), target :: this
+    class(BasicDecimal), target, optional :: j_speedBasicDecimal
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    continue
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine PreciseConstantVelocityMovement_jm_process_1(this, j_layer)
+    class(PreciseConstantVelocityMovement), target :: this
+    class(AllBinaryGameLayer), target, optional :: j_layer
+    class(MathUtil), pointer :: j_mathUtil
+    class(BasicVelocityProperties), pointer :: j_velocityProperties
+    class(BasicDecimal), pointer :: jtemp2
+    class(BasicDecimal), pointer :: jtemp3
+    class(BasicDecimal), pointer :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_mathUtil => MathUtil_jm_getInstance_0()
+        j_velocityProperties => this%jm_getVelocityProperties_0()
+        jtemp2 => j_velocityProperties%jm_getVelocityXBasicDecimalP_0()
+        this%f_accumulatedX = JR_l2i(((int(this%f_accumulatedX, 8) + jtemp2%jm_getUnscaled_0())))
+        jtemp3 => j_velocityProperties%jm_getVelocityYBasicDecimalP_0()
+        this%f_accumulatedY = JR_l2i(((int(this%f_accumulatedY, 8) + jtemp3%jm_getUnscaled_0())))
+        jtemp4 => j_velocityProperties%jm_getVelocityZBasicDecimalP_0()
+        this%f_accumulatedZ = JR_l2i(((int(this%f_accumulatedZ, 8) + jtemp4%jm_getUnscaled_0())))
+        call j_layer%jm_moveDXYZ_3((this%f_accumulatedX / this%f_factorValue), (this%f_accumulatedY / this%f_factorValue), (this%f_accumulatedZ / this%f_factorValue))
+        if ((j_mathUtil%jm_abs_1(this%f_accumulatedX) > this%f_factorValue)) then
+            this%f_accumulatedX = 0
+        end if
+        if ((j_mathUtil%jm_abs_1(this%f_accumulatedY) > this%f_factorValue)) then
+            this%f_accumulatedY = 0
+        end if
+        if ((j_mathUtil%jm_abs_1(this%f_accumulatedZ) > this%f_factorValue)) then
+            this%f_accumulatedZ = 0
+        end if
+  end subroutine
+end module PreciseConstantVelocityMovement_m
 

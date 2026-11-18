@@ -1,131 +1,143 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchButtonFactory_m
+  use JR_m
+  use BasicArrayList_m
+  use BasicArrayListUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchButtonFactory;
+  type, extends(JObject) :: TouchButtonFactory
+    class(BasicArrayList), pointer :: f_LIST_u4 => null()
+    class(BasicArrayList), pointer :: f_list_u0 => null()
+    class(BasicArrayList), pointer :: f_savedList => null()
+    logical :: f_saved = .false.
+  contains
+    procedure :: jm_defaultList_0 => TouchButtonFactory_jm_defaultList_0
+    procedure :: jm_toggle_2 => TouchButtonFactory_jm_toggle_2
+    procedure :: jm_setList_1 => TouchButtonFactory_jm_setList_1
+    procedure :: jm_getList_0 => TouchButtonFactory_jm_getList_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(TouchButtonFactory), pointer, save :: TouchButtonFactory_jcell_SINGLETON => null()
+  logical, save :: TouchButtonFactory_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList;
+  function TouchButtonFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchButtonFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchButtonFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TTouchButtonFactory = class(TObject)
-  public
-    LIST_: TBasicArrayList;
-    list: TBasicArrayList;
-    savedList: TBasicArrayList;
-    saved: Boolean;
-    class var SINGLETON: TTouchButtonFactory;
-    procedure InitFields;
-        class function getInstance: TTouchButtonFactory; static;
-        constructor Create;
-        procedure defaultList; virtual;
-        procedure toggle(save: Boolean; list: TBasicArrayList); virtual;
-        procedure setList(list: TBasicArrayList); virtual;
-        function getList: TBasicArrayList; virtual;
-  end;
+  function TouchButtonFactory_jstatic_SINGLETON() result(jresult)
+    class(TouchButtonFactory), pointer :: jresult
+    if (.not. TouchButtonFactory_jset_SINGLETON) then
+      TouchButtonFactory_jset_SINGLETON = .true.
+      TouchButtonFactory_jcell_SINGLETON => TouchButtonFactory_jnew_0()
+    end if
+    jresult => TouchButtonFactory_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  BasicArrayListUtil;
+  subroutine TouchButtonFactory_jsetstatic_SINGLETON(jvalue)
+    class(TouchButtonFactory), target, optional :: jvalue
+    TouchButtonFactory_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      TouchButtonFactory_jcell_SINGLETON => jvalue
+    else
+      TouchButtonFactory_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
+  recursive function TouchButtonFactory_jnew_0() result(this)
+    class(TouchButtonFactory), pointer :: this
+    class(BasicArrayListUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'TouchButtonFactory'
+    jtemp1 => BasicArrayListUtil_jm_getInstance_0()
+    this%f_LIST_u4 => jtemp1%jm_getImmutableInstance_0()
+    this%f_list_u0 => this%f_LIST_u4
+    this%f_savedList => this%f_LIST_u4
+    this%f_saved = .false.
+        continue
+  end function
 
-{AB:CODE}
+  recursive function TouchButtonFactory_jm_getInstance_0() result(jresult)
+    class(TouchButtonFactory), pointer :: jresult
+        jresult => TouchButtonFactory_jstatic_SINGLETON()
+        return
+  end function
 
-procedure TTouchButtonFactory.InitFields;
-begin
-  Self.LIST_ := TBasicArrayListUtil.getInstance().getImmutableInstance();
-  Self.list := Self.LIST_;
-  Self.savedList := Self.LIST_;
-  Self.saved := False;
-end;
-    
+  recursive subroutine TouchButtonFactory_jm_defaultList_0(this)
+    class(TouchButtonFactory), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        this%f_list_u0 => this%f_LIST_u4
+        call this%jm_toggle_2(.false., this%f_LIST_u4)
+  end subroutine
 
-class function TTouchButtonFactory.getInstance: TTouchButtonFactory;
-begin
-        Exit(TTouchButtonFactory.SINGLETON);
-end;
-    
+  recursive subroutine TouchButtonFactory_jm_toggle_2(this, j_save, j_list)
+    class(TouchButtonFactory), target :: this
+    logical, value :: j_save
+    class(BasicArrayList), target, optional :: j_list
+    class(BasicArrayListUtil), pointer :: jtemp2
+        jtemp2 => BasicArrayListUtil_jm_getInstance_0()
+        if ((.not. JR_same(j_list, jtemp2%jm_getImmutableInstance_0()))) then
+            this%f_savedList => j_list
+            if ((.not. this%f_saved)) then
+                this%f_list_u0 => this%f_savedList
+            end if
+        else
+            if (j_save) then
+                if ((.not. this%f_saved)) then
+                    this%f_saved = .true.
+                    this%f_savedList => this%f_list_u0
+                    this%f_list_u0 => this%f_LIST_u4
+                else
+                    continue
+                end if
+            else
+                this%f_list_u0 => this%f_savedList
+                this%f_saved = .false.
+            end if
+        end if
+  end subroutine
 
-constructor TTouchButtonFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine TouchButtonFactory_jm_setList_1(this, j_list)
+    class(TouchButtonFactory), target :: this
+    class(BasicArrayList), target, optional :: j_list
+        if ((.not. present(j_list))) then
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        this%f_list_u0 => j_list
+  end subroutine
 
-procedure TTouchButtonFactory.defaultList;
-begin
-        Self.list := Self.LIST_;
-        Self.toggle(False, Self.LIST_);
-end;
-    
-
-procedure TTouchButtonFactory.toggle(save: Boolean; list: TBasicArrayList);
-begin
-    TJava.MonitorEnter(Self);
-    try
-        if (list) <> (TBasicArrayListUtil.getInstance().getImmutableInstance()) then begin
-            Self.savedList := list;
-            if not (Self.saved) then begin
-                Self.list := Self.savedList;
-            end;
-        end else begin
-            if save then begin
-                if not (Self.saved) then begin
-                    Self.saved := True;
-                    Self.savedList := Self.list;
-                    Self.list := Self.LIST_;
-                end else begin
-                end;
-            end else begin
-                Self.list := Self.savedList;
-                Self.saved := False;
-            end;
-        end;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
-
-// throws Exception
-procedure TTouchButtonFactory.setList(list: TBasicArrayList);
-begin
-        if (list) = (nil) then begin
-            raise SysUtils.Exception.Create('Null List');
-        end;
-        Self.list := list;
-end;
-    
-
-function TTouchButtonFactory.getList: TBasicArrayList;
-begin
-        Exit(Self.list);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTouchButtonFactory.SINGLETON := TTouchButtonFactory.Create();
-  {AB:END}
-
-end.
+  recursive function TouchButtonFactory_jm_getList_0(this) result(jresult)
+    class(TouchButtonFactory), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_list_u0
+        return
+  end function
+end module TouchButtonFactory_m
 

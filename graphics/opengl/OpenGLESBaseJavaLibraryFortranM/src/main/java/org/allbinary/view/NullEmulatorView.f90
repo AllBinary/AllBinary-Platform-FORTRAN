@@ -1,75 +1,86 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.view
-unit NullEmulatorView;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.view
+module NullEmulatorView_m
+  use JR_m
+  use EmulatorViewInterface_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(EmulatorViewInterface) :: NullEmulatorView
+  contains
+    procedure :: jm_setMidlet_1 => NullEmulatorView_jm_setMidlet_1
+    procedure :: jm_onEmulatorInitComplete_1 => NullEmulatorView_jm_onEmulatorInitComplete_1
+    procedure :: jm_onSetDisplayable_1 => NullEmulatorView_jm_onSetDisplayable_1
+  end type
 
-interface
+  class(NullEmulatorView), pointer, save :: NullEmulatorView_jcell_NULL_EMULATOR_VIEW => null()
+  logical, save :: NullEmulatorView_jset_NULL_EMULATOR_VIEW = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Displayable, MIDlet, EmulatorViewInterface;
+contains
 
-type
-  {AB:TYPES}
-  TNullEmulatorView = class(TInterfacedObject, IEmulatorViewInterface)
-  public
-    class var NULL_EMULATOR_VIEW: TNullEmulatorView;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure setMidlet(midlet_: TMIDlet); virtual;
-        procedure onEmulatorInitComplete(midletActivity: TObject); virtual;
-        procedure onSetDisplayable(displayable_: TDisplayable); virtual;
-  end;
+  function NullEmulatorView_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullEmulatorView), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullEmulatorView)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function NullEmulatorView_jstatic_NULL_EMULATOR_VIEW() result(jresult)
+    class(NullEmulatorView), pointer :: jresult
+    if (.not. NullEmulatorView_jset_NULL_EMULATOR_VIEW) then
+      NullEmulatorView_jset_NULL_EMULATOR_VIEW = .true.
+      NullEmulatorView_jcell_NULL_EMULATOR_VIEW => NullEmulatorView_jnew_0()
+    end if
+    jresult => NullEmulatorView_jcell_NULL_EMULATOR_VIEW
+  end function
 
-{AB:CODE}
+  subroutine NullEmulatorView_jsetstatic_NULL_EMULATOR_VIEW(jvalue)
+    class(NullEmulatorView), target, optional :: jvalue
+    NullEmulatorView_jset_NULL_EMULATOR_VIEW = .true.
+    if (present(jvalue)) then
+      NullEmulatorView_jcell_NULL_EMULATOR_VIEW => jvalue
+    else
+      NullEmulatorView_jcell_NULL_EMULATOR_VIEW => null()
+    end if
+  end subroutine
 
-function TNullEmulatorView.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function NullEmulatorView_jnew_0() result(this)
+    class(NullEmulatorView), pointer :: this
+    allocate(this)
+    this%jclass = 'NullEmulatorView'
+  end function
 
-constructor TNullEmulatorView.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine NullEmulatorView_jm_setMidlet_1(this, j_midlet)
+    class(NullEmulatorView), target :: this
+    class(MIDlet), target, optional :: j_midlet
+    continue
+  end subroutine
 
-procedure TNullEmulatorView.setMidlet(midlet_: TMIDlet);
-begin
-end;
-    
+  recursive subroutine NullEmulatorView_jm_onEmulatorInitComplete_1(this, j_midletActivity)
+    class(NullEmulatorView), target :: this
+    class(JObject), target, optional :: j_midletActivity
+    continue
+  end subroutine
 
-procedure TNullEmulatorView.onEmulatorInitComplete(midletActivity: TObject);
-begin
-end;
-    
-
-procedure TNullEmulatorView.onSetDisplayable(displayable_: TDisplayable);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullEmulatorView.NULL_EMULATOR_VIEW := TNullEmulatorView.Create();
-  {AB:END}
-
-end.
+  recursive subroutine NullEmulatorView_jm_onSetDisplayable_1(this, j_displayable)
+    class(NullEmulatorView), target :: this
+    class(Displayable), target, optional :: j_displayable
+    continue
+  end subroutine
+end module NullEmulatorView_m
 

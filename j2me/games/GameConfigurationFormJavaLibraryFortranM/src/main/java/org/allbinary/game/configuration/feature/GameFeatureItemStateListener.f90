@@ -1,121 +1,156 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module GameFeatureItemStateListener_m
+  use JR_m
+  use GameConfigurationGauge_m
+  use GameConfigurationUtil_m
+  use GameOptionsForm_m
+  use LogUtil_m
+  use StringMaker_m
+  use CommonLabels_m
+  use CommonStrings_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use GameFeatureFactory_m
+  use GameFeature_m
+  use GameFeatureUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit GameFeatureItemStateListener;
+  type, extends(ItemStateListener) :: GameFeatureItemStateListener
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(GameOptionsForm), pointer :: f_gameOptionsForm => null()
+  contains
+    procedure :: jm_itemStateChanged_1 => GameFeatureItemStateListener_jm_itemStateChanged_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(BasicArrayList), pointer, save :: GameFeatureItemStateListener_jcell_toggleList => null()
+  logical, save :: GameFeatureItemStateListener_jset_toggleList = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Item, ItemStateListener, GameOptionsForm, LogUtil, BasicArrayList, GameFeature;
+  function GameFeatureItemStateListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameFeatureItemStateListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameFeatureItemStateListener)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameFeatureItemStateListener = class(TInterfacedObject, IItemStateListener)
-  public
-    logUtil: TLogUtil;
-    gameOptionsForm: TGameOptionsForm;
-    class var toggleList: TBasicArrayList;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(gameOptionsForm_: TGameOptionsForm);
-        class procedure add(gameFeature_: TGameFeature); static;
-        procedure itemStateChanged(item_: TItem); virtual;
-  end;
+  function GameFeatureItemStateListener_jstatic_toggleList() result(jresult)
+    class(BasicArrayList), pointer :: jresult
+    if (.not. GameFeatureItemStateListener_jset_toggleList) then
+      GameFeatureItemStateListener_jset_toggleList = .true.
+      GameFeatureItemStateListener_jcell_toggleList => BasicArrayListD_jnew_0()
+    end if
+    jresult => GameFeatureItemStateListener_jcell_toggleList
+  end function
 
-implementation
-uses
-  GameFeatureFactory, GameFeatureUtil, ChoiceGroup, GameConfigurationGauge, GameConfigurationUtil, StringMaker, CommonLabels, CommonStrings, BasicArrayListD;
+  subroutine GameFeatureItemStateListener_jsetstatic_toggleList(jvalue)
+    class(BasicArrayList), target, optional :: jvalue
+    GameFeatureItemStateListener_jset_toggleList = .true.
+    if (present(jvalue)) then
+      GameFeatureItemStateListener_jcell_toggleList => jvalue
+    else
+      GameFeatureItemStateListener_jcell_toggleList => null()
+    end if
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TGameFeatureItemStateListener.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-end;
-
-function TGameFeatureItemStateListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function GameFeatureItemStateListener_jnew_1(j_gameOptionsForm) result(this)
+    class(GameOptionsForm), target, optional :: j_gameOptionsForm
+    class(GameFeatureItemStateListener), pointer :: this
+    class(GameFeatureFactory), pointer :: j_gameFeatureFactory
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'GameFeatureItemStateListener'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
+        this%f_gameOptionsForm => j_gameOptionsForm
+        j_gameFeatureFactory => GameFeatureFactory_jm_getInstance_0()
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_ARTIFICIAL_INTELLEGENCE_PROCESSOR)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_COLLIDABLE_INTERFACE_LAYER_PROCESSOR)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_DAMAGE_FLOATERS)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_DROPPED_ITEMS)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_GAME_INPUT_LAYER_PROCESSOR)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_HEALTH_BARS)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_SOUND)
+        jdiscardBoolean = GameFeatureItemStateListener_jm_add_1(j_gameFeatureFactory%f_TICKABLE_LAYER_PROCESSOR)
+  end function
 
-constructor TGameFeatureItemStateListener.Create(gameOptionsForm_: TGameOptionsForm);
-var
-  gameFeatureFactory_: TGameFeatureFactory;
-begin
-    inherited Create;
-    InitFields;
-        Self.gameOptionsForm := gameOptionsForm_;
-        gameFeatureFactory_ := TGameFeatureFactory.getInstance();
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.ARTIFICIAL_INTELLEGENCE_PROCESSOR);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.COLLIDABLE_INTERFACE_LAYER_PROCESSOR);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.DAMAGE_FLOATERS);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.DROPPED_ITEMS);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.GAME_INPUT_LAYER_PROCESSOR);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.HEALTH_BARS);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.SOUND);
-        TGameFeatureItemStateListener.add(gameFeatureFactory_.TICKABLE_LAYER_PROCESSOR);
-end;
-    
+  recursive subroutine GameFeatureItemStateListener_jm_add_1(j_gameFeature)
+    class(GameFeature), target, optional :: j_gameFeature
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        associate (jstaticref1 => GameFeatureItemStateListener_jstatic_toggleList())
+        if ((.not. jstaticref1%jm_contains_1(j_gameFeature))) then
+            associate (jstaticref2 => GameFeatureItemStateListener_jstatic_toggleList())
+            jdiscardBoolean = jstaticref2%jm_add_1(j_gameFeature)
+            end associate
+        end if
+        end associate
+  end subroutine
 
-class procedure TGameFeatureItemStateListener.add(gameFeature_: TGameFeature);
-begin
-        if not (TGameFeatureItemStateListener.toggleList.contains(TJava.Box(gameFeature_))) then begin
-            TGameFeatureItemStateListener.toggleList.add(TJava.Box(gameFeature_));
-        end;
-end;
-    
-
-procedure TGameFeatureItemStateListener.itemStateChanged(item_: TItem);
-var
-  itemLabel: string;
-  gameFeatureUtil_: TGameFeatureUtil;
-  commonStrings_: TCommonStrings;
-begin
-        try
-            itemLabel := item_.getLabel();
-            Self.logUtil.putF(TStringMaker.Create().append(TCommonLabels.getInstance().ITEM_LABEL).append(itemLabel).toString(), TJava.Box(Self), 'itemStateChanged');
-            if (TJava.ToObject(item_) is TGameConfigurationGauge) then begin
-                TGameConfigurationUtil.getInstance().change(Self.gameOptionsForm, TGameConfigurationGauge(TJava.ToObject(item_)));
-            end else if (TJava.ToObject(item_) is TChoiceGroup) then begin
-                gameFeatureUtil_ := TGameFeatureUtil.getInstance();
-                if gameFeatureUtil_.isExclusive(itemLabel) then begin
-                    gameFeatureUtil_.updateExclusiveForChoiceGroup(TChoiceGroup(TJava.ToObject(item_)));
-                end else begin
-                    gameFeatureUtil_.updateMultiple(TChoiceGroup(TJava.ToObject(item_)));
-                end;
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), 'itemStateChanged', TJava.Box(e));
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameFeatureItemStateListener.toggleList := TBasicArrayListD.Create();
-  {AB:END}
-
-end.
+  recursive subroutine GameFeatureItemStateListener_jm_itemStateChanged_1(this, j_item)
+    class(GameFeatureItemStateListener), target :: this
+    class(Item), target, optional :: j_item
+    character(len=:), allocatable :: j_itemLabel
+    class(GameFeatureUtil), pointer :: j_gameFeatureUtil
+    class(CommonStrings), pointer :: j_commonStrings
+    class(StringMaker), pointer :: jtemp1
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+    class(CommonLabels), pointer :: jtemp4
+    class(GameConfigurationUtil), pointer :: jtemp5
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            j_itemLabel = j_item%jm_getLabel_0()
+            jtemp4 => CommonLabels_jm_getInstance_0()
+            jtemp3 => StringMaker_jnew_0()
+            jtemp2 => jtemp3%jm_append_1(jtemp4%f_ITEM_LABEL)
+            jtemp1 => jtemp2%jm_append_1(j_itemLabel)
+            call this%f_logUtil%jm_putF_3(jtemp1%jm_toString_0(), this, 'itemStateChanged')
+            if ((JR_className(j_item) == 'GameConfigurationGauge')) then
+                jtemp5 => GameConfigurationUtil_jm_getInstance_0()
+                call jtemp5%jm_change_2(this%f_gameOptionsForm, GameConfigurationGauge_jcast(j_item))
+            else if ((JR_className(j_item) == 'ChoiceGroup')) then
+                j_gameFeatureUtil => GameFeatureUtil_jm_getInstance_0()
+                if (j_gameFeatureUtil%jm_isExclusive_1(j_itemLabel)) then
+                    call j_gameFeatureUtil%jm_updateExclusiveForChoiceGroup_1(ChoiceGroup_jcast(j_item))
+                else
+                    call j_gameFeatureUtil%jm_updateMultiple_1(ChoiceGroup_jcast(j_item))
+                end if
+            end if
+  end subroutine
+end module GameFeatureItemStateListener_m
 

@@ -1,66 +1,72 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.midlet
+module MidletStrings_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.midlet
-unit MidletStrings;
+  type, extends(JObject) :: MidletStrings
+    character(len=:), allocatable :: f_COMMAND_ACTION
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(MidletStrings), pointer, save :: MidletStrings_jcell_instance => null()
+  logical, save :: MidletStrings_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function MidletStrings_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MidletStrings), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MidletStrings)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TMidletStrings = class(TObject)
-  public
-    COMMAND_ACTION: string;
-    class var instance: TMidletStrings;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TMidletStrings; static;
-  end;
+  function MidletStrings_jstatic_instance() result(jresult)
+    class(MidletStrings), pointer :: jresult
+    if (.not. MidletStrings_jset_instance) then
+      MidletStrings_jset_instance = .true.
+      MidletStrings_jcell_instance => MidletStrings_jnew_0()
+    end if
+    jresult => MidletStrings_jcell_instance
+  end function
 
-implementation
+  subroutine MidletStrings_jsetstatic_instance(jvalue)
+    class(MidletStrings), target, optional :: jvalue
+    MidletStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      MidletStrings_jcell_instance => jvalue
+    else
+      MidletStrings_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function MidletStrings_jnew_0() result(this)
+    class(MidletStrings), pointer :: this
+    allocate(this)
+    this%jclass = 'MidletStrings'
+    this%f_COMMAND_ACTION = ''
+    this%f_COMMAND_ACTION = 'commandAction'
+  end function
 
-procedure TMidletStrings.InitFields;
-begin
-  Self.COMMAND_ACTION := 'commandAction';
-end;
-
-constructor TMidletStrings.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TMidletStrings.getInstance: TMidletStrings;
-begin
-        Exit(TMidletStrings.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TMidletStrings.instance := TMidletStrings.Create();
-  {AB:END}
-
-end.
+  recursive function MidletStrings_jm_getInstance_0() result(jresult)
+    class(MidletStrings), pointer :: jresult
+        jresult => MidletStrings_jstatic_instance()
+        return
+  end function
+end module MidletStrings_m
 

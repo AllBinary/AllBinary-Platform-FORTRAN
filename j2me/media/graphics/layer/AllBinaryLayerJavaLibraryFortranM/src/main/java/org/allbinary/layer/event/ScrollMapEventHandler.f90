@@ -1,73 +1,100 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer.event
+module ScrollMapEventHandler_m
+  use JR_m
+  use AllBinaryEventObject_m
+  use EventListenerInterface_m
+  use BasicEventHandler_m
+  use ScrollMapEventListenerInterface_m
+  use ScrollMapEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer.event
-unit ScrollMapEventHandler;
+  type, extends(BasicEventHandler) :: ScrollMapEventHandler
+  contains
+    procedure :: jm_process_2 => ScrollMapEventHandler_jm_process_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ScrollMapEventHandler), pointer, save :: ScrollMapEventHandler_jcell_SINGLETON => null()
+  logical, save :: ScrollMapEventHandler_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject, EventListenerInterface, BasicEventHandler;
+  function ScrollMapEventHandler_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ScrollMapEventHandler), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ScrollMapEventHandler)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TScrollMapEventHandler = class(TBasicEventHandler)
-  public
-    class var SINGLETON: TScrollMapEventHandler;
-        constructor Create;
-        class function getInstance: TScrollMapEventHandler; static;
-        procedure process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface); override;
-  end;
+  function ScrollMapEventHandler_jstatic_SINGLETON() result(jresult)
+    class(ScrollMapEventHandler), pointer :: jresult
+    if (.not. ScrollMapEventHandler_jset_SINGLETON) then
+      ScrollMapEventHandler_jset_SINGLETON = .true.
+      ScrollMapEventHandler_jcell_SINGLETON => ScrollMapEventHandler_jnew_0()
+    end if
+    jresult => ScrollMapEventHandler_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  ScrollMapEventListenerInterface, ScrollMapEvent;
+  subroutine ScrollMapEventHandler_jsetstatic_SINGLETON(jvalue)
+    class(ScrollMapEventHandler), target, optional :: jvalue
+    ScrollMapEventHandler_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      ScrollMapEventHandler_jcell_SINGLETON => jvalue
+    else
+      ScrollMapEventHandler_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
+  recursive function ScrollMapEventHandler_jnew_0() result(this)
+    class(ScrollMapEventHandler), pointer :: this
+    allocate(this)
+    this%jclass = 'ScrollMapEventHandler'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive function ScrollMapEventHandler_jm_getInstance_0() result(jresult)
+    class(ScrollMapEventHandler), pointer :: jresult
+        jresult => ScrollMapEventHandler_jstatic_SINGLETON()
+        return
+  end function
 
-constructor TScrollMapEventHandler.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive subroutine ScrollMapEventHandler_jm_process_2(this, j_eventObject, j_eventListenerInterface)
+    class(ScrollMapEventHandler), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(ScrollMapEventListenerInterface), pointer :: j_scrollMapEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_scrollMapEventListenerInterface => ScrollMapEventListenerInterface_jcast(j_eventListenerInterface)
+        call j_scrollMapEventListenerInterface%jm_onMoveEvent_1(ScrollMapEvent_jcast(j_eventObject))
+  end subroutine
+end module ScrollMapEventHandler_m
 
-class function TScrollMapEventHandler.getInstance: TScrollMapEventHandler;
-begin
-        Exit(TScrollMapEventHandler.SINGLETON);
-end;
-    
-
-// throws Exception
-procedure TScrollMapEventHandler.process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface);
-var
-  scrollMapEventListenerInterface_: IScrollMapEventListenerInterface;
-begin
-        scrollMapEventListenerInterface_ := ((TJava.ToObject(eventListenerInterface_) as IScrollMapEventListenerInterface));
-        scrollMapEventListenerInterface_.onMoveEvent(TScrollMapEvent(TJava.ToObject(eventObject)));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TScrollMapEventHandler.SINGLETON := TScrollMapEventHandler.Create();
-  {AB:END}
-
-end.
+function ScrollMapEventHandler_jnew_0_jext() result(this)
+  use ScrollMapEventHandler_m, only: JObject, ScrollMapEventHandler_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => ScrollMapEventHandler_jnew_0()
+end function
 

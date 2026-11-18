@@ -1,181 +1,239 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary
-unit TsUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary
+module TsUtil_m
+  use JR_m
+  use NullUtil_m
+  use System_m
+  use Float_m
+  use Double_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: TsUtil
+  contains
+    procedure :: jm_longBitsToDouble_1 => TsUtil_jm_longBitsToDouble_1
+    procedure :: jm_intBitsToFloat_1 => TsUtil_jm_intBitsToFloat_1
+    procedure :: jm_hashCode_1 => TsUtil_jm_hashCode_1
+    procedure :: jm_waitFor_2 => TsUtil_jm_waitFor_2
+    procedure :: jm_getRecord_2 => TsUtil_jm_getRecord_2
+    procedure :: jm_compareTo_2 => TsUtil_jm_compareTo_2
+    procedure :: jm_equalIgnoreCase_2 => TsUtil_jm_equalIgnoreCase_2
+    procedure :: jm_equalsNotstring_2 => TsUtil_jm_equalsNotstring_2
+    procedure :: jm_getClassClassLoader_1 => TsUtil_jm_getClassClassLoader_1
+    procedure :: jm_toNumberFromChar_1 => TsUtil_jm_toNumberFromChar_1
+    procedure :: jm_toNumber_1 => TsUtil_jm_toNumber_1
+    procedure :: jm_getByteArray_1 => TsUtil_jm_getByteArray_1
+    procedure :: jm_isItemListener_1 => TsUtil_jm_isItemListener_1
+    procedure :: jm_gc_0 => TsUtil_jm_gc_0
+  end type
 
-interface
+  class(TsUtil), pointer, save :: TsUtil_jcell_instance => null()
+  logical, save :: TsUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Displayable;
+contains
 
-type
-  {AB:TYPES}
-  // J2SE
-  TTsUtil = class(TObject)
-  public
-    class var instance: TTsUtil;
-    constructor Create;
-        class function getInstance: TTsUtil; static;
-        function longBitsToDouble(bits: Int64): Double; virtual;
-        function intBitsToFloat(bits: Integer): Single; virtual;
-        function hashCode(anyType: TObject): Integer; virtual;
-        procedure waitFor(any: TObject; timeoutMillis: Int64); virtual;
-        function getRecord(anyType: TObject; recordId: Integer): TArray<ShortInt>; virtual;
-        function compareTo(a: string; b: string): Integer; virtual;
-        function equalIgnoreCase(a: string; b: string): Boolean; virtual;
-        function equalsNotstring(anyType: TObject; object2: TObject): Boolean; virtual;
-        function getClassClassLoader(anyType: TObject): TClassLoader; virtual;
-        function toNumberFromChar(value: WideChar): Integer; virtual;
-        function toNumber(value: Integer): Integer; virtual;
-        function getByteArray(string_: string): TArray<ShortInt>; virtual;
-        function isItemListener(owner: TDisplayable): Boolean; virtual;
-        procedure gc; virtual;
-  end;
+  function TsUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TsUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TsUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  Form, InvalidRecordIDException, RecordStore, RecordStoreException, RecordStoreNotOpenException, NullUtil;
+  function TsUtil_jstatic_instance() result(jresult)
+    class(TsUtil), pointer :: jresult
+    if (.not. TsUtil_jset_instance) then
+      TsUtil_jset_instance = .true.
+      TsUtil_jcell_instance => TsUtil_jnew_0()
+    end if
+    jresult => TsUtil_jcell_instance
+  end function
 
+  subroutine TsUtil_jsetstatic_instance(jvalue)
+    class(TsUtil), target, optional :: jvalue
+    TsUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      TsUtil_jcell_instance => jvalue
+    else
+      TsUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function TsUtil_jnew_0() result(this)
+    class(TsUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'TsUtil'
+  end function
 
-constructor TTsUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function TsUtil_jm_getInstance_0() result(jresult)
+    class(TsUtil), pointer :: jresult
+        jresult => TsUtil_jstatic_instance()
+        return
+  end function
 
-class function TTsUtil.getInstance: TTsUtil;
-begin
-        Exit(TTsUtil.instance);
-end;
-    
+  recursive function TsUtil_jm_longBitsToDouble_1(this, j_bits) result(jresult)
+    class(TsUtil), target :: this
+    integer(8), value :: j_bits
+    real(8) :: jresult
+        jresult = Double_jm_longBitsToDouble_1(j_bits)
+        return
+  end function
 
-function TTsUtil.longBitsToDouble(bits: Int64): Double;
-begin
-        Exit(TJava.LongBitsToDouble(bits));
-end;
-    
+  recursive function TsUtil_jm_intBitsToFloat_1(this, j_bits) result(jresult)
+    class(TsUtil), target :: this
+    integer(4), value :: j_bits
+    real(4) :: jresult
+        jresult = Float_jm_intBitsToFloat_1(j_bits)
+        return
+  end function
 
-function TTsUtil.intBitsToFloat(bits: Integer): Single;
-begin
-        Exit(TJava.IntBitsToFloat(bits));
-end;
-    
+  recursive function TsUtil_jm_hashCode_1(this, j_anyType) result(jresult)
+    class(TsUtil), target :: this
+    class(JObject), target, optional :: j_anyType
+    integer(4) :: jresult
+        jresult = JR_objectHashCode(j_anyType)
+        return
+  end function
 
-function TTsUtil.hashCode(anyType: TObject): Integer;
-begin
-        Exit(TJava.HashCode(anyType));
-end;
-    
+  recursive subroutine TsUtil_jm_waitFor_2(this, j_any, j_timeoutMillis)
+    class(TsUtil), target :: this
+    class(JObject), target, optional :: j_any
+    integer(8), value :: j_timeoutMillis
+    class(JObject), pointer :: j_anyType
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_anyType => j_any
+        call JR_wait(j_anyType)
+  end subroutine
 
-// throws InterruptedException
-procedure TTsUtil.waitFor(any: TObject; timeoutMillis: Int64);
-var
-  anyType: TObject;
-begin
-        anyType := TJava.Box(TJava.Box(any));
-        TJava.Wait(anyType, timeoutMillis);
-end;
-    
+  recursive function TsUtil_jm_getRecord_2(this, j_anyType, j_recordId) result(jresult)
+    class(TsUtil), target :: this
+    class(JObject), target, optional :: j_anyType
+    integer(4), value :: j_recordId
+    integer(4), allocatable :: jresult(:)
+    class(RecordStore), pointer :: j_recordStore
+    integer(4), allocatable :: j_data(:)
+    class(NullUtil), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_recordStore => RecordStore_jcast(j_anyType)
+        continue
+        continue ! synchronized
+            j_data = JR_newIntArray(j_recordStore%jm_getRecordSize_1(j_recordId))
+            call j_recordStore%jm_getRecord_3(j_recordId, j_data, 0)
+        jtemp1 => NullUtil_jm_getInstance_0()
+        jresult = merge(jtemp1%f_NULL_BYTE_ARRAY, j_data, (size(j_data, 1) < 1))
+        return
+  end function
 
-// throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException
-function TTsUtil.getRecord(anyType: TObject; recordId: Integer): TArray<ShortInt>;
-var
-  recordStore_: TRecordStore;
-  data: TArray<ShortInt>;
-begin
-        recordStore_ := TRecordStore(TJava.ToObject(anyType));
-        
-        TJava.MonitorEnter(Self);
-        try
-            data := TJava.NewArray<ShortInt>(recordStore_.getRecordSize(recordId));
-            recordStore_.getRecord(recordId, data, 0);
-        finally
-            TJava.MonitorExit(Self);
-        end;
-        Exit(TJava.IfThen<Variant>((System.Length(data)) < (1), TNullUtil.getInstance().NULL_BYTE_ARRAY, data));
-end;
-    
+  recursive function TsUtil_jm_compareTo_2(this, j_a, j_b) result(jresult)
+    class(TsUtil), target :: this
+    character(len=*), intent(in) :: j_a
+    character(len=*), intent(in) :: j_b
+    integer(4) :: jresult
+        jresult = JR_compareTo(j_a, j_b)
+        return
+  end function
 
-function TTsUtil.compareTo(a: string; b: string): Integer;
-begin
-        Exit(CompareStr(a, b));
-end;
-    
+  recursive function TsUtil_jm_equalIgnoreCase_2(this, j_a, j_b) result(jresult)
+    class(TsUtil), target :: this
+    character(len=*), intent(in) :: j_a
+    character(len=*), intent(in) :: j_b
+    logical :: jresult
+        jresult = JR_equalsIgnoreCase(j_a, j_b)
+        return
+  end function
 
-function TTsUtil.equalIgnoreCase(a: string; b: string): Boolean;
-begin
-        Exit(SameText(a, b));
-end;
-    
+  recursive function TsUtil_jm_equalsNotstring_2(this, j_anyType, j_object2) result(jresult)
+    class(TsUtil), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(JObject), target, optional :: j_object2
+    logical :: jresult
+        jresult = JR_same(j_anyType, j_object2)
+        return
+  end function
 
-function TTsUtil.equalsNotstring(anyType: TObject; object2: TObject): Boolean;
-begin
-        Exit(anyType.equals(object2));
-end;
-    
+  recursive function TsUtil_jm_getClassClassLoader_1(this, j_anyType) result(jresult)
+    class(TsUtil), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(ClassLoader), pointer :: jresult
+    character(len=:), allocatable :: jtemp2
+        jtemp2 = JR_className(j_anyType)
+        jresult => jtemp2%jm_getClassLoader_0()
+        return
+  end function
 
-function TTsUtil.getClassClassLoader(anyType: TObject): TClassLoader;
-begin
-        Exit(TClassLoader.getSystemClassLoader());
-end;
-    
+  recursive function TsUtil_jm_toNumberFromChar_1(this, j_value) result(jresult)
+    class(TsUtil), target :: this
+    integer(4), value :: j_value
+    integer(4) :: jresult
+        jresult = j_value
+        return
+  end function
 
-function TTsUtil.toNumberFromChar(value: WideChar): Integer;
-begin
-        Exit(Ord(value));
-end;
-    
+  recursive function TsUtil_jm_toNumber_1(this, j_value) result(jresult)
+    class(TsUtil), target :: this
+    integer(4), value :: j_value
+    integer(4) :: jresult
+        jresult = j_value
+        return
+  end function
 
-function TTsUtil.toNumber(value: Integer): Integer;
-begin
-        Exit(value);
-end;
-    
+  recursive function TsUtil_jm_getByteArray_1(this, j_string) result(jresult)
+    class(TsUtil), target :: this
+    character(len=*), intent(in) :: j_string
+    integer(4), allocatable :: jresult(:)
+        jresult = JR_getBytes(j_string)
+        return
+  end function
 
-function TTsUtil.getByteArray(string_: string): TArray<ShortInt>;
-begin
-        Exit(TJava.GetBytes(string_));
-end;
-    
+  recursive function TsUtil_jm_isItemListener_1(this, j_owner) result(jresult)
+    class(TsUtil), target :: this
+    class(Displayable), target, optional :: j_owner
+    logical :: jresult
+        if ((JR_className(j_owner) == 'Form')) then
+            jresult = .true.
+            return
+        else
+            jresult = .false.
+            return
+        end if
+  end function
 
-function TTsUtil.isItemListener(owner: TDisplayable): Boolean;
-begin
-        if (TJava.ToObject(owner) is TForm) then begin
-            Exit(True);
-        end else begin
-            Exit(False);
-        end;
-end;
-    
-
-procedure TTsUtil.gc;
-begin
-        TJava.Nothing;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTsUtil.instance := TTsUtil.Create();
-  {AB:END}
-
-end.
+  recursive subroutine TsUtil_jm_gc_0(this)
+    class(TsUtil), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call System_jm_gc_0()
+  end subroutine
+end module TsUtil_m
 

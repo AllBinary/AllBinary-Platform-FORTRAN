@@ -45,6 +45,16 @@ contains
     jresult => GameTickTimeDelayHelperFactory_jcell_instance
   end function
 
+  subroutine GameTickTimeDelayHelperFactory_jsetstatic_instance(jvalue)
+    class(GameTickTimeDelayHelper), target, optional :: jvalue
+    GameTickTimeDelayHelperFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      GameTickTimeDelayHelperFactory_jcell_instance => jvalue
+    else
+      GameTickTimeDelayHelperFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function GameTickTimeDelayHelperFactory_jnew_0() result(this)
     class(GameTickTimeDelayHelperFactory), pointer :: this
     allocate(this)

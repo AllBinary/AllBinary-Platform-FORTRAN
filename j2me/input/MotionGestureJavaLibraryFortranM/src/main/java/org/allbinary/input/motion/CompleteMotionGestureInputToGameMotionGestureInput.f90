@@ -1,117 +1,137 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion
+module CompleteMotionGestureInputToGameMotionGestureInput_m
+  use JR_m
+  use TouchMotionGestureFactory_m
+  use MotionGestureConfiguration_m
+  use MotionGestureConfigurationFactory_m
+  use DiagonalDownLeftTouchInputToGameKeyEventAction_m
+  use DiagonalDownRightTouchInputToGameKeyEventAction_m
+  use DiagonalUpLeftTouchInputToGameKeyEventAction_m
+  use DiagonalUpRightTouchInputToGameKeyEventAction_m
+  use DownTouchInputToGameKeyEventAction_m
+  use LeftTouchInputToGameKeyEventAction_m
+  use ReleaseTouchInputToGameKeyEventAction_m
+  use RightTouchInputToGameKeyEventAction_m
+  use UpTouchInputToGameKeyEventAction_m
+  use LogUtil_m
+  use PreLogUtil_m
+  use CommonStrings_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion
-unit CompleteMotionGestureInputToGameMotionGestureInput;
+  type, extends(JObject) :: CompleteMotionGestureInputToGameMotionGestureInput
+    class(LogUtil), pointer :: f_logUtil => null()
+  contains
+    procedure :: jm_init_0 => CompleteMotionGestureInputToGameMotionGestureInput_jm_init_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(CompleteMotionGestureInputToGameMotionGestureInput), pointer, save :: CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => null()
+  logical, save :: CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil;
+  function CompleteMotionGestureInputToGameMotionGestureInput_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CompleteMotionGestureInputToGameMotionGestureInput)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCompleteMotionGestureInputToGameMotionGestureInput = class(TObject)
-  public
-    logUtil: TLogUtil;
-    class var instance: TCompleteMotionGestureInputToGameMotionGestureInput;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TCompleteMotionGestureInputToGameMotionGestureInput; static;
-        procedure init; virtual;
-  end;
+  function CompleteMotionGestureInputToGameMotionGestureInput_jstatic_instance() result(jresult)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+    if (.not. CompleteMotionGestureInputToGameMotionGestureInput_jset_instance) then
+      CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .true.
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => CompleteMotionGestureInputToGameMotionGestureInput_jnew_0()
+    end if
+    jresult => CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance
+  end function
 
-implementation
-uses
-  TouchMotionGestureFactory, MotionGestureConfiguration, MotionGestureConfigurationFactory, DiagonalDownLeftTouchInputToGameKeyEventAction, DiagonalDownRightTouchInputToGameKeyEventAction, DiagonalUpLeftTouchInputToGameKeyEventAction, DiagonalUpRightTouchInputToGameKeyEventAction, DownTouchInputToGameKeyEventAction, LeftTouchInputToGameKeyEventAction, ReleaseTouchInputToGameKeyEventAction, RightTouchInputToGameKeyEventAction, UpTouchInputToGameKeyEventAction, PreLogUtil, CommonStrings, BasicArrayList, BasicArrayListD;
+  subroutine CompleteMotionGestureInputToGameMotionGestureInput_jsetstatic_instance(jvalue)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), target, optional :: jvalue
+    CompleteMotionGestureInputToGameMotionGestureInput_jset_instance = .true.
+    if (present(jvalue)) then
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => jvalue
+    else
+      CompleteMotionGestureInputToGameMotionGestureInput_jcell_instance => null()
+    end if
+  end subroutine
 
+  function CompleteMotionGestureInputToGameMotionGestureInput_jnew_0() result(this)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: this
+    allocate(this)
+    this%jclass = 'CompleteMotionGestureInputToGameMotionGestureInput'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+  end function
 
-{AB:CODE}
+  recursive function CompleteMotionGestureInputToGameMotionGestureInput_jm_getInstance_0() result(jresult)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), pointer :: jresult
+        jresult => CompleteMotionGestureInputToGameMotionGestureInput_jstatic_instance()
+        return
+  end function
 
-procedure TCompleteMotionGestureInputToGameMotionGestureInput.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-end;
-
-constructor TCompleteMotionGestureInputToGameMotionGestureInput.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TCompleteMotionGestureInputToGameMotionGestureInput.getInstance: TCompleteMotionGestureInputToGameMotionGestureInput;
-begin
-        Exit(TCompleteMotionGestureInputToGameMotionGestureInput.instance);
-end;
-    
-
-procedure TCompleteMotionGestureInputToGameMotionGestureInput.init;
-var
-  commonStrings_: TCommonStrings;
-  motionGestureConfiguration_: TMotionGestureConfiguration;
-  touchMotionGestureFactory_: TTouchMotionGestureFactory;
-  list: TBasicArrayList;
-begin
-        commonStrings_ := TCommonStrings.getInstance();
-        try
-            TPreLogUtil.put('Compound Motion Gestures', TJava.Box(Self), commonStrings_.INIT);
-            motionGestureConfiguration_ := TMotionGestureConfigurationFactory.getInstance();
-            touchMotionGestureFactory_ := TTouchMotionGestureFactory.getInstance();
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.DIAGONAL_DOWN_LEFT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TDiagonalDownLeftTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.DIAGONAL_DOWN_RIGHT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TDiagonalDownRightTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.DIAGONAL_UP_LEFT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TDiagonalUpLeftTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.DIAGONAL_UP_RIGHT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TDiagonalUpRightTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.LEFT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TLeftTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.RIGHT));
-            motionGestureConfiguration_.addMotionGestureAction(list, TRightTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.DOWN));
-            motionGestureConfiguration_.addMotionGestureAction(list, TDownTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.UP));
-            motionGestureConfiguration_.addMotionGestureAction(list, TUpTouchInputToGameKeyEventAction.getInstance());
-            list := TBasicArrayListD.Create();
-            list.add(TJava.Box(touchMotionGestureFactory_.RELEASED));
-            motionGestureConfiguration_.addMotionGestureAction(list, TReleaseTouchInputToGameKeyEventAction.getInstance());
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.INIT, TJava.Box(e));
-            end;
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TCompleteMotionGestureInputToGameMotionGestureInput.instance := TCompleteMotionGestureInputToGameMotionGestureInput.Create();
-  {AB:END}
-
-end.
+  recursive subroutine CompleteMotionGestureInputToGameMotionGestureInput_jm_init_0(this)
+    class(CompleteMotionGestureInputToGameMotionGestureInput), target :: this
+    class(CommonStrings), pointer :: j_commonStrings
+    class(MotionGestureConfiguration), pointer :: j_motionGestureConfiguration
+    class(TouchMotionGestureFactory), pointer :: j_touchMotionGestureFactory
+    class(BasicArrayList), pointer :: j_list
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonStrings => CommonStrings_jm_getInstance_0()
+        continue ! try
+            call PreLogUtil_jm_put_3('Compound Motion Gestures', this, j_commonStrings%f_INIT)
+            j_motionGestureConfiguration => MotionGestureConfigurationFactory_jm_getInstance_0()
+            j_touchMotionGestureFactory => TouchMotionGestureFactory_jm_getInstance_0()
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_DIAGONAL_DOWN_LEFT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, DiagonalDownLeftTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_DIAGONAL_DOWN_RIGHT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, DiagonalDownRightTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_DIAGONAL_UP_LEFT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, DiagonalUpLeftTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_DIAGONAL_UP_RIGHT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, DiagonalUpRightTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_LEFT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, LeftTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_RIGHT)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, RightTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_DOWN)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, DownTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_UP)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, UpTouchInputToGameKeyEventAction_jm_getInstance_0())
+            j_list => BasicArrayListD_jnew_0()
+            jdiscardBoolean = j_list%jm_add_1(j_touchMotionGestureFactory%f_RELEASED)
+            call j_motionGestureConfiguration%jm_addMotionGestureAction_2(j_list, ReleaseTouchInputToGameKeyEventAction_jm_getInstance_0())
+  end subroutine
+end module CompleteMotionGestureInputToGameMotionGestureInput_m
 

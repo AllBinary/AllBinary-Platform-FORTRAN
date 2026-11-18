@@ -1,130 +1,153 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics
+module Line_m
+  use JR_m
+  use GPoint_m
+  use PointFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics
-unit Line;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GPoint;
-
-type
-  {AB:TYPES}
-  TLine = class(TObject)
-  public
-    p1: TGPoint;
-    p2: TGPoint;
-    deltaX: Double;
-    deltaY: Double;
-    procedure InitFields;
-        constructor Create(p1: TGPoint; p2: TGPoint);
-        function getGradient: Double; virtual;
-        procedure update;
-        function getDeltaX: Double; virtual;
-        function getDeltaY: Double; virtual;
-        function getP1: TGPoint; virtual;
-        function getP2: TGPoint; virtual;
-        procedure setP1(p1: TGPoint); virtual;
-        procedure setP2(p2: TGPoint); virtual;
-  end;
-
-implementation
-uses
-  PointFactory;
+  type, extends(JObject) :: Line
+    class(GPoint), pointer :: f_p1 => null()
+    class(GPoint), pointer :: f_p2 => null()
+    real(8) :: f_deltaX = 0.0d0
+    real(8) :: f_deltaY = 0.0d0
+  contains
+    procedure :: jm_getGradient_0 => Line_jm_getGradient_0
+    procedure :: jm_update_0 => Line_jm_update_0
+    procedure :: jm_getDeltaX_0 => Line_jm_getDeltaX_0
+    procedure :: jm_getDeltaY_0 => Line_jm_getDeltaY_0
+    procedure :: jm_getP1_0 => Line_jm_getP1_0
+    procedure :: jm_getP2_0 => Line_jm_getP2_0
+    procedure :: jm_setP1_1 => Line_jm_setP1_1
+    procedure :: jm_setP2_1 => Line_jm_setP2_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TLine.InitFields;
-begin
-  
-  
-  
-  
-end;
+  function Line_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Line), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Line)
+      jresult => object
+    end select
+  end function
+
+  recursive function Line_jnew_2(j_p1, j_p2) result(this)
+    class(GPoint), target, optional :: j_p1
+    class(GPoint), target, optional :: j_p2
+    class(Line), pointer :: this
+    class(PointFactory), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'Line'
     
-
-constructor TLine.Create(p1: TGPoint; p2: TGPoint);
-begin
-    inherited Create;
-    InitFields;
-        Self.p1 := TPointFactory.getInstance().ZERO_ZERO;
-        Self.p2 := Self.p1;
-        Self.setP1(p1);
-        Self.setP2(p2);
-end;
     
-
-function TLine.getGradient: Double;
-begin
-        Exit((Self.getDeltaY()) / (Self.getDeltaX()));
-end;
     
-
-procedure TLine.update;
-begin
-        Self.deltaX := ((1.0 * (Self.getP1().getX()))) - (Self.getP2().getX());
-        Self.deltaY := ((1.0 * (Self.getP1().getY()))) - (Self.getP2().getY());
-end;
     
+        jtemp1 => PointFactory_jm_getInstance_0()
+        this%f_p1 => jtemp1%f_ZERO_ZERO
+        this%f_p2 => this%f_p1
+        call this%jm_setP1_1(j_p1)
+        call this%jm_setP2_1(j_p2)
+  end function
 
-function TLine.getDeltaX: Double;
-begin
-        Exit(Self.deltaX);
-end;
-    
+  recursive function Line_jm_getGradient_0(this) result(jresult)
+    class(Line), target :: this
+    real(8) :: jresult
+        jresult = (this%jm_getDeltaY_0() / this%jm_getDeltaX_0())
+        return
+  end function
 
-function TLine.getDeltaY: Double;
-begin
-        Exit(Self.deltaY);
-end;
-    
+  recursive subroutine Line_jm_update_0(this)
+    class(Line), target :: this
+    class(GPoint), pointer :: jtemp2
+    class(GPoint), pointer :: jtemp3
+    class(GPoint), pointer :: jtemp4
+    class(GPoint), pointer :: jtemp5
+        jtemp2 => this%jm_getP1_0()
+        jtemp3 => this%jm_getP2_0()
+        this%f_deltaX = (real(jtemp2%jm_getX_0(), 8) - real(jtemp3%jm_getX_0(), 8))
+        jtemp4 => this%jm_getP1_0()
+        jtemp5 => this%jm_getP2_0()
+        this%f_deltaY = (real(jtemp4%jm_getY_0(), 8) - real(jtemp5%jm_getY_0(), 8))
+  end subroutine
 
-function TLine.getP1: TGPoint;
-begin
-        Exit(Self.p1);
-end;
-    
+  recursive function Line_jm_getDeltaX_0(this) result(jresult)
+    class(Line), target :: this
+    real(8) :: jresult
+        jresult = this%f_deltaX
+        return
+  end function
 
-function TLine.getP2: TGPoint;
-begin
-        Exit(Self.p2);
-end;
-    
+  recursive function Line_jm_getDeltaY_0(this) result(jresult)
+    class(Line), target :: this
+    real(8) :: jresult
+        jresult = this%f_deltaY
+        return
+  end function
 
-procedure TLine.setP1(p1: TGPoint);
-begin
-        Self.p1 := p1;
-        Self.update();
-end;
-    
+  recursive function Line_jm_getP1_0(this) result(jresult)
+    class(Line), target :: this
+    class(GPoint), pointer :: jresult
+        jresult => this%f_p1
+        return
+  end function
 
-procedure TLine.setP2(p2: TGPoint);
-begin
-        Self.p2 := p2;
-        Self.update();
-end;
+  recursive function Line_jm_getP2_0(this) result(jresult)
+    class(Line), target :: this
+    class(GPoint), pointer :: jresult
+        jresult => this%f_p2
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine Line_jm_setP1_1(this, j_p1)
+    class(Line), target :: this
+    class(GPoint), target, optional :: j_p1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        this%f_p1 => j_p1
+        call this%jm_update_0()
+  end subroutine
 
-end.
+  recursive subroutine Line_jm_setP2_1(this, j_p2)
+    class(Line), target :: this
+    class(GPoint), target, optional :: j_p2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        this%f_p2 => j_p2
+        call this%jm_update_0()
+  end subroutine
+end module Line_m
 

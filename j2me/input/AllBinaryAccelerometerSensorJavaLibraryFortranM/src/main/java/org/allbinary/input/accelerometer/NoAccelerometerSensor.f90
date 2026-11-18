@@ -1,64 +1,67 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.accelerometer
+module NoAccelerometerSensor_m
+  use JR_m
+  use AllBinaryOrientationSensor_m
+  use Orientation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.accelerometer
-unit NoAccelerometerSensor;
+  type, extends(AllBinaryOrientationSensor) :: NoAccelerometerSensor
+  contains
+    procedure :: jm_getOrientation_0 => NoAccelerometerSensor_jm_getOrientation_0
+    procedure :: jm_onSensorChange_0 => NoAccelerometerSensor_jm_onSensorChange_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryOrientationSensor, Orientation;
+  function NoAccelerometerSensor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NoAccelerometerSensor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NoAccelerometerSensor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TNoAccelerometerSensor = class(TAllBinaryOrientationSensor)
-  public
-        constructor Create;
-        function getOrientation: TOrientation; override;
-        procedure onSensorChange; override;
-  end;
+  recursive function NoAccelerometerSensor_jnew_0() result(this)
+    class(NoAccelerometerSensor), pointer :: this
+    allocate(this)
+    this%jclass = 'NoAccelerometerSensor'
+        continue
+  end function
 
-implementation
+  recursive function NoAccelerometerSensor_jm_getOrientation_0(this) result(jresult)
+    class(NoAccelerometerSensor), target :: this
+    class(Orientation), pointer :: jresult
+        jresult => Orientation_jstatic_NONE()
+        return
+  end function
 
-{AB:CODE}
-    
+  recursive subroutine NoAccelerometerSensor_jm_onSensorChange_0(this)
+    class(NoAccelerometerSensor), target :: this
+    continue
+  end subroutine
+end module NoAccelerometerSensor_m
 
-constructor TNoAccelerometerSensor.Create;
-begin
-    inherited Create;
-end;
-    
-
-// throws Exception
-function TNoAccelerometerSensor.getOrientation: TOrientation;
-begin
-        Exit(TOrientation.NONE);
-end;
-    
-
-procedure TNoAccelerometerSensor.onSensorChange;
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function NoAccelerometerSensor_jnew_0_jext() result(this)
+  use NoAccelerometerSensor_m, only: JObject, NoAccelerometerSensor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NoAccelerometerSensor_jnew_0()
+end function
 

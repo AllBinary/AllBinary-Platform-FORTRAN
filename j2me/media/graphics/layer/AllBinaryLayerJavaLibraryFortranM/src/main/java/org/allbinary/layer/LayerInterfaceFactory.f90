@@ -1,103 +1,145 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.layer
+module LayerInterfaceFactory_m
+  use JR_m
+  use LogUtil_m
+  use StringMaker_m
+  use StringUtil_m
+  use CommonStrings_m
+  use ABHashtable_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use BasicArrayListUtil_m
+  use Integer_m
+  use ABLayer_m
+  use LayerInterfaceFactoryInterface_m
+  use AllBinaryLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.layer
-unit LayerInterfaceFactory;
+  type, extends(JObject) :: LayerInterfaceFactory
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(BasicArrayList), pointer :: f_list => null()
+    character(len=:), allocatable :: f_HASHTABLE_LABEL
+  contains
+    procedure :: jm_init_0 => LayerInterfaceFactory_jm_init_0
+    procedure :: jm_getNexInstance_4 => LayerInterfaceFactory_jm_getNexInstance_4
+    procedure :: jm_add_1 => LayerInterfaceFactory_jm_add_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LayerInterfaceFactory), pointer, save :: LayerInterfaceFactory_jcell_SINGLETON => null()
+  logical, save :: LayerInterfaceFactory_jset_SINGLETON = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, ABHashtable, BasicArrayList, AllBinaryLayer, LayerInterfaceFactoryInterface;
+  function LayerInterfaceFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LayerInterfaceFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LayerInterfaceFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLayerInterfaceFactory = class(TObject)
-  public
-    logUtil: TLogUtil;
-    list: TBasicArrayList;
-    HASHTABLE_LABEL: string;
-    class var SINGLETON: TLayerInterfaceFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TLayerInterfaceFactory; static;
-        procedure init; virtual;
-        function getNexInstance(hashtable: TABHashtable<TObject, TObject>; x: Integer; y: Integer; z: Integer): TAllBinaryLayer; virtual;
-        procedure add(layerInterfaceFactoryInterface_: ILayerInterfaceFactoryInterface); virtual;
-  end;
+  function LayerInterfaceFactory_jstatic_SINGLETON() result(jresult)
+    class(LayerInterfaceFactory), pointer :: jresult
+    if (.not. LayerInterfaceFactory_jset_SINGLETON) then
+      LayerInterfaceFactory_jset_SINGLETON = .true.
+      LayerInterfaceFactory_jcell_SINGLETON => LayerInterfaceFactory_jnew_0()
+    end if
+    jresult => LayerInterfaceFactory_jcell_SINGLETON
+  end function
 
-implementation
-uses
-  ABLayer, StringMaker, StringUtil, CommonStrings, BasicArrayListD, BasicArrayListUtil;
+  subroutine LayerInterfaceFactory_jsetstatic_SINGLETON(jvalue)
+    class(LayerInterfaceFactory), target, optional :: jvalue
+    LayerInterfaceFactory_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      LayerInterfaceFactory_jcell_SINGLETON => jvalue
+    else
+      LayerInterfaceFactory_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
+  function LayerInterfaceFactory_jnew_0() result(this)
+    class(LayerInterfaceFactory), pointer :: this
+    class(BasicArrayListUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'LayerInterfaceFactory'
+    this%f_HASHTABLE_LABEL = ''
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    jtemp1 => BasicArrayListUtil_jm_getInstance_0()
+    this%f_list => jtemp1%jm_getImmutableInstance_0()
+    this%f_HASHTABLE_LABEL = 'Hashtable: '
+  end function
 
-{AB:CODE}
+  recursive function LayerInterfaceFactory_jm_getInstance_0() result(jresult)
+    class(LayerInterfaceFactory), pointer :: jresult
+        jresult => LayerInterfaceFactory_jstatic_SINGLETON()
+        return
+  end function
 
-procedure TLayerInterfaceFactory.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.list := TBasicArrayListUtil.getInstance().getImmutableInstance();
-  Self.HASHTABLE_LABEL := 'Hashtable: ';
-end;
+  recursive subroutine LayerInterfaceFactory_jm_init_0(this)
+    class(LayerInterfaceFactory), target :: this
+        this%f_list => BasicArrayListD_jnew_0()
+  end subroutine
 
-constructor TLayerInterfaceFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function LayerInterfaceFactory_jm_getNexInstance_4(this, j_hashtable, j_x, j_y, j_z) result(jresult)
+    class(LayerInterfaceFactory), target :: this
+    class(ABHashtable), target, optional :: j_hashtable
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_z
+    class(AllBinaryLayer), pointer :: jresult
+    class(CommonStrings), pointer :: j_commonStrings
+    integer(4) :: j_typeInteger
+    class(LayerInterfaceFactoryInterface), pointer :: j_layerInterfaceFactoryInterface
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+    class(StringMaker), pointer :: jtemp4
+    class(StringUtil), pointer :: jtemp5
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonStrings => CommonStrings_jm_getInstance_0()
+        jtemp5 => StringUtil_jm_getInstance_0()
+        jtemp4 => StringMaker_jnew_0()
+        jtemp3 => jtemp4%jm_append_1(this%f_HASHTABLE_LABEL)
+        jtemp2 => jtemp3%jm_append_1(jtemp5%jm_toString_1(j_hashtable))
+        call this%f_logUtil%jm_putF_3(jtemp2%jm_toString_0(), this, j_commonStrings%f_GET_INSTANCE)
+        j_typeInteger = JR_unboxInt(j_hashtable%jm_get_1(ABLayer_jstatic_ID()))
+        j_layerInterfaceFactoryInterface => LayerInterfaceFactoryInterface_jcast(this%f_list%f_objectArray(((int(j_typeInteger, 4) - 1)) + 1)%v)
+        jresult => j_layerInterfaceFactoryInterface%jm_getNextInstance_4(j_hashtable, j_x, j_y, j_z)
+        return
+  end function
 
-class function TLayerInterfaceFactory.getInstance: TLayerInterfaceFactory;
-begin
-        Exit(TLayerInterfaceFactory.SINGLETON);
-end;
-    
-
-procedure TLayerInterfaceFactory.init;
-begin
-        Self.list := TBasicArrayListD.Create();
-end;
-    
-
-// throws Exception
-function TLayerInterfaceFactory.getNexInstance(hashtable: TABHashtable<TObject, TObject>; x: Integer; y: Integer; z: Integer): TAllBinaryLayer;
-var
-  commonStrings_: TCommonStrings;
-  typeInteger: Integer;
-  layerInterfaceFactoryInterface_: ILayerInterfaceFactoryInterface;
-begin
-        commonStrings_ := TCommonStrings.getInstance();
-        Self.logUtil.putF(TStringMaker.Create().append(Self.HASHTABLE_LABEL).append(TStringUtil.getInstance().toString(hashtable)).toString(), TJava.Box(Self), commonStrings_.GET_INSTANCE);
-        typeInteger := Integer(hashtable.get(TJava.Box(TJava.Box(TABLayer.ID))));
-        layerInterfaceFactoryInterface_ := (TJava.ToObject(Self.list.objectArray[((typeInteger)) - (1)]) as ILayerInterfaceFactoryInterface);
-        Exit(layerInterfaceFactoryInterface_.getNextInstance(hashtable, x, y, z));
-end;
-    
-
-procedure TLayerInterfaceFactory.add(layerInterfaceFactoryInterface_: ILayerInterfaceFactoryInterface);
-begin
-        Self.list.add(TJava.Box(layerInterfaceFactoryInterface_));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLayerInterfaceFactory.SINGLETON := TLayerInterfaceFactory.Create();
-  {AB:END}
-
-end.
+  recursive subroutine LayerInterfaceFactory_jm_add_1(this, j_layerInterfaceFactoryInterface)
+    class(LayerInterfaceFactory), target :: this
+    class(LayerInterfaceFactoryInterface), target, optional :: j_layerInterfaceFactoryInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_add_1(j_layerInterfaceFactoryInterface)
+  end subroutine
+end module LayerInterfaceFactory_m
 

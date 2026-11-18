@@ -71,6 +71,16 @@ contains
     jresult => CommonSeps_jcell_instance
   end function
 
+  subroutine CommonSeps_jsetstatic_instance(jvalue)
+    class(CommonSeps), target, optional :: jvalue
+    CommonSeps_jset_instance = .true.
+    if (present(jvalue)) then
+      CommonSeps_jcell_instance => jvalue
+    else
+      CommonSeps_jcell_instance => null()
+    end if
+  end subroutine
+
   function CommonSeps_jnew_0() result(this)
     class(CommonSeps), pointer :: this
     class(StringMaker), pointer :: jtemp1

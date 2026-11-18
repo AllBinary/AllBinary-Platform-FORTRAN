@@ -1,75 +1,95 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.paint
+module ColorFillPaintableFactory_m
+  use JR_m
+  use BasicColor_m
+  use GenericOperatingSystem_m
+  use OperatingSystemFactory_m
+  use ColorFillPaintable_m
+  use OverScanColorFillPaintable_m
+  use ColorFillBasePaintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.paint
-unit ColorFillPaintableFactory;
+  type, extends(JObject) :: ColorFillPaintableFactory
+  contains
+    procedure :: jm_getInstance_2 => ColorFillPaintableFactory_jm_getInstance_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ColorFillPaintableFactory), pointer, save :: ColorFillPaintableFactory_jcell_instance => null()
+  logical, save :: ColorFillPaintableFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicColor, ColorFillBasePaintable;
+  function ColorFillPaintableFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ColorFillPaintableFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ColorFillPaintableFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TColorFillPaintableFactory = class(TObject)
-  public
-    class var instance: TColorFillPaintableFactory;
-    constructor Create;
-        class function getInstance: TColorFillPaintableFactory; overload; static;
-        function getInstance(basicColor_: TBasicColor; forThreedCanvas: Boolean): TColorFillBasePaintable; overload; virtual;
-  end;
+  function ColorFillPaintableFactory_jstatic_instance() result(jresult)
+    class(ColorFillPaintableFactory), pointer :: jresult
+    if (.not. ColorFillPaintableFactory_jset_instance) then
+      ColorFillPaintableFactory_jset_instance = .true.
+      ColorFillPaintableFactory_jcell_instance => ColorFillPaintableFactory_jnew_0()
+    end if
+    jresult => ColorFillPaintableFactory_jcell_instance
+  end function
 
-implementation
-uses
-  ColorFillPaintable, OverScanColorFillPaintable, GenericOperatingSystem, OperatingSystemFactory;
+  subroutine ColorFillPaintableFactory_jsetstatic_instance(jvalue)
+    class(ColorFillPaintableFactory), target, optional :: jvalue
+    ColorFillPaintableFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ColorFillPaintableFactory_jcell_instance => jvalue
+    else
+      ColorFillPaintableFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  function ColorFillPaintableFactory_jnew_0() result(this)
+    class(ColorFillPaintableFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'ColorFillPaintableFactory'
+  end function
 
-{AB:CODE}
+  recursive function ColorFillPaintableFactory_jm_getInstance_0() result(jresult)
+    class(ColorFillPaintableFactory), pointer :: jresult
+        jresult => ColorFillPaintableFactory_jstatic_instance()
+        return
+  end function
 
-constructor TColorFillPaintableFactory.Create;
-begin
-  inherited Create;
-end;
-    
-
-class function TColorFillPaintableFactory.getInstance: TColorFillPaintableFactory;
-begin
-        Exit(TColorFillPaintableFactory.instance);
-end;
-    
-
-function TColorFillPaintableFactory.getInstance(basicColor_: TBasicColor; forThreedCanvas: Boolean): TColorFillBasePaintable;
-var
-  operatingSystem: TGenericOperatingSystem;
-begin
-        operatingSystem := TOperatingSystemFactory.getInstance().getOperatingSystemInstance();
-        if operatingSystem.isOverScan() then begin
-            Exit(TOverScanColorFillPaintable.Create(basicColor_));
-        end else begin
-            Exit(TColorFillPaintable.Create(basicColor_));
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TColorFillPaintableFactory.instance := TColorFillPaintableFactory.Create();
-  {AB:END}
-
-end.
+  recursive function ColorFillPaintableFactory_jm_getInstance_2(this, j_basicColor, j_forThreedCanvas) result(jresult)
+    class(ColorFillPaintableFactory), target :: this
+    class(BasicColor), target, optional :: j_basicColor
+    logical, value :: j_forThreedCanvas
+    class(ColorFillBasePaintable), pointer :: jresult
+    class(GenericOperatingSystem), pointer :: j_operatingSystem
+    class(OperatingSystemFactory), pointer :: jtemp1
+        jtemp1 => OperatingSystemFactory_jm_getInstance_0()
+        j_operatingSystem => jtemp1%jm_getOperatingSystemInstance_0()
+        if (j_operatingSystem%jm_isOverScan_0()) then
+            jresult => OverScanColorFillPaintable_jnew_1(j_basicColor)
+            return
+        else
+            jresult => ColorFillPaintable_jnew_1(j_basicColor)
+            return
+        end if
+  end function
+end module ColorFillPaintableFactory_m
 

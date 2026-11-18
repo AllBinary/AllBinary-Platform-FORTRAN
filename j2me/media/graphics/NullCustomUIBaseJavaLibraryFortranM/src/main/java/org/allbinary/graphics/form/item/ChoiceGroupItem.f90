@@ -1,35 +1,30 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit ChoiceGroupItem;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module ChoiceGroupItem_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ChoiceGroupItem
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TChoiceGroupItem = class(TObject)
-  public
-    constructor Create;
-  end;
+  function ChoiceGroupItem_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ChoiceGroupItem), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ChoiceGroupItem)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TChoiceGroupItem.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function ChoiceGroupItem_jnew_0() result(this)
+    class(ChoiceGroupItem), pointer :: this
+    allocate(this)
+    this%jclass = 'ChoiceGroupItem'
+  end function
+end module ChoiceGroupItem_m
 

@@ -1,55 +1,53 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.android.input.motion
+module AnalogLocationInputProcessor_m
+  use JR_m
+  use AnalogLocationInput_m
+  use AllBinaryLayerManager_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.android.input.motion
-unit AnalogLocationInputProcessor;
+  type, extends(JObject) :: AnalogLocationInputProcessor
+  contains
+    procedure :: jm_process_2 => AnalogLocationInputProcessor_jm_process_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AnalogLocationInput, AllBinaryLayerManager;
+  function AnalogLocationInputProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnalogLocationInputProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnalogLocationInputProcessor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAnalogLocationInputProcessor = class(TObject)
-  public
-    constructor Create;
-        procedure process(allbinaryLayerManager_: TAllBinaryLayerManager; analogLocationInput_: TAnalogLocationInput); virtual;
-  end;
+  function AnalogLocationInputProcessor_jnew_0() result(this)
+    class(AnalogLocationInputProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'AnalogLocationInputProcessor'
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TAnalogLocationInputProcessor.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TAnalogLocationInputProcessor.process(allbinaryLayerManager_: TAllBinaryLayerManager; analogLocationInput_: TAnalogLocationInput);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine AnalogLocationInputProcessor_jm_process_2(this, j_allbinaryLayerManager, j_analogLocationInput)
+    class(AnalogLocationInputProcessor), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    class(AnalogLocationInput), target, optional :: j_analogLocationInput
+    continue
+  end subroutine
+end module AnalogLocationInputProcessor_m
 

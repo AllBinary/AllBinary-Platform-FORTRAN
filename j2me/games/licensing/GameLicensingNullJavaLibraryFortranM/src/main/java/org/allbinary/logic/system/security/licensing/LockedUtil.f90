@@ -1,78 +1,89 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module LockedUtil_m
+  use JR_m
+  use LockedUtilInterface_m
+  use LockableFeature_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit LockedUtil;
+  type, extends(LockedUtilInterface) :: LockedUtil
+  contains
+    procedure :: jm_isLocked_0 => LockedUtil_jm_isLocked_0
+    procedure :: jm_isLockedFeature_1 => LockedUtil_jm_isLockedFeature_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LockedUtil), pointer, save :: LockedUtil_jcell_instance => null()
+  logical, save :: LockedUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LockableFeature, LockedUtilInterface;
+  function LockedUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LockedUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LockedUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLockedUtil = class(TInterfacedObject, ILockedUtilInterface)
-  public
-    class var instance: TLockedUtil;
-    function JavaObject: TObject;
-    constructor Create;
-        class function getInstance: TLockedUtil; static;
-        function isLocked: Boolean; virtual;
-        function isLockedFeature(lockableFeatrue: TLockableFeature): Boolean; virtual;
-  end;
+  function LockedUtil_jstatic_instance() result(jresult)
+    class(LockedUtil), pointer :: jresult
+    if (.not. LockedUtil_jset_instance) then
+      LockedUtil_jset_instance = .true.
+      LockedUtil_jcell_instance => LockedUtil_jnew_0()
+    end if
+    jresult => LockedUtil_jcell_instance
+  end function
 
-implementation
+  subroutine LockedUtil_jsetstatic_instance(jvalue)
+    class(LockedUtil), target, optional :: jvalue
+    LockedUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      LockedUtil_jcell_instance => jvalue
+    else
+      LockedUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function LockedUtil_jnew_0() result(this)
+    class(LockedUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'LockedUtil'
+  end function
 
-function TLockedUtil.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function LockedUtil_jm_getInstance_0() result(jresult)
+    class(LockedUtil), pointer :: jresult
+        jresult => LockedUtil_jstatic_instance()
+        return
+  end function
 
-constructor TLockedUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function LockedUtil_jm_isLocked_0(this) result(jresult)
+    class(LockedUtil), target :: this
+    logical :: jresult
+        jresult = .true.
+        return
+  end function
 
-class function TLockedUtil.getInstance: TLockedUtil;
-begin
-        Exit(TLockedUtil.instance);
-end;
-    
-
-function TLockedUtil.isLocked: Boolean;
-begin
-        Exit(True);
-end;
-    
-
-function TLockedUtil.isLockedFeature(lockableFeatrue: TLockableFeature): Boolean;
-begin
-        Exit(True);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLockedUtil.instance := TLockedUtil.Create();
-  {AB:END}
-
-end.
+  recursive function LockedUtil_jm_isLockedFeature_1(this, j_lockableFeatrue) result(jresult)
+    class(LockedUtil), target :: this
+    class(LockableFeature), target, optional :: j_lockableFeatrue
+    logical :: jresult
+        jresult = .true.
+        return
+  end function
+end module LockedUtil_m
 

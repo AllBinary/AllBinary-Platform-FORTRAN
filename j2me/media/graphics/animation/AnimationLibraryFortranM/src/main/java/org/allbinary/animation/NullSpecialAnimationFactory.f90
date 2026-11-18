@@ -1,90 +1,123 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module NullSpecialAnimationFactory_m
+  use JR_m
+  use SpecialAnimation_m
+  use ScaleProperties_m
+  use AnimationInterfaceFactoryInterface_m
+  use ProceduralAnimationInterfaceFactoryInterface_m
+  use Animation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit NullSpecialAnimationFactory;
+  type, extends(AnimationInterfaceFactoryInterface) :: NullSpecialAnimationFactory
+  contains
+    procedure :: jm_getInstance_1 => NullSpecialAnimationFactory_jm_getInstance_1
+    procedure :: jm_getInstanceAnimation_1 => NullSpecialAnimationFactory_jm_getInstanceAnimation_1
+    procedure :: jm_setInitialScale_1 => NullSpecialAnimationFactory_jm_setInitialScale_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! NullSpecialAnimationFactory used as a ProceduralAnimationInterfaceFactoryInterface
+  type, extends(ProceduralAnimationInterfaceFactoryInterface) :: NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface
+    class(NullSpecialAnimationFactory), pointer :: jtarget => null()
+  contains
+    procedure :: jm_getInstanceAnimation_1 => NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface_jm_getInstanceAnimation_1
+  end type
 
-interface
+  class(NullSpecialAnimationFactory), pointer, save :: NullSpecialAnimationFactory_jcell_NULL_SPECIAL_ANIMATION_FACTORY => null()
+  logical, save :: NullSpecialAnimationFactory_jset_NULL_SPECIAL_ANIMATION_FACTORY = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ScaleProperties, Animation, AnimationInterfaceFactoryInterface, ProceduralAnimationInterfaceFactoryInterface, BasicAnimationInterfaceFactoryInterface;
+contains
 
-type
-  {AB:TYPES}
-  TNullSpecialAnimationFactory = class(TInterfacedObject, IAnimationInterfaceFactoryInterface, IProceduralAnimationInterfaceFactoryInterface, IBasicAnimationInterfaceFactoryInterface)
-  public
-    class var NULL_SPECIAL_ANIMATION_FACTORY: TNullSpecialAnimationFactory;
-    function JavaObject: TObject;
-        constructor Create;
-        class function getFactoryInstance: TNullSpecialAnimationFactory; static;
-        function getInstance(instanceId: Integer): TAnimation; virtual;
-        function getInstanceAnimation(animationInterface: TAnimation): TAnimation; virtual;
-        procedure setInitialScale(scaleProperties_: TScaleProperties); virtual;
-  end;
+  function NullSpecialAnimationFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullSpecialAnimationFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullSpecialAnimationFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  SpecialAnimation;
+  function NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface_jnew(object) result(jresult)
+    class(NullSpecialAnimationFactory), target :: object
+    class(NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'NullSpecialAnimationFactory'
+    jresult%jtarget => object
+  end function
 
+  recursive function NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface_jm_getInstanceAnimation_1(this, j_animationInterface) result(jresult)
+    class(NullSpecialAnimationFactory_jas_ProceduralAnimationInterfaceFactoryInterface), target :: this
+    class(Animation), target, optional :: j_animationInterface
+    class(Animation), pointer :: jresult
+    jresult => this%jtarget%jm_getInstanceAnimation_1(j_animationInterface)
+  end function
 
-{AB:CODE}
+  function NullSpecialAnimationFactory_jstatic_NULL_SPECIAL_ANIMATION_FACTORY() result(jresult)
+    class(NullSpecialAnimationFactory), pointer :: jresult
+    if (.not. NullSpecialAnimationFactory_jset_NULL_SPECIAL_ANIMATION_FACTORY) then
+      NullSpecialAnimationFactory_jset_NULL_SPECIAL_ANIMATION_FACTORY = .true.
+      NullSpecialAnimationFactory_jcell_NULL_SPECIAL_ANIMATION_FACTORY => NullSpecialAnimationFactory_jnew_0()
+    end if
+    jresult => NullSpecialAnimationFactory_jcell_NULL_SPECIAL_ANIMATION_FACTORY
+  end function
 
-function TNullSpecialAnimationFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  subroutine NullSpecialAnimationFactory_jsetstatic_NULL_SPECIAL_ANIMATION_FACTORY(jvalue)
+    class(NullSpecialAnimationFactory), target, optional :: jvalue
+    NullSpecialAnimationFactory_jset_NULL_SPECIAL_ANIMATION_FACTORY = .true.
+    if (present(jvalue)) then
+      NullSpecialAnimationFactory_jcell_NULL_SPECIAL_ANIMATION_FACTORY => jvalue
+    else
+      NullSpecialAnimationFactory_jcell_NULL_SPECIAL_ANIMATION_FACTORY => null()
+    end if
+  end subroutine
 
-constructor TNullSpecialAnimationFactory.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive function NullSpecialAnimationFactory_jnew_0() result(this)
+    class(NullSpecialAnimationFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'NullSpecialAnimationFactory'
+        continue
+  end function
 
-class function TNullSpecialAnimationFactory.getFactoryInstance: TNullSpecialAnimationFactory;
-begin
-        Exit(TNullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY);
-end;
-    
+  recursive function NullSpecialAnimationFactory_jm_getFactoryInstance_0() result(jresult)
+    class(NullSpecialAnimationFactory), pointer :: jresult
+        jresult => NullSpecialAnimationFactory_jstatic_NULL_SPECIAL_ANIMATION_FACTORY()
+        return
+  end function
 
-// throws Exception
-function TNullSpecialAnimationFactory.getInstance(instanceId: Integer): TAnimation;
-begin
-        Exit(TSpecialAnimation.getInstance());
-end;
-    
+  recursive function NullSpecialAnimationFactory_jm_getInstance_1(this, j_instanceId) result(jresult)
+    class(NullSpecialAnimationFactory), target :: this
+    integer(4), value :: j_instanceId
+    class(Animation), pointer :: jresult
+        jresult => SpecialAnimation_jm_getInstance_0()
+        return
+  end function
 
-// throws Exception
-function TNullSpecialAnimationFactory.getInstanceAnimation(animationInterface: TAnimation): TAnimation;
-begin
-        Exit(TSpecialAnimation.getInstance());
-end;
-    
+  recursive function NullSpecialAnimationFactory_jm_getInstanceAnimation_1(this, j_animationInterface) result(jresult)
+    class(NullSpecialAnimationFactory), target :: this
+    class(Animation), target, optional :: j_animationInterface
+    class(Animation), pointer :: jresult
+        jresult => SpecialAnimation_jm_getInstance_0()
+        return
+  end function
 
-procedure TNullSpecialAnimationFactory.setInitialScale(scaleProperties_: TScaleProperties);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY := TNullSpecialAnimationFactory.Create();
-  {AB:END}
-
-end.
+  recursive subroutine NullSpecialAnimationFactory_jm_setInitialScale_1(this, j_scaleProperties)
+    class(NullSpecialAnimationFactory), target :: this
+    class(ScaleProperties), target, optional :: j_scaleProperties
+    continue
+  end subroutine
+end module NullSpecialAnimationFactory_m
 

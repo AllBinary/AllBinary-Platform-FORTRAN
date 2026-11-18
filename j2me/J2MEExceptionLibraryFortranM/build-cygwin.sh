@@ -47,6 +47,11 @@ mkdir -p jobj
 # optional dependency of that dependency (not transitive) does not compile here but its module from its own build does
 if [ -d "$dependency_dir/mod" ]; then
     cp "$dependency_dir/mod/"*.mod jobj/ 2>/dev/null
+    # The runtime is compiled here from its source, so a module of the runtime from an older dependency build is removed:
+    # a module compiled first (HashMap) would otherwise use the older one (Hashtable) and keep it
+    for module in $(cat $(find "$runtime_dir" -type f -name '*.f90') | sed -n 's/^module \([A-Za-z0-9_]*\) *$/\1/p' | tr 'A-Z' 'a-z'); do
+        rm -f "jobj/$module.mod"
+    done
 fi
 compile() {
     "$compiler" "${compiler_flags[@]}" -Jjobj -c "$1" -o "jobj/$(echo "$1" | tr '/.' '__').o" 2>"jobj/$(echo "$1" | tr '/.' '__').log"
@@ -59,7 +64,30 @@ if ! compile allbinary_java.f90; then
 fi
 # The runtime, the dependencies, then this project, compiled again while a pass compiles more of them
 own="$(cd "$source_dir" && find . -type f -name '*.f90' | sed 's|^\./||' | sort)"
+runtime_files="$(cd "$runtime_dir" && find . -type f -name '*.f90' | sed 's|^\./||' | sort)"
 remaining=$(find . -type f -name '*.f90' ! -name 'allbinary_java.f90' | sed 's|^\./||' | sort)
+# A dependency source whose module (.mod) came with the dependency's own build is not compiled again, like a Java class
+# file of a dependency: the module is already checked and compiling every dependency again (midp and its cycles) takes
+# minutes per project. The runtime and this project are always compiled.
+all_files="$remaining"
+if [ -d "$dependency_dir/mod" ]; then
+    remaining="$(printf '%s\n' $remaining | perl -e '
+        my ($modDir, $ownList, $runtimeList) = @ARGV;
+        my %keep = map { $_ => 1 } (split(/\n/, $ownList), split(/\n/, $runtimeList));
+        while (my $file = <STDIN>) {
+            chomp $file;
+            next if $file eq "";
+            if (!$keep{$file} && open(my $handle, "<", $file)) {
+                my $module;
+                while (my $line = <$handle>) {
+                    if ($line =~ /^module\s+(\w+)\s*$/i) { $module = lc $1; last; }
+                }
+                close $handle;
+                next if defined $module && -f "$modDir/$module.mod";
+            }
+            print "$file\n";
+        }' "$dependency_dir/mod" "$own" "$runtime_files")"
+fi
 echo "Fortran modules: $(echo "$own" | grep -c .)"
 compile_passes() {
     while [ -n "$remaining" ]; do
@@ -75,6 +103,22 @@ compile_passes() {
     done
 }
 compile_passes
+# A dependency module compiled against an older runtime (a JObject binding added since) does not match the runtime
+# compiled here ("Mismatch in components of derived type"), so then the dependency sources are compiled here after all
+stale=""
+for file in $remaining; do
+    if grep -qE "Mismatch in components of derived type|created by a different version" "jobj/$(echo "$file" | tr '/.' '__').log" 2>/dev/null; then
+        stale="$file"
+        break
+    fi
+done
+if [ -n "$stale" ]; then
+    # Each dependency source that compiles replaces its older module; one that needs a module of an optional dependency
+    # of that dependency keeps the module from the dependency's build
+    echo "Fortran dependency modules older than the runtime ($stale): compiling the dependency sources"
+    remaining="$all_files"
+    compile_passes
+fi
 # Fortran modules can not use each other: the modules left that use each other (ThreadPool and PooledThread) are merged
 # into one module jcycleN_m and each of their files becomes a module that uses it, then the passes run again
 if [ -n "$remaining" ]; then
@@ -127,10 +171,48 @@ my $number = 0;
 for my $component (@components) {
     $number++;
     my %member = map { $_ => 1 } @$component;
-    my $name = "jcycle${number}_m";
+    #The merged module name is unique to this project (its artifact): the .mod files of every dependency are unpacked to
+    #one folder, so jcycle1_m of one dependency would replace jcycle1_m of another
+    my $name = "jcycle_" . $ENV{JCYCLE_PREFIX} . "_${number}_m";
     my (%seen, @useLines);
     my ($spec, $procedures, $after) = ('', '', '');
-    for my $module (sort @$component) {
+    my (@typeOrder, %typeParent, %typeText);
+    #A parent type is declared before a type that extends it (Shape before DeviceRectangle), so a module comes after the
+    #modules of the component that declare the types it extends
+    my (%declares, %extends);
+    for my $module (@$component) {
+        $declares{$module} = [ map { lc } ($text{$fileOf{$module}} =~ /^\s*type\s*(?:,[^:]*)?::\s*(\w+)/mg) ];
+        $extends{$module} = [ map { lc } ($text{$fileOf{$module}} =~ /^\s*type\s*,\s*extends\s*\(\s*(\w+)\s*\)/mg) ];
+    }
+    my (%declaredBy, @ordered, %placed);
+    for my $module (@$component) {
+        $declaredBy{$_} = $module for @{$declares{$module}};
+    }
+    my @pending = sort @$component;
+    while (@pending) {
+        my @next;
+        my $progress = 0;
+        for my $module (@pending) {
+            my $ready = 1;
+            for my $parent (@{$extends{$module}}) {
+                my $owner = $declaredBy{$parent};
+                $ready = 0 if defined $owner && $owner ne $module && !$placed{$owner};
+            }
+            if ($ready) {
+                push @ordered, $module;
+                $placed{$module} = 1;
+                $progress = 1;
+            } else {
+                push @next, $module;
+            }
+        }
+        if (!$progress) {
+            push @ordered, @next;
+            last;
+        }
+        @pending = @next;
+    }
+    for my $module (@ordered) {
         my @lines = split /\n/, $text{$fileOf{$module}}, -1;
         my ($moduleLine) = grep { $lines[$_] =~ /^module\s+\w+\s*$/ } 0 .. $#lines;
         my ($implicitLine) = grep { $_ > $moduleLine && $lines[$_] =~ /^\s*implicit none\s*$/ } 0 .. $#lines;
@@ -142,10 +224,75 @@ for my $component (@components) {
                 push @useLines, $line unless $seen{lc $line}++;
             }
         }
-        $spec .= join("\n", @lines[$implicitLine + 1 .. $containsLine - 1]) . "\n";
+        #The derived types go first (a module variable such as class(Gauge), pointer :: Alert_jcell_NULL_GAUGE needs the
+        #type of another module) and the other declarations after them
+        my $inType = 0;
+        for my $line (@lines[$implicitLine + 1 .. $containsLine - 1]) {
+            if (!$inType && $line =~ /^\s*type\s*(?:,[^:]*)?::\s*(\w+)/) {
+                $inType = 1;
+                my $typeName = lc $1;
+                my ($parent) = $line =~ /extends\s*\(\s*(\w+)\s*\)/i;
+                push @typeOrder, $typeName;
+                $typeParent{$typeName} = defined $parent ? lc $parent : '';
+                $typeText{$typeName} = '';
+            }
+            if ($inType) {
+                $typeText{$typeOrder[-1]} .= "$line\n";
+                $inType = 0 if $line =~ /^\s*end\s*type\b/i;
+            } else {
+                $spec .= "$line\n";
+            }
+        }
         $procedures .= join("\n", @lines[$containsLine + 1 .. $endLine - 1]) . "\n" if $containsLine < $endLine;
         $after .= join("\n", @lines[$endLine + 1 .. $#lines]) . "\n";
     }
+    #The types with each parent before the types that extend it
+    my ($types, %typeDone) = ('');
+    my $addType;
+    $addType = sub {
+        my $typeName = shift;
+        return if $typeDone{$typeName}++;
+        my $parent = $typeParent{$typeName};
+        $addType->($parent) if $parent ne '' && exists $typeText{$parent};
+        $types .= $typeText{$typeName};
+    };
+    $addType->($_) for @typeOrder;
+    $spec = "$types$spec";
+    #An associate of a function of this merged module (associate (x => ChoiceItem_jcast(...))) is a block with a
+    #variable of the function's result type: gfortran does not know the type of a function defined later in the module
+    my %resultSpec;
+    #The next lines are in a lookahead so a short function does not hide the one after it
+    while ($procedures =~ /function\s+(\w+)\s*\([^)]*\)\s*result\(jresult\)\s*\n(?=((?:[^\n]*\n){0,12}))/g) {
+        my ($function, $body) = (lc $1, $2);
+        if ($body =~ /^\s*((?:class|type)\(\w+\)[^:\n]*|character\(len=:\)[^:\n]*|integer\(\d\)[^:\n]*|real\(\d\)[^:\n]*|logical[^:\n]*)::\s*jresult\s*$/m) {
+            my $declaration = $1;
+            $declaration =~ s/\s+$//;
+            $resultSpec{$function} = $declaration;
+        }
+    }
+    my @procedureLines = split /\n/, $procedures, -1;
+    for my $index (0 .. $#procedureLines) {
+        next unless $procedureLines[$index] =~ /^(\s*)associate \((\w+) => (\w+)(\(.*\))\)\s*$/;
+        my ($indent, $variable, $function, $arguments) = ($1, $2, lc $3, $4);
+        next unless exists $resultSpec{$function};
+        my $declaration = $resultSpec{$function};
+        my $operator = $declaration =~ /pointer/ ? '=>' : '=';
+        my $call = $procedureLines[$index] =~ /=> (\w+\(.*\))\)\s*$/ ? $1 : '';
+        my $depth = 0;
+        for my $end ($index + 1 .. $#procedureLines) {
+            if ($procedureLines[$end] =~ /^\s*associate \(/) {
+                $depth++;
+            } elsif ($procedureLines[$end] =~ /^\s*end associate\s*$/) {
+                if ($depth == 0) {
+                    $procedureLines[$end] =~ s/end associate/end block/;
+                    last;
+                }
+                $depth--;
+            }
+        }
+        $procedureLines[$index] = "${indent}block\n${indent}$declaration :: $variable\n${indent}$variable $operator $call";
+    }
+    $procedures = join "\n", @procedureLines;
     #The external constructor wrappers after the modules use the merged module
     for my $module (@$component) {
         $after =~ s/^(\s*use\s+)$module\b/$1$name/mgi;
@@ -164,7 +311,8 @@ for my $component (@components) {
     }
 }
 PERL
-    merged="$(perl jobj/cyclemerge.pl $remaining)"
+    cycle_prefix="$(printf '%s' "$artifact" | md5sum | cut -c1-8)"
+    merged="$(JCYCLE_PREFIX="$cycle_prefix" perl jobj/cyclemerge.pl $remaining)"
     if [ -n "$merged" ]; then
         echo "Fortran merged modules that use each other: $(echo $merged)"
         remaining="$(echo $merged $remaining)"
@@ -180,7 +328,9 @@ done
 if [ -n "$failed" ]; then
     for file in $failed; do
         echo "== $file"
-        head -40 "jobj/$(echo "$file" | tr '/.' '__').log"
+        # A merged module (jcycleN_m) has the errors of every module it merged
+        case "$file" in jcycle*) lines=400;; *) lines=40;; esac
+        head -$lines "jobj/$(echo "$file" | tr '/.' '__').log"
     done
     echo "Fortran build failed: $artifact" >&2
     if [ "$fail_on_error" = "true" ]; then

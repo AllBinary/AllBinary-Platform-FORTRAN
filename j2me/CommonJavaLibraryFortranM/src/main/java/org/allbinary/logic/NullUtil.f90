@@ -54,6 +54,16 @@ contains
     jresult => NullUtil_jcell_instance
   end function
 
+  subroutine NullUtil_jsetstatic_instance(jvalue)
+    class(NullUtil), target, optional :: jvalue
+    NullUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      NullUtil_jcell_instance => jvalue
+    else
+      NullUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function NullUtil_jnew_0() result(this)
     class(NullUtil), pointer :: this
     allocate(this)

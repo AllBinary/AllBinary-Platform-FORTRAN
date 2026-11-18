@@ -1,29 +1,30 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit ABCustomItemStateListener;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module ABCustomItemStateListener_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ABCustomItemStateListener
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  IABCustomItemStateListener = interface(IJavaObject) ['IABCustomItemStateListener']
-  end;
-  TABCustomItemStateListener = IABCustomItemStateListener;
+  function ABCustomItemStateListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ABCustomItemStateListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ABCustomItemStateListener)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function ABCustomItemStateListener_jnew_0() result(this)
+    class(ABCustomItemStateListener), pointer :: this
+    allocate(this)
+    this%jclass = 'ABCustomItemStateListener'
+  end function
+end module ABCustomItemStateListener_m
 

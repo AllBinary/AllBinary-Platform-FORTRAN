@@ -1,174 +1,268 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.part.weapon
+module BasicWeaponPart_m
+  use JR_m
+  use Animation_m
+  use NullAnimationFactory_m
+  use WeaponProperties_m
+  use PartInterface_m
+  use NoScoreable_m
+  use ScoreableInterface_m
+  use RelativeRelationship_m
+  use AllBinaryLayer_m
+  use AllBinaryLayerManager_m
+  use CommonStrings_m
+  use ViewPositionBase_m
+  use SalvoInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.part.weapon
-unit BasicWeaponPart;
+  type, extends(PartInterface) :: BasicWeaponPart
+    class(Animation), pointer :: f_animationInterface => null()
+    class(AllBinaryLayer), pointer :: f_ownerLayerInterface => null()
+    class(WeaponProperties), pointer :: f_weaponProperties => null()
+    class(ScoreableInterface), pointer :: f_scoreableInterface => null()
+    class(RelativeRelationship), pointer :: f_relativeRelationship => null()
+  contains
+    procedure :: jm_init_4 => BasicWeaponPart_jm_init_4
+    procedure :: jm_process_3 => BasicWeaponPart_jm_process_3
+    procedure :: jm_processScore_5 => BasicWeaponPart_jm_processScore_5
+    procedure :: jm_getOwnerLayerInterface_0 => BasicWeaponPart_jm_getOwnerLayerInterface_0
+    procedure :: jm_setOwnerLayerInterface_1 => BasicWeaponPart_jm_setOwnerLayerInterface_1
+    procedure :: jm_getAnimationInterface_0 => BasicWeaponPart_jm_getAnimationInterface_0
+    procedure :: jm_setAnimationInterface_1 => BasicWeaponPart_jm_setAnimationInterface_1
+    procedure :: jm_paint_1 => BasicWeaponPart_jm_paint_1
+    procedure :: jm_paintThreed_1 => BasicWeaponPart_jm_paintThreed_1
+    procedure :: jm_getWeaponProperties_0 => BasicWeaponPart_jm_getWeaponProperties_0
+    procedure :: jm_setWeaponProperties_1 => BasicWeaponPart_jm_setWeaponProperties_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! BasicWeaponPart used as a SalvoInterface
+  type, extends(SalvoInterface) :: BasicWeaponPart_jas_SalvoInterface
+    class(BasicWeaponPart), pointer :: jtarget => null()
+  contains
+    procedure :: jm_process_3 => BasicWeaponPart_jas_SalvoInterface_jm_process_3
+    procedure :: jm_processScore_5 => BasicWeaponPart_jas_SalvoInterface_jm_processScore_5
+  end type
 
-interface
+  class(BasicWeaponPart), pointer, save :: BasicWeaponPart_jcell_NULL_BASIC_WEAPON_PART => null()
+  logical, save :: BasicWeaponPart_jset_NULL_BASIC_WEAPON_PART = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Animation, WeaponProperties, PartInterface, ScoreableInterface, RelativeRelationship, AllBinaryLayer, AllBinaryLayerManager, SalvoInterface, AnimationInterfaceCompositeInterface, PaintableInterface;
+contains
 
-type
-  {AB:TYPES}
-  TBasicWeaponPart = class(TInterfacedObject, IPartInterface, ISalvoInterface, IAnimationInterfaceCompositeInterface, IPaintableInterface)
-  public
-    animationInterface: TAnimation;
-    ownerLayerInterface: TAllBinaryLayer;
-    weaponProperties: TWeaponProperties;
-    scoreableInterface: IScoreableInterface;
-    relativeRelationship: TRelativeRelationship;
-    class var NULL_BASIC_WEAPON_PART: TBasicWeaponPart;
-    procedure InitFields;
-    function JavaObject: TObject;
-        class function createBasicWeaponPart(animationInterface: TAnimation): TBasicWeaponPart; static;
-        constructor Create(animationInterface: TAnimation; sourceLayerInterface: TAllBinaryLayer; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface; relativeRelationship_: TRelativeRelationship);
-        procedure init(sourceLayerInterface: TAllBinaryLayer; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface; relativeRelationship_: TRelativeRelationship); virtual;
-        procedure process(allbinaryLayerManager_: TAllBinaryLayerManager; angle: SmallInt; otherAngle: SmallInt); virtual;
-        procedure processScore(allbinaryLayerManager_: TAllBinaryLayerManager; angle: SmallInt; otherAngle: SmallInt; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface); virtual;
-        function getOwnerLayerInterface: TAllBinaryLayer; virtual;
-        procedure setOwnerLayerInterface(ownerLayerInterface: TAllBinaryLayer); virtual;
-        function getAnimationInterface: TAnimation; virtual;
-        procedure setAnimationInterface(animationInterface: TAnimation); virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure paintThreed(graphics_: TGraphics); virtual;
-        function getWeaponProperties: TWeaponProperties; virtual;
-        procedure setWeaponProperties(weaponProperties_: TWeaponProperties); virtual;
-  end;
+  function BasicWeaponPart_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicWeaponPart), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicWeaponPart)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullAnimationFactory, NoScoreable, CommonStrings, ViewPositionBase;
+  function BasicWeaponPart_jas_SalvoInterface_jnew(object) result(jresult)
+    class(BasicWeaponPart), target :: object
+    class(BasicWeaponPart_jas_SalvoInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'BasicWeaponPart'
+    jresult%jtarget => object
+  end function
 
+  recursive subroutine BasicWeaponPart_jas_SalvoInterface_jm_process_3(this, j_allbinaryLayerManager, j_angle, j_otherAngle)
+    class(BasicWeaponPart_jas_SalvoInterface), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    call this%jtarget%jm_process_3(j_allbinaryLayerManager, j_angle, j_otherAngle)
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine BasicWeaponPart_jas_SalvoInterface_jm_processScore_5(this, j_allbinaryLayerManager, j_angle, j_otherAngle, j_weaponProperties, j_scoreableInterface)
+    class(BasicWeaponPart_jas_SalvoInterface), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    class(WeaponProperties), target, optional :: j_weaponProperties
+    class(ScoreableInterface), target, optional :: j_scoreableInterface
+    call this%jtarget%jm_processScore_5(j_allbinaryLayerManager, j_angle, j_otherAngle, j_weaponProperties, j_scoreableInterface)
+  end subroutine
 
-procedure TBasicWeaponPart.InitFields;
-begin
-  Self.animationInterface := TNullAnimationFactory.getFactoryInstance().getInstance(0);
-  Self.ownerLayerInterface := TAllBinaryLayer.NULL_ALLBINARY_LAYER;
-  Self.weaponProperties := TWeaponProperties.NULL_WEAPON_PROPERTIES;
-  Self.scoreableInterface := TNoScoreable.getInstance();
-  Self.relativeRelationship := TRelativeRelationship.NULL_RELATIVE_RELATIONSHIP;
-end;
+  function BasicWeaponPart_jstatic_NULL_BASIC_WEAPON_PART() result(jresult)
+    class(BasicWeaponPart), pointer :: jresult
+    class(NullAnimationFactory), pointer :: jtemp1
+    if (.not. BasicWeaponPart_jset_NULL_BASIC_WEAPON_PART) then
+      BasicWeaponPart_jset_NULL_BASIC_WEAPON_PART = .true.
+      jtemp1 => NullAnimationFactory_jm_getFactoryInstance_0()
+    BasicWeaponPart_jcell_NULL_BASIC_WEAPON_PART => BasicWeaponPart_jm_createBasicWeaponPart_1(jtemp1%jm_getInstance_1(0))
+    end if
+    jresult => BasicWeaponPart_jcell_NULL_BASIC_WEAPON_PART
+  end function
 
-function TBasicWeaponPart.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  subroutine BasicWeaponPart_jsetstatic_NULL_BASIC_WEAPON_PART(jvalue)
+    class(BasicWeaponPart), target, optional :: jvalue
+    BasicWeaponPart_jset_NULL_BASIC_WEAPON_PART = .true.
+    if (present(jvalue)) then
+      BasicWeaponPart_jcell_NULL_BASIC_WEAPON_PART => jvalue
+    else
+      BasicWeaponPart_jcell_NULL_BASIC_WEAPON_PART => null()
+    end if
+  end subroutine
 
-class function TBasicWeaponPart.createBasicWeaponPart(animationInterface: TAnimation): TBasicWeaponPart;
-begin
-        Exit(TBasicWeaponPart.Create(animationInterface, TAllBinaryLayer.NULL_ALLBINARY_LAYER, TWeaponProperties.NULL_WEAPON_PROPERTIES, TNoScoreable.getInstance(), TRelativeRelationship.NULL_RELATIVE_RELATIONSHIP));
-end;
-    
+  recursive function BasicWeaponPart_jnew_5(j_animationInterface, j_sourceLayerInterface, j_weaponProperties, j_scoreableInterface, j_relativeRelationship) result(this)
+    class(Animation), target, optional :: j_animationInterface
+    class(AllBinaryLayer), target, optional :: j_sourceLayerInterface
+    class(WeaponProperties), target, optional :: j_weaponProperties
+    class(ScoreableInterface), target, optional :: j_scoreableInterface
+    class(RelativeRelationship), target, optional :: j_relativeRelationship
+    class(BasicWeaponPart), pointer :: this
+    class(NullAnimationFactory), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'BasicWeaponPart'
+    jtemp2 => NullAnimationFactory_jm_getFactoryInstance_0()
+    this%f_animationInterface => jtemp2%jm_getInstance_1(0)
+    this%f_ownerLayerInterface => AllBinaryLayer_jstatic_NULL_ALLBINARY_LAYER()
+    this%f_weaponProperties => WeaponProperties_jstatic_NULL_WEAPON_PROPERTIES()
+    this%f_scoreableInterface => NoScoreable_jm_getInstance_0()
+    this%f_relativeRelationship => RelativeRelationship_jstatic_NULL_RELATIVE_RELATIONSHIP()
+        call this%jm_init_4(j_sourceLayerInterface, j_weaponProperties, j_scoreableInterface, j_relativeRelationship)
+        call this%jm_setAnimationInterface_1(j_animationInterface)
+  end function
 
-constructor TBasicWeaponPart.Create(animationInterface: TAnimation; sourceLayerInterface: TAllBinaryLayer; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface; relativeRelationship_: TRelativeRelationship);
-begin
-    inherited Create;
-    InitFields;
-        Self.init(sourceLayerInterface, weaponProperties_, scoreableInterface_, relativeRelationship_);
-        Self.setAnimationInterface(animationInterface);
-end;
-    
+  recursive function BasicWeaponPart_jm_createBasicWeaponPart_1(j_animationInterface) result(jresult)
+    class(Animation), target, optional :: j_animationInterface
+    class(BasicWeaponPart), pointer :: jresult
+        jresult => BasicWeaponPart_jnew_5(j_animationInterface, AllBinaryLayer_jstatic_NULL_ALLBINARY_LAYER(), WeaponProperties_jstatic_NULL_WEAPON_PROPERTIES(), NoScoreable_jm_getInstance_0(), RelativeRelationship_jstatic_NULL_RELATIVE_RELATIONSHIP())
+        return
+  end function
 
-procedure TBasicWeaponPart.init(sourceLayerInterface: TAllBinaryLayer; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface; relativeRelationship_: TRelativeRelationship);
-begin
-        Self.setOwnerLayerInterface(sourceLayerInterface);
-        Self.setWeaponProperties(weaponProperties_);
-        Self.scoreableInterface := scoreableInterface_;
-        Self.relativeRelationship := relativeRelationship_;
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_init_4(this, j_sourceLayerInterface, j_weaponProperties, j_scoreableInterface, j_relativeRelationship)
+    class(BasicWeaponPart), target :: this
+    class(AllBinaryLayer), target, optional :: j_sourceLayerInterface
+    class(WeaponProperties), target, optional :: j_weaponProperties
+    class(ScoreableInterface), target, optional :: j_scoreableInterface
+    class(RelativeRelationship), target, optional :: j_relativeRelationship
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_setOwnerLayerInterface_1(j_sourceLayerInterface)
+        call this%jm_setWeaponProperties_1(j_weaponProperties)
+        this%f_scoreableInterface => j_scoreableInterface
+        this%f_relativeRelationship => j_relativeRelationship
+  end subroutine
 
-// throws Exception
-procedure TBasicWeaponPart.process(allbinaryLayerManager_: TAllBinaryLayerManager; angle: SmallInt; otherAngle: SmallInt);
-begin
-        Self.processScore(allbinaryLayerManager_, angle, otherAngle, Self.getWeaponProperties(), Self.scoreableInterface);
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_process_3(this, j_allbinaryLayerManager, j_angle, j_otherAngle)
+    class(BasicWeaponPart), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%jm_processScore_5(j_allbinaryLayerManager, j_angle, j_otherAngle, this%jm_getWeaponProperties_0(), this%f_scoreableInterface)
+  end subroutine
 
-// throws Exception
-procedure TBasicWeaponPart.processScore(allbinaryLayerManager_: TAllBinaryLayerManager; angle: SmallInt; otherAngle: SmallInt; weaponProperties_: TWeaponProperties; scoreableInterface_: IScoreableInterface);
-begin
-        raise SysUtils.Exception.Create(TCommonStrings.getInstance().NOT_IMPLEMENTED);
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_processScore_5(this, j_allbinaryLayerManager, j_angle, j_otherAngle, j_weaponProperties, j_scoreableInterface)
+    class(BasicWeaponPart), target :: this
+    class(AllBinaryLayerManager), target, optional :: j_allbinaryLayerManager
+    integer(4), value :: j_angle
+    integer(4), value :: j_otherAngle
+    class(WeaponProperties), target, optional :: j_weaponProperties
+    class(ScoreableInterface), target, optional :: j_scoreableInterface
+    class(CommonStrings), pointer :: jtemp3
+        jtemp3 => CommonStrings_jm_getInstance_0()
+        error stop JR_toString(JR_newJObject('Exception'))
+  end subroutine
 
-function TBasicWeaponPart.getOwnerLayerInterface: TAllBinaryLayer;
-begin
-        Exit(Self.ownerLayerInterface);
-end;
-    
+  recursive function BasicWeaponPart_jm_getOwnerLayerInterface_0(this) result(jresult)
+    class(BasicWeaponPart), target :: this
+    class(AllBinaryLayer), pointer :: jresult
+        jresult => this%f_ownerLayerInterface
+        return
+  end function
 
-procedure TBasicWeaponPart.setOwnerLayerInterface(ownerLayerInterface: TAllBinaryLayer);
-begin
-        Self.ownerLayerInterface := ownerLayerInterface;
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_setOwnerLayerInterface_1(this, j_ownerLayerInterface)
+    class(BasicWeaponPart), target :: this
+    class(AllBinaryLayer), target, optional :: j_ownerLayerInterface
+        this%f_ownerLayerInterface => j_ownerLayerInterface
+  end subroutine
 
-function TBasicWeaponPart.getAnimationInterface: TAnimation;
-begin
-        Exit(Self.animationInterface);
-end;
-    
+  recursive function BasicWeaponPart_jm_getAnimationInterface_0(this) result(jresult)
+    class(BasicWeaponPart), target :: this
+    class(Animation), pointer :: jresult
+        jresult => this%f_animationInterface
+        return
+  end function
 
-procedure TBasicWeaponPart.setAnimationInterface(animationInterface: TAnimation);
-begin
-        Self.animationInterface := animationInterface;
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_setAnimationInterface_1(this, j_animationInterface)
+    class(BasicWeaponPart), target :: this
+    class(Animation), target, optional :: j_animationInterface
+        this%f_animationInterface => j_animationInterface
+  end subroutine
 
-procedure TBasicWeaponPart.paint(graphics_: TGraphics);
-var
-  viewPosition: TViewPositionBase;
-  viewX: Integer;
-  viewY: Integer;
-begin
-        viewPosition := Self.getOwnerLayerInterface().getViewPosition();
-        viewX := viewPosition.getX();
-        viewY := viewPosition.getY();
-        Self.animationInterface.paintXY(graphics_, viewX, viewY);
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_paint_1(this, j_graphics)
+    class(BasicWeaponPart), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(ViewPositionBase), pointer :: j_viewPosition
+    integer(4) :: j_viewX
+    integer(4) :: j_viewY
+    class(AllBinaryLayer), pointer :: jtemp4
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp4 => this%jm_getOwnerLayerInterface_0()
+        j_viewPosition => jtemp4%jm_getViewPosition_0()
+        j_viewX = j_viewPosition%jm_getX_0()
+        j_viewY = j_viewPosition%jm_getY_0()
+        call this%f_animationInterface%jm_paintXY_3(j_graphics, j_viewX, j_viewY)
+  end subroutine
 
-procedure TBasicWeaponPart.paintThreed(graphics_: TGraphics);
-begin
-end;
-    
+  recursive subroutine BasicWeaponPart_jm_paintThreed_1(this, j_graphics)
+    class(BasicWeaponPart), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-function TBasicWeaponPart.getWeaponProperties: TWeaponProperties;
-begin
-        Exit(Self.weaponProperties);
-end;
-    
+  recursive function BasicWeaponPart_jm_getWeaponProperties_0(this) result(jresult)
+    class(BasicWeaponPart), target :: this
+    class(WeaponProperties), pointer :: jresult
+        jresult => this%f_weaponProperties
+        return
+  end function
 
-procedure TBasicWeaponPart.setWeaponProperties(weaponProperties_: TWeaponProperties);
-begin
-        Self.weaponProperties := weaponProperties_;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TBasicWeaponPart.NULL_BASIC_WEAPON_PART := TBasicWeaponPart.createBasicWeaponPart(TNullAnimationFactory.getFactoryInstance().getInstance(0));
-  {AB:END}
-
-end.
+  recursive subroutine BasicWeaponPart_jm_setWeaponProperties_1(this, j_weaponProperties)
+    class(BasicWeaponPart), target :: this
+    class(WeaponProperties), target, optional :: j_weaponProperties
+        this%f_weaponProperties => j_weaponProperties
+  end subroutine
+end module BasicWeaponPart_m
 

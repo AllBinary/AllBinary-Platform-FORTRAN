@@ -1,59 +1,66 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.physics.friction
+module FrictionData_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.physics.friction
-unit FrictionData;
+  type, extends(JObject) :: FrictionData
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  integer(4), save :: FrictionData_jcell_FRICTION_DENOMINATOR
+  logical, save :: FrictionData_jset_FRICTION_DENOMINATOR = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function FrictionData_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(FrictionData), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (FrictionData)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TFrictionData = class(TObject)
-  public
-    class var FRICTION_DENOMINATOR: Integer;
-        constructor Create;
-        class function getFrictionDenominator: Integer; static;
-  end;
+  function FrictionData_jstatic_FRICTION_DENOMINATOR() result(jresult)
+    integer(4) :: jresult
+    if (.not. FrictionData_jset_FRICTION_DENOMINATOR) then
+      FrictionData_jset_FRICTION_DENOMINATOR = .true.
+      FrictionData_jcell_FRICTION_DENOMINATOR = 100
+    end if
+    jresult = FrictionData_jcell_FRICTION_DENOMINATOR
+  end function
 
-implementation
+  subroutine FrictionData_jsetstatic_FRICTION_DENOMINATOR(jvalue)
+    integer(4), value :: jvalue
+    FrictionData_jset_FRICTION_DENOMINATOR = .true.
+    FrictionData_jcell_FRICTION_DENOMINATOR = jvalue
+  end subroutine
 
-{AB:CODE}
-    
+  recursive function FrictionData_jnew_0() result(this)
+    class(FrictionData), pointer :: this
+    allocate(this)
+    this%jclass = 'FrictionData'
+        continue
+  end function
 
-constructor TFrictionData.Create;
-begin
-    inherited Create;
-end;
-    
-
-class function TFrictionData.getFrictionDenominator: Integer;
-begin
-        Exit(TFrictionData.FRICTION_DENOMINATOR);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TFrictionData.FRICTION_DENOMINATOR := 100;
-  {AB:END}
-
-end.
+  recursive function FrictionData_jm_getFrictionDenominator_0() result(jresult)
+    integer(4) :: jresult
+        jresult = FrictionData_jstatic_FRICTION_DENOMINATOR()
+        return
+  end function
+end module FrictionData_m
 

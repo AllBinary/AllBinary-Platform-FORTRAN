@@ -50,6 +50,16 @@ contains
     jresult => LogUtil_jcell_instance
   end function
 
+  subroutine LogUtil_jsetstatic_instance(jvalue)
+    class(LogUtil), target, optional :: jvalue
+    LogUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      LogUtil_jcell_instance => jvalue
+    else
+      LogUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function LogUtil_jnew_0() result(this)
     class(LogUtil), pointer :: this
     allocate(this)

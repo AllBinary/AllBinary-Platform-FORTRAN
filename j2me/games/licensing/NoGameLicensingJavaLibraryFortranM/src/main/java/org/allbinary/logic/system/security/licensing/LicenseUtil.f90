@@ -1,94 +1,100 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module LicenseUtil_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit LicenseUtil;
+  type, extends(JObject) :: LicenseUtil
+  contains
+    procedure :: jm_init_0 => LicenseUtil_jm_init_0
+    procedure :: jm_isRunning_0 => LicenseUtil_jm_isRunning_0
+    procedure :: jm_setRunning_1 => LicenseUtil_jm_setRunning_1
+    procedure :: jm_shouldWait_1 => LicenseUtil_jm_shouldWait_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LicenseUtil), pointer, save :: LicenseUtil_jcell_instance => null()
+  logical, save :: LicenseUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CommandListener;
+  function LicenseUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LicenseUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LicenseUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLicenseUtil = class(TObject)
-  public
-    class var instance: TLicenseUtil;
-    constructor Create;
-        class function getInstance: TLicenseUtil; static;
-        procedure init; virtual;
-        function isRunning: Boolean; virtual;
-        procedure setRunning(running: Boolean); virtual;
-        function shouldWait(commandListener_: ICommandListener): Boolean; virtual;
-  end;
+  function LicenseUtil_jstatic_instance() result(jresult)
+    class(LicenseUtil), pointer :: jresult
+    if (.not. LicenseUtil_jset_instance) then
+      LicenseUtil_jset_instance = .true.
+      LicenseUtil_jcell_instance => LicenseUtil_jnew_0()
+    end if
+    jresult => LicenseUtil_jcell_instance
+  end function
 
-implementation
+  subroutine LicenseUtil_jsetstatic_instance(jvalue)
+    class(LicenseUtil), target, optional :: jvalue
+    LicenseUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      LicenseUtil_jcell_instance => jvalue
+    else
+      LicenseUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function LicenseUtil_jnew_0() result(this)
+    class(LicenseUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'LicenseUtil'
+  end function
 
-constructor TLicenseUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function LicenseUtil_jm_getInstance_0() result(jresult)
+    class(LicenseUtil), pointer :: jresult
+        jresult => LicenseUtil_jstatic_instance()
+        return
+  end function
 
-class function TLicenseUtil.getInstance: TLicenseUtil;
-begin
-        Exit(TLicenseUtil.instance);
-end;
-    
+  recursive subroutine LicenseUtil_jm_init_0(this)
+    class(LicenseUtil), target :: this
+    continue
+  end subroutine
 
-procedure TLicenseUtil.init;
-begin
-end;
-    
+  recursive function LicenseUtil_jm_isRunning_0(this) result(jresult)
+    class(LicenseUtil), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
 
-function TLicenseUtil.isRunning: Boolean;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        Exit(False);
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine LicenseUtil_jm_setRunning_1(this, j_running)
+    class(LicenseUtil), target :: this
+    logical, value :: j_running
+    continue
+  end subroutine
 
-procedure TLicenseUtil.setRunning(running: Boolean);
-begin
-    TJava.MonitorEnter(Self);
-    try
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
-
-function TLicenseUtil.shouldWait(commandListener_: ICommandListener): Boolean;
-begin
-        Exit(Self.isRunning());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLicenseUtil.instance := TLicenseUtil.Create();
-  {AB:END}
-
-end.
+  recursive function LicenseUtil_jm_shouldWait_1(this, j_commandListener) result(jresult)
+    class(LicenseUtil), target :: this
+    class(CommandListener), target, optional :: j_commandListener
+    logical :: jresult
+        jresult = this%jm_isRunning_0()
+        return
+  end function
+end module LicenseUtil_m
 

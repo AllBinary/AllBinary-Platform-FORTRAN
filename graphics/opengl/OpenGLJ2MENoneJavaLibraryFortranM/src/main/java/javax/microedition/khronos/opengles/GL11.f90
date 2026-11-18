@@ -1,29 +1,30 @@
-// Generated Code Do Not Modify
-// package javax.microedition.khronos.opengles
-unit GL11;
+! Generated Code Do Not Modify
+! package javax.microedition.khronos.opengles
+module GL11_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(GL10) :: GL11
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10;
+contains
 
-type
-  {AB:TYPES}
-  IGL11 = interface(IGL10) ['IGL11']
-  end;
-  TGL11 = IGL11;
+  function GL11_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GL11), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GL11)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function GL11_jnew_0() result(this)
+    class(GL11), pointer :: this
+    allocate(this)
+    this%jclass = 'GL11'
+  end function
+end module GL11_m
 

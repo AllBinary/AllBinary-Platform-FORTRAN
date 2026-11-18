@@ -1,48 +1,57 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.audio
-unit TimeBaseInterface;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.media.audio
+module TimeBaseInterface_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TimeBase;
-
-type
-  {AB:TYPES}
-  ITimeBaseInterface = interface(IJavaObject) ['ITimeBaseInterface']
-        function getTimeBase: ITimeBase;
-        procedure setTimeBase(timeBase_: ITimeBase);
-  end;
-  TTimeBaseInterface = ITimeBaseInterface;
-
-implementation
-uses
-  MediaException;
+  type, extends(JObject) :: TimeBaseInterface
+  contains
+    procedure :: jm_getTimeBase_0 => TimeBaseInterface_jm_getTimeBase_0
+    procedure :: jm_setTimeBase_1 => TimeBaseInterface_jm_setTimeBase_1
+  end type
 
 
-{AB:CODE}
+contains
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  function TimeBaseInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TimeBaseInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TimeBaseInterface)
+      jresult => object
+    end select
+  end function
 
-end.
+  function TimeBaseInterface_jnew_0() result(this)
+    class(TimeBaseInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'TimeBaseInterface'
+  end function
+
+  recursive function TimeBaseInterface_jm_getTimeBase_0(this) result(jresult)
+    class(TimeBaseInterface), target :: this
+    class(TimeBase), pointer :: jresult
+    error stop 'AbstractMethodError: TimeBaseInterface.getTimeBase'
+  end function
+
+  recursive subroutine TimeBaseInterface_jm_setTimeBase_1(this, j_timeBase)
+    class(TimeBaseInterface), target :: this
+    class(TimeBase), target, optional :: j_timeBase
+    error stop 'AbstractMethodError: TimeBaseInterface.setTimeBase'
+  end subroutine
+end module TimeBaseInterface_m
 

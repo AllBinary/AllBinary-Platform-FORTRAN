@@ -1,194 +1,213 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.gesture.configuration
+module MotionGestureConfiguration_m
+  use JR_m
+  use CompleteMotionGestureInputEvent_m
+  use BasicColor_m
+  use BasicColorFactory_m
+  use MotionGestureToMotionGestureActionAssociation_m
+  use StringUtil_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.gesture.configuration
-unit MotionGestureConfiguration;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CompleteMotionGestureInputEvent, BasicColor, BasicArrayList;
-
-type
-  {AB:TYPES}
-  TMotionGestureConfiguration = class(TObject)
-  public
-    diagonalMotionGestureAllowed: Boolean;
-    diagonalTolerance: Integer;
-    minimumMotionGesture: Integer;
-    button: string;
-    color: TBasicColor;
-    executingActions: Boolean;
-    mouseButtonMask: Integer;
-    activeCommands: TBasicArrayList;
-    procedure InitFields;
-        constructor Create;
-        procedure addMotionGestureAction(list: TBasicArrayList; commandAction: TCompleteMotionGestureInputEvent); virtual;
-        procedure clearMotionGestureAction; virtual;
-        function getAssociateCommandActionsList: TBasicArrayList; virtual;
-        function isDiagonalMotionGestureAllowed: Boolean; virtual;
-        function isExecutingActionsAllowed: Boolean; virtual;
-        procedure setExecutingActionsAllowed(executingActionAllowed: Boolean); virtual;
-        procedure setDiagonalMotionGestureAllowed(diagonalMotionGestureAllowed: Boolean); virtual;
-        function getDiagonalTolerance: Integer; virtual;
-        procedure setDiagonalTolerance(diagonalTolerance: Integer); virtual;
-        function getMinimumMotionGesture: Integer; virtual;
-        procedure setMinimumMotionGesture(minimumMotionGesture: Integer); virtual;
-        function getButton: string; virtual;
-        procedure setButton(button: string); virtual;
-        function getColor: TBasicColor; virtual;
-        procedure setColor(color: TBasicColor); virtual;
-        function getMouseButtonMask: Integer; virtual;
-        procedure setMouseButtonMask(mouseButtonMask: Integer); virtual;
-  end;
-
-implementation
-uses
-  BasicColorFactory, MotionGestureToMotionGestureActionAssociation, StringUtil, BasicArrayListD;
+  type, extends(JObject) :: MotionGestureConfiguration
+    logical :: f_diagonalMotionGestureAllowed = .false.
+    integer(4) :: f_diagonalTolerance = 0
+    integer(4) :: f_minimumMotionGesture = 0
+    character(len=:), allocatable :: f_button
+    class(BasicColor), pointer :: f_color => null()
+    logical :: f_executingActions = .false.
+    integer(4) :: f_mouseButtonMask = 0
+    class(BasicArrayList), pointer :: f_activeCommands => null()
+  contains
+    procedure :: jm_addMotionGestureAction_2 => MotionGestureConfiguration_jm_addMotionGestureAction_2
+    procedure :: jm_clearMotionGestureAction_0 => MotionGestureConfiguration_jm_clearMotionGestureAction_0
+    procedure :: jm_getAssociateCommandActionsList_0 => MotionGestureConfiguration_jm_getAssociateCommandActionsList_0
+    procedure :: jm_isDiagonalMotionGestureAllowed_0 => MotionGestureConfiguration_jm_isDiagonalMotionGestureAllowed_0
+    procedure :: jm_isExecutingActionsAllowed_0 => MotionGestureConfiguration_jm_isExecutingActionsAllowed_0
+    procedure :: jm_setExecutingActionsAllowed_1 => MotionGestureConfiguration_jm_setExecutingActionsAllowed_1
+    procedure :: jm_setDiagonalMotionGestureAllowed_1 => MotionGestureConfiguration_jm_setDiagonalMotionGestureAllowed_1
+    procedure :: jm_getDiagonalTolerance_0 => MotionGestureConfiguration_jm_getDiagonalTolerance_0
+    procedure :: jm_setDiagonalTolerance_1 => MotionGestureConfiguration_jm_setDiagonalTolerance_1
+    procedure :: jm_getMinimumMotionGesture_0 => MotionGestureConfiguration_jm_getMinimumMotionGesture_0
+    procedure :: jm_setMinimumMotionGesture_1 => MotionGestureConfiguration_jm_setMinimumMotionGesture_1
+    procedure :: jm_getButton_0 => MotionGestureConfiguration_jm_getButton_0
+    procedure :: jm_setButton_1 => MotionGestureConfiguration_jm_setButton_1
+    procedure :: jm_getColor_0 => MotionGestureConfiguration_jm_getColor_0
+    procedure :: jm_setColor_1 => MotionGestureConfiguration_jm_setColor_1
+    procedure :: jm_getMouseButtonMask_0 => MotionGestureConfiguration_jm_getMouseButtonMask_0
+    procedure :: jm_setMouseButtonMask_1 => MotionGestureConfiguration_jm_setMouseButtonMask_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TMotionGestureConfiguration.InitFields;
-begin
-  Self.diagonalMotionGestureAllowed := True;
-  Self.diagonalTolerance := 7;
-  Self.minimumMotionGesture := 9;
-  Self.button := TStringUtil.getInstance().EMPTY_STRING;
-  Self.color := TBasicColorFactory.getInstance().BLUE;
-  Self.executingActions := True;
-  Self.mouseButtonMask := 0;
-  Self.activeCommands := TBasicArrayListD.Create();
-end;
-    
+  function MotionGestureConfiguration_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MotionGestureConfiguration), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MotionGestureConfiguration)
+      jresult => object
+    end select
+  end function
 
-constructor TMotionGestureConfiguration.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive function MotionGestureConfiguration_jnew_0() result(this)
+    class(MotionGestureConfiguration), pointer :: this
+    class(StringUtil), pointer :: jtemp1
+    class(BasicColorFactory), pointer :: jtemp2
+    allocate(this)
+    this%jclass = 'MotionGestureConfiguration'
+    this%f_button = ''
+    this%f_diagonalMotionGestureAllowed = .true.
+    this%f_diagonalTolerance = 7
+    this%f_minimumMotionGesture = 9
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_button = jtemp1%f_EMPTY_STRING
+    jtemp2 => BasicColorFactory_jm_getInstance_0()
+    this%f_color => jtemp2%f_BLUE
+    this%f_executingActions = .true.
+    this%f_mouseButtonMask = 0
+    this%f_activeCommands => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-procedure TMotionGestureConfiguration.addMotionGestureAction(list: TBasicArrayList; commandAction: TCompleteMotionGestureInputEvent);
-begin
-        Self.activeCommands.add(TJava.Box(TMotionGestureToMotionGestureActionAssociation.Create(list, commandAction)));
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_addMotionGestureAction_2(this, j_list, j_commandAction)
+    class(MotionGestureConfiguration), target :: this
+    class(BasicArrayList), target, optional :: j_list
+    class(CompleteMotionGestureInputEvent), target, optional :: j_commandAction
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_activeCommands%jm_add_1(MotionGestureToMotionGestureActionAssociation_jnew_2(j_list, j_commandAction))
+  end subroutine
 
-procedure TMotionGestureConfiguration.clearMotionGestureAction;
-begin
-        Self.activeCommands.clear();
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_clearMotionGestureAction_0(this)
+    class(MotionGestureConfiguration), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_activeCommands%jm_clear_0()
+  end subroutine
 
-function TMotionGestureConfiguration.getAssociateCommandActionsList: TBasicArrayList;
-begin
-        Exit(Self.activeCommands);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getAssociateCommandActionsList_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    class(BasicArrayList), pointer :: jresult
+        jresult => this%f_activeCommands
+        return
+  end function
 
-function TMotionGestureConfiguration.isDiagonalMotionGestureAllowed: Boolean;
-begin
-        Exit(Self.diagonalMotionGestureAllowed);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_isDiagonalMotionGestureAllowed_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    logical :: jresult
+        jresult = this%f_diagonalMotionGestureAllowed
+        return
+  end function
 
-function TMotionGestureConfiguration.isExecutingActionsAllowed: Boolean;
-begin
-        Exit(Self.executingActions);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_isExecutingActionsAllowed_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    logical :: jresult
+        jresult = this%f_executingActions
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setExecutingActionsAllowed(executingActionAllowed: Boolean);
-begin
-        Self.executingActions := executingActionAllowed;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setExecutingActionsAllowed_1(this, j_executingActionAllowed)
+    class(MotionGestureConfiguration), target :: this
+    logical, value :: j_executingActionAllowed
+        this%f_executingActions = j_executingActionAllowed
+  end subroutine
 
-procedure TMotionGestureConfiguration.setDiagonalMotionGestureAllowed(diagonalMotionGestureAllowed: Boolean);
-begin
-        Self.diagonalMotionGestureAllowed := diagonalMotionGestureAllowed;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setDiagonalMotionGestureAllowed_1(this, j_diagonalMotionGestureAllowed)
+    class(MotionGestureConfiguration), target :: this
+    logical, value :: j_diagonalMotionGestureAllowed
+        this%f_diagonalMotionGestureAllowed = j_diagonalMotionGestureAllowed
+  end subroutine
 
-function TMotionGestureConfiguration.getDiagonalTolerance: Integer;
-begin
-        Exit(Self.diagonalTolerance);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getDiagonalTolerance_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    integer(4) :: jresult
+        jresult = this%f_diagonalTolerance
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setDiagonalTolerance(diagonalTolerance: Integer);
-begin
-        Self.diagonalTolerance := diagonalTolerance;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setDiagonalTolerance_1(this, j_diagonalTolerance)
+    class(MotionGestureConfiguration), target :: this
+    integer(4), value :: j_diagonalTolerance
+        this%f_diagonalTolerance = j_diagonalTolerance
+  end subroutine
 
-function TMotionGestureConfiguration.getMinimumMotionGesture: Integer;
-begin
-        Exit(Self.minimumMotionGesture);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getMinimumMotionGesture_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    integer(4) :: jresult
+        jresult = this%f_minimumMotionGesture
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setMinimumMotionGesture(minimumMotionGesture: Integer);
-begin
-        Self.minimumMotionGesture := minimumMotionGesture;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setMinimumMotionGesture_1(this, j_minimumMotionGesture)
+    class(MotionGestureConfiguration), target :: this
+    integer(4), value :: j_minimumMotionGesture
+        this%f_minimumMotionGesture = j_minimumMotionGesture
+  end subroutine
 
-function TMotionGestureConfiguration.getButton: string;
-begin
-        Exit(Self.button);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getButton_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_button
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setButton(button: string);
-begin
-        Self.button := button;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setButton_1(this, j_button)
+    class(MotionGestureConfiguration), target :: this
+    character(len=*), intent(in) :: j_button
+        this%f_button = j_button
+  end subroutine
 
-function TMotionGestureConfiguration.getColor: TBasicColor;
-begin
-        Exit(Self.color);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getColor_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    class(BasicColor), pointer :: jresult
+        jresult => this%f_color
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setColor(color: TBasicColor);
-begin
-        Self.color := color;
-end;
-    
+  recursive subroutine MotionGestureConfiguration_jm_setColor_1(this, j_color)
+    class(MotionGestureConfiguration), target :: this
+    class(BasicColor), target, optional :: j_color
+        this%f_color => j_color
+  end subroutine
 
-function TMotionGestureConfiguration.getMouseButtonMask: Integer;
-begin
-        Exit(Self.mouseButtonMask);
-end;
-    
+  recursive function MotionGestureConfiguration_jm_getMouseButtonMask_0(this) result(jresult)
+    class(MotionGestureConfiguration), target :: this
+    integer(4) :: jresult
+        jresult = this%f_mouseButtonMask
+        return
+  end function
 
-procedure TMotionGestureConfiguration.setMouseButtonMask(mouseButtonMask: Integer);
-begin
-        Self.mouseButtonMask := mouseButtonMask;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine MotionGestureConfiguration_jm_setMouseButtonMask_1(this, j_mouseButtonMask)
+    class(MotionGestureConfiguration), target :: this
+    integer(4), value :: j_mouseButtonMask
+        this%f_mouseButtonMask = j_mouseButtonMask
+  end subroutine
+end module MotionGestureConfiguration_m
 

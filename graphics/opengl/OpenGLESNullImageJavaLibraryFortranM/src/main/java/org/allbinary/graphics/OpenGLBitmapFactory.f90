@@ -1,77 +1,111 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics
-unit OpenGLBitmapFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics
+module OpenGLBitmapFactory_m
+  use JR_m
+  use IOException_m
+  use InputStream_m
+  use NullUtil_m
+  use PlatformBitmapBase_m
+  use PlatformBitmapBaseFactory_m
+  use OpenGLBitmapConfig_m
+  use OpenGLBitmap_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(PlatformBitmapBaseFactory) :: OpenGLBitmapFactory
+    class(OpenGLBitmapConfig), pointer :: f_ARGB_8888 => null()
+  contains
+    procedure :: jm_createBitmap_3 => OpenGLBitmapFactory_jm_createBitmap_3
+    procedure :: jm_decodeStream_1 => OpenGLBitmapFactory_jm_decodeStream_1
+    procedure :: jm_createBitmap_1 => OpenGLBitmapFactory_jm_createBitmap_1
+  end type
 
-interface
+  class(OpenGLBitmapFactory), pointer, save :: OpenGLBitmapFactory_jcell_instance => null()
+  logical, save :: OpenGLBitmapFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image, PlatformBitmapBase, PlatformBitmapBaseFactory, OpenGLBitmapConfig, OpenGLBitmap;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLBitmapFactory = class(TPlatformBitmapBaseFactory)
-  public
-    ARGB_8888: TOpenGLBitmapConfig;
-    class var instance: TOpenGLBitmapFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TOpenGLBitmapFactory; static;
-        function createBitmap(width: Integer; height: Integer; config: TOpenGLBitmapConfig): TOpenGLBitmap; overload; virtual;
-        function decodeStream(inputStream_: TInputStream): TOpenGLBitmap; virtual;
-        function createBitmap(image_: TImage): TPlatformBitmapBase; overload; override;
-  end;
+  function OpenGLBitmapFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLBitmapFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLBitmapFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
-uses
-  NullUtil;
+  function OpenGLBitmapFactory_jstatic_instance() result(jresult)
+    class(OpenGLBitmapFactory), pointer :: jresult
+    if (.not. OpenGLBitmapFactory_jset_instance) then
+      OpenGLBitmapFactory_jset_instance = .true.
+      OpenGLBitmapFactory_jcell_instance => OpenGLBitmapFactory_jnew_0()
+    end if
+    jresult => OpenGLBitmapFactory_jcell_instance
+  end function
 
+  subroutine OpenGLBitmapFactory_jsetstatic_instance(jvalue)
+    class(OpenGLBitmapFactory), target, optional :: jvalue
+    OpenGLBitmapFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLBitmapFactory_jcell_instance => jvalue
+    else
+      OpenGLBitmapFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function OpenGLBitmapFactory_jnew_0() result(this)
+    class(OpenGLBitmapFactory), pointer :: this
+    class(NullUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'OpenGLBitmapFactory'
+    jtemp1 => NullUtil_jm_getInstance_0()
+    this%f_ARGB_8888 => OpenGLBitmapConfig_jnew_1(jtemp1%f_NULL_OBJECT)
+  end function
 
-procedure TOpenGLBitmapFactory.InitFields;
-begin
-  Self.ARGB_8888 := TOpenGLBitmapConfig.Create(TJava.Box(TNullUtil.getInstance().NULL_OBJECT));
-end;
+  recursive function OpenGLBitmapFactory_jm_getInstance_0() result(jresult)
+    class(OpenGLBitmapFactory), pointer :: jresult
+        jresult => OpenGLBitmapFactory_jstatic_instance()
+        return
+  end function
 
-constructor TOpenGLBitmapFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function OpenGLBitmapFactory_jm_createBitmap_3(this, j_width, j_height, j_config) result(jresult)
+    class(OpenGLBitmapFactory), target :: this
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(OpenGLBitmapConfig), target, optional :: j_config
+    class(OpenGLBitmap), pointer :: jresult
+    class(NullUtil), pointer :: jtemp2
+        jtemp2 => NullUtil_jm_getInstance_0()
+        jresult => OpenGLBitmap_jnew_1(jtemp2%f_NULL_OBJECT)
+        return
+  end function
 
-class function TOpenGLBitmapFactory.getInstance: TOpenGLBitmapFactory;
-begin
-        Exit(TOpenGLBitmapFactory.instance);
-end;
-    
+  recursive function OpenGLBitmapFactory_jm_decodeStream_1(this, j_inputStream) result(jresult)
+    class(OpenGLBitmapFactory), target :: this
+    class(InputStream), target, optional :: j_inputStream
+    class(OpenGLBitmap), pointer :: jresult
+    class(NullUtil), pointer :: jtemp3
+        jtemp3 => NullUtil_jm_getInstance_0()
+        jresult => OpenGLBitmap_jnew_1(jtemp3%f_NULL_OBJECT)
+        return
+  end function
 
-function TOpenGLBitmapFactory.createBitmap(width: Integer; height: Integer; config: TOpenGLBitmapConfig): TOpenGLBitmap;
-begin
-        Exit(TOpenGLBitmap.Create(TJava.Box(TNullUtil.getInstance().NULL_OBJECT)));
-end;
-    
+  recursive function OpenGLBitmapFactory_jm_createBitmap_1(this, j_image) result(jresult)
+    class(OpenGLBitmapFactory), target :: this
+    class(Image), target, optional :: j_image
+    class(PlatformBitmapBase), pointer :: jresult
+    class(NullUtil), pointer :: jtemp4
+        jtemp4 => NullUtil_jm_getInstance_0()
+        jresult => OpenGLBitmap_jnew_1(jtemp4%f_NULL_OBJECT)
+        return
+  end function
+end module OpenGLBitmapFactory_m
 
-// throws IOException
-function TOpenGLBitmapFactory.decodeStream(inputStream_: TInputStream): TOpenGLBitmap;
-begin
-        Exit(TOpenGLBitmap.Create(TJava.Box(TNullUtil.getInstance().NULL_OBJECT)));
-end;
-    
-
-function TOpenGLBitmapFactory.createBitmap(image_: TImage): TPlatformBitmapBase;
-begin
-        Exit(TOpenGLBitmap.Create(TJava.Box(TNullUtil.getInstance().NULL_OBJECT)));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLBitmapFactory.instance := TOpenGLBitmapFactory.Create();
-  {AB:END}
-
-end.
+function OpenGLBitmapFactory_jnew_0_jext() result(this)
+  use OpenGLBitmapFactory_m, only: JObject, OpenGLBitmapFactory_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => OpenGLBitmapFactory_jnew_0()
+end function
 

@@ -1,179 +1,182 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.life
+module Life_m
+  use JR_m
+  use LifeInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.life
-unit Life;
+  type, extends(LifeInterface) :: Life
+    integer(4) :: f_lives = 0
+    integer(4) :: f_startLives = 0
+    integer(4) :: f_maxlives = 0
+  contains
+    procedure :: jm_get_0 => Life_jm_get_0
+    procedure :: jm_set_1 => Life_jm_set_1
+    procedure :: jm_reset_0 => Life_jm_reset_0
+    procedure :: jm_add_1 => Life_jm_add_1
+    procedure :: jm_isAlive_0 => Life_jm_isAlive_0
+    procedure :: jm_getMaxlives_0 => Life_jm_getMaxlives_0
+    procedure :: jm_reachedLimit_0 => Life_jm_reachedLimit_0
+    procedure :: jm_deaths_1 => Life_jm_deaths_1
+    procedure :: jm_getStartLives_0 => Life_jm_getStartLives_0
+    procedure :: jm_setStartLives_1 => Life_jm_setStartLives_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(Life), pointer, save :: Life_jcell_NO_LIFE => null()
+  logical, save :: Life_jset_NO_LIFE = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LifeInterface;
+  function Life_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Life), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Life)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLife = class(TInterfacedObject, ILifeInterface)
-  public
-    lives: SmallInt;
-    startLives: SmallInt;
-    maxlives: SmallInt;
-    class var NO_LIFE: TLife;
-    procedure InitFields;
-    function JavaObject: TObject;
-        class function createLife: TLife; static;
-        constructor Create(lives: SmallInt; maxlives: SmallInt);
-        function get: SmallInt; virtual;
-        procedure set_(lives: SmallInt); virtual;
-        procedure reset; virtual;
-        procedure add(lives: SmallInt); virtual;
-        function isAlive: Boolean; virtual;
-        function getMaxlives: SmallInt; virtual;
-        function reachedLimit: Boolean;
-        procedure deaths(lives: SmallInt); virtual;
-        function getStartLives: SmallInt; virtual;
-        procedure setStartLives(startLives: SmallInt); virtual;
-  end;
+  function Life_jstatic_NO_LIFE() result(jresult)
+    class(Life), pointer :: jresult
+    if (.not. Life_jset_NO_LIFE) then
+      Life_jset_NO_LIFE = .true.
+      Life_jcell_NO_LIFE => Life_jm_createLife_0()
+    end if
+    jresult => Life_jcell_NO_LIFE
+  end function
 
-implementation
+  subroutine Life_jsetstatic_NO_LIFE(jvalue)
+    class(Life), target, optional :: jvalue
+    Life_jset_NO_LIFE = .true.
+    if (present(jvalue)) then
+      Life_jcell_NO_LIFE => jvalue
+    else
+      Life_jcell_NO_LIFE => null()
+    end if
+  end subroutine
 
-{AB:CODE}
-
-procedure TLife.InitFields;
-begin
-  
-  
-  
-end;
-
-function TLife.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function Life_jnew_2(j_lives, j_maxlives) result(this)
+    integer(4), value :: j_lives
+    integer(4), value :: j_maxlives
+    class(Life), pointer :: this
+    allocate(this)
+    this%jclass = 'Life'
     
-
-class function TLife.createLife: TLife;
-begin
-        try
-            Exit(TLife.Create(SmallInt(0), SmallInt(0)));
-        except
-            on e: SysUtils.Exception do begin
-            raise SysUtils.Exception.Create('');
-            end;
-        end;
-end;
     
-
-constructor TLife.Create(lives: SmallInt; maxlives: SmallInt);
-begin
-    inherited Create;
-    InitFields;
-        Self.maxlives := maxlives;
-        if (lives) > (Self.maxlives) then begin
-            raise SysUtils.Exception.Create('To Many Lives');
-        end;
-        Self.lives := lives;
-        Self.startLives := lives;
-end;
     
+        this%f_maxlives = j_maxlives
+        if ((j_lives > this%f_maxlives)) then
+            error stop JR_toString(JR_newJObject('Exception'))
+        end if
+        this%f_lives = j_lives
+        this%f_startLives = j_lives
+  end function
 
-function TLife.get: SmallInt;
-begin
-        Exit(Self.lives);
-end;
-    
+  recursive function Life_jm_createLife_0() result(jresult)
+    class(Life), pointer :: jresult
+        continue ! try
+            jresult => Life_jnew_2(JR_i16(0), JR_i16(0))
+            return
+  end function
 
-procedure TLife.set_(lives: SmallInt);
-begin
-        Self.lives := lives;
-end;
-    
+  recursive function Life_jm_get_0(this) result(jresult)
+    class(Life), target :: this
+    integer(4) :: jresult
+        jresult = this%f_lives
+        return
+  end function
 
-procedure TLife.reset;
-begin
-        Self.lives := Self.startLives;
-end;
-    
+  recursive subroutine Life_jm_set_1(this, j_lives)
+    class(Life), target :: this
+    integer(4), value :: j_lives
+        this%f_lives = j_lives
+  end subroutine
 
-procedure TLife.add(lives: SmallInt);
-begin
-        if not (Self.reachedLimit()) then begin
-            if ((Self.lives) + (lives)) <= (Integer(Self.getMaxlives())) then begin
-                Self.lives := SmallInt(((Self.lives) + (lives)));
-            end else begin
-                Self.lives := Self.getMaxlives();
-            end;
-        end;
-end;
-    
+  recursive subroutine Life_jm_reset_0(this)
+    class(Life), target :: this
+        this%f_lives = this%f_startLives
+  end subroutine
 
-function TLife.isAlive: Boolean;
-begin
-        if (Integer(Self.lives)) <= (0) then begin
-            Exit(False);
-        end else begin
-            Exit(True);
-        end;
-end;
-    
+  recursive subroutine Life_jm_add_1(this, j_lives)
+    class(Life), target :: this
+    integer(4), value :: j_lives
+        if ((.not. this%jm_reachedLimit_0())) then
+            if (((this%f_lives + j_lives) <= this%jm_getMaxlives_0())) then
+                this%f_lives = JR_i16(((this%f_lives + j_lives)))
+            else
+                this%f_lives = this%jm_getMaxlives_0()
+            end if
+        end if
+  end subroutine
 
-function TLife.getMaxlives: SmallInt;
-begin
-        Exit(Self.maxlives);
-end;
-    
+  recursive function Life_jm_isAlive_0(this) result(jresult)
+    class(Life), target :: this
+    logical :: jresult
+        if ((this%f_lives <= 0)) then
+            jresult = .false.
+            return
+        else
+            jresult = .true.
+            return
+        end if
+  end function
 
-function TLife.reachedLimit: Boolean;
-begin
-        if ((Self.lives) > (Self.maxlives)) or ((Integer(Self.lives)) < (0)) then begin
-            Exit(True);
-        end else begin
-            Exit(False);
-        end;
-end;
-    
+  recursive function Life_jm_getMaxlives_0(this) result(jresult)
+    class(Life), target :: this
+    integer(4) :: jresult
+        jresult = this%f_maxlives
+        return
+  end function
 
-procedure TLife.deaths(lives: SmallInt);
-begin
-        if not (Self.reachedLimit()) then begin
-            if ((Self.lives) - (lives)) >= (0) then begin
-                Self.lives := SmallInt(((Self.lives) - (lives)));
-            end else begin
-                Self.lives := 0;
-            end;
-        end;
-end;
-    
+  recursive function Life_jm_reachedLimit_0(this) result(jresult)
+    class(Life), target :: this
+    logical :: jresult
+        if (((this%f_lives > this%f_maxlives) .or. (this%f_lives < 0))) then
+            jresult = .true.
+            return
+        else
+            jresult = .false.
+            return
+        end if
+  end function
 
-function TLife.getStartLives: SmallInt;
-begin
-        Exit(Self.startLives);
-end;
-    
+  recursive subroutine Life_jm_deaths_1(this, j_lives)
+    class(Life), target :: this
+    integer(4), value :: j_lives
+        if ((.not. this%jm_reachedLimit_0())) then
+            if (((this%f_lives - j_lives) >= 0)) then
+                this%f_lives = JR_i16(((this%f_lives - j_lives)))
+            else
+                this%f_lives = 0
+            end if
+        end if
+  end subroutine
 
-procedure TLife.setStartLives(startLives: SmallInt);
-begin
-        Self.startLives := startLives;
-end;
+  recursive function Life_jm_getStartLives_0(this) result(jresult)
+    class(Life), target :: this
+    integer(4) :: jresult
+        jresult = this%f_startLives
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  TLife.NO_LIFE := TLife.createLife();
-  {AB:END}
-
-end.
+  recursive subroutine Life_jm_setStartLives_1(this, j_startLives)
+    class(Life), target :: this
+    integer(4), value :: j_startLives
+        this%f_startLives = j_startLives
+  end subroutine
+end module Life_m
 

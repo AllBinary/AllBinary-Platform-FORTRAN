@@ -1,44 +1,52 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.tracking
+module TrackingEventListenerInterface_m
+  use JR_m
+  use EventListenerInterface_m
+  use TrackingEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.tracking
-unit TrackingEventListenerInterface;
+  type, extends(EventListenerInterface) :: TrackingEventListenerInterface
+  contains
+    procedure :: jm_onMovement_1 => TrackingEventListenerInterface_jm_onMovement_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, EventListenerInterface, TrackingEvent;
+  function TrackingEventListenerInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TrackingEventListenerInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TrackingEventListenerInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  ITrackingEventListenerInterface = interface(IEventListenerInterface) ['ITrackingEventListenerInterface']
-        procedure onMovement(trackingEvent_: TTrackingEvent);
-  end;
-  TTrackingEventListenerInterface = ITrackingEventListenerInterface;
+  function TrackingEventListenerInterface_jnew_0() result(this)
+    class(TrackingEventListenerInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'TrackingEventListenerInterface'
+  end function
 
-implementation
-
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine TrackingEventListenerInterface_jm_onMovement_1(this, j_trackingEvent)
+    class(TrackingEventListenerInterface), target :: this
+    class(TrackingEvent), target, optional :: j_trackingEvent
+    error stop 'AbstractMethodError: TrackingEventListenerInterface.onMovement'
+  end subroutine
+end module TrackingEventListenerInterface_m
 

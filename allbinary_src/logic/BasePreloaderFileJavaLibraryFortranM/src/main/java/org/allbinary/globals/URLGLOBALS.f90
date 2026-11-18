@@ -1,90 +1,102 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.globals
+module URLGLOBALS_m
+  use JR_m
+  use AppUrlGlobals_m
+  use UrlGlobalsInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.globals
-unit URLGLOBALS;
+  type, extends(JObject) :: URLGLOBALS
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(UrlGlobalsInterface), pointer, save :: URLGLOBALS_jcell_urlGlobalsInterface => null()
+  logical, save :: URLGLOBALS_jset_urlGlobalsInterface = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, UrlGlobalsInterface;
+  function URLGLOBALS_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(URLGLOBALS), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (URLGLOBALS)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TURLGLOBALS = class(TObject)
-  public
-    class var urlGlobalsInterface: IUrlGlobalsInterface;
-    constructor Create;
-        class procedure init(urlGlobalsInterface_: IUrlGlobalsInterface); static;
-        class function isTestingMode: Boolean; static;
-        class function getWebappPath: string; static;
-        class function getTestHtmlPath: string; static;
-        class function getMainPath: string; static;
-  end;
+  function URLGLOBALS_jstatic_urlGlobalsInterface() result(jresult)
+    class(UrlGlobalsInterface), pointer :: jresult
+    if (.not. URLGLOBALS_jset_urlGlobalsInterface) then
+      URLGLOBALS_jset_urlGlobalsInterface = .true.
+      URLGLOBALS_jcell_urlGlobalsInterface => AppUrlGlobals_jstatic_NULL_APP_URL_GLOBALS()
+    end if
+    jresult => URLGLOBALS_jcell_urlGlobalsInterface
+  end function
 
-implementation
-uses
-  AppUrlGlobals;
+  subroutine URLGLOBALS_jsetstatic_urlGlobalsInterface(jvalue)
+    class(UrlGlobalsInterface), target, optional :: jvalue
+    URLGLOBALS_jset_urlGlobalsInterface = .true.
+    if (present(jvalue)) then
+      URLGLOBALS_jcell_urlGlobalsInterface => jvalue
+    else
+      URLGLOBALS_jcell_urlGlobalsInterface => null()
+    end if
+  end subroutine
 
+  function URLGLOBALS_jnew_0() result(this)
+    class(URLGLOBALS), pointer :: this
+    allocate(this)
+    this%jclass = 'URLGLOBALS'
+  end function
 
-{AB:CODE}
+  recursive subroutine URLGLOBALS_jm_init_1(j_urlGlobalsInterface)
+    class(UrlGlobalsInterface), target, optional :: j_urlGlobalsInterface
+        call URLGLOBALS_jsetstatic_urlGlobalsInterface(j_urlGlobalsInterface)
+  end subroutine
 
-constructor TURLGLOBALS.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function URLGLOBALS_jm_isTestingMode_0() result(jresult)
+    logical :: jresult
+        associate (jstaticref1 => URLGLOBALS_jstatic_urlGlobalsInterface())
+        jresult = jstaticref1%jm_isTestingMode_0()
+        end associate
+        return
+  end function
 
-class procedure TURLGLOBALS.init(urlGlobalsInterface_: IUrlGlobalsInterface);
-begin
-        TURLGLOBALS.urlGlobalsInterface := urlGlobalsInterface_;
-end;
-    
+  recursive function URLGLOBALS_jm_getWebappPath_0() result(jresult)
+    character(len=:), allocatable :: jresult
+        associate (jstaticref2 => URLGLOBALS_jstatic_urlGlobalsInterface())
+        jresult = jstaticref2%jm_getWebappPath_0()
+        end associate
+        return
+  end function
 
-class function TURLGLOBALS.isTestingMode: Boolean;
-begin
-        Exit(TURLGLOBALS.urlGlobalsInterface.isTestingMode());
-end;
-    
+  recursive function URLGLOBALS_jm_getTestHtmlPath_0() result(jresult)
+    character(len=:), allocatable :: jresult
+        associate (jstaticref3 => URLGLOBALS_jstatic_urlGlobalsInterface())
+        jresult = jstaticref3%jm_getTestHtmlPath_0()
+        end associate
+        return
+  end function
 
-class function TURLGLOBALS.getWebappPath: string;
-begin
-        Exit(TURLGLOBALS.urlGlobalsInterface.getWebappPath());
-end;
-    
-
-class function TURLGLOBALS.getTestHtmlPath: string;
-begin
-        Exit(TURLGLOBALS.urlGlobalsInterface.getTestHtmlPath());
-end;
-    
-
-// throws Exception
-class function TURLGLOBALS.getMainPath: string;
-begin
-        Exit(TURLGLOBALS.urlGlobalsInterface.getMainPath());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TURLGLOBALS.urlGlobalsInterface := TAppUrlGlobals.NULL_APP_URL_GLOBALS;
-  {AB:END}
-
-end.
+  recursive function URLGLOBALS_jm_getMainPath_0() result(jresult)
+    character(len=:), allocatable :: jresult
+        associate (jstaticref4 => URLGLOBALS_jstatic_urlGlobalsInterface())
+        jresult = jstaticref4%jm_getMainPath_0()
+        end associate
+        return
+  end function
+end module URLGLOBALS_m
 

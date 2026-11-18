@@ -57,6 +57,16 @@ contains
     jresult => StringValidationUtil_jcell_instance
   end function
 
+  subroutine StringValidationUtil_jsetstatic_instance(jvalue)
+    class(StringValidationUtil), target, optional :: jvalue
+    StringValidationUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      StringValidationUtil_jcell_instance => jvalue
+    else
+      StringValidationUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function StringValidationUtil_jnew_0() result(this)
     class(StringValidationUtil), pointer :: this
     allocate(this)

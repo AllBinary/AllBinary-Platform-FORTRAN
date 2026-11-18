@@ -1,108 +1,137 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2011 AllBinary 
-  
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-  
-  Created By: Travis Berthelot 
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.emulator.device
-unit TrueTypeFontUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2011 AllBinary 
+! 
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+! 
+! Created By: Travis Berthelot 
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.emulator.device
+module TrueTypeFontUtil_m
+  use JR_m
+  use GL10_m
+  use BasicColor_m
+  use OpenGLESImage_m
+  use TrueTypeFontUtilBase_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(TrueTypeFontUtilBase) :: TrueTypeFontUtil
+    class(OpenGLESImage), pointer :: f_fontImage => null()
+  contains
+    procedure :: jm_getAsTextureSize_1 => TrueTypeFontUtil_jm_getAsTextureSize_1
+    procedure :: jm_getCellSize_1 => TrueTypeFontUtil_jm_getCellSize_1
+    procedure :: jm_getFontBitmap_4 => TrueTypeFontUtil_jm_getFontBitmap_4
+    procedure :: jm_saveFontAtlasAsFile_0 => TrueTypeFontUtil_jm_saveFontAtlasAsFile_0
+    procedure :: jm_getFontBitmapGL_4 => TrueTypeFontUtil_jm_getFontBitmapGL_4
+    procedure :: jm_getFontWidths_2 => TrueTypeFontUtil_jm_getFontWidths_2
+  end type
 
-interface
+  class(TrueTypeFontUtil), pointer, save :: TrueTypeFontUtil_jcell_instance => null()
+  logical, save :: TrueTypeFontUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10, Image, BasicColor, OpenGLESImage, TrueTypeFontUtilBase;
+contains
 
-type
-  {AB:TYPES}
-  TTrueTypeFontUtil = class(TTrueTypeFontUtilBase)
-  public
-    fontImage: TOpenGLESImage;
-    class var instance: TTrueTypeFontUtil;
-    procedure InitFields;
-        class function getInstance: TTrueTypeFontUtil; static;
-        constructor Create;
-        function getAsTextureSize(textureSize: Integer): Integer; override;
-        function getCellSize(cellSize: Integer): Integer; override;
-        function getFontBitmap(filename: string; fontSize: Integer; cellSize: Integer; basicColor_: TBasicColor): TImage; virtual;
-        procedure saveFontAtlasAsFile; virtual;
-        function getFontBitmapGL(gl: IGL10; filename: string; cellSize: Integer; basicColor_: TBasicColor): TImage; virtual;
-        function getFontWidths(filename: string; fontSize: Integer): TArray<Integer>; virtual;
-  end;
+  function TrueTypeFontUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TrueTypeFontUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TrueTypeFontUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function TrueTypeFontUtil_jstatic_instance() result(jresult)
+    class(TrueTypeFontUtil), pointer :: jresult
+    if (.not. TrueTypeFontUtil_jset_instance) then
+      TrueTypeFontUtil_jset_instance = .true.
+      TrueTypeFontUtil_jcell_instance => TrueTypeFontUtil_jnew_0()
+    end if
+    jresult => TrueTypeFontUtil_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine TrueTypeFontUtil_jsetstatic_instance(jvalue)
+    class(TrueTypeFontUtil), target, optional :: jvalue
+    TrueTypeFontUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      TrueTypeFontUtil_jcell_instance => jvalue
+    else
+      TrueTypeFontUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-procedure TTrueTypeFontUtil.InitFields;
-begin
-  Self.fontImage := TOpenGLESImage.NULL_OPENGL_IMAGE;
-end;
-    
+  recursive function TrueTypeFontUtil_jnew_0() result(this)
+    class(TrueTypeFontUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'TrueTypeFontUtil'
+    this%f_fontImage => OpenGLESImage_jstatic_NULL_OPENGL_IMAGE()
+        continue ! super()
+  end function
 
-class function TTrueTypeFontUtil.getInstance: TTrueTypeFontUtil;
-begin
-        Exit(TTrueTypeFontUtil.instance);
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getInstance_0() result(jresult)
+    class(TrueTypeFontUtil), pointer :: jresult
+        jresult => TrueTypeFontUtil_jstatic_instance()
+        return
+  end function
 
-constructor TTrueTypeFontUtil.Create;
-begin
-        inherited Create(1);
-        InitFields;
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getAsTextureSize_1(this, j_textureSize) result(jresult)
+    class(TrueTypeFontUtil), target :: this
+    integer(4), value :: j_textureSize
+    integer(4) :: jresult
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
 
-function TTrueTypeFontUtil.getAsTextureSize(textureSize: Integer): Integer;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getCellSize_1(this, j_cellSize) result(jresult)
+    class(TrueTypeFontUtil), target :: this
+    integer(4), value :: j_cellSize
+    integer(4) :: jresult
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
 
-function TTrueTypeFontUtil.getCellSize(cellSize: Integer): Integer;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getFontBitmap_4(this, j_filename, j_fontSize, j_cellSize, j_basicColor) result(jresult)
+    class(TrueTypeFontUtil), target :: this
+    character(len=*), intent(in) :: j_filename
+    integer(4), value :: j_fontSize
+    integer(4), value :: j_cellSize
+    class(BasicColor), target, optional :: j_basicColor
+    class(Image), pointer :: jresult
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
 
-function TTrueTypeFontUtil.getFontBitmap(filename: string; fontSize: Integer; cellSize: Integer; basicColor_: TBasicColor): TImage;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-    
+  recursive subroutine TrueTypeFontUtil_jm_saveFontAtlasAsFile_0(this)
+    class(TrueTypeFontUtil), target :: this
+    continue
+  end subroutine
 
-procedure TTrueTypeFontUtil.saveFontAtlasAsFile;
-begin
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getFontBitmapGL_4(this, j_gl, j_filename, j_cellSize, j_basicColor) result(jresult)
+    class(TrueTypeFontUtil), target :: this
+    class(GL10), target, optional :: j_gl
+    character(len=*), intent(in) :: j_filename
+    integer(4), value :: j_cellSize
+    class(BasicColor), target, optional :: j_basicColor
+    class(Image), pointer :: jresult
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
 
-function TTrueTypeFontUtil.getFontBitmapGL(gl: IGL10; filename: string; cellSize: Integer; basicColor_: TBasicColor): TImage;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-    
+  recursive function TrueTypeFontUtil_jm_getFontWidths_2(this, j_filename, j_fontSize) result(jresult)
+    class(TrueTypeFontUtil), target :: this
+    character(len=*), intent(in) :: j_filename
+    integer(4), value :: j_fontSize
+    integer(4), allocatable :: jresult(:)
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
+end module TrueTypeFontUtil_m
 
-function TTrueTypeFontUtil.getFontWidths(filename: string; fontSize: Integer): TArray<Integer>;
-begin
-        raise SysUtils.Exception.Create('');
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TTrueTypeFontUtil.instance := TTrueTypeFontUtil.Create();
-  {AB:END}
-
-end.
+function TrueTypeFontUtil_jnew_0_jext() result(this)
+  use TrueTypeFontUtil_m, only: JObject, TrueTypeFontUtil_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => TrueTypeFontUtil_jnew_0()
+end function
 

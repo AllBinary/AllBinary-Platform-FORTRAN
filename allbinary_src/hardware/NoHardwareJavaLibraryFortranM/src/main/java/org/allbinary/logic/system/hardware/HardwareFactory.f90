@@ -50,6 +50,16 @@ contains
     jresult => HardwareFactory_jcell_instance
   end function
 
+  subroutine HardwareFactory_jsetstatic_instance(jvalue)
+    class(HardwareFactory), target, optional :: jvalue
+    HardwareFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      HardwareFactory_jcell_instance => jvalue
+    else
+      HardwareFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function HardwareFactory_jnew_0() result(this)
     class(HardwareFactory), pointer :: this
     allocate(this)

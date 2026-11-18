@@ -1,48 +1,45 @@
-// Generated Code Do Not Modify
-// package org.eclipse.swt.graphics
-unit Resource;
+! Generated Code Do Not Modify
+! package org.eclipse.swt.graphics
+module Resource_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: Resource
+  contains
+    procedure :: jm_dispose_0 => Resource_jm_dispose_0
+    procedure :: jm_isDisposed_0 => Resource_jm_isDisposed_0
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TResource = class(TObject)
-  public
-    constructor Create;
-        procedure dispose_; virtual;
-        function isDisposed: Boolean; virtual;
-  end;
+  function Resource_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Resource), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Resource)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function Resource_jnew_0() result(this)
+    class(Resource), pointer :: this
+    allocate(this)
+    this%jclass = 'Resource'
+  end function
 
-{AB:CODE}
+  recursive subroutine Resource_jm_dispose_0(this)
+    class(Resource), target :: this
+    continue
+  end subroutine
 
-constructor TResource.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TResource.dispose_;
-begin
-end;
-    
-
-function TResource.isDisposed: Boolean;
-begin
-        Exit(False);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function Resource_jm_isDisposed_0(this) result(jresult)
+    class(Resource), target :: this
+    logical :: jresult
+        jresult = .false.
+        return
+  end function
+end module Resource_m
 

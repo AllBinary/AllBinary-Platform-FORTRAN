@@ -49,6 +49,16 @@ contains
     jresult => Visitor_jcell_instance
   end function
 
+  subroutine Visitor_jsetstatic_instance(jvalue)
+    class(Visitor), target, optional :: jvalue
+    Visitor_jset_instance = .true.
+    if (present(jvalue)) then
+      Visitor_jcell_instance => jvalue
+    else
+      Visitor_jcell_instance => null()
+    end if
+  end subroutine
+
   function Visitor_jnew_0() result(this)
     class(Visitor), pointer :: this
     allocate(this)

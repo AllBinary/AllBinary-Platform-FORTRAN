@@ -1,94 +1,97 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module DemoGameStartupRunnable_m
+  use JR_m
+  use LogUtil_m
+  use CommonStrings_m
+  use ABRunnable_m
+  use DemoCanvas_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit DemoGameStartupRunnable;
+  type, extends(ABRunnable) :: DemoGameStartupRunnable
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(DemoCanvas), pointer :: f_demoCanvas => null()
+  contains
+    procedure :: jm_run_0 => DemoGameStartupRunnable_jm_run_0
+    procedure :: jm_getType_0 => DemoGameStartupRunnable_jm_getType_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  integer(4), save :: DemoGameStartupRunnable_jcell_TYPE
+  logical, save :: DemoGameStartupRunnable_jset_TYPE = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LogUtil, ABRunnable, DemoCanvas;
+  function DemoGameStartupRunnable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DemoGameStartupRunnable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DemoGameStartupRunnable)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDemoGameStartupRunnable = class(TABRunnable)
-  public
-    logUtil: TLogUtil;
-    demoCanvas: TDemoCanvas;
-    class var TYPE_: Integer;
-    procedure InitFields;
-        constructor Create(demoCanvas_: TDemoCanvas);
-        procedure run; override;
-        function getType: Integer; override;
-  end;
+  function DemoGameStartupRunnable_jstatic_TYPE() result(jresult)
+    integer(4) :: jresult
+    if (.not. DemoGameStartupRunnable_jset_TYPE) then
+      DemoGameStartupRunnable_jset_TYPE = .true.
+      DemoGameStartupRunnable_jcell_TYPE = 4
+    end if
+    jresult = DemoGameStartupRunnable_jcell_TYPE
+  end function
 
-implementation
-uses
-  CommonStrings;
+  subroutine DemoGameStartupRunnable_jsetstatic_TYPE(jvalue)
+    integer(4), value :: jvalue
+    DemoGameStartupRunnable_jset_TYPE = .true.
+    DemoGameStartupRunnable_jcell_TYPE = jvalue
+  end subroutine
 
-
-{AB:CODE}
-
-procedure TDemoGameStartupRunnable.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  
-end;
+  recursive function DemoGameStartupRunnable_jnew_1(j_demoCanvas) result(this)
+    class(DemoCanvas), target, optional :: j_demoCanvas
+    class(DemoGameStartupRunnable), pointer :: this
+    allocate(this)
+    this%jclass = 'DemoGameStartupRunnable'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
     
+        this%f_demoCanvas => j_demoCanvas
+  end function
 
-constructor TDemoGameStartupRunnable.Create(demoCanvas_: TDemoCanvas);
-begin
-    inherited Create;
-    InitFields;
-        Self.demoCanvas := demoCanvas_;
-end;
-    
+  recursive subroutine DemoGameStartupRunnable_jm_run_0(this)
+    class(DemoGameStartupRunnable), target :: this
+    class(CommonStrings), pointer :: j_commonStrings
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            call this%jm_setRunning_1(.true.)
+            call this%f_demoCanvas%jm_stopGameDemo_0()
+            call this%f_demoCanvas%jm_create_0()
+            call this%f_demoCanvas%jm_start_0()
+            call this%jm_setRunning_1(.false.)
+  end subroutine
 
-procedure TDemoGameStartupRunnable.run;
-var
-  commonStrings_: TCommonStrings;
-begin
-        try
-            Self.setRunning(True);
-            Self.demoCanvas.stopGameDemo();
-            Self.demoCanvas.create_();
-            Self.demoCanvas.start();
-            Self.setRunning(False);
-        except
-            on e: SysUtils.Exception do begin
-            Self.setRunning(False);
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.RUN, TJava.Box(e));
-            end;
-        end;
-end;
-    
-
-function TDemoGameStartupRunnable.getType: Integer;
-begin
-        Exit(TDemoGameStartupRunnable.TYPE_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDemoGameStartupRunnable.TYPE_ := 4;
-  {AB:END}
-
-end.
+  recursive function DemoGameStartupRunnable_jm_getType_0(this) result(jresult)
+    class(DemoGameStartupRunnable), target :: this
+    integer(4) :: jresult
+        jresult = DemoGameStartupRunnable_jstatic_TYPE()
+        return
+  end function
+end module DemoGameStartupRunnable_m
 

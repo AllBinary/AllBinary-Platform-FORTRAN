@@ -1,136 +1,154 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.paint
+module SimpleTextPaintable_m
+  use JR_m
+  use Anchor_m
+  use BasicColor_m
+  use DisplayInfoSingleton_m
+  use MyFontProcessor_m
+  use UpdateMyFontInterface_m
+  use UpdateMyFontProcessor_m
+  use Paintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.paint
-unit SimpleTextPaintable;
+  type, extends(Paintable) :: SimpleTextPaintable
+    class(DisplayInfoSingleton), pointer :: f_displayInfoSingleton => null()
+    class(MyFontProcessor), pointer :: f_updateMyFontProcessor => null()
+    class(MyFontProcessor), pointer :: f_myFontProcessor => null()
+    character(len=:), allocatable :: f_text
+    class(BasicColor), pointer :: f_basicColor => null()
+    integer(4) :: f_topScoresWidth = 0
+    integer(4) :: f_fontHeight = 0
+    integer(4) :: f_anchor = 0
+  contains
+    procedure :: jm_updateMeasurement_1 => SimpleTextPaintable_jm_updateMeasurement_1
+    procedure :: jm_paint_1 => SimpleTextPaintable_jm_paint_1
+    procedure :: jm_setBasicColorP_1 => SimpleTextPaintable_jm_setBasicColorP_1
+    procedure :: jm_getBasicColorP_0 => SimpleTextPaintable_jm_getBasicColorP_0
+    procedure :: jm_setText_1 => SimpleTextPaintable_jm_setText_1
+    procedure :: jm_getText_0 => SimpleTextPaintable_jm_getText_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, BasicColor, DisplayInfoSingleton, MyFontProcessor, UpdateMyFontInterface, Paintable;
-
-type
-  {AB:TYPES}
-  TSimpleTextPaintable = class(TPaintable, IUpdateMyFontInterface)
-  public
-    displayInfoSingleton: TDisplayInfoSingleton;
-    updateMyFontProcessor: TMyFontProcessor;
-    myFontProcessor: TMyFontProcessor;
-    text: string;
-    basicColor: TBasicColor;
-    topScoresWidth: Integer;
-    fontHeight: Integer;
-    anchor: Integer;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(text: string; basicColor_: TBasicColor);
-        procedure updateMeasurement(graphics_: TGraphics); virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure setBasicColorP(basicColor_: TBasicColor); virtual;
-        function getBasicColorP: TBasicColor;
-        procedure setText(text: string); virtual;
-        function getText: string; virtual;
-  end;
-
-implementation
-uses
-  Font, Anchor, UpdateMyFontProcessor;
+  ! SimpleTextPaintable used as a UpdateMyFontInterface
+  type, extends(UpdateMyFontInterface) :: SimpleTextPaintable_jas_UpdateMyFontInterface
+    class(SimpleTextPaintable), pointer :: jtarget => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => SimpleTextPaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TSimpleTextPaintable.InitFields;
-begin
-  Self.displayInfoSingleton := TDisplayInfoSingleton.getInstance();
-  Self.updateMyFontProcessor := TUpdateMyFontProcessor.Create(Self);
-  Self.myFontProcessor := Self.updateMyFontProcessor;
-  
-  
-  Self.topScoresWidth := 0;
-  Self.fontHeight := 0;
-  Self.anchor := TAnchor.TOP_LEFT;
-end;
+  function SimpleTextPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SimpleTextPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SimpleTextPaintable)
+      jresult => object
+    end select
+  end function
 
-function TSimpleTextPaintable.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  function SimpleTextPaintable_jas_UpdateMyFontInterface_jnew(object) result(jresult)
+    class(SimpleTextPaintable), target :: object
+    class(SimpleTextPaintable_jas_UpdateMyFontInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'SimpleTextPaintable'
+    jresult%jtarget => object
+  end function
+
+  recursive subroutine SimpleTextPaintable_jas_UpdateMyFontInterface_jm_updateMeasurement_1(this, j_graphics)
+    class(SimpleTextPaintable_jas_UpdateMyFontInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_updateMeasurement_1(j_graphics)
+  end subroutine
+
+  recursive function SimpleTextPaintable_jnew_2(j_text, j_basicColor) result(this)
+    character(len=*), intent(in) :: j_text
+    class(BasicColor), target, optional :: j_basicColor
+    class(SimpleTextPaintable), pointer :: this
+    allocate(this)
+    this%jclass = 'SimpleTextPaintable'
+    this%f_text = ''
+    this%f_displayInfoSingleton => DisplayInfoSingleton_jm_getInstance_0()
+    this%f_updateMyFontProcessor => UpdateMyFontProcessor_jnew_1(this)
+    this%f_myFontProcessor => this%f_updateMyFontProcessor
     
-
-constructor TSimpleTextPaintable.Create(text: string; basicColor_: TBasicColor);
-begin
-    inherited Create;
-    InitFields;
-        Self.text := text;
-        Self.basicColor := basicColor_;
-end;
     
+    this%f_topScoresWidth = 0
+    this%f_fontHeight = 0
+    this%f_anchor = Anchor_jstatic_TOP_LEFT()
+        this%f_text = j_text
+        this%f_basicColor => j_basicColor
+  end function
 
-procedure TSimpleTextPaintable.updateMeasurement(graphics_: TGraphics);
-var
-  font_: TFont;
-begin
-        font_ := graphics_.getFont();
-        Self.topScoresWidth := (TJava.SignedRightShift(font_.stringWidth(Self.text), 1));
-        Self.fontHeight := font_.getHeight();
-        Self.myFontProcessor := TMyFontProcessor.getInstance();
-end;
-    
+  recursive subroutine SimpleTextPaintable_jm_updateMeasurement_1(this, j_graphics)
+    class(SimpleTextPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Font), pointer :: j_font
+        j_font => j_graphics%jm_getFont_0()
+        this%f_topScoresWidth = (shifta(j_font%jm_stringWidth_1(this%f_text), iand(1, 31)))
+        this%f_fontHeight = j_font%jm_getHeight_0()
+        this%f_myFontProcessor => MyFontProcessor_jm_getInstance_0()
+  end subroutine
 
-procedure TSimpleTextPaintable.paint(graphics_: TGraphics);
-var
-  width: Integer;
-begin
-        Self.myFontProcessor.process(graphics_);
-        width := Self.displayInfoSingleton.getLast()[Self.displayInfoSingleton.WIDTH];
-        graphics_.setColor(Self.getBasicColorP().intValue());
-        graphics_.drawString(Self.text, ((TJava.SignedRightShift(width, 1))) - (Self.topScoresWidth), Self.fontHeight, Self.anchor);
-end;
-    
+  recursive subroutine SimpleTextPaintable_jm_paint_1(this, j_graphics)
+    class(SimpleTextPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4) :: j_width
+    class(BasicColor), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_myFontProcessor%jm_process_1(j_graphics)
+        j_width = this%f_displayInfoSingleton%jm_getLast_0()((this%f_displayInfoSingleton%f_WIDTH) + 1)
+        jtemp1 => this%jm_getBasicColorP_0()
+        call j_graphics%jm_setColor_1(jtemp1%jm_intValue_0())
+        call j_graphics%jm_drawString_4(this%f_text, ((shifta(j_width, iand(1, 31))) - this%f_topScoresWidth), this%f_fontHeight, this%f_anchor)
+  end subroutine
 
-procedure TSimpleTextPaintable.setBasicColorP(basicColor_: TBasicColor);
-begin
-        Self.basicColor := basicColor_;
-end;
-    
+  recursive subroutine SimpleTextPaintable_jm_setBasicColorP_1(this, j_basicColor)
+    class(SimpleTextPaintable), target :: this
+    class(BasicColor), target, optional :: j_basicColor
+        this%f_basicColor => j_basicColor
+  end subroutine
 
-function TSimpleTextPaintable.getBasicColorP: TBasicColor;
-begin
-        Exit(Self.basicColor);
-end;
-    
+  recursive function SimpleTextPaintable_jm_getBasicColorP_0(this) result(jresult)
+    class(SimpleTextPaintable), target :: this
+    class(BasicColor), pointer :: jresult
+        jresult => this%f_basicColor
+        return
+  end function
 
-procedure TSimpleTextPaintable.setText(text: string);
-begin
-        Self.text := text;
-        Self.myFontProcessor := Self.updateMyFontProcessor;
-end;
-    
+  recursive subroutine SimpleTextPaintable_jm_setText_1(this, j_text)
+    class(SimpleTextPaintable), target :: this
+    character(len=*), intent(in) :: j_text
+        this%f_text = j_text
+        this%f_myFontProcessor => this%f_updateMyFontProcessor
+  end subroutine
 
-function TSimpleTextPaintable.getText: string;
-begin
-        Exit(Self.text);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function SimpleTextPaintable_jm_getText_0(this) result(jresult)
+    class(SimpleTextPaintable), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_text
+        return
+  end function
+end module SimpleTextPaintable_m
 

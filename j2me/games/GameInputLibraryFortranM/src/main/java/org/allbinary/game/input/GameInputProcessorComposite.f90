@@ -1,95 +1,93 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module GameInputProcessorComposite_m
+  use JR_m
+  use StringMaker_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use PlayerGameInput_m
+  use GameInputProcessorInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit GameInputProcessorComposite;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameInputProcessorInterface, PlayerGameInput;
-
-type
-  {AB:TYPES}
-  TGameInputProcessorComposite = class(TPlayerGameInput)
-  public
-    name: string;
-    gameInputProcessorInterface: IGameInputProcessorInterface;
-    NAME_LABEL: string;
-    procedure InitFields;
-        constructor Create(name: string; gameInputProcessorInterface_: IGameInputProcessorInterface);
-        procedure update; override;
-        function toString: string; override;
-  end;
-
-implementation
-uses
-  LogUtil, StringMaker, BasicArrayList, BasicArrayListD;
+  type, extends(PlayerGameInput) :: GameInputProcessorComposite
+    character(len=:), allocatable :: f_name
+    class(GameInputProcessorInterface), pointer :: f_gameInputProcessorInterface => null()
+    character(len=:), allocatable :: f_NAME_LABEL
+  contains
+    procedure :: jm_update_0 => GameInputProcessorComposite_jm_update_0
+    procedure :: jm_toString_0 => GameInputProcessorComposite_jm_toString_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TGameInputProcessorComposite.InitFields;
-begin
-  
-  
-  Self.NAME_LABEL := ' GameInputProcessorInterface: ';
-end;
+  function GameInputProcessorComposite_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameInputProcessorComposite), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameInputProcessorComposite)
+      jresult => object
+    end select
+  end function
+
+  recursive function GameInputProcessorComposite_jnew_2(j_name, j_gameInputProcessorInterface) result(this)
+    character(len=*), intent(in) :: j_name
+    class(GameInputProcessorInterface), target, optional :: j_gameInputProcessorInterface
+    class(GameInputProcessorComposite), pointer :: this
+    allocate(this)
+    this%jclass = 'GameInputProcessorComposite'
+    this%f_name = ''
+    this%f_NAME_LABEL = ''
     
-
-constructor TGameInputProcessorComposite.Create(name: string; gameInputProcessorInterface_: IGameInputProcessorInterface);
-begin
-        inherited Create(TBasicArrayListD.Create(), TBasicArrayListD.Create(), -1);
-        InitFields;
-        Self.name := name;
-        Self.gameInputProcessorInterface := gameInputProcessorInterface_;
-end;
     
+    this%f_NAME_LABEL = ' GameInputProcessorInterface: '
+        continue ! super()
+        this%f_name = j_name
+        this%f_gameInputProcessorInterface => j_gameInputProcessorInterface
+  end function
 
-procedure TGameInputProcessorComposite.update;
-var
-  list: TBasicArrayList;
-begin
-    TJava.MonitorEnter(Self);
-    try
-        try
-            list := Self.getGameKeyEventList();
-            Self.gameInputProcessorInterface.onInput(list);
-        except
-            on e: SysUtils.Exception do begin
-            Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), Self.commonStrings.UPDATE, TJava.Box(e));
-            end;
-        end;
-    finally
-    TJava.MonitorExit(Self);
-    end;
-end;
-    
+  recursive subroutine GameInputProcessorComposite_jm_update_0(this)
+    class(GameInputProcessorComposite), target :: this
+    class(BasicArrayList), pointer :: j_list
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            j_list => this%jm_getGameKeyEventList_0()
+            call this%f_gameInputProcessorInterface%jm_onInput_1(j_list)
+  end subroutine
 
-function TGameInputProcessorComposite.toString: string;
-begin
-        Exit(TStringMaker.Create().append(inherited toString()).append(Self.NAME_LABEL).append(Self.name).toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function GameInputProcessorComposite_jm_toString_0(this) result(jresult)
+    class(GameInputProcessorComposite), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: jtemp1
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+    class(StringMaker), pointer :: jtemp4
+        jtemp4 => StringMaker_jnew_0()
+        jtemp3 => jtemp4%jm_append_1(this%PlayerGameInput%jm_toString_0())
+        jtemp2 => jtemp3%jm_append_1(this%f_NAME_LABEL)
+        jtemp1 => jtemp2%jm_append_1(this%f_name)
+        jresult = jtemp1%jm_toString_0()
+        return
+  end function
+end module GameInputProcessorComposite_m
 

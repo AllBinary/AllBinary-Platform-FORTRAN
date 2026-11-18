@@ -1,84 +1,106 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.media.image
+module ImageCreationUtil_m
+  use JR_m
+  use GameFeatureImageCacheFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.media.image
-unit ImageCreationUtil;
+  type, extends(JObject) :: ImageCreationUtil
+  contains
+    procedure :: jm_createImageWH_2 => ImageCreationUtil_jm_createImageWH_2
+    procedure :: jm_createImage_4 => ImageCreationUtil_jm_createImage_4
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ImageCreationUtil), pointer, save :: ImageCreationUtil_jcell_instance => null()
+  logical, save :: ImageCreationUtil_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image;
+  function ImageCreationUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ImageCreationUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ImageCreationUtil)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TImageCreationUtil = class(TObject)
-  public
-    class var instance: TImageCreationUtil;
-        class function getInstance: TImageCreationUtil; static;
-        constructor Create;
-        function createImageWH(width: Integer; height: Integer): TImage; virtual;
-        function createImage(width: Integer; height: Integer; maxScaleX: Single; maxScaleY: Single): TImage; virtual;
-  end;
+  function ImageCreationUtil_jstatic_instance() result(jresult)
+    class(ImageCreationUtil), pointer :: jresult
+    if (.not. ImageCreationUtil_jset_instance) then
+      ImageCreationUtil_jset_instance = .true.
+      ImageCreationUtil_jcell_instance => ImageCreationUtil_jnew_0()
+    end if
+    jresult => ImageCreationUtil_jcell_instance
+  end function
 
-implementation
-uses
-  GameFeatureImageCacheFactory;
+  subroutine ImageCreationUtil_jsetstatic_instance(jvalue)
+    class(ImageCreationUtil), target, optional :: jvalue
+    ImageCreationUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      ImageCreationUtil_jcell_instance => jvalue
+    else
+      ImageCreationUtil_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function ImageCreationUtil_jnew_0() result(this)
+    class(ImageCreationUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'ImageCreationUtil'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive function ImageCreationUtil_jm_getInstance_0() result(jresult)
+    class(ImageCreationUtil), pointer :: jresult
+        jresult => ImageCreationUtil_jstatic_instance()
+        return
+  end function
 
-class function TImageCreationUtil.getInstance: TImageCreationUtil;
-begin
-        Exit(TImageCreationUtil.instance);
-end;
-    
+  recursive function ImageCreationUtil_jm_createImageWH_2(this, j_width, j_height) result(jresult)
+    class(ImageCreationUtil), target :: this
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(Image), pointer :: jresult
+    class(Image), pointer :: j_image
+    class(GameFeatureImageCacheFactory), pointer :: jtemp1
+    character(len=:), allocatable :: jtemp2
+        jtemp2 = JR_className(this)
+        jtemp1 => GameFeatureImageCacheFactory_jm_getInstance_0()
+        j_image => jtemp1%jm_get_3(jtemp2, j_width, j_height)
+        jresult => j_image
+        return
+  end function
 
-constructor TImageCreationUtil.Create;
-begin
-    inherited Create;
-end;
-    
-
-// throws Exception
-function TImageCreationUtil.createImageWH(width: Integer; height: Integer): TImage;
-var
-  image_: TImage;
-begin
-        image_ := TGameFeatureImageCacheFactory.getInstance().get(Self.ClassType.ClassName, width, height);
-        Exit(image_);
-end;
-    
-
-// throws Exception
-function TImageCreationUtil.createImage(width: Integer; height: Integer; maxScaleX: Single; maxScaleY: Single): TImage;
-var
-  image_: TImage;
-begin
-        image_ := TGameFeatureImageCacheFactory.getInstance().get(Self.ClassType.ClassName, (Integer(Trunc(((width) * (maxScaleX))))) + (1), (Integer(Trunc(((height) * (maxScaleY))))) + (1));
-        Exit(image_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TImageCreationUtil.instance := TImageCreationUtil.Create();
-  {AB:END}
-
-end.
+  recursive function ImageCreationUtil_jm_createImage_4(this, j_width, j_height, j_maxScaleX, j_maxScaleY) result(jresult)
+    class(ImageCreationUtil), target :: this
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    real(4), value :: j_maxScaleX
+    real(4), value :: j_maxScaleY
+    class(Image), pointer :: jresult
+    class(Image), pointer :: j_image
+    class(GameFeatureImageCacheFactory), pointer :: jtemp3
+    character(len=:), allocatable :: jtemp4
+        jtemp4 = JR_className(this)
+        jtemp3 => GameFeatureImageCacheFactory_jm_getInstance_0()
+        j_image => jtemp3%jm_get_3(jtemp4, (JR_d2i(real(((real(j_width, 4) * j_maxScaleX)), 8)) + 1), (JR_d2i(real(((real(j_height, 4) * j_maxScaleY)), 8)) + 1))
+        jresult => j_image
+        return
+  end function
+end module ImageCreationUtil_m
 

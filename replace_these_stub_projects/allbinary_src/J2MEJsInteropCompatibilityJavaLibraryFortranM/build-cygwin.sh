@@ -47,6 +47,11 @@ mkdir -p jobj
 # optional dependency of that dependency (not transitive) does not compile here but its module from its own build does
 if [ -d "$dependency_dir/mod" ]; then
     cp "$dependency_dir/mod/"*.mod jobj/ 2>/dev/null
+    # The runtime is compiled here from its source, so a module of the runtime from an older dependency build is removed:
+    # a module compiled first (HashMap) would otherwise use the older one (Hashtable) and keep it
+    for module in $(cat $(find "$runtime_dir" -type f -name '*.f90') | sed -n 's/^module \([A-Za-z0-9_]*\) *$/\1/p' | tr 'A-Z' 'a-z'); do
+        rm -f "jobj/$module.mod"
+    done
 fi
 compile() {
     "$compiler" "${compiler_flags[@]}" -Jjobj -c "$1" -o "jobj/$(echo "$1" | tr '/.' '__').o" 2>"jobj/$(echo "$1" | tr '/.' '__').log"
@@ -130,7 +135,43 @@ for my $component (@components) {
     my $name = "jcycle${number}_m";
     my (%seen, @useLines);
     my ($spec, $procedures, $after) = ('', '', '');
-    for my $module (sort @$component) {
+    my (@typeOrder, %typeParent, %typeText);
+    #A parent type is declared before a type that extends it (Shape before DeviceRectangle), so a module comes after the
+    #modules of the component that declare the types it extends
+    my (%declares, %extends);
+    for my $module (@$component) {
+        $declares{$module} = [ map { lc } ($text{$fileOf{$module}} =~ /^\s*type\s*(?:,[^:]*)?::\s*(\w+)/mg) ];
+        $extends{$module} = [ map { lc } ($text{$fileOf{$module}} =~ /^\s*type\s*,\s*extends\s*\(\s*(\w+)\s*\)/mg) ];
+    }
+    my (%declaredBy, @ordered, %placed);
+    for my $module (@$component) {
+        $declaredBy{$_} = $module for @{$declares{$module}};
+    }
+    my @pending = sort @$component;
+    while (@pending) {
+        my @next;
+        my $progress = 0;
+        for my $module (@pending) {
+            my $ready = 1;
+            for my $parent (@{$extends{$module}}) {
+                my $owner = $declaredBy{$parent};
+                $ready = 0 if defined $owner && $owner ne $module && !$placed{$owner};
+            }
+            if ($ready) {
+                push @ordered, $module;
+                $placed{$module} = 1;
+                $progress = 1;
+            } else {
+                push @next, $module;
+            }
+        }
+        if (!$progress) {
+            push @ordered, @next;
+            last;
+        }
+        @pending = @next;
+    }
+    for my $module (@ordered) {
         my @lines = split /\n/, $text{$fileOf{$module}}, -1;
         my ($moduleLine) = grep { $lines[$_] =~ /^module\s+\w+\s*$/ } 0 .. $#lines;
         my ($implicitLine) = grep { $_ > $moduleLine && $lines[$_] =~ /^\s*implicit none\s*$/ } 0 .. $#lines;
@@ -142,10 +183,75 @@ for my $component (@components) {
                 push @useLines, $line unless $seen{lc $line}++;
             }
         }
-        $spec .= join("\n", @lines[$implicitLine + 1 .. $containsLine - 1]) . "\n";
+        #The derived types go first (a module variable such as class(Gauge), pointer :: Alert_jcell_NULL_GAUGE needs the
+        #type of another module) and the other declarations after them
+        my $inType = 0;
+        for my $line (@lines[$implicitLine + 1 .. $containsLine - 1]) {
+            if (!$inType && $line =~ /^\s*type\s*(?:,[^:]*)?::\s*(\w+)/) {
+                $inType = 1;
+                my $typeName = lc $1;
+                my ($parent) = $line =~ /extends\s*\(\s*(\w+)\s*\)/i;
+                push @typeOrder, $typeName;
+                $typeParent{$typeName} = defined $parent ? lc $parent : '';
+                $typeText{$typeName} = '';
+            }
+            if ($inType) {
+                $typeText{$typeOrder[-1]} .= "$line\n";
+                $inType = 0 if $line =~ /^\s*end\s*type\b/i;
+            } else {
+                $spec .= "$line\n";
+            }
+        }
         $procedures .= join("\n", @lines[$containsLine + 1 .. $endLine - 1]) . "\n" if $containsLine < $endLine;
         $after .= join("\n", @lines[$endLine + 1 .. $#lines]) . "\n";
     }
+    #The types with each parent before the types that extend it
+    my ($types, %typeDone) = ('');
+    my $addType;
+    $addType = sub {
+        my $typeName = shift;
+        return if $typeDone{$typeName}++;
+        my $parent = $typeParent{$typeName};
+        $addType->($parent) if $parent ne '' && exists $typeText{$parent};
+        $types .= $typeText{$typeName};
+    };
+    $addType->($_) for @typeOrder;
+    $spec = "$types$spec";
+    #An associate of a function of this merged module (associate (x => ChoiceItem_jcast(...))) is a block with a
+    #variable of the function's result type: gfortran does not know the type of a function defined later in the module
+    my %resultSpec;
+    #The next lines are in a lookahead so a short function does not hide the one after it
+    while ($procedures =~ /function\s+(\w+)\s*\([^)]*\)\s*result\(jresult\)\s*\n(?=((?:[^\n]*\n){0,12}))/g) {
+        my ($function, $body) = (lc $1, $2);
+        if ($body =~ /^\s*((?:class|type)\(\w+\)[^:\n]*|character\(len=:\)[^:\n]*|integer\(\d\)[^:\n]*|real\(\d\)[^:\n]*|logical[^:\n]*)::\s*jresult\s*$/m) {
+            my $declaration = $1;
+            $declaration =~ s/\s+$//;
+            $resultSpec{$function} = $declaration;
+        }
+    }
+    my @procedureLines = split /\n/, $procedures, -1;
+    for my $index (0 .. $#procedureLines) {
+        next unless $procedureLines[$index] =~ /^(\s*)associate \((\w+) => (\w+)(\(.*\))\)\s*$/;
+        my ($indent, $variable, $function, $arguments) = ($1, $2, lc $3, $4);
+        next unless exists $resultSpec{$function};
+        my $declaration = $resultSpec{$function};
+        my $operator = $declaration =~ /pointer/ ? '=>' : '=';
+        my $call = $procedureLines[$index] =~ /=> (\w+\(.*\))\)\s*$/ ? $1 : '';
+        my $depth = 0;
+        for my $end ($index + 1 .. $#procedureLines) {
+            if ($procedureLines[$end] =~ /^\s*associate \(/) {
+                $depth++;
+            } elsif ($procedureLines[$end] =~ /^\s*end associate\s*$/) {
+                if ($depth == 0) {
+                    $procedureLines[$end] =~ s/end associate/end block/;
+                    last;
+                }
+                $depth--;
+            }
+        }
+        $procedureLines[$index] = "${indent}block\n${indent}$declaration :: $variable\n${indent}$variable $operator $call";
+    }
+    $procedures = join "\n", @procedureLines;
     #The external constructor wrappers after the modules use the merged module
     for my $module (@$component) {
         $after =~ s/^(\s*use\s+)$module\b/$1$name/mgi;
@@ -180,7 +286,9 @@ done
 if [ -n "$failed" ]; then
     for file in $failed; do
         echo "== $file"
-        head -40 "jobj/$(echo "$file" | tr '/.' '__').log"
+        # A merged module (jcycleN_m) has the errors of every module it merged
+        case "$file" in jcycle*) lines=400;; *) lines=40;; esac
+        head -$lines "jobj/$(echo "$file" | tr '/.' '__').log"
     done
     echo "Fortran build failed: $artifact" >&2
     if [ "$fail_on_error" = "true" ]; then

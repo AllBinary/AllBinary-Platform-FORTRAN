@@ -1,86 +1,104 @@
-// Generated Code Do Not Modify
-// package org.allbinary.logic.math.permutations
-unit IntPermutationVisitor;
+! Generated Code Do Not Modify
+! package org.allbinary.logic.math.permutations
+module IntPermutationVisitor_m
+  use JR_m
+  use NullUtil_m
+  use StringMaker_m
+  use Visitor_m
+  use CommonSeps_m
+  use System_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, StringMaker, Visitor;
-
-type
-  {AB:TYPES}
-  TIntPermutationVisitor = class(TVisitor)
-  public
-    data: TArray<Integer>;
-    stringBuilder: TStringMaker;
-    procedure InitFields;
-        constructor Create(data: TArray<Integer>);
-        function visit(anyType: TObject): TObject; override;
-        procedure print(data: TArray<Integer>); overload; virtual;
-        procedure print(data: TArray<Integer>; stringBuilder: TStringMaker); overload; virtual;
-  end;
-
-implementation
-uses
-  NullUtil, CommonSeps;
+  type, extends(Visitor) :: IntPermutationVisitor
+    integer(4), allocatable :: f_data(:)
+    class(StringMaker), pointer :: f_stringBuilder => null()
+  contains
+    procedure :: jm_visit_1 => IntPermutationVisitor_jm_visit_1
+    procedure :: jm_print_1 => IntPermutationVisitor_jm_print_1
+    procedure :: jm_print_2 => IntPermutationVisitor_jm_print_2
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TIntPermutationVisitor.InitFields;
-begin
-  
-  Self.stringBuilder := TStringMaker.Create();
-end;
+  function IntPermutationVisitor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(IntPermutationVisitor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (IntPermutationVisitor)
+      jresult => object
+    end select
+  end function
+
+  recursive function IntPermutationVisitor_jnew_1(j_data) result(this)
+    integer(4) :: j_data(:)
+    class(IntPermutationVisitor), pointer :: this
+    allocate(this)
+    this%jclass = 'IntPermutationVisitor'
     
+    this%f_stringBuilder => StringMaker_jnew_0()
+        this%f_data = j_data
+  end function
 
-constructor TIntPermutationVisitor.Create(data: TArray<Integer>);
-begin
-    inherited Create;
-    InitFields;
-        Self.data := data;
-end;
-    
+  recursive function IntPermutationVisitor_jm_visit_1(this, j_anyType) result(jresult)
+    class(IntPermutationVisitor), target :: this
+    class(JObject), target, optional :: j_anyType
+    class(JObject), pointer :: jresult
+    class(NullUtil), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardRef => this%f_stringBuilder%jm_delete_2(0, this%f_stringBuilder%jm_length_0())
+        call this%jm_print_2(this%f_data, this%f_stringBuilder)
+        jtemp1 => NullUtil_jm_getInstance_0()
+        jresult => jtemp1%f_NULL_OBJECT
+        return
+  end function
 
-function TIntPermutationVisitor.visit(anyType: TObject): TObject;
-begin
-        Self.stringBuilder.delete_(0, Self.stringBuilder.length());
-        Self.print(Self.data, Self.stringBuilder);
-        Exit(TJava.Box(TNullUtil.getInstance().NULL_OBJECT));
-end;
-    
+  recursive subroutine IntPermutationVisitor_jm_print_1(this, j_data)
+    class(IntPermutationVisitor), target :: this
+    integer(4) :: j_data(:)
+    class(StringMaker), pointer :: j_stringBuilder
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_stringBuilder => StringMaker_jnew_0()
+        call this%jm_print_2(j_data, j_stringBuilder)
+  end subroutine
 
-procedure TIntPermutationVisitor.print(data: TArray<Integer>);
-var
-  stringBuilder: TStringMaker;
-begin
-        stringBuilder := TStringMaker.Create();
-        Self.print(data, stringBuilder);
-end;
-    
-
-procedure TIntPermutationVisitor.print(data: TArray<Integer>; stringBuilder: TStringMaker);
-var
-  commonSeps_: TCommonSeps;
-  size: Integer;
-  i: Integer;
-begin
-        commonSeps_ := TCommonSeps.getInstance();
-        size := System.Length(data);
-        for i := 0 to size - 1 do begin
-            stringBuilder.appendint(data[i]);
-            stringBuilder.append(commonSeps_.SPACE);
-        end;
-        WriteLn(stringBuilder.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine IntPermutationVisitor_jm_print_2(this, j_data, j_stringBuilder)
+    class(IntPermutationVisitor), target :: this
+    integer(4) :: j_data(:)
+    class(StringMaker), target, optional :: j_stringBuilder
+    class(CommonSeps), pointer :: j_commonSeps
+    integer(4) :: j_size
+    integer(4) :: j_i
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_commonSeps => CommonSeps_jm_getInstance_0()
+        j_size = size(j_data, 1)
+        j_i = 0
+        do while ((j_i < j_size))
+            jdiscardRef => j_stringBuilder%jm_appendint_1(j_data((j_i) + 1))
+            jdiscardRef => j_stringBuilder%jm_append_1(j_commonSeps%f_SPACE)
+            j_i = j_i + 1
+        end do
+        call JR_println(j_stringBuilder%jm_toString_0())
+  end subroutine
+end module IntPermutationVisitor_m
 

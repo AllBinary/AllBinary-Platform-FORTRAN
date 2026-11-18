@@ -1,35 +1,38 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form
-unit CustomScreen;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form
+module CustomScreen_m
+  use JR_m
+  use CustomDisplayable_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(CustomDisplayable) :: CustomScreen
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CustomDisplayable;
+contains
 
-type
-  {AB:TYPES}
-  TCustomScreen = class(TCustomDisplayable)
-  public
-    constructor Create;
-  end;
+  function CustomScreen_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CustomScreen), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CustomScreen)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function CustomScreen_jnew_0() result(this)
+    class(CustomScreen), pointer :: this
+    allocate(this)
+    this%jclass = 'CustomScreen'
+  end function
+end module CustomScreen_m
 
-{AB:CODE}
-
-constructor TCustomScreen.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function CustomScreen_jnew_0_jext() result(this)
+  use CustomScreen_m, only: JObject, CustomScreen_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => CustomScreen_jnew_0()
+end function
 

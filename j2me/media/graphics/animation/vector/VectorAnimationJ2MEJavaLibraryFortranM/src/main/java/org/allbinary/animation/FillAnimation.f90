@@ -1,124 +1,154 @@
-// Generated Code Do Not Modify
-// package org.allbinary.animation
-unit FillAnimation;
+! Generated Code Do Not Modify
+! package org.allbinary.animation
+module FillAnimation_m
+  use JR_m
+  use BasicColor_m
+  use IndexedAnimation_m
+  use AnimationBehavior_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(IndexedAnimation) :: FillAnimation
+    integer(4), allocatable :: f_pixelBuffer(:)
+    integer(4) :: f_width = 0
+    integer(4) :: f_height = 0
+  contains
+    procedure :: jm_setBasicColorP_1 => FillAnimation_jm_setBasicColorP_1
+    procedure :: jm_changeBasicColor_1 => FillAnimation_jm_changeBasicColor_1
+    procedure :: jm_setAlpha_1 => FillAnimation_jm_setAlpha_1
+    procedure :: jm_setScale_2 => FillAnimation_jm_setScale_2
+    procedure :: jm_setMaxScale_2 => FillAnimation_jm_setMaxScale_2
+    procedure :: jm_updateModifiers_0 => FillAnimation_jm_updateModifiers_0
+    procedure :: jm_paint_1 => FillAnimation_jm_paint_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, BasicColor, AnimationBehavior, IndexedAnimation;
+contains
 
-type
-  {AB:TYPES}
-  TFillAnimation = class(TIndexedAnimation)
-  public
-    pixelBuffer: TArray<Integer>;
-    width: Integer;
-    height: Integer;
-    procedure InitFields;
-        constructor Create(pixelBuffer: TArray<Integer>; width: Integer; height: Integer; animationBehavior_: TAnimationBehavior);
-        procedure setBasicColorP(basicColor_: TBasicColor); override;
-        procedure changeBasicColor(basicColor_: TBasicColor); override;
-        procedure setAlpha(alpha: Integer); override;
-        procedure setScale(scaleX: Single; scaleY: Single); override;
-        procedure setMaxScale(maxScaleX: Single; maxScaleY: Single); override;
-        procedure updateModifiers;
-        procedure paint(g: TGraphics); virtual;
-  end;
+  function FillAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(FillAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (FillAnimation)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-procedure TFillAnimation.InitFields;
-begin
-  
-  
-  
-end;
+  recursive function FillAnimation_jnew_4(j_pixelBuffer, j_width, j_height, j_animationBehavior) result(this)
+    integer(4) :: j_pixelBuffer(:)
+    integer(4), value :: j_width
+    integer(4), value :: j_height
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(FillAnimation), pointer :: this
+    allocate(this)
+    this%jclass = 'FillAnimation'
     
-
-constructor TFillAnimation.Create(pixelBuffer: TArray<Integer>; width: Integer; height: Integer; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(animationBehavior_);
-        InitFields;
-        Self.width := 100;
-        Self.height := 100;
-        Self.pixelBuffer := pixelBuffer;
-end;
     
-
-procedure TFillAnimation.setBasicColorP(basicColor_: TBasicColor);
-var
-  changed: Boolean;
-begin
-        changed := False;
-        if (TJava.IsNull(Self.getBasicColorP())) or ((Self.getBasicColorP().intValue()) <> (basicColor_.intValue())) then begin
-            changed := True;
-        end;
-        inherited setBasicColorP(basicColor_);
-        if changed then begin
-            Self.updateModifiers();
-        end;
-end;
     
+        continue ! super()
+        this%f_width = 100
+        this%f_height = 100
+        this%f_pixelBuffer = j_pixelBuffer
+  end function
 
-procedure TFillAnimation.changeBasicColor(basicColor_: TBasicColor);
-var
-  changed: Boolean;
-begin
-        changed := False;
-        if (TJava.IsNull(Self.getChangeBasicColor())) or ((Self.getChangeBasicColor().intValue()) <> (basicColor_.intValue())) then begin
-            changed := True;
-        end;
-        inherited changeBasicColor(basicColor_);
-        if changed then begin
-            Self.updateModifiers();
-        end;
-end;
-    
+  recursive subroutine FillAnimation_jm_setBasicColorP_1(this, j_basicColor)
+    class(FillAnimation), target :: this
+    class(BasicColor), target, optional :: j_basicColor
+    logical :: j_changed
+    class(BasicColor), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_changed = .false.
+        jtemp1 => this%jm_getBasicColorP_0()
+        if (((.not. associated(this%jm_getBasicColorP_0())) .or. (jtemp1%jm_intValue_0() /= j_basicColor%jm_intValue_0()))) then
+            j_changed = .true.
+        end if
+        call this%IndexedAnimation%jm_setBasicColorP_1(j_basicColor)
+        if (j_changed) then
+            call this%jm_updateModifiers_0()
+        end if
+  end subroutine
 
-procedure TFillAnimation.setAlpha(alpha: Integer);
-var
-  changed: Boolean;
-begin
-        changed := False;
-        if (Self.alphaP) <> (alpha) then begin
-            changed := True;
-        end;
-        inherited setAlpha(alpha);
-        if changed then begin
-            Self.updateModifiers();
-        end;
-end;
-    
+  recursive subroutine FillAnimation_jm_changeBasicColor_1(this, j_basicColor)
+    class(FillAnimation), target :: this
+    class(BasicColor), target, optional :: j_basicColor
+    logical :: j_changed
+    class(BasicColor), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_changed = .false.
+        jtemp2 => this%jm_getChangeBasicColor_0()
+        if (((.not. associated(this%jm_getChangeBasicColor_0())) .or. (jtemp2%jm_intValue_0() /= j_basicColor%jm_intValue_0()))) then
+            j_changed = .true.
+        end if
+        call this%IndexedAnimation%jm_changeBasicColor_1(j_basicColor)
+        if (j_changed) then
+            call this%jm_updateModifiers_0()
+        end if
+  end subroutine
 
-procedure TFillAnimation.setScale(scaleX: Single; scaleY: Single);
-begin
-end;
-    
+  recursive subroutine FillAnimation_jm_setAlpha_1(this, j_alpha)
+    class(FillAnimation), target :: this
+    integer(4), value :: j_alpha
+    logical :: j_changed
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_changed = .false.
+        if ((this%f_alphaP /= j_alpha)) then
+            j_changed = .true.
+        end if
+        call this%IndexedAnimation%jm_setAlpha_1(j_alpha)
+        if (j_changed) then
+            call this%jm_updateModifiers_0()
+        end if
+  end subroutine
 
-procedure TFillAnimation.setMaxScale(maxScaleX: Single; maxScaleY: Single);
-begin
-end;
-    
+  recursive subroutine FillAnimation_jm_setScale_2(this, j_scaleX, j_scaleY)
+    class(FillAnimation), target :: this
+    real(4), value :: j_scaleX
+    real(4), value :: j_scaleY
+    continue
+  end subroutine
 
-procedure TFillAnimation.updateModifiers;
-begin
-end;
-    
+  recursive subroutine FillAnimation_jm_setMaxScale_2(this, j_maxScaleX, j_maxScaleY)
+    class(FillAnimation), target :: this
+    real(4), value :: j_maxScaleX
+    real(4), value :: j_maxScaleY
+    continue
+  end subroutine
 
-procedure TFillAnimation.paint(g: TGraphics);
-begin
-        g.drawRGB(Self.pixelBuffer, 0, Self.width, 0, 0, Self.width, Self.height, True);
-end;
+  recursive subroutine FillAnimation_jm_updateModifiers_0(this)
+    class(FillAnimation), target :: this
+    continue
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine FillAnimation_jm_paint_1(this, j_g)
+    class(FillAnimation), target :: this
+    class(Graphics), target, optional :: j_g
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_g%jm_drawRGB_8(this%f_pixelBuffer, 0, this%f_width, 0, 0, this%f_width, this%f_height, .true.)
+  end subroutine
+end module FillAnimation_m
 

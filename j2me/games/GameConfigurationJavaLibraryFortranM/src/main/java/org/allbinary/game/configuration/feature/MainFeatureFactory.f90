@@ -1,74 +1,80 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module MainFeatureFactory_m
+  use JR_m
+  use Feature_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit MainFeatureFactory;
+  type, extends(JObject) :: MainFeatureFactory
+    class(Feature), pointer :: f_FULL_SCREEN => null()
+    class(Feature), pointer :: f_TITLE_BAR => null()
+    class(Feature), pointer :: f_STATIC => null()
+    class(Feature), pointer :: f_LOAD_ONDEMAND => null()
+    class(Feature), pointer :: f_LOAD_ALL => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(MainFeatureFactory), pointer, save :: MainFeatureFactory_jcell_instance => null()
+  logical, save :: MainFeatureFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Feature;
+  function MainFeatureFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MainFeatureFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MainFeatureFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TMainFeatureFactory = class(TObject)
-  public
-    FULL_SCREEN: TFeature;
-    TITLE_BAR: TFeature;
-    STATIC_: TFeature;
-    LOAD_ONDEMAND: TFeature;
-    LOAD_ALL: TFeature;
-    class var instance: TMainFeatureFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TMainFeatureFactory; static;
-  end;
+  function MainFeatureFactory_jstatic_instance() result(jresult)
+    class(MainFeatureFactory), pointer :: jresult
+    if (.not. MainFeatureFactory_jset_instance) then
+      MainFeatureFactory_jset_instance = .true.
+      MainFeatureFactory_jcell_instance => MainFeatureFactory_jnew_0()
+    end if
+    jresult => MainFeatureFactory_jcell_instance
+  end function
 
-implementation
+  subroutine MainFeatureFactory_jsetstatic_instance(jvalue)
+    class(MainFeatureFactory), target, optional :: jvalue
+    MainFeatureFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      MainFeatureFactory_jcell_instance => jvalue
+    else
+      MainFeatureFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function MainFeatureFactory_jnew_0() result(this)
+    class(MainFeatureFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'MainFeatureFactory'
+    this%f_FULL_SCREEN => Feature_jnew_1('Full Screen')
+    this%f_TITLE_BAR => Feature_jnew_1('Title Bar')
+    this%f_STATIC => Feature_jnew_1('Static Dependent Feature')
+    this%f_LOAD_ONDEMAND => Feature_jnew_1('Load OnDemand')
+    this%f_LOAD_ALL => Feature_jnew_1('Load All')
+  end function
 
-procedure TMainFeatureFactory.InitFields;
-begin
-  Self.FULL_SCREEN := TFeature.Create('Full Screen');
-  Self.TITLE_BAR := TFeature.Create('Title Bar');
-  Self.STATIC_ := TFeature.Create('Static Dependent Feature');
-  Self.LOAD_ONDEMAND := TFeature.Create('Load OnDemand');
-  Self.LOAD_ALL := TFeature.Create('Load All');
-end;
-
-constructor TMainFeatureFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TMainFeatureFactory.getInstance: TMainFeatureFactory;
-begin
-        Exit(TMainFeatureFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TMainFeatureFactory.instance := TMainFeatureFactory.Create();
-  {AB:END}
-
-end.
+  recursive function MainFeatureFactory_jm_getInstance_0() result(jresult)
+    class(MainFeatureFactory), pointer :: jresult
+        jresult => MainFeatureFactory_jstatic_instance()
+        return
+  end function
+end module MainFeatureFactory_m
 

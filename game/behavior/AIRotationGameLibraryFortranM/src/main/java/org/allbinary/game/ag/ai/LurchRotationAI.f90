@@ -1,95 +1,110 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.ag.ai
+module LurchRotationAI_m
+  use JR_m
+  use IndexedAnimation_m
+  use RotationAnimationInterface_m
+  use RotationAnimationInterfaceCompositeInterface_m
+  use LurchAI_m
+  use GameInput_m
+  use AllBinaryLayer_m
+  use AngleIncrementInfo_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.ag.ai
-unit LurchRotationAI;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, IndexedAnimation, LurchAI, GameInput, AllBinaryLayer;
-
-type
-  {AB:TYPES}
-  TLurchRotationAI = class(TLurchAI)
-  public
-    rotationAnimationInterface: TIndexedAnimation;
-    procedure InitFields;
-        constructor Create(ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput);
-        procedure reverse; override;
-        procedure update;
-  end;
-
-implementation
-uses
-  RotationAnimationInterface, RotationAnimationInterfaceCompositeInterface, AngleIncrementInfo;
+  type, extends(LurchAI) :: LurchRotationAI
+    class(IndexedAnimation), pointer :: f_rotationAnimationInterface => null()
+  contains
+    procedure :: jm_reverse_0 => LurchRotationAI_jm_reverse_0
+    procedure :: jm_update_0 => LurchRotationAI_jm_update_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TLurchRotationAI.InitFields;
-begin
-  
-end;
+  function LurchRotationAI_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LurchRotationAI), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LurchRotationAI)
+      jresult => object
+    end select
+  end function
+
+  recursive function LurchRotationAI_jnew_2(j_ownerLayerInterface, j_gameInput) result(this)
+    class(AllBinaryLayer), target, optional :: j_ownerLayerInterface
+    class(GameInput), target, optional :: j_gameInput
+    class(LurchRotationAI), pointer :: this
+    class(RotationAnimationInterfaceCompositeInterface), pointer :: j_rotationAnimationInterfaceCompositeInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'LurchRotationAI'
     
+        continue ! super()
+        j_rotationAnimationInterfaceCompositeInterface => RotationAnimationInterfaceCompositeInterface_jcast(this%jm_getOwnerLayerInterface_0())
+        this%f_rotationAnimationInterface => j_rotationAnimationInterfaceCompositeInterface%jm_getRotationAnimationInterface_0()
+        call this%jm_update_0()
+  end function
 
-constructor TLurchRotationAI.Create(ownerLayerInterface: TAllBinaryLayer; gameInput_: TGameInput);
-var
-  rotationAnimationInterfaceCompositeInterface_: IRotationAnimationInterfaceCompositeInterface;
-begin
-        inherited Create(ownerLayerInterface, gameInput_);
-        InitFields;
-        rotationAnimationInterfaceCompositeInterface_ := (TJava.ToObject(Self.getOwnerLayerInterface()) as IRotationAnimationInterfaceCompositeInterface);
-        Self.rotationAnimationInterface := rotationAnimationInterfaceCompositeInterface_.getRotationAnimationInterface();
-        Self.update();
-end;
-    
+  recursive subroutine LurchRotationAI_jm_reverse_0(this)
+    class(LurchRotationAI), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%LurchAI%jm_reverse_0()
+        call this%jm_update_0()
+  end subroutine
 
-procedure TLurchRotationAI.reverse;
-begin
-        inherited reverse();
-        Self.update();
-end;
-    
-
-procedure TLurchRotationAI.update;
-var
-  rotationAnimationInterface_: IRotationAnimationInterface;
-  angleIncrementInfo_: TAngleIncrementInfo;
-  rotationAnimationInterfaceCompositeInterface_: IRotationAnimationInterfaceCompositeInterface;
-begin
-        if (Self.currentRelativeAngle) = (0) then begin
-            rotationAnimationInterface_ := (TJava.ToObject(Self.rotationAnimationInterface) as IRotationAnimationInterface);
-            angleIncrementInfo_ := rotationAnimationInterface_.getAngleInfoP().getAngleIncrementInfo();
-            rotationAnimationInterfaceCompositeInterface_ := (TJava.ToObject(Self.getOwnerLayerInterface()) as IRotationAnimationInterfaceCompositeInterface);
-            rotationAnimationInterfaceCompositeInterface_.setFrame(angleIncrementInfo_.RIGHT_FRAME.intValue());
-        end else if (Self.currentRelativeAngle) = (180) then begin
-            rotationAnimationInterface_ := (TJava.ToObject(Self.rotationAnimationInterface) as IRotationAnimationInterface);
-            angleIncrementInfo_ := rotationAnimationInterface_.getAngleInfoP().getAngleIncrementInfo();
-            rotationAnimationInterfaceCompositeInterface_ := (TJava.ToObject(Self.getOwnerLayerInterface()) as IRotationAnimationInterfaceCompositeInterface);
-            rotationAnimationInterfaceCompositeInterface_.setFrame(angleIncrementInfo_.LEFT_FRAME.intValue());
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine LurchRotationAI_jm_update_0(this)
+    class(LurchRotationAI), target :: this
+    class(RotationAnimationInterface), pointer :: j_rotationAnimationInterface
+    class(AngleIncrementInfo), pointer :: j_angleIncrementInfo
+    class(RotationAnimationInterfaceCompositeInterface), pointer :: j_rotationAnimationInterfaceCompositeInterface
+    class(AngleInfo), pointer :: jtemp1
+    class(AngleInfo), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_currentRelativeAngle == 0)) then
+            j_rotationAnimationInterface => RotationAnimationInterface_jcast(this%f_rotationAnimationInterface)
+            jtemp2 => j_rotationAnimationInterface%jm_getAngleInfoP_0()
+            j_angleIncrementInfo => jtemp2%jm_getAngleIncrementInfo_0()
+            j_rotationAnimationInterfaceCompositeInterface => RotationAnimationInterfaceCompositeInterface_jcast(this%jm_getOwnerLayerInterface_0())
+            call j_rotationAnimationInterfaceCompositeInterface%jm_setFrame_1(j_angleIncrementInfo%f_RIGHT_FRAME%jm_intValue_0())
+        else if ((this%f_currentRelativeAngle == 180)) then
+            j_rotationAnimationInterface => RotationAnimationInterface_jcast(this%f_rotationAnimationInterface)
+            jtemp1 => j_rotationAnimationInterface%jm_getAngleInfoP_0()
+            j_angleIncrementInfo => jtemp1%jm_getAngleIncrementInfo_0()
+            j_rotationAnimationInterfaceCompositeInterface => RotationAnimationInterfaceCompositeInterface_jcast(this%jm_getOwnerLayerInterface_0())
+            call j_rotationAnimationInterfaceCompositeInterface%jm_setFrame_1(j_angleIncrementInfo%f_LEFT_FRAME%jm_intValue_0())
+        end if
+  end subroutine
+end module LurchRotationAI_m
 

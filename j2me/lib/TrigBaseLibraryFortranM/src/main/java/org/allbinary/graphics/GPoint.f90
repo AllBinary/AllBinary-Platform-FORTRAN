@@ -58,6 +58,12 @@ contains
     jresult = GPoint_jcell_POINT_LABEL
   end function
 
+  subroutine GPoint_jsetstatic_POINT_LABEL(jvalue)
+    character(len=*), intent(in) :: jvalue
+    GPoint_jset_POINT_LABEL = .true.
+    GPoint_jcell_POINT_LABEL = jvalue
+  end subroutine
+
   recursive function GPoint_jnew_3(j_x, j_y, j_z) result(this)
     integer(4), value :: j_x
     integer(4), value :: j_y

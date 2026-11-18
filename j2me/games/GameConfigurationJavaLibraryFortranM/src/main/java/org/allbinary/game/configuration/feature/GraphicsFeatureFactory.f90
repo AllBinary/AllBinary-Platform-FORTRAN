@@ -1,86 +1,92 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module GraphicsFeatureFactory_m
+  use JR_m
+  use StringUtil_m
+  use GraphicsFeature_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit GraphicsFeatureFactory;
+  type, extends(JObject) :: GraphicsFeatureFactory
+    class(GraphicsFeature), pointer :: f_NONE => null()
+    class(GraphicsFeature), pointer :: f_TRANSPARENT_IMAGE_CREATION => null()
+    class(GraphicsFeature), pointer :: f_IMAGE_GRAPHICS => null()
+    class(GraphicsFeature), pointer :: f_IMAGE_ROTATION_ON_THE_FLY => null()
+    class(GraphicsFeature), pointer :: f_IMAGE_TO_ARRAY_GRAPHICS => null()
+    class(GraphicsFeature), pointer :: f_SPRITE_QUARTER_ROTATION_GRAPHICS => null()
+    class(GraphicsFeature), pointer :: f_SPRITE_FULL_GRAPHICS => null()
+    class(GraphicsFeature), pointer :: f_VECTOR_GRAPHICS => null()
+    class(GraphicsFeature), pointer :: f_VECTOR_TO_IMAGE_GRAPHICS => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GraphicsFeatureFactory), pointer, save :: GraphicsFeatureFactory_jcell_instance => null()
+  logical, save :: GraphicsFeatureFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GraphicsFeature;
+  function GraphicsFeatureFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GraphicsFeatureFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GraphicsFeatureFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGraphicsFeatureFactory = class(TObject)
-  public
-    NONE: TGraphicsFeature;
-    TRANSPARENT_IMAGE_CREATION: TGraphicsFeature;
-    IMAGE_GRAPHICS: TGraphicsFeature;
-    IMAGE_ROTATION_ON_THE_FLY: TGraphicsFeature;
-    IMAGE_TO_ARRAY_GRAPHICS: TGraphicsFeature;
-    SPRITE_QUARTER_ROTATION_GRAPHICS: TGraphicsFeature;
-    SPRITE_FULL_GRAPHICS: TGraphicsFeature;
-    VECTOR_GRAPHICS: TGraphicsFeature;
-    VECTOR_TO_IMAGE_GRAPHICS: TGraphicsFeature;
-    class var instance: TGraphicsFeatureFactory;
-    procedure InitFields;
-        class function getInstance: TGraphicsFeatureFactory; static;
-        constructor Create;
-  end;
+  function GraphicsFeatureFactory_jstatic_instance() result(jresult)
+    class(GraphicsFeatureFactory), pointer :: jresult
+    if (.not. GraphicsFeatureFactory_jset_instance) then
+      GraphicsFeatureFactory_jset_instance = .true.
+      GraphicsFeatureFactory_jcell_instance => GraphicsFeatureFactory_jnew_0()
+    end if
+    jresult => GraphicsFeatureFactory_jcell_instance
+  end function
 
-implementation
-uses
-  StringUtil;
+  subroutine GraphicsFeatureFactory_jsetstatic_instance(jvalue)
+    class(GraphicsFeatureFactory), target, optional :: jvalue
+    GraphicsFeatureFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      GraphicsFeatureFactory_jcell_instance => jvalue
+    else
+      GraphicsFeatureFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function GraphicsFeatureFactory_jnew_0() result(this)
+    class(GraphicsFeatureFactory), pointer :: this
+    class(StringUtil), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'GraphicsFeatureFactory'
+    jtemp1 => StringUtil_jm_getInstance_0()
+    this%f_NONE => GraphicsFeature_jnew_1(jtemp1%f_NULL_STRING)
+    this%f_TRANSPARENT_IMAGE_CREATION => GraphicsFeature_jnew_1('Transparent Image Creation')
+    this%f_IMAGE_GRAPHICS => GraphicsFeature_jnew_1('Image Graphics')
+    this%f_IMAGE_ROTATION_ON_THE_FLY => GraphicsFeature_jnew_1('Image Rotated On The Fly')
+    this%f_IMAGE_TO_ARRAY_GRAPHICS => GraphicsFeature_jnew_1('Image To Array Graphics')
+    this%f_SPRITE_QUARTER_ROTATION_GRAPHICS => GraphicsFeature_jnew_1('Sprite Quarter Rotation Graphics')
+    this%f_SPRITE_FULL_GRAPHICS => GraphicsFeature_jnew_1('Sprite Full Rotation Graphics')
+    this%f_VECTOR_GRAPHICS => GraphicsFeature_jnew_1('BasicArrayList Graphics')
+    this%f_VECTOR_TO_IMAGE_GRAPHICS => GraphicsFeature_jnew_1('BasicArrayList To Image Graphics')
+        continue
+  end function
 
-{AB:CODE}
-
-procedure TGraphicsFeatureFactory.InitFields;
-begin
-  Self.NONE := TGraphicsFeature.Create(TStringUtil.getInstance().NULL_STRING);
-  Self.TRANSPARENT_IMAGE_CREATION := TGraphicsFeature.Create('Transparent Image Creation');
-  Self.IMAGE_GRAPHICS := TGraphicsFeature.Create('Image Graphics');
-  Self.IMAGE_ROTATION_ON_THE_FLY := TGraphicsFeature.Create('Image Rotated On The Fly');
-  Self.IMAGE_TO_ARRAY_GRAPHICS := TGraphicsFeature.Create('Image To Array Graphics');
-  Self.SPRITE_QUARTER_ROTATION_GRAPHICS := TGraphicsFeature.Create('Sprite Quarter Rotation Graphics');
-  Self.SPRITE_FULL_GRAPHICS := TGraphicsFeature.Create('Sprite Full Rotation Graphics');
-  Self.VECTOR_GRAPHICS := TGraphicsFeature.Create('BasicArrayList Graphics');
-  Self.VECTOR_TO_IMAGE_GRAPHICS := TGraphicsFeature.Create('BasicArrayList To Image Graphics');
-end;
-    
-
-class function TGraphicsFeatureFactory.getInstance: TGraphicsFeatureFactory;
-begin
-        Exit(TGraphicsFeatureFactory.instance);
-end;
-    
-
-constructor TGraphicsFeatureFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGraphicsFeatureFactory.instance := TGraphicsFeatureFactory.Create();
-  {AB:END}
-
-end.
+  recursive function GraphicsFeatureFactory_jm_getInstance_0() result(jresult)
+    class(GraphicsFeatureFactory), pointer :: jresult
+        jresult => GraphicsFeatureFactory_jstatic_instance()
+        return
+  end function
+end module GraphicsFeatureFactory_m
 

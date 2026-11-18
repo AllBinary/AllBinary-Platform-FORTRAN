@@ -1,45 +1,58 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer
+module LayerPlacementInterfaceBasicArrayListFactoryInterface_m
+  use JR_m
+  use BasicArrayList_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer
-unit LayerPlacementInterfaceBasicArrayListFactoryInterface;
+  type, extends(JObject) :: LayerPlacementInterfaceBasicArrayListFactoryInterface
+  contains
+    procedure :: jm_getInstance_0 => LayerPlacementInterfaceBasicArrayListFactoryInterface_jm_getInstance_0
+    procedure :: jm_getOnDemandResources_0 => LayerPlacementInterfaceBasicArrayListFactoryInterface_jm_getOnDemandResources_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList;
+  function LayerPlacementInterfaceBasicArrayListFactoryInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LayerPlacementInterfaceBasicArrayListFactoryInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LayerPlacementInterfaceBasicArrayListFactoryInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  ILayerPlacementInterfaceBasicArrayListFactoryInterface = interface(IJavaObject) ['ILayerPlacementInterfaceBasicArrayListFactoryInterface']
-        function getInstance: TBasicArrayList;
-        function getOnDemandResources: TArray<Integer>;
-  end;
-  TLayerPlacementInterfaceBasicArrayListFactoryInterface = ILayerPlacementInterfaceBasicArrayListFactoryInterface;
+  function LayerPlacementInterfaceBasicArrayListFactoryInterface_jnew_0() result(this)
+    class(LayerPlacementInterfaceBasicArrayListFactoryInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'LayerPlacementInterfaceBasicArrayListFactoryInterface'
+  end function
 
-implementation
+  recursive function LayerPlacementInterfaceBasicArrayListFactoryInterface_jm_getInstance_0(this) result(jresult)
+    class(LayerPlacementInterfaceBasicArrayListFactoryInterface), target :: this
+    class(BasicArrayList), pointer :: jresult
+    error stop 'AbstractMethodError: LayerPlacementInterfaceBasicArrayListFactoryInterface.getInstance'
+  end function
 
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function LayerPlacementInterfaceBasicArrayListFactoryInterface_jm_getOnDemandResources_0(this) result(jresult)
+    class(LayerPlacementInterfaceBasicArrayListFactoryInterface), target :: this
+    integer(4), allocatable :: jresult(:)
+    error stop 'AbstractMethodError: LayerPlacementInterfaceBasicArrayListFactoryInterface.getOnDemandResources'
+  end function
+end module LayerPlacementInterfaceBasicArrayListFactoryInterface_m
 

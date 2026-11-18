@@ -1,66 +1,65 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.paint
+module ColorFillPaintable_m
+  use JR_m
+  use BasicColor_m
+  use DisplayInfoSingleton_m
+  use ColorFillBasePaintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.paint
-unit ColorFillPaintable;
+  type, extends(ColorFillBasePaintable) :: ColorFillPaintable
+    class(DisplayInfoSingleton), pointer :: f_displayInfoSingleton => null()
+  contains
+    procedure :: jm_paint_1 => ColorFillPaintable_jm_paint_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, BasicColor, DisplayInfoSingleton, ColorFillBasePaintable;
+  function ColorFillPaintable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ColorFillPaintable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ColorFillPaintable)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TColorFillPaintable = class(TColorFillBasePaintable)
-  public
-    displayInfoSingleton: TDisplayInfoSingleton;
-    procedure InitFields;
-        constructor Create(basicColor_: TBasicColor);
-        procedure paint(graphics_: TGraphics); override;
-  end;
+  recursive function ColorFillPaintable_jnew_1(j_basicColor) result(this)
+    class(BasicColor), target, optional :: j_basicColor
+    class(ColorFillPaintable), pointer :: this
+    allocate(this)
+    this%jclass = 'ColorFillPaintable'
+    this%f_displayInfoSingleton => DisplayInfoSingleton_jm_getInstance_0()
+        continue ! super()
+  end function
 
-implementation
-
-{AB:CODE}
-
-procedure TColorFillPaintable.InitFields;
-begin
-  Self.displayInfoSingleton := TDisplayInfoSingleton.getInstance();
-end;
-    
-
-constructor TColorFillPaintable.Create(basicColor_: TBasicColor);
-begin
-        inherited Create(basicColor_);
-        InitFields;
-end;
-    
-
-procedure TColorFillPaintable.paint(graphics_: TGraphics);
-begin
-        graphics_.setColor(Self.colorP);
-        graphics_.fillRect(0, 0, Self.displayInfoSingleton.getLastWidth(), Self.displayInfoSingleton.getLastHeight());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine ColorFillPaintable_jm_paint_1(this, j_graphics)
+    class(ColorFillPaintable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_graphics%jm_setColor_1(this%f_colorP)
+        call j_graphics%jm_fillRect_4(0, 0, this%f_displayInfoSingleton%jm_getLastWidth_0(), this%f_displayInfoSingleton%jm_getLastHeight_0())
+  end subroutine
+end module ColorFillPaintable_m
 

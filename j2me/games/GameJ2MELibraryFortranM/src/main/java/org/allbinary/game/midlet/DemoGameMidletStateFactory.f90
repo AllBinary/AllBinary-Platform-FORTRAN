@@ -1,73 +1,79 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.midlet
+module DemoGameMidletStateFactory_m
+  use JR_m
+  use DemoGameMidletState_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.midlet
-unit DemoGameMidletStateFactory;
+  type, extends(JObject) :: DemoGameMidletStateFactory
+    class(DemoGameMidletState), pointer :: f_NONE => null()
+    class(DemoGameMidletState), pointer :: f_START_DEMO => null()
+    class(DemoGameMidletState), pointer :: f_START_GAME => null()
+    class(DemoGameMidletState), pointer :: f_START_INPUT_MAPPING => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(DemoGameMidletStateFactory), pointer, save :: DemoGameMidletStateFactory_jcell_STATE => null()
+  logical, save :: DemoGameMidletStateFactory_jset_STATE = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, DemoGameMidletState;
+  function DemoGameMidletStateFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DemoGameMidletStateFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DemoGameMidletStateFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDemoGameMidletStateFactory = class(TObject)
-  public
-    NONE: TDemoGameMidletState;
-    START_DEMO: TDemoGameMidletState;
-    START_GAME: TDemoGameMidletState;
-    START_INPUT_MAPPING: TDemoGameMidletState;
-    class var STATE: TDemoGameMidletStateFactory;
-    procedure InitFields;
-        constructor Create;
-        class function getInstance: TDemoGameMidletStateFactory; static;
-  end;
+  function DemoGameMidletStateFactory_jstatic_STATE() result(jresult)
+    class(DemoGameMidletStateFactory), pointer :: jresult
+    if (.not. DemoGameMidletStateFactory_jset_STATE) then
+      DemoGameMidletStateFactory_jset_STATE = .true.
+      DemoGameMidletStateFactory_jcell_STATE => DemoGameMidletStateFactory_jnew_0()
+    end if
+    jresult => DemoGameMidletStateFactory_jcell_STATE
+  end function
 
-implementation
+  subroutine DemoGameMidletStateFactory_jsetstatic_STATE(jvalue)
+    class(DemoGameMidletStateFactory), target, optional :: jvalue
+    DemoGameMidletStateFactory_jset_STATE = .true.
+    if (present(jvalue)) then
+      DemoGameMidletStateFactory_jcell_STATE => jvalue
+    else
+      DemoGameMidletStateFactory_jcell_STATE => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  recursive function DemoGameMidletStateFactory_jnew_0() result(this)
+    class(DemoGameMidletStateFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'DemoGameMidletStateFactory'
+    this%f_NONE => DemoGameMidletState_jnew_0()
+    this%f_START_DEMO => DemoGameMidletState_jnew_0()
+    this%f_START_GAME => DemoGameMidletState_jnew_0()
+    this%f_START_INPUT_MAPPING => DemoGameMidletState_jnew_0()
+        continue
+  end function
 
-procedure TDemoGameMidletStateFactory.InitFields;
-begin
-  Self.NONE := TDemoGameMidletState.Create();
-  Self.START_DEMO := TDemoGameMidletState.Create();
-  Self.START_GAME := TDemoGameMidletState.Create();
-  Self.START_INPUT_MAPPING := TDemoGameMidletState.Create();
-end;
-    
-
-constructor TDemoGameMidletStateFactory.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
-
-class function TDemoGameMidletStateFactory.getInstance: TDemoGameMidletStateFactory;
-begin
-        Exit(TDemoGameMidletStateFactory.STATE);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDemoGameMidletStateFactory.STATE := TDemoGameMidletStateFactory.Create();
-  {AB:END}
-
-end.
+  recursive function DemoGameMidletStateFactory_jm_getInstance_0() result(jresult)
+    class(DemoGameMidletStateFactory), pointer :: jresult
+        jresult => DemoGameMidletStateFactory_jstatic_STATE()
+        return
+  end function
+end module DemoGameMidletStateFactory_m
 

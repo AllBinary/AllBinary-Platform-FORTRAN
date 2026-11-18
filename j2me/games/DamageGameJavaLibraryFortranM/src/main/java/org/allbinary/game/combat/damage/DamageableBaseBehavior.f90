@@ -1,86 +1,98 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.combat.damage
+module DamageableBaseBehavior_m
+  use JR_m
+  use DamageableInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.combat.damage
-unit DamageableBaseBehavior;
+  type, extends(DamageableInterface) :: DamageableBaseBehavior
+  contains
+    procedure :: jm_getName_0 => DamageableBaseBehavior_jm_getName_0
+    procedure :: jm_damage_2 => DamageableBaseBehavior_jm_damage_2
+    procedure :: jm_getDamage_1 => DamageableBaseBehavior_jm_getDamage_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(DamageableBaseBehavior), pointer, save :: DamageableBaseBehavior_jcell_instance => null()
+  logical, save :: DamageableBaseBehavior_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, DamageableInterface, NamedInterface;
+  function DamageableBaseBehavior_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(DamageableBaseBehavior), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (DamageableBaseBehavior)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TDamageableBaseBehavior = class(TInterfacedObject, IDamageableInterface, INamedInterface)
-  public
-    class var instance: TDamageableBaseBehavior;
-    function JavaObject: TObject;
-    constructor Create;
-        class function getInstance: TDamageableBaseBehavior; static;
-        function getName: string; virtual;
-        procedure damage(damage: Integer; damageType: Integer); virtual;
-        function getDamage(damageType: Integer): Integer; virtual;
-  end;
+  function DamageableBaseBehavior_jstatic_instance() result(jresult)
+    class(DamageableBaseBehavior), pointer :: jresult
+    if (.not. DamageableBaseBehavior_jset_instance) then
+      DamageableBaseBehavior_jset_instance = .true.
+      DamageableBaseBehavior_jcell_instance => DamageableBaseBehavior_jnew_0()
+    end if
+    jresult => DamageableBaseBehavior_jcell_instance
+  end function
 
-implementation
+  subroutine DamageableBaseBehavior_jsetstatic_instance(jvalue)
+    class(DamageableBaseBehavior), target, optional :: jvalue
+    DamageableBaseBehavior_jset_instance = .true.
+    if (present(jvalue)) then
+      DamageableBaseBehavior_jcell_instance => jvalue
+    else
+      DamageableBaseBehavior_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function DamageableBaseBehavior_jnew_0() result(this)
+    class(DamageableBaseBehavior), pointer :: this
+    allocate(this)
+    this%jclass = 'DamageableBaseBehavior'
+  end function
 
-function TDamageableBaseBehavior.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function DamageableBaseBehavior_jm_getInstance_0() result(jresult)
+    class(DamageableBaseBehavior), pointer :: jresult
+        jresult => DamageableBaseBehavior_jstatic_instance()
+        return
+  end function
 
-constructor TDamageableBaseBehavior.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive function DamageableBaseBehavior_jm_getName_0(this) result(jresult)
+    class(DamageableBaseBehavior), target :: this
+    character(len=:), allocatable :: jresult
+    character(len=:), allocatable :: jtemp1
+        jtemp1 = JR_className(this)
+        jresult = jtemp1
+        return
+  end function
 
-class function TDamageableBaseBehavior.getInstance: TDamageableBaseBehavior;
-begin
-        Exit(TDamageableBaseBehavior.instance);
-end;
-    
+  recursive subroutine DamageableBaseBehavior_jm_damage_2(this, j_damage, j_damageType)
+    class(DamageableBaseBehavior), target :: this
+    integer(4), value :: j_damage
+    integer(4), value :: j_damageType
+    continue
+  end subroutine
 
-function TDamageableBaseBehavior.getName: string;
-begin
-        Exit(Self.ClassType.ClassName);
-end;
-    
-
-// throws Exception
-procedure TDamageableBaseBehavior.damage(damage: Integer; damageType: Integer);
-begin
-end;
-    
-
-// throws Exception
-function TDamageableBaseBehavior.getDamage(damageType: Integer): Integer;
-begin
-        Exit(6000);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TDamageableBaseBehavior.instance := TDamageableBaseBehavior.Create();
-  {AB:END}
-
-end.
+  recursive function DamageableBaseBehavior_jm_getDamage_1(this, j_damageType) result(jresult)
+    class(DamageableBaseBehavior), target :: this
+    integer(4), value :: j_damageType
+    integer(4) :: jresult
+        jresult = 6000
+        return
+  end function
+end module DamageableBaseBehavior_m
 

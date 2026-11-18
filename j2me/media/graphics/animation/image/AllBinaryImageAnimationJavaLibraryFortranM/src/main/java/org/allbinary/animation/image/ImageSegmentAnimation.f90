@@ -1,185 +1,212 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.image
+module ImageSegmentAnimation_m
+  use JR_m
+  use AnimationBehavior_m
+  use CircularIndexUtil_m
+  use ImageAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.image
-unit ImageSegmentAnimation;
+  type, extends(ImageAnimation) :: ImageSegmentAnimation
+    integer(4) :: f_startX = 0
+    integer(4) :: f_startY = 0
+    integer(4) :: f_drawWidth = 0
+    integer(4) :: f_drawHeight = 0
+    class(CircularIndexUtil), pointer :: f_circularIndexUtil => null()
+    integer(4), allocatable :: f_sequenceArray(:)
+  contains
+    procedure :: jm_nextFrame_0 => ImageSegmentAnimation_jm_nextFrame_0
+    procedure :: jm_previousFrame_0 => ImageSegmentAnimation_jm_previousFrame_0
+    procedure :: jm_setFrame_1 => ImageSegmentAnimation_jm_setFrame_1
+    procedure :: jm_getFrame_0 => ImageSegmentAnimation_jm_getFrame_0
+    procedure :: jm_getSize_0 => ImageSegmentAnimation_jm_getSize_0
+    procedure :: jm_setSequence_1 => ImageSegmentAnimation_jm_setSequence_1
+    procedure :: jm_getSequence_0 => ImageSegmentAnimation_jm_getSequence_0
+    procedure :: jm_paintXY_3 => ImageSegmentAnimation_jm_paintXY_3
+    procedure :: jm_getStartX_0 => ImageSegmentAnimation_jm_getStartX_0
+    procedure :: jm_setStartX_1 => ImageSegmentAnimation_jm_setStartX_1
+    procedure :: jm_getStartY_0 => ImageSegmentAnimation_jm_getStartY_0
+    procedure :: jm_setStartY_1 => ImageSegmentAnimation_jm_setStartY_1
+    procedure :: jm_getDrawWidth_0 => ImageSegmentAnimation_jm_getDrawWidth_0
+    procedure :: jm_setDrawWidth_1 => ImageSegmentAnimation_jm_setDrawWidth_1
+    procedure :: jm_getDrawHeight_0 => ImageSegmentAnimation_jm_getDrawHeight_0
+    procedure :: jm_setDrawHeight_1 => ImageSegmentAnimation_jm_setDrawHeight_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Image, AnimationBehavior, CircularIndexUtil, ImageAnimation;
+  function ImageSegmentAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ImageSegmentAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ImageSegmentAnimation)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TImageSegmentAnimation = class(TImageAnimation)
-  public
-    startX: Integer;
-    startY: Integer;
-    drawWidth: Integer;
-    drawHeight: Integer;
-    circularIndexUtil: TCircularIndexUtil;
-    sequenceArray: TArray<Integer>;
-    procedure InitFields;
-        constructor Create(image_: TImage; sequenceArray: TArray<Integer>; animationBehavior_: TAnimationBehavior);
-        procedure nextFrame; override;
-        procedure previousFrame; override;
-        procedure setFrame(index: Integer); override;
-        function getFrame: Integer; override;
-        function getSize: Integer; override;
-        procedure setSequence(sequenceArray: TArray<Integer>); override;
-        function getSequence: TArray<Integer>; override;
-        procedure paintXY(graphics_: TGraphics; x: Integer; y: Integer); override;
-        function getStartX: Integer; virtual;
-        procedure setStartX(startX: Integer); virtual;
-        function getStartY: Integer; virtual;
-        procedure setStartY(startY: Integer); virtual;
-        function getDrawWidth: Integer; virtual;
-        procedure setDrawWidth(drawWidth: Integer); virtual;
-        function getDrawHeight: Integer; virtual;
-        procedure setDrawHeight(drawHeight: Integer); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TImageSegmentAnimation.InitFields;
-begin
-  
-  
-  
-  
-  
-  
-end;
+  recursive function ImageSegmentAnimation_jnew_3(j_image, j_sequenceArray, j_animationBehavior) result(this)
+    class(Image), target, optional :: j_image
+    integer(4) :: j_sequenceArray(:)
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(ImageSegmentAnimation), pointer :: this
+    class(Image), pointer :: jtemp1
+    class(Image), pointer :: jtemp2
+    allocate(this)
+    this%jclass = 'ImageSegmentAnimation'
     
-
-constructor TImageSegmentAnimation.Create(image_: TImage; sequenceArray: TArray<Integer>; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(image_, animationBehavior_);
-        InitFields;
-        Self.startX := 0;
-        Self.startY := 0;
-        Self.drawWidth := Self.getImage().getWidth();
-        Self.drawHeight := Self.getImage().getHeight();
-        Self.circularIndexUtil := TCircularIndexUtil.createInstance(Self.drawHeight);
-        Self.sequenceArray := sequenceArray;
-end;
     
-
-procedure TImageSegmentAnimation.nextFrame;
-begin
-        Self.circularIndexUtil.next();
-end;
     
-
-procedure TImageSegmentAnimation.previousFrame;
-begin
-        Self.circularIndexUtil.previous();
-end;
     
-
-procedure TImageSegmentAnimation.setFrame(index: Integer);
-begin
-        Self.circularIndexUtil.setIndex(index);
-end;
     
-
-function TImageSegmentAnimation.getFrame: Integer;
-begin
-        Exit(Self.circularIndexUtil.getIndex());
-end;
     
+        continue ! super()
+        this%f_startX = 0
+        this%f_startY = 0
+        jtemp1 => this%jm_getImage_0()
+        this%f_drawWidth = jtemp1%jm_getWidth_0()
+        jtemp2 => this%jm_getImage_0()
+        this%f_drawHeight = jtemp2%jm_getHeight_0()
+        this%f_circularIndexUtil => CircularIndexUtil_jm_createInstance_1(this%f_drawHeight)
+        this%f_sequenceArray = j_sequenceArray
+  end function
 
-function TImageSegmentAnimation.getSize: Integer;
-begin
-        Exit(Self.circularIndexUtil.getSize());
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_nextFrame_0(this)
+    class(ImageSegmentAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_next_0()
+  end subroutine
 
-procedure TImageSegmentAnimation.setSequence(sequenceArray: TArray<Integer>);
-begin
-        Self.sequenceArray := sequenceArray;
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_previousFrame_0(this)
+    class(ImageSegmentAnimation), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardInt = this%f_circularIndexUtil%jm_previous_0()
+  end subroutine
 
-function TImageSegmentAnimation.getSequence: TArray<Integer>;
-begin
-        Exit(Self.sequenceArray);
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_setFrame_1(this, j_index)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), value :: j_index
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_circularIndexUtil%jm_setIndex_1(j_index)
+  end subroutine
 
-procedure TImageSegmentAnimation.paintXY(graphics_: TGraphics; x: Integer; y: Integer);
-begin
-end;
-    
+  recursive function ImageSegmentAnimation_jm_getFrame_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_circularIndexUtil%jm_getIndex_0()
+        return
+  end function
 
-function TImageSegmentAnimation.getStartX: Integer;
-begin
-        Exit(Self.startX);
-end;
-    
+  recursive function ImageSegmentAnimation_jm_getSize_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_circularIndexUtil%jm_getSize_0()
+        return
+  end function
 
-procedure TImageSegmentAnimation.setStartX(startX: Integer);
-begin
-        Self.startX := startX;
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_setSequence_1(this, j_sequence)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: j_sequence(:)
+        this%f_sequenceArray = j_sequence
+  end subroutine
 
-function TImageSegmentAnimation.getStartY: Integer;
-begin
-        Exit(Self.startY);
-end;
-    
+  recursive function ImageSegmentAnimation_jm_getSequence_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), allocatable :: jresult(:)
+        jresult = this%f_sequenceArray
+        return
+  end function
 
-procedure TImageSegmentAnimation.setStartY(startY: Integer);
-begin
-        Self.startY := startY;
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_paintXY_3(this, j_graphics, j_x, j_y)
+    class(ImageSegmentAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    continue
+  end subroutine
 
-function TImageSegmentAnimation.getDrawWidth: Integer;
-begin
-        Exit(Self.drawWidth);
-end;
-    
+  recursive function ImageSegmentAnimation_jm_getStartX_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_startX
+        return
+  end function
 
-procedure TImageSegmentAnimation.setDrawWidth(drawWidth: Integer);
-begin
-        Self.drawWidth := drawWidth;
-end;
-    
+  recursive subroutine ImageSegmentAnimation_jm_setStartX_1(this, j_startX)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), value :: j_startX
+        this%f_startX = j_startX
+  end subroutine
 
-function TImageSegmentAnimation.getDrawHeight: Integer;
-begin
-        Exit(Self.drawHeight);
-end;
-    
+  recursive function ImageSegmentAnimation_jm_getStartY_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_startY
+        return
+  end function
 
-procedure TImageSegmentAnimation.setDrawHeight(drawHeight: Integer);
-begin
-        Self.drawHeight := drawHeight;
-end;
+  recursive subroutine ImageSegmentAnimation_jm_setStartY_1(this, j_startY)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), value :: j_startY
+        this%f_startY = j_startY
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive function ImageSegmentAnimation_jm_getDrawWidth_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_drawWidth
+        return
+  end function
 
-end.
+  recursive subroutine ImageSegmentAnimation_jm_setDrawWidth_1(this, j_drawWidth)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), value :: j_drawWidth
+        this%f_drawWidth = j_drawWidth
+  end subroutine
+
+  recursive function ImageSegmentAnimation_jm_getDrawHeight_0(this) result(jresult)
+    class(ImageSegmentAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_drawHeight
+        return
+  end function
+
+  recursive subroutine ImageSegmentAnimation_jm_setDrawHeight_1(this, j_drawHeight)
+    class(ImageSegmentAnimation), target :: this
+    integer(4), value :: j_drawHeight
+        this%f_drawHeight = j_drawHeight
+  end subroutine
+end module ImageSegmentAnimation_m
 

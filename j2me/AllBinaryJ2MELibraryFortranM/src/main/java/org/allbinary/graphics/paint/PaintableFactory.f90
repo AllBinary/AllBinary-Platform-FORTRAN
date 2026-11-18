@@ -1,59 +1,53 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.paint
+module PaintableFactory_m
+  use JR_m
+  use NullPaintable_m
+  use Paintable_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.paint
-unit PaintableFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Paintable;
-
-type
-  {AB:TYPES}
-  TPaintableFactory = class(TObject)
-  public
-    constructor Create;
-        function getInstance: TPaintable; virtual;
-  end;
-
-implementation
-uses
-  NullPaintable;
+  type, extends(JObject) :: PaintableFactory
+  contains
+    procedure :: jm_getInstance_0 => PaintableFactory_jm_getInstance_0
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TPaintableFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function PaintableFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PaintableFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PaintableFactory)
+      jresult => object
+    end select
+  end function
 
-function TPaintableFactory.getInstance: TPaintable;
-begin
-        Exit(TNullPaintable.getInstance());
-end;
+  function PaintableFactory_jnew_0() result(this)
+    class(PaintableFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'PaintableFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function PaintableFactory_jm_getInstance_0(this) result(jresult)
+    class(PaintableFactory), target :: this
+    class(Paintable), pointer :: jresult
+        jresult => NullPaintable_jm_getInstance_0()
+        return
+  end function
+end module PaintableFactory_m
 

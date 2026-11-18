@@ -1,63 +1,80 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles
-unit OpenGLUtil;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles
+module OpenGLUtil_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: OpenGLUtil
+  contains
+    procedure :: jm_addImage_1 => OpenGLUtil_jm_addImage_1
+    procedure :: jm_clear_0 => OpenGLUtil_jm_clear_0
+    procedure :: jm_addRunnable_1 => OpenGLUtil_jm_addRunnable_1
+  end type
 
-interface
+  class(OpenGLUtil), pointer, save :: OpenGLUtil_jcell_instance => null()
+  logical, save :: OpenGLUtil_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Image;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLUtil = class(TObject)
-  public
-    class var instance: TOpenGLUtil;
-    constructor Create;
-        class function getInstance: TOpenGLUtil; static;
-        function addImage(image_: TImage): TImage; virtual;
-        procedure clear; virtual;
-        procedure addRunnable(runnable: IRunnable); virtual;
-  end;
+  function OpenGLUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLUtil_jstatic_instance() result(jresult)
+    class(OpenGLUtil), pointer :: jresult
+    if (.not. OpenGLUtil_jset_instance) then
+      OpenGLUtil_jset_instance = .true.
+      OpenGLUtil_jcell_instance => OpenGLUtil_jnew_0()
+    end if
+    jresult => OpenGLUtil_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine OpenGLUtil_jsetstatic_instance(jvalue)
+    class(OpenGLUtil), target, optional :: jvalue
+    OpenGLUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      OpenGLUtil_jcell_instance => jvalue
+    else
+      OpenGLUtil_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TOpenGLUtil.Create;
-begin
-  inherited Create;
-end;
-    
+  function OpenGLUtil_jnew_0() result(this)
+    class(OpenGLUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLUtil'
+  end function
 
-class function TOpenGLUtil.getInstance: TOpenGLUtil;
-begin
-        Exit(TOpenGLUtil.instance);
-end;
-    
+  recursive function OpenGLUtil_jm_getInstance_0() result(jresult)
+    class(OpenGLUtil), pointer :: jresult
+        jresult => OpenGLUtil_jstatic_instance()
+        return
+  end function
 
-function TOpenGLUtil.addImage(image_: TImage): TImage;
-begin
-        Exit(image_);
-end;
-    
+  recursive function OpenGLUtil_jm_addImage_1(this, j_image) result(jresult)
+    class(OpenGLUtil), target :: this
+    class(Image), target, optional :: j_image
+    class(Image), pointer :: jresult
+        jresult => j_image
+        return
+  end function
 
-procedure TOpenGLUtil.clear;
-begin
-end;
-    
+  recursive subroutine OpenGLUtil_jm_clear_0(this)
+    class(OpenGLUtil), target :: this
+    continue
+  end subroutine
 
-procedure TOpenGLUtil.addRunnable(runnable: IRunnable);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TOpenGLUtil.instance := TOpenGLUtil.Create();
-  {AB:END}
-
-end.
+  recursive subroutine OpenGLUtil_jm_addRunnable_1(this, j_runnable)
+    class(OpenGLUtil), target :: this
+    class(JObject), target, optional :: j_runnable
+    continue
+  end subroutine
+end module OpenGLUtil_m
 

@@ -1,44 +1,58 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles
-unit NullOpenGLProcessorFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles
+module NullOpenGLProcessorFactory_m
+  use JR_m
+  use OpenGLProcessor_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: NullOpenGLProcessorFactory
+  end type
 
-interface
+  class(OpenGLProcessor), pointer, save :: NullOpenGLProcessorFactory_jcell_instance => null()
+  logical, save :: NullOpenGLProcessorFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, OpenGLProcessor;
+contains
 
-type
-  {AB:TYPES}
-  TNullOpenGLProcessorFactory = class(TObject)
-  public
-    class var instance: TOpenGLProcessor;
-    constructor Create;
-        class function getInstance: TOpenGLProcessor; static;
-  end;
+  function NullOpenGLProcessorFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullOpenGLProcessorFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullOpenGLProcessorFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function NullOpenGLProcessorFactory_jstatic_instance() result(jresult)
+    class(OpenGLProcessor), pointer :: jresult
+    if (.not. NullOpenGLProcessorFactory_jset_instance) then
+      NullOpenGLProcessorFactory_jset_instance = .true.
+      NullOpenGLProcessorFactory_jcell_instance => OpenGLProcessor_jnew_0()
+    end if
+    jresult => NullOpenGLProcessorFactory_jcell_instance
+  end function
 
-{AB:CODE}
+  subroutine NullOpenGLProcessorFactory_jsetstatic_instance(jvalue)
+    class(OpenGLProcessor), target, optional :: jvalue
+    NullOpenGLProcessorFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      NullOpenGLProcessorFactory_jcell_instance => jvalue
+    else
+      NullOpenGLProcessorFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-constructor TNullOpenGLProcessorFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function NullOpenGLProcessorFactory_jnew_0() result(this)
+    class(NullOpenGLProcessorFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'NullOpenGLProcessorFactory'
+  end function
 
-class function TNullOpenGLProcessorFactory.getInstance: TOpenGLProcessor;
-begin
-        Exit(TNullOpenGLProcessorFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TNullOpenGLProcessorFactory.instance := TOpenGLProcessor.Create();
-  {AB:END}
-
-end.
+  recursive function NullOpenGLProcessorFactory_jm_getInstance_0() result(jresult)
+    class(OpenGLProcessor), pointer :: jresult
+        jresult => NullOpenGLProcessorFactory_jstatic_instance()
+        return
+  end function
+end module NullOpenGLProcessorFactory_m
 

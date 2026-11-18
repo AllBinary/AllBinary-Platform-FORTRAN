@@ -1,69 +1,63 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module InputProcessor_m
+  use JR_m
+  use GameInputStrings_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit InputProcessor;
+  type, extends(JObject) :: InputProcessor
+    class(GameInputStrings), pointer :: f_gameInputStrings => null()
+  contains
+    procedure :: jm_keyPressedByDevice_2 => InputProcessor_jm_keyPressedByDevice_2
+    procedure :: jm_keyReleasedByDevice_3 => InputProcessor_jm_keyReleasedByDevice_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Canvas, GameInputStrings;
+  function InputProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(InputProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (InputProcessor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TInputProcessor = class(TObject)
-  public
-    gameInputStrings: TGameInputStrings;
-    procedure InitFields;
-    constructor Create;
-        procedure keyPressedByDevice(keyCode: Integer; deviceId: Integer); virtual;
-        procedure keyReleasedByDevice(canvas_: TCanvas; keyCode: Integer; deviceId: Integer); virtual;
-  end;
+  function InputProcessor_jnew_0() result(this)
+    class(InputProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'InputProcessor'
+    this%f_gameInputStrings => GameInputStrings_jm_getInstance_0()
+  end function
 
-implementation
+  recursive subroutine InputProcessor_jm_keyPressedByDevice_2(this, j_keyCode, j_deviceId)
+    class(InputProcessor), target :: this
+    integer(4), value :: j_keyCode
+    integer(4), value :: j_deviceId
+    continue
+  end subroutine
 
-{AB:CODE}
-
-procedure TInputProcessor.InitFields;
-begin
-  Self.gameInputStrings := TGameInputStrings.getInstance();
-end;
-
-constructor TInputProcessor.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-procedure TInputProcessor.keyPressedByDevice(keyCode: Integer; deviceId: Integer);
-begin
-end;
-    
-
-procedure TInputProcessor.keyReleasedByDevice(canvas_: TCanvas; keyCode: Integer; deviceId: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine InputProcessor_jm_keyReleasedByDevice_3(this, j_canvas, j_keyCode, j_deviceId)
+    class(InputProcessor), target :: this
+    class(Canvas), target, optional :: j_canvas
+    integer(4), value :: j_keyCode
+    integer(4), value :: j_deviceId
+    continue
+  end subroutine
+end module InputProcessor_m
 

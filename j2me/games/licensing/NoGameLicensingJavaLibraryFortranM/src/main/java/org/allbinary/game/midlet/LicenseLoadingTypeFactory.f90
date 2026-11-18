@@ -1,72 +1,78 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.midlet
+module LicenseLoadingTypeFactory_m
+  use JR_m
+  use LicenseLoadingType_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.midlet
-unit LicenseLoadingTypeFactory;
+  type, extends(JObject) :: LicenseLoadingTypeFactory
+    class(LicenseLoadingType), pointer :: f_INITIAL_LOADING => null()
+    class(LicenseLoadingType), pointer :: f_GAME_START => null()
+    class(LicenseLoadingType), pointer :: f_LOGIN => null()
+    class(LicenseLoadingType), pointer :: f_OTHER => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LicenseLoadingTypeFactory), pointer, save :: LicenseLoadingTypeFactory_jcell_instance => null()
+  logical, save :: LicenseLoadingTypeFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, LicenseLoadingType;
+  function LicenseLoadingTypeFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LicenseLoadingTypeFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LicenseLoadingTypeFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLicenseLoadingTypeFactory = class(TObject)
-  public
-    INITIAL_LOADING: TLicenseLoadingType;
-    GAME_START: TLicenseLoadingType;
-    LOGIN: TLicenseLoadingType;
-    OTHER: TLicenseLoadingType;
-    class var instance: TLicenseLoadingTypeFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getIntance: TLicenseLoadingTypeFactory; static;
-  end;
+  function LicenseLoadingTypeFactory_jstatic_instance() result(jresult)
+    class(LicenseLoadingTypeFactory), pointer :: jresult
+    if (.not. LicenseLoadingTypeFactory_jset_instance) then
+      LicenseLoadingTypeFactory_jset_instance = .true.
+      LicenseLoadingTypeFactory_jcell_instance => LicenseLoadingTypeFactory_jnew_0()
+    end if
+    jresult => LicenseLoadingTypeFactory_jcell_instance
+  end function
 
-implementation
+  subroutine LicenseLoadingTypeFactory_jsetstatic_instance(jvalue)
+    class(LicenseLoadingTypeFactory), target, optional :: jvalue
+    LicenseLoadingTypeFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      LicenseLoadingTypeFactory_jcell_instance => jvalue
+    else
+      LicenseLoadingTypeFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function LicenseLoadingTypeFactory_jnew_0() result(this)
+    class(LicenseLoadingTypeFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'LicenseLoadingTypeFactory'
+    this%f_INITIAL_LOADING => LicenseLoadingType_jnew_1('Initial Loading')
+    this%f_GAME_START => LicenseLoadingType_jnew_1('Game Start')
+    this%f_LOGIN => LicenseLoadingType_jnew_1('Login')
+    this%f_OTHER => LicenseLoadingType_jnew_1('Other/Usually The First Non Demo Level')
+  end function
 
-procedure TLicenseLoadingTypeFactory.InitFields;
-begin
-  Self.INITIAL_LOADING := TLicenseLoadingType.Create('Initial Loading');
-  Self.GAME_START := TLicenseLoadingType.Create('Game Start');
-  Self.LOGIN := TLicenseLoadingType.Create('Login');
-  Self.OTHER := TLicenseLoadingType.Create('Other/Usually The First Non Demo Level');
-end;
-
-constructor TLicenseLoadingTypeFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TLicenseLoadingTypeFactory.getIntance: TLicenseLoadingTypeFactory;
-begin
-        Exit(TLicenseLoadingTypeFactory.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLicenseLoadingTypeFactory.instance := TLicenseLoadingTypeFactory.Create();
-  {AB:END}
-
-end.
+  recursive function LicenseLoadingTypeFactory_jm_getIntance_0() result(jresult)
+    class(LicenseLoadingTypeFactory), pointer :: jresult
+        jresult => LicenseLoadingTypeFactory_jstatic_instance()
+        return
+  end function
+end module LicenseLoadingTypeFactory_m
 

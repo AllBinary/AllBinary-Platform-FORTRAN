@@ -52,6 +52,16 @@ contains
     jresult => TsUtil_jcell_instance
   end function
 
+  subroutine TsUtil_jsetstatic_instance(jvalue)
+    class(TsUtil), target, optional :: jvalue
+    TsUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      TsUtil_jcell_instance => jvalue
+    else
+      TsUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function TsUtil_jnew_0() result(this)
     class(TsUtil), pointer :: this
     allocate(this)

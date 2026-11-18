@@ -67,6 +67,16 @@ contains
     jresult => AngleFactory_jcell_instance
   end function
 
+  subroutine AngleFactory_jsetstatic_instance(jvalue)
+    class(AngleFactory), target, optional :: jvalue
+    AngleFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      AngleFactory_jcell_instance => jvalue
+    else
+      AngleFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function AngleFactory_jnew_0() result(this)
     class(AngleFactory), pointer :: this
     class(CommonPhoneStrings), pointer :: j_commonPhoneStrings

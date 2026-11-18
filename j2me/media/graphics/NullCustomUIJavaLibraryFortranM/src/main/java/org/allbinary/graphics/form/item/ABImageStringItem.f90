@@ -1,35 +1,30 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit ABImageStringItem;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module ABImageStringItem_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: ABImageStringItem
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TABImageStringItem = class(TObject)
-  public
-    constructor Create;
-  end;
+  function ABImageStringItem_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ABImageStringItem), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ABImageStringItem)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TABImageStringItem.Create;
-begin
-  inherited Create;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  function ABImageStringItem_jnew_0() result(this)
+    class(ABImageStringItem), pointer :: this
+    allocate(this)
+    this%jclass = 'ABImageStringItem'
+  end function
+end module ABImageStringItem_m
 

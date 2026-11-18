@@ -1,82 +1,68 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.animation.vector
+module LineAnimationFactory_m
+  use JR_m
+  use Animation_m
+  use AnimationInterfaceFactoryInterface_m
+  use BasicColor_m
+  use ScaleProperties_m
+  use LineAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
+  type, extends(AnimationInterfaceFactoryInterface) :: LineAnimationFactory
+    class(BasicColor), pointer :: f_basicColor => null()
+  contains
+    procedure :: jm_getInstance_1 => LineAnimationFactory_jm_getInstance_1
+    procedure :: jm_setInitialScale_1 => LineAnimationFactory_jm_setInitialScale_1
+  end type
+
+
+contains
+
+  function LineAnimationFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LineAnimationFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LineAnimationFactory)
+      jresult => object
+    end select
+  end function
+
+  recursive function LineAnimationFactory_jnew_1(j_basicColor) result(this)
+    class(BasicColor), target, optional :: j_basicColor
+    class(LineAnimationFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'LineAnimationFactory'
     
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.vector
-unit LineAnimationFactory;
+        this%f_basicColor => j_basicColor
+  end function
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  recursive function LineAnimationFactory_jm_getInstance_1(this, j_instanceId) result(jresult)
+    class(LineAnimationFactory), target :: this
+    integer(4), value :: j_instanceId
+    class(Animation), pointer :: jresult
+        jresult => LineAnimation_jnew_1(this%f_basicColor)
+        return
+  end function
 
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Animation, AnimationInterfaceFactoryInterface, BasicColor, ScaleProperties, BasicAnimationInterfaceFactoryInterface;
-
-type
-  {AB:TYPES}
-  TLineAnimationFactory = class(TInterfacedObject, IAnimationInterfaceFactoryInterface, IBasicAnimationInterfaceFactoryInterface)
-  public
-    basicColor: TBasicColor;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(basicColor_: TBasicColor);
-        function getInstance(instanceId: Integer): TAnimation; virtual;
-        procedure setInitialScale(scaleProperties_: TScaleProperties); virtual;
-  end;
-
-implementation
-uses
-  LineAnimation;
-
-
-{AB:CODE}
-
-procedure TLineAnimationFactory.InitFields;
-begin
-  
-end;
-
-function TLineAnimationFactory.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
-
-constructor TLineAnimationFactory.Create(basicColor_: TBasicColor);
-begin
-    inherited Create;
-    InitFields;
-        Self.basicColor := basicColor_;
-end;
-    
-
-// throws Exception
-function TLineAnimationFactory.getInstance(instanceId: Integer): TAnimation;
-begin
-        Exit(TLineAnimation.Create(Self.basicColor));
-end;
-    
-
-procedure TLineAnimationFactory.setInitialScale(scaleProperties_: TScaleProperties);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine LineAnimationFactory_jm_setInitialScale_1(this, j_scaleProperties)
+    class(LineAnimationFactory), target :: this
+    class(ScaleProperties), target, optional :: j_scaleProperties
+    continue
+  end subroutine
+end module LineAnimationFactory_m
 

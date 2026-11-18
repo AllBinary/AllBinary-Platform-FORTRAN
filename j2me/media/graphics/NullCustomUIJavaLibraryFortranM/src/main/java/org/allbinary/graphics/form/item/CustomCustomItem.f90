@@ -1,61 +1,72 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit CustomCustomItem;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module CustomCustomItem_m
+  use JR_m
+  use BasicColor_m
+  use MyFontProcessor_m
+  use UpdateMyFontInterface_m
+  use UpdateMyFontProcessor_m
+  use ABCustomItem_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(ABCustomItem) :: CustomCustomItem
+    class(MyFontProcessor), pointer :: f_updateMyFontProcessor => null()
+    class(MyFontProcessor), pointer :: f_myFontProcessor => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => CustomCustomItem_jm_updateMeasurement_1
+  end type
 
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, BasicColor, MyFontProcessor, UpdateMyFontInterface, ABCustomItem;
-
-type
-  {AB:TYPES}
-  TCustomCustomItem = class(TABCustomItem, IUpdateMyFontInterface)
-  public
-    updateMyFontProcessor: TMyFontProcessor;
-    myFontProcessor: TMyFontProcessor;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(label_: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-        procedure updateMeasurement(graphics_: TGraphics); virtual;
-  end;
-
-implementation
-uses
-  UpdateMyFontProcessor;
+  ! CustomCustomItem used as a UpdateMyFontInterface
+  type, extends(UpdateMyFontInterface) :: CustomCustomItem_jas_UpdateMyFontInterface
+    class(CustomCustomItem), pointer :: jtarget => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => CustomCustomItem_jas_UpdateMyFontInterface_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TCustomCustomItem.InitFields;
-begin
-  Self.updateMyFontProcessor := TUpdateMyFontProcessor.Create(Self);
-  Self.myFontProcessor := Self.updateMyFontProcessor;
-end;
+  function CustomCustomItem_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CustomCustomItem), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CustomCustomItem)
+      jresult => object
+    end select
+  end function
 
-function TCustomCustomItem.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  function CustomCustomItem_jas_UpdateMyFontInterface_jnew(object) result(jresult)
+    class(CustomCustomItem), target :: object
+    class(CustomCustomItem_jas_UpdateMyFontInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'CustomCustomItem'
+    jresult%jtarget => object
+  end function
 
-constructor TCustomCustomItem.Create(label_: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-begin
-        inherited Create(label_, backgroundBasicColor, foregroundBasicColor);
-        InitFields;
-end;
-    
+  recursive subroutine CustomCustomItem_jas_UpdateMyFontInterface_jm_updateMeasurement_1(this, j_graphics)
+    class(CustomCustomItem_jas_UpdateMyFontInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_updateMeasurement_1(j_graphics)
+  end subroutine
 
-procedure TCustomCustomItem.updateMeasurement(graphics_: TGraphics);
-begin
-end;
+  recursive function CustomCustomItem_jnew_3(j_label, j_backgroundBasicColor, j_foregroundBasicColor) result(this)
+    character(len=*), intent(in) :: j_label
+    class(BasicColor), target, optional :: j_backgroundBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(CustomCustomItem), pointer :: this
+    allocate(this)
+    this%jclass = 'CustomCustomItem'
+    this%f_updateMyFontProcessor => UpdateMyFontProcessor_jnew_1(this)
+    this%f_myFontProcessor => this%f_updateMyFontProcessor
+        continue ! super()
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine CustomCustomItem_jm_updateMeasurement_1(this, j_graphics)
+    class(CustomCustomItem), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module CustomCustomItem_m
 

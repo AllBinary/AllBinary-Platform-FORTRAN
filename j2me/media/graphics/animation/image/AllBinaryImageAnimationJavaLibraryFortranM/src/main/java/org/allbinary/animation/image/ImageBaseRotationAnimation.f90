@@ -1,129 +1,155 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.image
+module ImageBaseRotationAnimation_m
+  use JR_m
+  use DisposalUtil_m
+  use AnimationBehavior_m
+  use RotationAnimation_m
+  use Anchor_m
+  use PrimitiveIntUtil_m
+  use AngleInfo_m
+  use CircularIndexUtil_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.image
-unit ImageBaseRotationAnimation;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Image, AnimationBehavior, RotationAnimation, AngleInfo;
-
-type
-  {AB:TYPES}
-  TImageBaseRotationAnimation = class(TRotationAnimation)
-  public
-    image: TImage;
-    anchor: Integer;
-    procedure InitFields;
-        constructor Create(image_: TImage; angleInfo_: TAngleInfo; totalAngle: SmallInt; animationBehavior_: TAnimationBehavior);
-        function getAnimationSize: Integer; override;
-        procedure setSequence(sequence: TArray<Integer>); override;
-        function getSequence: TArray<Integer>; override;
-        procedure paintXY(graphics_: TGraphics; x: Integer; y: Integer); override;
-        function getImage: TImage; virtual;
-        function getWidth: Integer; override;
-        function getHeight: Integer; override;
-        procedure close; virtual;
-        procedure finalize; virtual;
-  end;
-
-implementation
-uses
-  DisposalUtil, Anchor, PrimitiveIntUtil, CircularIndexUtil;
+  type, extends(RotationAnimation) :: ImageBaseRotationAnimation
+    class(Image), pointer :: f_image => null()
+    integer(4) :: f_anchor = 0
+  contains
+    procedure :: jm_getAnimationSize_0 => ImageBaseRotationAnimation_jm_getAnimationSize_0
+    procedure :: jm_setSequence_1 => ImageBaseRotationAnimation_jm_setSequence_1
+    procedure :: jm_getSequence_0 => ImageBaseRotationAnimation_jm_getSequence_0
+    procedure :: jm_paintXY_3 => ImageBaseRotationAnimation_jm_paintXY_3
+    procedure :: jm_getImage_0 => ImageBaseRotationAnimation_jm_getImage_0
+    procedure :: jm_getWidth_0 => ImageBaseRotationAnimation_jm_getWidth_0
+    procedure :: jm_getHeight_0 => ImageBaseRotationAnimation_jm_getHeight_0
+    procedure :: jm_close_0 => ImageBaseRotationAnimation_jm_close_0
+    procedure :: jm_finalize_0 => ImageBaseRotationAnimation_jm_finalize_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TImageBaseRotationAnimation.InitFields;
-begin
-  
-  Self.anchor := TAnchor.TOP_LEFT;
-end;
+  function ImageBaseRotationAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ImageBaseRotationAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ImageBaseRotationAnimation)
+      jresult => object
+    end select
+  end function
+
+  recursive function ImageBaseRotationAnimation_jnew_4(j_image, j_angleInfo, j_totalAngle, j_animationBehavior) result(this)
+    class(Image), target, optional :: j_image
+    class(AngleInfo), target, optional :: j_angleInfo
+    integer(4), value :: j_totalAngle
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(ImageBaseRotationAnimation), pointer :: this
+    class(AngleIncrementInfo), pointer :: jtemp1
+    allocate(this)
+    this%jclass = 'ImageBaseRotationAnimation'
     
+    this%f_anchor = Anchor_jstatic_TOP_LEFT()
+        jtemp1 => j_angleInfo%jm_getAngleIncrementInfo_0()
+        continue ! super()
+        this%f_image => j_image
+  end function
 
-constructor TImageBaseRotationAnimation.Create(image_: TImage; angleInfo_: TAngleInfo; totalAngle: SmallInt; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(angleInfo_, TCircularIndexUtil.createInstance(TJava.Divide(totalAngle, angleInfo_.getAngleIncrementInfo().getAngleIncrement())), animationBehavior_);
-        InitFields;
-        Self.image := image_;
-end;
-    
+  recursive function ImageBaseRotationAnimation_jm_getAnimationSize_0(this) result(jresult)
+    class(ImageBaseRotationAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%jm_getSize_0()
+        return
+  end function
 
-// throws Exception
-function TImageBaseRotationAnimation.getAnimationSize: Integer;
-begin
-        Exit(Self.getSize());
-end;
-    
+  recursive subroutine ImageBaseRotationAnimation_jm_setSequence_1(this, j_sequence)
+    class(ImageBaseRotationAnimation), target :: this
+    integer(4) :: j_sequence(:)
+    continue
+  end subroutine
 
-procedure TImageBaseRotationAnimation.setSequence(sequence: TArray<Integer>);
-begin
-end;
-    
+  recursive function ImageBaseRotationAnimation_jm_getSequence_0(this) result(jresult)
+    class(ImageBaseRotationAnimation), target :: this
+    integer(4), allocatable :: jresult(:)
+        jresult = PrimitiveIntUtil_jm_getArrayInstance_0()
+        return
+  end function
 
-function TImageBaseRotationAnimation.getSequence: TArray<Integer>;
-begin
-        Exit(TPrimitiveIntUtil.getArrayInstance());
-end;
-    
+  recursive subroutine ImageBaseRotationAnimation_jm_paintXY_3(this, j_graphics, j_x, j_y)
+    class(ImageBaseRotationAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_graphics%jm_drawImage_4(this%f_image, j_x, j_y, this%f_anchor)
+  end subroutine
 
-procedure TImageBaseRotationAnimation.paintXY(graphics_: TGraphics; x: Integer; y: Integer);
-begin
-        graphics_.drawImage(Self.image, x, y, Self.anchor);
-end;
-    
+  recursive function ImageBaseRotationAnimation_jm_getImage_0(this) result(jresult)
+    class(ImageBaseRotationAnimation), target :: this
+    class(Image), pointer :: jresult
+        jresult => this%f_image
+        return
+  end function
 
-function TImageBaseRotationAnimation.getImage: TImage;
-begin
-        Exit(Self.image);
-end;
-    
+  recursive function ImageBaseRotationAnimation_jm_getWidth_0(this) result(jresult)
+    class(ImageBaseRotationAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_image%jm_getWidth_0()
+        return
+  end function
 
-function TImageBaseRotationAnimation.getWidth: Integer;
-begin
-        Exit(Self.image.getWidth());
-end;
-    
+  recursive function ImageBaseRotationAnimation_jm_getHeight_0(this) result(jresult)
+    class(ImageBaseRotationAnimation), target :: this
+    integer(4) :: jresult
+        jresult = this%f_image%jm_getHeight_0()
+        return
+  end function
 
-function TImageBaseRotationAnimation.getHeight: Integer;
-begin
-        Exit(Self.image.getHeight());
-end;
-    
+  recursive subroutine ImageBaseRotationAnimation_jm_close_0(this)
+    class(ImageBaseRotationAnimation), target :: this
+    class(DisposalUtil), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp2 => DisposalUtil_jm_getInstance_0()
+        call jtemp2%jm_disposeImage_1(this%f_image)
+  end subroutine
 
-// throws Exception
-procedure TImageBaseRotationAnimation.close;
-begin
-        TDisposalUtil.getInstance().disposeImage(Self.image);
-end;
-    
-
-// throws Throwable
-procedure TImageBaseRotationAnimation.finalize;
-begin
-        TDisposalUtil.getInstance().disposeImage(Self.image);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine ImageBaseRotationAnimation_jm_finalize_0(this)
+    class(ImageBaseRotationAnimation), target :: this
+    class(DisposalUtil), pointer :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp3 => DisposalUtil_jm_getInstance_0()
+        call jtemp3%jm_disposeImage_1(this%f_image)
+  end subroutine
+end module ImageBaseRotationAnimation_m
 

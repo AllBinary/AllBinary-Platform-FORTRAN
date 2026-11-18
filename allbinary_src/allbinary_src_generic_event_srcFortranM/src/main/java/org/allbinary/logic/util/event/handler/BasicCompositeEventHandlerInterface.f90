@@ -1,45 +1,58 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.event.handler
+module BasicCompositeEventHandlerInterface_m
+  use JR_m
+  use BasicEventHandlerInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.event.handler
-unit BasicCompositeEventHandlerInterface;
+  type, extends(JObject) :: BasicCompositeEventHandlerInterface
+  contains
+    procedure :: jm_getEventHandler_0 => BasicCompositeEventHandlerInterface_jm_getEventHandler_0
+    procedure :: jm_setEventHandler_1 => BasicCompositeEventHandlerInterface_jm_setEventHandler_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicEventHandlerInterface;
+  function BasicCompositeEventHandlerInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(BasicCompositeEventHandlerInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (BasicCompositeEventHandlerInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IBasicCompositeEventHandlerInterface = interface(IJavaObject) ['IBasicCompositeEventHandlerInterface']
-        function getEventHandler: IBasicEventHandlerInterface;
-        procedure setEventHandler(basicEventHandlerInterface_: IBasicEventHandlerInterface);
-  end;
-  TBasicCompositeEventHandlerInterface = IBasicCompositeEventHandlerInterface;
+  function BasicCompositeEventHandlerInterface_jnew_0() result(this)
+    class(BasicCompositeEventHandlerInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'BasicCompositeEventHandlerInterface'
+  end function
 
-implementation
+  recursive function BasicCompositeEventHandlerInterface_jm_getEventHandler_0(this) result(jresult)
+    class(BasicCompositeEventHandlerInterface), target :: this
+    class(BasicEventHandlerInterface), pointer :: jresult
+    error stop 'AbstractMethodError: BasicCompositeEventHandlerInterface.getEventHandler'
+  end function
 
-{AB:CODE}
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine BasicCompositeEventHandlerInterface_jm_setEventHandler_1(this, j_basicEventHandlerInterface)
+    class(BasicCompositeEventHandlerInterface), target :: this
+    class(BasicEventHandlerInterface), target, optional :: j_basicEventHandlerInterface
+    error stop 'AbstractMethodError: BasicCompositeEventHandlerInterface.setEventHandler'
+  end subroutine
+end module BasicCompositeEventHandlerInterface_m
 

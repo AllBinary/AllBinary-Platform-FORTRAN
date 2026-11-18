@@ -1,66 +1,72 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.system.security.licensing
+module LockedResources_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.system.security.licensing
-unit LockedResources;
+  type, extends(JObject) :: LockedResources
+    character(len=:), allocatable :: f_LOCKED_DEMO_GAME_FEATURE_RESOURCE
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(LockedResources), pointer, save :: LockedResources_jcell_instance => null()
+  logical, save :: LockedResources_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function LockedResources_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(LockedResources), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (LockedResources)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TLockedResources = class(TObject)
-  public
-    LOCKED_DEMO_GAME_FEATURE_RESOURCE: string;
-    class var instance: TLockedResources;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TLockedResources; static;
-  end;
+  function LockedResources_jstatic_instance() result(jresult)
+    class(LockedResources), pointer :: jresult
+    if (.not. LockedResources_jset_instance) then
+      LockedResources_jset_instance = .true.
+      LockedResources_jcell_instance => LockedResources_jnew_0()
+    end if
+    jresult => LockedResources_jcell_instance
+  end function
 
-implementation
+  subroutine LockedResources_jsetstatic_instance(jvalue)
+    class(LockedResources), target, optional :: jvalue
+    LockedResources_jset_instance = .true.
+    if (present(jvalue)) then
+      LockedResources_jcell_instance => jvalue
+    else
+      LockedResources_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function LockedResources_jnew_0() result(this)
+    class(LockedResources), pointer :: this
+    allocate(this)
+    this%jclass = 'LockedResources'
+    this%f_LOCKED_DEMO_GAME_FEATURE_RESOURCE = ''
+    this%f_LOCKED_DEMO_GAME_FEATURE_RESOURCE = '/locked_demo_game_feature_64_by_64.png'
+  end function
 
-procedure TLockedResources.InitFields;
-begin
-  Self.LOCKED_DEMO_GAME_FEATURE_RESOURCE := '/locked_demo_game_feature_64_by_64.png';
-end;
-
-constructor TLockedResources.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TLockedResources.getInstance: TLockedResources;
-begin
-        Exit(TLockedResources.instance);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TLockedResources.instance := TLockedResources.Create();
-  {AB:END}
-
-end.
+  recursive function LockedResources_jm_getInstance_0() result(jresult)
+    class(LockedResources), pointer :: jresult
+        jresult => LockedResources_jstatic_instance()
+        return
+  end function
+end module LockedResources_m
 

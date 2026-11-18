@@ -1,46 +1,61 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module PopupMenuInterface_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit PopupMenuInterface;
+  type, extends(JObject) :: PopupMenuInterface
+  contains
+    procedure :: jm_popupMenu_0 => PopupMenuInterface_jm_popupMenu_0
+    procedure :: jm_closeMenu_0 => PopupMenuInterface_jm_closeMenu_0
+    procedure :: jm_toggleMenu_0 => PopupMenuInterface_jm_toggleMenu_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function PopupMenuInterface_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PopupMenuInterface), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PopupMenuInterface)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  IPopupMenuInterface = interface(IJavaObject) ['IPopupMenuInterface']
-        procedure popupMenu;
-        procedure closeMenu;
-        procedure toggleMenu;
-  end;
-  TPopupMenuInterface = IPopupMenuInterface;
+  function PopupMenuInterface_jnew_0() result(this)
+    class(PopupMenuInterface), pointer :: this
+    allocate(this)
+    this%jclass = 'PopupMenuInterface'
+  end function
 
-implementation
+  recursive subroutine PopupMenuInterface_jm_popupMenu_0(this)
+    class(PopupMenuInterface), target :: this
+    error stop 'AbstractMethodError: PopupMenuInterface.popupMenu'
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine PopupMenuInterface_jm_closeMenu_0(this)
+    class(PopupMenuInterface), target :: this
+    error stop 'AbstractMethodError: PopupMenuInterface.closeMenu'
+  end subroutine
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine PopupMenuInterface_jm_toggleMenu_0(this)
+    class(PopupMenuInterface), target :: this
+    error stop 'AbstractMethodError: PopupMenuInterface.toggleMenu'
+  end subroutine
+end module PopupMenuInterface_m
 

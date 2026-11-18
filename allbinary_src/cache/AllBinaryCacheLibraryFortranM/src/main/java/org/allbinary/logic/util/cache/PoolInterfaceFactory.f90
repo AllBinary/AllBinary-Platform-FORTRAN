@@ -1,58 +1,55 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2007 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.util.cache
-unit PoolInterfaceFactory;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2007 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.logic.util.cache
+module PoolInterfaceFactory_m
+  use JR_m
+  use PoolInterface_m
+  use CacheableInterfaceFactoryInterface_m
+  use PoolType_m
+  use CachePolicy_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: PoolInterfaceFactory
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PoolInterface, CacheableInterfaceFactoryInterface, PoolType, CachePolicy;
+contains
 
-type
-  {AB:TYPES}
-  TPoolInterfaceFactory = class(TObject)
-  public
-        constructor Create;
-        class function getInstance(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface; poolType_: TPoolType; cachePolicy_: TCachePolicy): IPoolInterface; static;
-  end;
+  function PoolInterfaceFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PoolInterfaceFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PoolInterfaceFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  recursive function PoolInterfaceFactory_jnew_0() result(this)
+    class(PoolInterfaceFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'PoolInterfaceFactory'
+        continue
+  end function
 
-{AB:CODE}
-    
-
-constructor TPoolInterfaceFactory.Create;
-begin
-    inherited Create;
-end;
-    
-
-// throws Exception
-class function TPoolInterfaceFactory.getInstance(cacheableInterfaceFactoryInterface_: ICacheableInterfaceFactoryInterface; poolType_: TPoolType; cachePolicy_: TCachePolicy): IPoolInterface;
-begin
-        raise SysUtils.Exception.Create('No Such PoolType: ' + poolType_.toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function PoolInterfaceFactory_jm_getInstance_3(j_cacheableInterfaceFactoryInterface, j_poolType, j_cachePolicy) result(jresult)
+    class(CacheableInterfaceFactoryInterface), target, optional :: j_cacheableInterfaceFactoryInterface
+    class(PoolType), target, optional :: j_poolType
+    class(CachePolicy), target, optional :: j_cachePolicy
+    class(PoolInterface), pointer :: jresult
+        error stop JR_toString(JR_newJObject('Exception'))
+  end function
+end module PoolInterfaceFactory_m
 

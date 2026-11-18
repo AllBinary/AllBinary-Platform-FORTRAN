@@ -1,73 +1,70 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form.item
+module CommandTextItem_m
+  use JR_m
+  use BasicColor_m
+  use ABTextItem_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form.item
-unit CommandTextItem;
+  type, extends(ABTextItem) :: CommandTextItem
+    class(Command), pointer :: f_command => null()
+  contains
+    procedure :: jm_isFocusable_0 => CommandTextItem_jm_isFocusable_0
+    procedure :: jm_getCommand_0 => CommandTextItem_jm_getCommand_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Command, BasicColor, ABTextItem;
+  function CommandTextItem_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CommandTextItem), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CommandTextItem)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TCommandTextItem = class(TABTextItem)
-  public
-    command: TCommand;
-    procedure InitFields;
-        constructor Create(command_: TCommand; layout: Integer; altText: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-        function isFocusable: Boolean; override;
-        function getCommand: TCommand; virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TCommandTextItem.InitFields;
-begin
-  
-end;
+  recursive function CommandTextItem_jnew_5(j_command, j_layout, j_altText, j_backgroundBasicColor, j_foregroundBasicColor) result(this)
+    class(Command), target, optional :: j_command
+    integer(4), value :: j_layout
+    character(len=*), intent(in) :: j_altText
+    class(BasicColor), target, optional :: j_backgroundBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(CommandTextItem), pointer :: this
+    allocate(this)
+    this%jclass = 'CommandTextItem'
     
+        continue ! super()
+        this%f_command => j_command
+  end function
 
-constructor TCommandTextItem.Create(command_: TCommand; layout: Integer; altText: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-begin
-        inherited Create(command_.getLabel(), layout, altText, backgroundBasicColor, foregroundBasicColor);
-        InitFields;
-        Self.command := command_;
-end;
-    
+  recursive function CommandTextItem_jm_isFocusable_0(this) result(jresult)
+    class(CommandTextItem), target :: this
+    logical :: jresult
+        jresult = .true.
+        return
+  end function
 
-function TCommandTextItem.isFocusable: Boolean;
-begin
-        Exit(True);
-end;
-    
-
-function TCommandTextItem.getCommand: TCommand;
-begin
-        Exit(Self.command);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function CommandTextItem_jm_getCommand_0(this) result(jresult)
+    class(CommandTextItem), target :: this
+    class(Command), pointer :: jresult
+        jresult => this%f_command
+        return
+  end function
+end module CommandTextItem_m
 

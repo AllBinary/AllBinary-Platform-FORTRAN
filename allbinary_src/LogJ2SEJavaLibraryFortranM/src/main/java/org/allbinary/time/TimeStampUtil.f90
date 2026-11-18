@@ -50,6 +50,16 @@ contains
     jresult => TimeStampUtil_jcell_instance
   end function
 
+  subroutine TimeStampUtil_jsetstatic_instance(jvalue)
+    class(TimeStampUtil), target, optional :: jvalue
+    TimeStampUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      TimeStampUtil_jcell_instance => jvalue
+    else
+      TimeStampUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function TimeStampUtil_jnew_0() result(this)
     class(TimeStampUtil), pointer :: this
     allocate(this)

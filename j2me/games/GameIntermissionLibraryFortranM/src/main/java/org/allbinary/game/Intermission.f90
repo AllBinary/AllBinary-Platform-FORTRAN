@@ -1,103 +1,97 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game
+module Intermission_m
+  use JR_m
+  use TimeDelayHelper_m
+  use IntermissionInterface_m
+  use NullIntermissionEnableListener_m
+  use IntermissionEnableListenerInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game
-unit Intermission;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, TimeDelayHelper, IntermissionEnableListenerInterface, IntermissionInterface;
-
-type
-  {AB:TYPES}
-  TIntermission = class(TInterfacedObject, IIntermissionInterface)
-  public
-    enabled: Boolean;
-    timeElapsedHelper: TTimeDelayHelper;
-    intermissionEnableListener: IIntermissionEnableListenerInterface;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create;
-        procedure setListener(enableListener: IIntermissionEnableListenerInterface); virtual;
-        function getTimeDelayHelper: TTimeDelayHelper; virtual;
-        procedure setEnabled(enabled: Boolean); virtual;
-        function isEnabled: Boolean; virtual;
-  end;
-
-implementation
-uses
-  NullIntermissionEnableListener;
+  type, extends(IntermissionInterface) :: Intermission
+    logical :: f_enabled = .false.
+    class(TimeDelayHelper), pointer :: f_timeElapsedHelper => null()
+    class(IntermissionEnableListenerInterface), pointer :: f_intermissionEnableListener => null()
+  contains
+    procedure :: jm_setListener_1 => Intermission_jm_setListener_1
+    procedure :: jm_getTimeDelayHelper_0 => Intermission_jm_getTimeDelayHelper_0
+    procedure :: jm_setEnabled_1 => Intermission_jm_setEnabled_1
+    procedure :: jm_isEnabled_0 => Intermission_jm_isEnabled_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TIntermission.InitFields;
-begin
-  
-  Self.timeElapsedHelper := TTimeDelayHelper.Create(0);
-  Self.intermissionEnableListener := TNullIntermissionEnableListener.getInstance();
-end;
+  function Intermission_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(Intermission), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (Intermission)
+      jresult => object
+    end select
+  end function
 
-function TIntermission.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive function Intermission_jnew_0() result(this)
+    class(Intermission), pointer :: this
+    allocate(this)
+    this%jclass = 'Intermission'
     
+    this%f_timeElapsedHelper => TimeDelayHelper_jnew_1(0)
+    this%f_intermissionEnableListener => NullIntermissionEnableListener_jm_getInstance_0()
+        continue
+  end function
 
-constructor TIntermission.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine Intermission_jm_setListener_1(this, j_enableListener)
+    class(Intermission), target :: this
+    class(IntermissionEnableListenerInterface), target, optional :: j_enableListener
+        this%f_intermissionEnableListener => j_enableListener
+  end subroutine
 
-procedure TIntermission.setListener(enableListener: IIntermissionEnableListenerInterface);
-begin
-        Self.intermissionEnableListener := enableListener;
-end;
-    
+  recursive function Intermission_jm_getTimeDelayHelper_0(this) result(jresult)
+    class(Intermission), target :: this
+    class(TimeDelayHelper), pointer :: jresult
+        jresult => this%f_timeElapsedHelper
+        return
+  end function
 
-function TIntermission.getTimeDelayHelper: TTimeDelayHelper;
-begin
-        Exit(Self.timeElapsedHelper);
-end;
-    
+  recursive subroutine Intermission_jm_setEnabled_1(this, j_value)
+    class(Intermission), target :: this
+    logical, value :: j_value
+    class(TimeDelayHelper), pointer :: jtemp1
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        this%f_enabled = j_value
+        if (this%jm_isEnabled_0()) then
+            jtemp1 => this%jm_getTimeDelayHelper_0()
+            call jtemp1%jm_setStartTimeTNT_0()
+        end if
+        call this%f_intermissionEnableListener%jm_notifyIntermission_1(j_value)
+  end subroutine
 
-procedure TIntermission.setEnabled(enabled: Boolean);
-begin
-        Self.enabled := enabled;
-        if Self.isEnabled() then begin
-            Self.getTimeDelayHelper().setStartTimeTNT();
-        end;
-        Self.intermissionEnableListener.notifyIntermission(enabled);
-end;
-    
-
-function TIntermission.isEnabled: Boolean;
-begin
-        Exit(Self.enabled);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function Intermission_jm_isEnabled_0(this) result(jresult)
+    class(Intermission), target :: this
+    logical :: jresult
+        jresult = this%f_enabled
+        return
+  end function
+end module Intermission_m
 

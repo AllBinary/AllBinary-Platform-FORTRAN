@@ -1,84 +1,95 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.io
+module AbIOSystem_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.io
-unit AbIOSystem;
+  type, extends(JObject) :: AbIOSystem
+    character(len=:), allocatable :: f_type
+  contains
+    procedure :: jm_getType_0 => AbIOSystem_jm_getType_0
+    procedure :: jm_isType_1 => AbIOSystem_jm_isType_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AbIOSystem), pointer, save :: AbIOSystem_jcell_instance => null()
+  logical, save :: AbIOSystem_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function AbIOSystem_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AbIOSystem), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AbIOSystem)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAbIOSystem = class(TObject)
-  public
-    type_: string;
-    class var instance: TAbIOSystem;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TAbIOSystem; static;
-        function getType: string; virtual;
-        function isType(type_: string): Boolean; virtual;
-  end;
+  function AbIOSystem_jstatic_instance() result(jresult)
+    class(AbIOSystem), pointer :: jresult
+    if (.not. AbIOSystem_jset_instance) then
+      AbIOSystem_jset_instance = .true.
+      AbIOSystem_jcell_instance => AbIOSystem_jnew_0()
+    end if
+    jresult => AbIOSystem_jcell_instance
+  end function
 
-implementation
+  subroutine AbIOSystem_jsetstatic_instance(jvalue)
+    class(AbIOSystem), target, optional :: jvalue
+    AbIOSystem_jset_instance = .true.
+    if (present(jvalue)) then
+      AbIOSystem_jcell_instance => jvalue
+    else
+      AbIOSystem_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function AbIOSystem_jnew_0() result(this)
+    class(AbIOSystem), pointer :: this
+    allocate(this)
+    this%jclass = 'AbIOSystem'
+    this%f_type = ''
+    this%f_type = 'java.io'
+  end function
 
-procedure TAbIOSystem.InitFields;
-begin
-  Self.type_ := 'java.io';
-end;
+  recursive function AbIOSystem_jm_getInstance_0() result(jresult)
+    class(AbIOSystem), pointer :: jresult
+        jresult => AbIOSystem_jstatic_instance()
+        return
+  end function
 
-constructor TAbIOSystem.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive function AbIOSystem_jm_getType_0(this) result(jresult)
+    class(AbIOSystem), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_type
+        return
+  end function
 
-class function TAbIOSystem.getInstance: TAbIOSystem;
-begin
-        Exit(TAbIOSystem.instance);
-end;
-    
-
-function TAbIOSystem.getType: string;
-begin
-        Exit(Self.type_);
-end;
-    
-
-function TAbIOSystem.isType(type_: string): Boolean;
-begin
-        if (CompareStr(Self.type_, type_)) = (0) then begin
-            Exit(True);
-        end else begin
-            Exit(False);
-        end;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAbIOSystem.instance := TAbIOSystem.Create();
-  {AB:END}
-
-end.
+  recursive function AbIOSystem_jm_isType_1(this, j_type) result(jresult)
+    class(AbIOSystem), target :: this
+    character(len=*), intent(in) :: j_type
+    logical :: jresult
+        if ((JR_compareTo(this%f_type, j_type) == 0)) then
+            jresult = .true.
+            return
+        else
+            jresult = .false.
+            return
+        end if
+  end function
+end module AbIOSystem_m
 

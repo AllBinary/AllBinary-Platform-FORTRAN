@@ -59,6 +59,16 @@ contains
     jresult => ComponentFactory_jcell_instance
   end function
 
+  subroutine ComponentFactory_jsetstatic_instance(jvalue)
+    class(ComponentFactory), target, optional :: jvalue
+    ComponentFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      ComponentFactory_jcell_instance => jvalue
+    else
+      ComponentFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function ComponentFactory_jnew_0() result(this)
     class(ComponentFactory), pointer :: this
     class(CommonStrings), pointer :: jtemp1

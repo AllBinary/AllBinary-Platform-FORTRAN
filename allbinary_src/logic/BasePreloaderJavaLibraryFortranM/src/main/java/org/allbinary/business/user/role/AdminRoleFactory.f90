@@ -70,6 +70,16 @@ contains
     jresult => AdminRoleFactory_jcell_instance
   end function
 
+  subroutine AdminRoleFactory_jsetstatic_instance(jvalue)
+    class(AdminRoleFactory), target, optional :: jvalue
+    AdminRoleFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      AdminRoleFactory_jcell_instance => jvalue
+    else
+      AdminRoleFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function AdminRoleFactory_jnew_0() result(this)
     class(AdminRoleFactory), pointer :: this
     class(BasicUserRoleFactory), pointer :: j_basicUserRoleFactory

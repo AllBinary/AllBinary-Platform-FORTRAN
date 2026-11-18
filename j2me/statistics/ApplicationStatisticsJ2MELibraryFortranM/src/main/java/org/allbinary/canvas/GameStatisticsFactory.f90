@@ -50,6 +50,16 @@ contains
     jresult => GameStatisticsFactory_jcell_instance
   end function
 
+  subroutine GameStatisticsFactory_jsetstatic_instance(jvalue)
+    class(GameStatisticsFactory), target, optional :: jvalue
+    GameStatisticsFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      GameStatisticsFactory_jcell_instance => jvalue
+    else
+      GameStatisticsFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function GameStatisticsFactory_jnew_0() result(this)
     class(GameStatisticsFactory), pointer :: this
     allocate(this)

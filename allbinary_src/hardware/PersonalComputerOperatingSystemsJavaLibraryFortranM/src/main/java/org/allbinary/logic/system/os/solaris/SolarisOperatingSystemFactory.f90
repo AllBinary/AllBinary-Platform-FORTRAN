@@ -56,6 +56,16 @@ contains
     jresult => SolarisOperatingSystemFactory_jcell_instance
   end function
 
+  subroutine SolarisOperatingSystemFactory_jsetstatic_instance(jvalue)
+    class(SolarisOperatingSystemFactory), target, optional :: jvalue
+    SolarisOperatingSystemFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      SolarisOperatingSystemFactory_jcell_instance => jvalue
+    else
+      SolarisOperatingSystemFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SolarisOperatingSystemFactory_jnew_0() result(this)
     class(SolarisOperatingSystemFactory), pointer :: this
     allocate(this)

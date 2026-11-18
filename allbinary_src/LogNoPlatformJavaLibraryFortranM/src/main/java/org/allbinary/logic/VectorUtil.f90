@@ -48,6 +48,16 @@ contains
     jresult => VectorUtil_jcell_instance
   end function
 
+  subroutine VectorUtil_jsetstatic_instance(jvalue)
+    class(VectorUtil), target, optional :: jvalue
+    VectorUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      VectorUtil_jcell_instance => jvalue
+    else
+      VectorUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function VectorUtil_jnew_0() result(this)
     class(VectorUtil), pointer :: this
     allocate(this)

@@ -59,6 +59,16 @@ contains
     jresult => OperatingSystems_jcell_instance
   end function
 
+  subroutine OperatingSystems_jsetstatic_instance(jvalue)
+    class(OperatingSystems), target, optional :: jvalue
+    OperatingSystems_jset_instance = .true.
+    if (present(jvalue)) then
+      OperatingSystems_jcell_instance => jvalue
+    else
+      OperatingSystems_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function OperatingSystems_jnew_0() result(this)
     class(OperatingSystems), pointer :: this
     allocate(this)

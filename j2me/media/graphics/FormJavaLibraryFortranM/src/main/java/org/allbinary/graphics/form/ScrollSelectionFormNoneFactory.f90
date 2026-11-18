@@ -1,56 +1,49 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form
+module ScrollSelectionFormNoneFactory_m
+  use JR_m
+  use ScrollSelectionForm_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form
-unit ScrollSelectionFormNoneFactory;
+  type, extends(JObject) :: ScrollSelectionFormNoneFactory
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, ScrollSelectionForm;
+  function ScrollSelectionFormNoneFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ScrollSelectionFormNoneFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ScrollSelectionFormNoneFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TScrollSelectionFormNoneFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance: TScrollSelectionForm; static;
-  end;
+  function ScrollSelectionFormNoneFactory_jnew_0() result(this)
+    class(ScrollSelectionFormNoneFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'ScrollSelectionFormNoneFactory'
+  end function
 
-implementation
-
-{AB:CODE}
-
-constructor TScrollSelectionFormNoneFactory.Create;
-begin
-  inherited Create;
-end;
-    
-
-class function TScrollSelectionFormNoneFactory.getInstance: TScrollSelectionForm;
-begin
-        Exit(TScrollSelectionForm.getNullScrollSelectionFormHorizontal());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function ScrollSelectionFormNoneFactory_jm_getInstance_0() result(jresult)
+    class(ScrollSelectionForm), pointer :: jresult
+        jresult => ScrollSelectionForm_jm_getNullScrollSelectionFormHorizontal_0()
+        return
+  end function
+end module ScrollSelectionFormNoneFactory_m
 

@@ -1,59 +1,48 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.special
+module SpecialGameInputProcessor_m
+  use JR_m
+  use GameInputProcessor_m
+  use CollidableDestroyableDamageableLayer_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.special
-unit SpecialGameInputProcessor;
+  type, extends(GameInputProcessor) :: SpecialGameInputProcessor
+    class(CollidableDestroyableDamageableLayer), pointer :: f_collidableDestroyableDamageableLayer => null()
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameInputProcessor, CollidableDestroyableDamageableLayer;
+  function SpecialGameInputProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SpecialGameInputProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SpecialGameInputProcessor)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TSpecialGameInputProcessor = class(TGameInputProcessor)
-  public
-    collidableDestroyableDamageableLayer: TCollidableDestroyableDamageableLayer;
-    procedure InitFields;
-        constructor Create(collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer);
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TSpecialGameInputProcessor.InitFields;
-begin
-  
-end;
+  recursive function SpecialGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer) result(this)
+    class(CollidableDestroyableDamageableLayer), target, optional :: j_collidableDestroyableDamageableLayer
+    class(SpecialGameInputProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'SpecialGameInputProcessor'
     
-
-constructor TSpecialGameInputProcessor.Create(collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer);
-begin
-    inherited Create;
-    InitFields;
-        Self.collidableDestroyableDamageableLayer := collidableDestroyableDamageableLayer_;
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+        this%f_collidableDestroyableDamageableLayer => j_collidableDestroyableDamageableLayer
+  end function
+end module SpecialGameInputProcessor_m
 

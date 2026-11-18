@@ -1,52 +1,73 @@
-// Generated Code Do Not Modify
-// package org.allbinary.game.displayable.canvas
-unit NullDisplayable;
+! Generated Code Do Not Modify
+! package org.allbinary.game.displayable.canvas
+module NullDisplayable_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(Canvas) :: NullDisplayable
+  contains
+    procedure :: jm_paint_1 => NullDisplayable_jm_paint_1
+  end type
 
-interface
+  class(NullDisplayable), pointer, save :: NullDisplayable_jcell_SINGLETON => null()
+  logical, save :: NullDisplayable_jset_SINGLETON = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Canvas, Graphics;
+contains
 
-type
-  {AB:TYPES}
-  // Temp should not be in any build
-  TNullDisplayable = class(TCanvas)
-  public
-    class var SINGLETON: TNullDisplayable;
-        class function getInstance: TNullDisplayable; static;
-        constructor Create;
-        procedure paint(graphics_: TGraphics); override;
-  end;
+  function NullDisplayable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(NullDisplayable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (NullDisplayable)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function NullDisplayable_jstatic_SINGLETON() result(jresult)
+    class(NullDisplayable), pointer :: jresult
+    if (.not. NullDisplayable_jset_SINGLETON) then
+      NullDisplayable_jset_SINGLETON = .true.
+      NullDisplayable_jcell_SINGLETON => NullDisplayable_jnew_0()
+    end if
+    jresult => NullDisplayable_jcell_SINGLETON
+  end function
 
-{AB:CODE}
-    
+  subroutine NullDisplayable_jsetstatic_SINGLETON(jvalue)
+    class(NullDisplayable), target, optional :: jvalue
+    NullDisplayable_jset_SINGLETON = .true.
+    if (present(jvalue)) then
+      NullDisplayable_jcell_SINGLETON => jvalue
+    else
+      NullDisplayable_jcell_SINGLETON => null()
+    end if
+  end subroutine
 
-class function TNullDisplayable.getInstance: TNullDisplayable;
-begin
-        Exit(TNullDisplayable.SINGLETON);
-end;
-    
+  recursive function NullDisplayable_jnew_0() result(this)
+    class(NullDisplayable), pointer :: this
+    allocate(this)
+    this%jclass = 'NullDisplayable'
+        continue
+  end function
 
-constructor TNullDisplayable.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive function NullDisplayable_jm_getInstance_0() result(jresult)
+    class(NullDisplayable), pointer :: jresult
+        jresult => NullDisplayable_jstatic_SINGLETON()
+        return
+  end function
 
-procedure TNullDisplayable.paint(graphics_: TGraphics);
-begin
-end;
+  recursive subroutine NullDisplayable_jm_paint_1(this, j_graphics)
+    class(NullDisplayable), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module NullDisplayable_m
 
-initialization
-  {AB:INITIALIZATION}
-  TNullDisplayable.SINGLETON := TNullDisplayable.Create();
-  {AB:END}
-
-end.
+function NullDisplayable_jnew_0_jext() result(this)
+  use NullDisplayable_m, only: JObject, NullDisplayable_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => NullDisplayable_jnew_0()
+end function
 

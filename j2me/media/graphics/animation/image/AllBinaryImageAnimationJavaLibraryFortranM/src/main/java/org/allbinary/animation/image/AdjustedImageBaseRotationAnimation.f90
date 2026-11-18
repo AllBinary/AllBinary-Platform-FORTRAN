@@ -1,77 +1,90 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.animation.image
+module AdjustedImageBaseRotationAnimation_m
+  use JR_m
+  use AnimationBehavior_m
+  use AngleInfo_m
+  use ImageBaseRotationAnimation_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.animation.image
-unit AdjustedImageBaseRotationAnimation;
+  type, extends(ImageBaseRotationAnimation) :: AdjustedImageBaseRotationAnimation
+    integer(4) :: f_dx = 0
+    integer(4) :: f_dy = 0
+  contains
+    procedure :: jm_init_2 => AdjustedImageBaseRotationAnimation_jm_init_2
+    procedure :: jm_paintXY_3 => AdjustedImageBaseRotationAnimation_jm_paintXY_3
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, Image, AnimationBehavior, AngleInfo, ImageBaseRotationAnimation;
+  function AdjustedImageBaseRotationAnimation_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AdjustedImageBaseRotationAnimation), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AdjustedImageBaseRotationAnimation)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAdjustedImageBaseRotationAnimation = class(TImageBaseRotationAnimation)
-  public
-    dx: Integer;
-    dy: Integer;
-    procedure InitFields;
-        constructor Create(image_: TImage; angleInfo_: TAngleInfo; totalAngle: SmallInt; dx: Integer; dy: Integer; animationBehavior_: TAnimationBehavior);
-        procedure init(dx: Integer; dy: Integer); virtual;
-        procedure paintXY(graphics_: TGraphics; x: Integer; y: Integer); override;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TAdjustedImageBaseRotationAnimation.InitFields;
-begin
-  
-  
-end;
+  recursive function AdjustedImageBaseRotationAnimation_jnew_6(j_image, j_angleInfo, j_totalAngle, j_dx, j_dy, j_animationBehavior) result(this)
+    class(Image), target, optional :: j_image
+    class(AngleInfo), target, optional :: j_angleInfo
+    integer(4), value :: j_totalAngle
+    integer(4), value :: j_dx
+    integer(4), value :: j_dy
+    class(AnimationBehavior), target, optional :: j_animationBehavior
+    class(AdjustedImageBaseRotationAnimation), pointer :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+    allocate(this)
+    this%jclass = 'AdjustedImageBaseRotationAnimation'
     
-
-constructor TAdjustedImageBaseRotationAnimation.Create(image_: TImage; angleInfo_: TAngleInfo; totalAngle: SmallInt; dx: Integer; dy: Integer; animationBehavior_: TAnimationBehavior);
-begin
-        inherited Create(image_, angleInfo_, totalAngle, animationBehavior_);
-        InitFields;
-        Self.init(dx, dy);
-end;
     
+        continue ! super()
+        call this%jm_init_2(j_dx, j_dy)
+  end function
 
-// throws Exception
-procedure TAdjustedImageBaseRotationAnimation.init(dx: Integer; dy: Integer);
-begin
-        Self.dx := dx;
-        Self.dy := dy;
-end;
-    
+  recursive subroutine AdjustedImageBaseRotationAnimation_jm_init_2(this, j_dx, j_dy)
+    class(AdjustedImageBaseRotationAnimation), target :: this
+    integer(4), value :: j_dx
+    integer(4), value :: j_dy
+        this%f_dx = j_dx
+        this%f_dy = j_dy
+  end subroutine
 
-procedure TAdjustedImageBaseRotationAnimation.paintXY(graphics_: TGraphics; x: Integer; y: Integer);
-begin
-        inherited paintXY(graphics_, (x) + (Self.dx), (y) + (Self.dy));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine AdjustedImageBaseRotationAnimation_jm_paintXY_3(this, j_graphics, j_x, j_y)
+    class(AdjustedImageBaseRotationAnimation), target :: this
+    class(Graphics), target, optional :: j_graphics
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%ImageBaseRotationAnimation%jm_paintXY_3(j_graphics, (j_x + this%f_dx), (j_y + this%f_dy))
+  end subroutine
+end module AdjustedImageBaseRotationAnimation_m
 

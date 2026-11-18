@@ -1,85 +1,110 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer.special
+module AnalogInputBuilder_m
+  use JR_m
+  use GameInputProcessor_m
+  use SpecialUpGameInputProcessor_m
+  use SpecialDownGameInputProcessor_m
+  use SpecialRightGameInputProcessor_m
+  use SpecialLeftGameInputProcessor_m
+  use Special1GameInputProcessor_m
+  use Special3GameInputProcessor_m
+  use CollidableDestroyableDamageableLayer_m
+  use SpecialAnalogUpGameInputProcessor_m
+  use SpecialAnalogDownGameInputProcessor_m
+  use SpecialAnalogRightGameInputProcessor_m
+  use SpecialAnalogLeftGameInputProcessor_m
+  use SpecialAnalogLeftTriggerGameInputProcessor_m
+  use SpecialAnalogRightTriggerGameInputProcessor_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer.special
-unit AnalogInputBuilder;
+  type, extends(JObject) :: AnalogInputBuilder
+  contains
+    procedure :: jm_disable_2 => AnalogInputBuilder_jm_disable_2
+    procedure :: jm_enable_2 => AnalogInputBuilder_jm_enable_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AnalogInputBuilder), pointer, save :: AnalogInputBuilder_jcell_instance => null()
+  logical, save :: AnalogInputBuilder_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameInputProcessor, CollidableDestroyableDamageableLayer;
+  function AnalogInputBuilder_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnalogInputBuilder), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnalogInputBuilder)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAnalogInputBuilder = class(TObject)
-  public
-    class var instance: TAnalogInputBuilder;
-    constructor Create;
-        class function getInstance: TAnalogInputBuilder; static;
-        procedure disable(inputProcessorArray: TArray<TGameInputProcessor>; collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer); virtual;
-        procedure enable(inputProcessorArray: TArray<TGameInputProcessor>; collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer); virtual;
-  end;
+  function AnalogInputBuilder_jstatic_instance() result(jresult)
+    class(AnalogInputBuilder), pointer :: jresult
+    if (.not. AnalogInputBuilder_jset_instance) then
+      AnalogInputBuilder_jset_instance = .true.
+      AnalogInputBuilder_jcell_instance => AnalogInputBuilder_jnew_0()
+    end if
+    jresult => AnalogInputBuilder_jcell_instance
+  end function
 
-implementation
-uses
-  SpecialUpGameInputProcessor, SpecialDownGameInputProcessor, SpecialRightGameInputProcessor, SpecialLeftGameInputProcessor, Special1GameInputProcessor, Special3GameInputProcessor, SpecialAnalogUpGameInputProcessor, SpecialAnalogDownGameInputProcessor, SpecialAnalogRightGameInputProcessor, SpecialAnalogLeftGameInputProcessor, SpecialAnalogLeftTriggerGameInputProcessor, SpecialAnalogRightTriggerGameInputProcessor, Canvas;
+  subroutine AnalogInputBuilder_jsetstatic_instance(jvalue)
+    class(AnalogInputBuilder), target, optional :: jvalue
+    AnalogInputBuilder_jset_instance = .true.
+    if (present(jvalue)) then
+      AnalogInputBuilder_jcell_instance => jvalue
+    else
+      AnalogInputBuilder_jcell_instance => null()
+    end if
+  end subroutine
 
+  function AnalogInputBuilder_jnew_0() result(this)
+    class(AnalogInputBuilder), pointer :: this
+    allocate(this)
+    this%jclass = 'AnalogInputBuilder'
+  end function
 
-{AB:CODE}
+  recursive function AnalogInputBuilder_jm_getInstance_0() result(jresult)
+    class(AnalogInputBuilder), pointer :: jresult
+        jresult => AnalogInputBuilder_jstatic_instance()
+        return
+  end function
 
-constructor TAnalogInputBuilder.Create;
-begin
-  inherited Create;
-end;
-    
+  recursive subroutine AnalogInputBuilder_jm_disable_2(this, j_inputProcessorArray, j_collidableDestroyableDamageableLayer)
+    class(AnalogInputBuilder), target :: this
+    type(JRef) :: j_inputProcessorArray(:)
+    class(CollidableDestroyableDamageableLayer), target, optional :: j_collidableDestroyableDamageableLayer
+        j_inputProcessorArray((Canvas_jstatic_UP()) + 1)%v => SpecialUpGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_DOWN()) + 1)%v => SpecialDownGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_RIGHT()) + 1)%v => SpecialRightGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_LEFT()) + 1)%v => SpecialLeftGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_KEY_NUM0()) + 1)%v => Special1GameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_KEY_NUM5()) + 1)%v => Special3GameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+  end subroutine
 
-class function TAnalogInputBuilder.getInstance: TAnalogInputBuilder;
-begin
-        Exit(TAnalogInputBuilder.instance);
-end;
-    
-
-procedure TAnalogInputBuilder.disable(inputProcessorArray: TArray<TGameInputProcessor>; collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer);
-begin
-        inputProcessorArray[TCanvas.UP] := TSpecialUpGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.DOWN] := TSpecialDownGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.RIGHT] := TSpecialRightGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.LEFT] := TSpecialLeftGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.KEY_NUM0] := TSpecial1GameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.KEY_NUM5] := TSpecial3GameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-end;
-    
-
-procedure TAnalogInputBuilder.enable(inputProcessorArray: TArray<TGameInputProcessor>; collidableDestroyableDamageableLayer_: TCollidableDestroyableDamageableLayer);
-begin
-        inputProcessorArray[TCanvas.UP] := TSpecialAnalogUpGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.DOWN] := TSpecialAnalogDownGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.RIGHT] := TSpecialAnalogRightGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.LEFT] := TSpecialAnalogLeftGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.KEY_NUM0] := TSpecialAnalogLeftTriggerGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-        inputProcessorArray[TCanvas.KEY_NUM5] := TSpecialAnalogRightTriggerGameInputProcessor.Create(collidableDestroyableDamageableLayer_);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAnalogInputBuilder.instance := TAnalogInputBuilder.Create();
-  {AB:END}
-
-end.
+  recursive subroutine AnalogInputBuilder_jm_enable_2(this, j_inputProcessorArray, j_collidableDestroyableDamageableLayer)
+    class(AnalogInputBuilder), target :: this
+    type(JRef) :: j_inputProcessorArray(:)
+    class(CollidableDestroyableDamageableLayer), target, optional :: j_collidableDestroyableDamageableLayer
+        j_inputProcessorArray((Canvas_jstatic_UP()) + 1)%v => SpecialAnalogUpGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_DOWN()) + 1)%v => SpecialAnalogDownGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_RIGHT()) + 1)%v => SpecialAnalogRightGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_LEFT()) + 1)%v => SpecialAnalogLeftGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_KEY_NUM0()) + 1)%v => SpecialAnalogLeftTriggerGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+        j_inputProcessorArray((Canvas_jstatic_KEY_NUM5()) + 1)%v => SpecialAnalogRightTriggerGameInputProcessor_jnew_1(j_collidableDestroyableDamageableLayer)
+  end subroutine
+end module AnalogInputBuilder_m
 

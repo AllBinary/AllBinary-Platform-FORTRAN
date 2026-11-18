@@ -46,6 +46,16 @@ contains
     jresult => FileExtensionData_jcell_instance
   end function
 
+  subroutine FileExtensionData_jsetstatic_instance(jvalue)
+    class(FileExtensionData), target, optional :: jvalue
+    FileExtensionData_jset_instance = .true.
+    if (present(jvalue)) then
+      FileExtensionData_jcell_instance => jvalue
+    else
+      FileExtensionData_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function FileExtensionData_jnew_0() result(this)
     class(FileExtensionData), pointer :: this
     allocate(this)

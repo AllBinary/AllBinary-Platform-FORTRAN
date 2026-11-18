@@ -1,51 +1,66 @@
-// Generated Code Do Not Modify
-// package org.allbinary.game.configuration.feature
-unit MultiPlayerGameFeatureFactory;
+! Generated Code Do Not Modify
+! package org.allbinary.game.configuration.feature
+module MultiPlayerGameFeatureFactory_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: MultiPlayerGameFeatureFactory
+  contains
+    procedure :: jm_addCommands_1 => MultiPlayerGameFeatureFactory_jm_addCommands_1
+  end type
 
-interface
+  class(MultiPlayerGameFeatureFactory), pointer, save :: MultiPlayerGameFeatureFactory_jcell_instance => null()
+  logical, save :: MultiPlayerGameFeatureFactory_jset_instance = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TMultiPlayerGameFeatureFactory = class(TObject)
-  public
-    class var instance: TMultiPlayerGameFeatureFactory;
-        class function getInstance: TMultiPlayerGameFeatureFactory; static;
-        constructor Create;
-        procedure addCommands(anyType: TObject); virtual;
-  end;
+  function MultiPlayerGameFeatureFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MultiPlayerGameFeatureFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MultiPlayerGameFeatureFactory)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function MultiPlayerGameFeatureFactory_jstatic_instance() result(jresult)
+    class(MultiPlayerGameFeatureFactory), pointer :: jresult
+    if (.not. MultiPlayerGameFeatureFactory_jset_instance) then
+      MultiPlayerGameFeatureFactory_jset_instance = .true.
+      MultiPlayerGameFeatureFactory_jcell_instance => MultiPlayerGameFeatureFactory_jnew_0()
+    end if
+    jresult => MultiPlayerGameFeatureFactory_jcell_instance
+  end function
 
-{AB:CODE}
-    
+  subroutine MultiPlayerGameFeatureFactory_jsetstatic_instance(jvalue)
+    class(MultiPlayerGameFeatureFactory), target, optional :: jvalue
+    MultiPlayerGameFeatureFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      MultiPlayerGameFeatureFactory_jcell_instance => jvalue
+    else
+      MultiPlayerGameFeatureFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-class function TMultiPlayerGameFeatureFactory.getInstance: TMultiPlayerGameFeatureFactory;
-begin
-        Exit(TMultiPlayerGameFeatureFactory.instance);
-end;
-    
+  recursive function MultiPlayerGameFeatureFactory_jnew_0() result(this)
+    class(MultiPlayerGameFeatureFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'MultiPlayerGameFeatureFactory'
+        continue
+  end function
 
-constructor TMultiPlayerGameFeatureFactory.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive function MultiPlayerGameFeatureFactory_jm_getInstance_0() result(jresult)
+    class(MultiPlayerGameFeatureFactory), pointer :: jresult
+        jresult => MultiPlayerGameFeatureFactory_jstatic_instance()
+        return
+  end function
 
-procedure TMultiPlayerGameFeatureFactory.addCommands(anyType: TObject);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TMultiPlayerGameFeatureFactory.instance := TMultiPlayerGameFeatureFactory.Create();
-  {AB:END}
-
-end.
+  recursive subroutine MultiPlayerGameFeatureFactory_jm_addCommands_1(this, j_anyType)
+    class(MultiPlayerGameFeatureFactory), target :: this
+    class(JObject), target, optional :: j_anyType
+    continue
+  end subroutine
+end module MultiPlayerGameFeatureFactory_m
 

@@ -1,63 +1,58 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game
+module GameInfoCopyFactory_m
+  use JR_m
+  use GameInfo_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game
-unit GameInfoCopyFactory;
+  type, extends(JObject) :: GameInfoCopyFactory
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GameInfo;
+  function GameInfoCopyFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameInfoCopyFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameInfoCopyFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TGameInfoCopyFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstanceMaxLevel(gameInfo_: TGameInfo; maxLevel: Integer): TGameInfo; static;
-        class function getInstance(gameInfo_: TGameInfo): TGameInfo; static;
-  end;
+  function GameInfoCopyFactory_jnew_0() result(this)
+    class(GameInfoCopyFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'GameInfoCopyFactory'
+  end function
 
-implementation
+  recursive function GameInfoCopyFactory_jm_getInstanceMaxLevel_2(j_gameInfo, j_maxLevel) result(jresult)
+    class(GameInfo), target, optional :: j_gameInfo
+    integer(4), value :: j_maxLevel
+    class(GameInfo), pointer :: jresult
+        jresult => GameInfo_jnew_5(j_gameInfo%jm_getGameType_0(), j_gameInfo%jm_getGameMode_0(), j_gameInfo%jm_getPlayerType_0(), j_maxLevel, j_gameInfo%jm_getCurrentLevel_0())
+        return
+  end function
 
-{AB:CODE}
-
-constructor TGameInfoCopyFactory.Create;
-begin
-  inherited Create;
-end;
-    
-
-class function TGameInfoCopyFactory.getInstanceMaxLevel(gameInfo_: TGameInfo; maxLevel: Integer): TGameInfo;
-begin
-        Exit(TGameInfo.Create(gameInfo_.getGameType(), gameInfo_.getGameMode(), gameInfo_.getPlayerType(), maxLevel, gameInfo_.getCurrentLevel()));
-end;
-    
-
-class function TGameInfoCopyFactory.getInstance(gameInfo_: TGameInfo): TGameInfo;
-begin
-        Exit(TGameInfo.Create(gameInfo_.getGameType(), gameInfo_.getGameMode(), gameInfo_.getPlayerType(), gameInfo_.getHighestLevel(), gameInfo_.getCurrentLevel()));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function GameInfoCopyFactory_jm_getInstance_1(j_gameInfo) result(jresult)
+    class(GameInfo), target, optional :: j_gameInfo
+    class(GameInfo), pointer :: jresult
+        jresult => GameInfo_jnew_5(j_gameInfo%jm_getGameType_0(), j_gameInfo%jm_getGameMode_0(), j_gameInfo%jm_getPlayerType_0(), j_gameInfo%jm_getHighestLevel_0(), j_gameInfo%jm_getCurrentLevel_0())
+        return
+  end function
+end module GameInfoCopyFactory_m
 

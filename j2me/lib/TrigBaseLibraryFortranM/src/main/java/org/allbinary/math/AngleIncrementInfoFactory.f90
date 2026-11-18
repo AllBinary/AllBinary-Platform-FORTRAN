@@ -49,6 +49,16 @@ contains
     jresult => AngleIncrementInfoFactory_jcell_instance
   end function
 
+  subroutine AngleIncrementInfoFactory_jsetstatic_instance(jvalue)
+    class(AngleIncrementInfoFactory), target, optional :: jvalue
+    AngleIncrementInfoFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      AngleIncrementInfoFactory_jcell_instance => jvalue
+    else
+      AngleIncrementInfoFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function AngleIncrementInfoFactory_jnew_0() result(this)
     class(AngleIncrementInfoFactory), pointer :: this
     class(AngleFactory), pointer :: jtemp1

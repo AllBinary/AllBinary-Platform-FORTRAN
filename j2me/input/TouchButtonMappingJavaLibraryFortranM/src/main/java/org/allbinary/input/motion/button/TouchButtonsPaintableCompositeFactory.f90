@@ -1,59 +1,54 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion.button
+module TouchButtonsPaintableCompositeFactory_m
+  use JR_m
+  use InputMappingInterface_m
+  use BasicColor_m
+  use ProcessPaintable_m
+  use TouchButtonsPaintableComposite_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion.button
-unit TouchButtonsPaintableCompositeFactory;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, InputMappingInterface, BasicColor, ProcessPaintable;
-
-type
-  {AB:TYPES}
-  TTouchButtonsPaintableCompositeFactory = class(TObject)
-  public
-    constructor Create;
-        class function getInstance(inputMappingInterface_: IInputMappingInterface; basicColor_: TBasicColor): TProcessPaintable; static;
-  end;
-
-implementation
-uses
-  TouchButtonsPaintableComposite;
+  type, extends(JObject) :: TouchButtonsPaintableCompositeFactory
+  end type
 
 
-{AB:CODE}
+contains
 
-constructor TTouchButtonsPaintableCompositeFactory.Create;
-begin
-  inherited Create;
-end;
-    
+  function TouchButtonsPaintableCompositeFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TouchButtonsPaintableCompositeFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TouchButtonsPaintableCompositeFactory)
+      jresult => object
+    end select
+  end function
 
-class function TTouchButtonsPaintableCompositeFactory.getInstance(inputMappingInterface_: IInputMappingInterface; basicColor_: TBasicColor): TProcessPaintable;
-begin
-        Exit(TTouchButtonsPaintableComposite.Create(inputMappingInterface_, basicColor_));
-end;
+  function TouchButtonsPaintableCompositeFactory_jnew_0() result(this)
+    class(TouchButtonsPaintableCompositeFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'TouchButtonsPaintableCompositeFactory'
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function TouchButtonsPaintableCompositeFactory_jm_getInstance_2(j_inputMappingInterface, j_basicColor) result(jresult)
+    class(InputMappingInterface), target, optional :: j_inputMappingInterface
+    class(BasicColor), target, optional :: j_basicColor
+    class(ProcessPaintable), pointer :: jresult
+        jresult => TouchButtonsPaintableComposite_jnew_2(j_inputMappingInterface, j_basicColor)
+        return
+  end function
+end module TouchButtonsPaintableCompositeFactory_m
 

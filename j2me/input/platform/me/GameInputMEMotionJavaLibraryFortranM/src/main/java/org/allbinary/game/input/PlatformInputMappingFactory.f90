@@ -1,90 +1,98 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module PlatformInputMappingFactory_m
+  use JR_m
+  use PersistentInputMapping_m
+  use LogUtil_m
+  use CommonStrings_m
+  use MotionJ2MEGameInputMapping_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit PlatformInputMappingFactory;
+  type, extends(JObject) :: PlatformInputMappingFactory
+    class(LogUtil), pointer :: f_logUtil => null()
+    class(PersistentInputMapping), pointer :: f_inputToGameKeyMapping => null()
+  contains
+    procedure :: jm_getPersistentInputMappingInstance_0 => PlatformInputMappingFactory_jm_getPersistentInputMappingInstance_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(PlatformInputMappingFactory), pointer, save :: PlatformInputMappingFactory_jcell_instance => null()
+  logical, save :: PlatformInputMappingFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, PersistentInputMapping, LogUtil;
+  function PlatformInputMappingFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(PlatformInputMappingFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (PlatformInputMappingFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TPlatformInputMappingFactory = class(TObject)
-  public
-    logUtil: TLogUtil;
-    inputToGameKeyMapping: TPersistentInputMapping;
-    class var instance: TPlatformInputMappingFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TPlatformInputMappingFactory; static;
-        function getPersistentInputMappingInstance: TPersistentInputMapping; virtual;
-  end;
+  function PlatformInputMappingFactory_jstatic_instance() result(jresult)
+    class(PlatformInputMappingFactory), pointer :: jresult
+    if (.not. PlatformInputMappingFactory_jset_instance) then
+      PlatformInputMappingFactory_jset_instance = .true.
+      PlatformInputMappingFactory_jcell_instance => PlatformInputMappingFactory_jnew_0()
+    end if
+    jresult => PlatformInputMappingFactory_jcell_instance
+  end function
 
-implementation
-uses
-  MotionJ2MEGameInputMapping, CommonStrings;
+  subroutine PlatformInputMappingFactory_jsetstatic_instance(jvalue)
+    class(PlatformInputMappingFactory), target, optional :: jvalue
+    PlatformInputMappingFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      PlatformInputMappingFactory_jcell_instance => jvalue
+    else
+      PlatformInputMappingFactory_jcell_instance => null()
+    end if
+  end subroutine
 
+  function PlatformInputMappingFactory_jnew_0() result(this)
+    class(PlatformInputMappingFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'PlatformInputMappingFactory'
+    this%f_logUtil => LogUtil_jm_getInstance_0()
+    this%f_inputToGameKeyMapping => PersistentInputMapping_jm_getNullInstance_0()
+  end function
 
-{AB:CODE}
+  recursive function PlatformInputMappingFactory_jm_getInstance_0() result(jresult)
+    class(PlatformInputMappingFactory), pointer :: jresult
+        jresult => PlatformInputMappingFactory_jstatic_instance()
+        return
+  end function
 
-procedure TPlatformInputMappingFactory.InitFields;
-begin
-  Self.logUtil := TLogUtil.getInstance();
-  Self.inputToGameKeyMapping := TPersistentInputMapping.getNullInstance();
-end;
-
-constructor TPlatformInputMappingFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-class function TPlatformInputMappingFactory.getInstance: TPlatformInputMappingFactory;
-begin
-        Exit(TPlatformInputMappingFactory.instance);
-end;
-    
-
-function TPlatformInputMappingFactory.getPersistentInputMappingInstance: TPersistentInputMapping;
-var
-  commonStrings_: TCommonStrings;
-begin
-        try
-            if (Self.inputToGameKeyMapping) = (TPersistentInputMapping.getNullInstance()) then begin
-                Self.inputToGameKeyMapping := TMotionJ2MEGameInputMapping.Create();
-            end;
-        except
-            on e: SysUtils.Exception do begin
-            commonStrings_ := TCommonStrings.getInstance();
-            Self.logUtil.put(commonStrings_.EXCEPTION, TJava.Box(Self), commonStrings_.GET_INSTANCE, TJava.Box(e));
-            end;
-        end;
-        Exit(Self.inputToGameKeyMapping);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TPlatformInputMappingFactory.instance := TPlatformInputMappingFactory.Create();
-  {AB:END}
-
-end.
+  recursive function PlatformInputMappingFactory_jm_getPersistentInputMappingInstance_0(this) result(jresult)
+    class(PlatformInputMappingFactory), target :: this
+    class(PersistentInputMapping), pointer :: jresult
+    class(CommonStrings), pointer :: j_commonStrings
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        continue ! try
+            if (JR_same(this%f_inputToGameKeyMapping, PersistentInputMapping_jm_getNullInstance_0())) then
+                this%f_inputToGameKeyMapping => MotionJ2MEGameInputMapping_jnew_0()
+            end if
+        jresult => this%f_inputToGameKeyMapping
+        return
+  end function
+end module PlatformInputMappingFactory_m
 

@@ -45,6 +45,16 @@ contains
     jresult => NoOperatingSystem_jcell_NO_OPERATING_SYSTEM
   end function
 
+  subroutine NoOperatingSystem_jsetstatic_NO_OPERATING_SYSTEM(jvalue)
+    class(GenericOperatingSystem), target, optional :: jvalue
+    NoOperatingSystem_jset_NO_OPERATING_SYSTEM = .true.
+    if (present(jvalue)) then
+      NoOperatingSystem_jcell_NO_OPERATING_SYSTEM => jvalue
+    else
+      NoOperatingSystem_jcell_NO_OPERATING_SYSTEM => null()
+    end if
+  end subroutine
+
   recursive function NoOperatingSystem_jnew_0() result(this)
     class(NoOperatingSystem), pointer :: this
     allocate(this)

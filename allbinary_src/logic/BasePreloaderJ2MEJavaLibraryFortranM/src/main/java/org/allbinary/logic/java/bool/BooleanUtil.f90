@@ -53,6 +53,16 @@ contains
     jresult => BooleanUtil_jcell_instance
   end function
 
+  subroutine BooleanUtil_jsetstatic_instance(jvalue)
+    class(BooleanUtil), target, optional :: jvalue
+    BooleanUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      BooleanUtil_jcell_instance => jvalue
+    else
+      BooleanUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function BooleanUtil_jnew_0() result(this)
     class(BooleanUtil), pointer :: this
     allocate(this)

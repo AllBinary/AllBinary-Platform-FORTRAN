@@ -47,6 +47,16 @@ contains
     jresult => ThreadPoolStrings_jcell_instance
   end function
 
+  subroutine ThreadPoolStrings_jsetstatic_instance(jvalue)
+    class(ThreadPoolStrings), target, optional :: jvalue
+    ThreadPoolStrings_jset_instance = .true.
+    if (present(jvalue)) then
+      ThreadPoolStrings_jcell_instance => jvalue
+    else
+      ThreadPoolStrings_jcell_instance => null()
+    end if
+  end subroutine
+
   function ThreadPoolStrings_jnew_0() result(this)
     class(ThreadPoolStrings), pointer :: this
     allocate(this)

@@ -1,53 +1,76 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2022 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.layer
-unit SWTUtil;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2022 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.game.layer
+module SWTUtil_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: SWTUtil
+  end type
 
-interface
+  logical, save :: SWTUtil_jcell_isSWT
+  logical, save :: SWTUtil_jset_isSWT = .false.
+  character(len=:), allocatable, save :: SWTUtil_jcell_SWT
+  logical, save :: SWTUtil_jset_SWT = .false.
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TSWTUtil = class(TObject)
-  public
-    class var isSWT: Boolean;
-    class var SWT: string;
-    constructor Create;
-  end;
+  function SWTUtil_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SWTUtil), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SWTUtil)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function SWTUtil_jstatic_isSWT() result(jresult)
+    logical :: jresult
+    if (.not. SWTUtil_jset_isSWT) then
+      SWTUtil_jset_isSWT = .true.
+      SWTUtil_jcell_isSWT = .true.
+    end if
+    jresult = SWTUtil_jcell_isSWT
+  end function
 
-{AB:CODE}
+  subroutine SWTUtil_jsetstatic_isSWT(jvalue)
+    logical, value :: jvalue
+    SWTUtil_jset_isSWT = .true.
+    SWTUtil_jcell_isSWT = jvalue
+  end subroutine
 
-constructor TSWTUtil.Create;
-begin
-  inherited Create;
-end;
+  function SWTUtil_jstatic_SWT() result(jresult)
+    character(len=:), allocatable :: jresult
+    if (.not. SWTUtil_jset_SWT) then
+      SWTUtil_jset_SWT = .true.
+      SWTUtil_jcell_SWT = 'SWT'
+    end if
+    jresult = SWTUtil_jcell_SWT
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  TSWTUtil.isSWT := True;
-  TSWTUtil.SWT := 'SWT';
-  {AB:END}
+  subroutine SWTUtil_jsetstatic_SWT(jvalue)
+    character(len=*), intent(in) :: jvalue
+    SWTUtil_jset_SWT = .true.
+    SWTUtil_jcell_SWT = jvalue
+  end subroutine
 
-end.
+  function SWTUtil_jnew_0() result(this)
+    class(SWTUtil), pointer :: this
+    allocate(this)
+    this%jclass = 'SWTUtil'
+  end function
+end module SWTUtil_m
 

@@ -57,6 +57,16 @@ contains
     jresult => SmallLongFactory_jcell_instance
   end function
 
+  subroutine SmallLongFactory_jsetstatic_instance(jvalue)
+    class(SmallLongFactory), target, optional :: jvalue
+    SmallLongFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      SmallLongFactory_jcell_instance => jvalue
+    else
+      SmallLongFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   recursive function SmallLongFactory_jnew_0() result(this)
     class(SmallLongFactory), pointer :: this
     allocate(this)

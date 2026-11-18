@@ -1,77 +1,93 @@
-{
- 
-  AllBinary Open License Version 1 
-  Copyright (c) 2025 AllBinary 
-   
-  By agreeing to this license you and any business entity you represent are 
-  legally bound to the AllBinary Open License Version 1 legal agreement. 
-   
-  You may obtain the AllBinary Open License Version 1 legal agreement from 
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
-   
-  Created By: Travis Berthelot 
-    
-}
-// Generated Code Do Not Modify
-// package org.allbinary.image.opengles
-unit OpenGLESDeviceImageTranslate;
+! 
+! AllBinary Open License Version 1 
+! Copyright (c) 2025 AllBinary 
+!  
+! By agreeing to this license you and any business entity you represent are 
+! legally bound to the AllBinary Open License Version 1 legal agreement. 
+!  
+! You may obtain the AllBinary Open License Version 1 legal agreement from 
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+!  
+! Created By: Travis Berthelot 
+!   
+! Generated Code Do Not Modify
+! package org.allbinary.image.opengles
+module OpenGLESDeviceImageTranslate_m
+  use JR_m
+  use GL10_m
+  use OpenGLESImageTranslate_m
+  use OpenGLESImage_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(OpenGLESImageTranslate) :: OpenGLESDeviceImageTranslate
+    real(4) :: f_translateX = 0.0
+    real(4) :: f_translateY = 0.0
+    real(4) :: f_translateX2 = 0.0
+    real(4) :: f_translateY2 = 0.0
+  contains
+    procedure :: jm_translate_4 => OpenGLESDeviceImageTranslate_jm_translate_4
+    procedure :: jm_translate2_2 => OpenGLESDeviceImageTranslate_jm_translate2_2
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10, OpenGLESImage, OpenGLESImageTranslate;
+contains
 
-type
-  {AB:TYPES}
-  TOpenGLESDeviceImageTranslate = class(TOpenGLESImageTranslate)
-  public
-    translateX: Single;
-    translateY: Single;
-    translateX2: Single;
-    translateY2: Single;
-    procedure InitFields;
-    constructor Create;
-        procedure translate(gl: IGL10; openGLESImage_: TOpenGLESImage; x: Single; y: Single); override;
-        procedure translate2(gl: IGL10; openGLESImage_: TOpenGLESImage); override;
-  end;
+  function OpenGLESDeviceImageTranslate_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(OpenGLESDeviceImageTranslate), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (OpenGLESDeviceImageTranslate)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function OpenGLESDeviceImageTranslate_jnew_0() result(this)
+    class(OpenGLESDeviceImageTranslate), pointer :: this
+    allocate(this)
+    this%jclass = 'OpenGLESDeviceImageTranslate'
+    this%f_translateX = 0.0
+    this%f_translateY = 0.0
+    this%f_translateX2 = 0.0
+    this%f_translateY2 = 0.0
+  end function
 
-{AB:CODE}
+  recursive subroutine OpenGLESDeviceImageTranslate_jm_translate_4(this, j_gl, j_openGLESImage, j_x, j_y)
+    class(OpenGLESDeviceImageTranslate), target :: this
+    class(GL10), target, optional :: j_gl
+    class(OpenGLESImage), target, optional :: j_openGLESImage
+    real(4), value :: j_x
+    real(4), value :: j_y
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_openGLESImage%f_imageProcessor%jm_translate_3(j_gl, (this%f_translateX + ((j_openGLESImage%f_openGLESImageProperties%f_scaleX * j_x))), (this%f_translateY + ((j_openGLESImage%f_openGLESImageProperties%f_scaleY * j_y))))
+  end subroutine
 
-procedure TOpenGLESDeviceImageTranslate.InitFields;
-begin
-  Self.translateX := 0.0;
-  Self.translateY := 0.0;
-  Self.translateX2 := 0.0;
-  Self.translateY2 := 0.0;
-end;
+  recursive subroutine OpenGLESDeviceImageTranslate_jm_translate2_2(this, j_gl, j_openGLESImage)
+    class(OpenGLESDeviceImageTranslate), target :: this
+    class(GL10), target, optional :: j_gl
+    class(OpenGLESImage), target, optional :: j_openGLESImage
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call j_openGLESImage%f_imageProcessor%jm_translate_3(j_gl, this%f_translateX2, this%f_translateY2)
+  end subroutine
+end module OpenGLESDeviceImageTranslate_m
 
-constructor TOpenGLESDeviceImageTranslate.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
-
-procedure TOpenGLESDeviceImageTranslate.translate(gl: IGL10; openGLESImage_: TOpenGLESImage; x: Single; y: Single);
-begin
-        openGLESImage_.imageProcessor.translate(gl, (Self.translateX) + (((openGLESImage_.openGLESImageProperties.scaleX) * (x))), (Self.translateY) + (((openGLESImage_.openGLESImageProperties.scaleY) * (y))));
-end;
-    
-
-procedure TOpenGLESDeviceImageTranslate.translate2(gl: IGL10; openGLESImage_: TOpenGLESImage);
-begin
-        openGLESImage_.imageProcessor.translate(gl, Self.translateX2, Self.translateY2);
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function OpenGLESDeviceImageTranslate_jnew_0_jext() result(this)
+  use OpenGLESDeviceImageTranslate_m, only: JObject, OpenGLESDeviceImageTranslate_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => OpenGLESDeviceImageTranslate_jnew_0()
+end function
 

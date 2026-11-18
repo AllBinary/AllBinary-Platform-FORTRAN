@@ -1,128 +1,176 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.android.input.motion.event
+module AnalogControllerConfigurationEventHandler_m
+  use JR_m
+  use AllBinaryEventObject_m
+  use EventListenerInterface_m
+  use EventStrings_m
+  use BasicEventHandler_m
+  use BasicArrayList_m
+  use BasicArrayListD_m
+  use AnalogControllerConfigurationEventListenerInterface_m
+  use AnalogControllerConfigurationEvent_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.android.input.motion.event
-unit AnalogControllerConfigurationEventHandler;
+  type, extends(BasicEventHandler) :: AnalogControllerConfigurationEventHandler
+    class(BasicArrayList), pointer :: f_list => null()
+  contains
+    procedure :: jm_addListener_1 => AnalogControllerConfigurationEventHandler_jm_addListener_1
+    procedure :: jm_removeAllListeners_0 => AnalogControllerConfigurationEventHandler_jm_removeAllListeners_0
+    procedure :: jm_removeListener_1 => AnalogControllerConfigurationEventHandler_jm_removeListener_1
+    procedure :: jm_fireEvent_1 => AnalogControllerConfigurationEventHandler_jm_fireEvent_1
+    procedure :: jm_process_2 => AnalogControllerConfigurationEventHandler_jm_process_2
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(AnalogControllerConfigurationEventHandler), pointer, save :: AnalogControllerConfigurationEventHandler_jcell_instance => null()
+  logical, save :: AnalogControllerConfigurationEventHandler_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject, EventListenerInterface, BasicEventHandler, BasicArrayList, AnalogControllerConfigurationEventListenerInterface;
+  function AnalogControllerConfigurationEventHandler_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(AnalogControllerConfigurationEventHandler), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (AnalogControllerConfigurationEventHandler)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TAnalogControllerConfigurationEventHandler = class(TBasicEventHandler)
-  public
-    list: TBasicArrayList;
-    class var instance: TAnalogControllerConfigurationEventHandler;
-    procedure InitFields;
-        class function getInstance: TAnalogControllerConfigurationEventHandler; static;
-        constructor Create;
-        procedure addListener(analogControllerConfigurationEventListenerInterface_: IAnalogControllerConfigurationEventListenerInterface); virtual;
-        procedure removeAllListeners; override;
-        procedure removeListener(eventListenerInterface_: IEventListenerInterface); override;
-        procedure fireEvent(eventObject: TAllBinaryEventObject); override;
-        procedure process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface); override;
-  end;
+  function AnalogControllerConfigurationEventHandler_jstatic_instance() result(jresult)
+    class(AnalogControllerConfigurationEventHandler), pointer :: jresult
+    if (.not. AnalogControllerConfigurationEventHandler_jset_instance) then
+      AnalogControllerConfigurationEventHandler_jset_instance = .true.
+      AnalogControllerConfigurationEventHandler_jcell_instance => AnalogControllerConfigurationEventHandler_jnew_0()
+    end if
+    jresult => AnalogControllerConfigurationEventHandler_jcell_instance
+  end function
 
-implementation
-uses
-  AnalogControllerConfigurationEvent, EventStrings, BasicArrayListD;
+  subroutine AnalogControllerConfigurationEventHandler_jsetstatic_instance(jvalue)
+    class(AnalogControllerConfigurationEventHandler), target, optional :: jvalue
+    AnalogControllerConfigurationEventHandler_jset_instance = .true.
+    if (present(jvalue)) then
+      AnalogControllerConfigurationEventHandler_jcell_instance => jvalue
+    else
+      AnalogControllerConfigurationEventHandler_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function AnalogControllerConfigurationEventHandler_jnew_0() result(this)
+    class(AnalogControllerConfigurationEventHandler), pointer :: this
+    allocate(this)
+    this%jclass = 'AnalogControllerConfigurationEventHandler'
+    this%f_list => BasicArrayListD_jnew_0()
+        continue
+  end function
 
-{AB:CODE}
+  recursive function AnalogControllerConfigurationEventHandler_jm_getInstance_0() result(jresult)
+    class(AnalogControllerConfigurationEventHandler), pointer :: jresult
+        jresult => AnalogControllerConfigurationEventHandler_jstatic_instance()
+        return
+  end function
 
-procedure TAnalogControllerConfigurationEventHandler.InitFields;
-begin
-  Self.list := TBasicArrayListD.Create();
-end;
-    
+  recursive subroutine AnalogControllerConfigurationEventHandler_jm_addListener_1(this, j_analogControllerConfigurationEventListenerInterface)
+    class(AnalogControllerConfigurationEventHandler), target :: this
+    class(AnalogControllerConfigurationEventListenerInterface), target, optional :: j_analogControllerConfigurationEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. this%f_list%jm_contains_1(j_analogControllerConfigurationEventListenerInterface))) then
+            jdiscardBoolean = this%f_list%jm_add_1(j_analogControllerConfigurationEventListenerInterface)
+        end if
+  end subroutine
 
-class function TAnalogControllerConfigurationEventHandler.getInstance: TAnalogControllerConfigurationEventHandler;
-begin
-        Exit(TAnalogControllerConfigurationEventHandler.instance);
-end;
-    
+  recursive subroutine AnalogControllerConfigurationEventHandler_jm_removeAllListeners_0(this)
+    class(AnalogControllerConfigurationEventHandler), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_list%jm_clear_0()
+        call this%BasicEventHandler%jm_removeAllListeners_0()
+  end subroutine
 
-constructor TAnalogControllerConfigurationEventHandler.Create;
-begin
-    inherited Create;
-    InitFields;
-end;
-    
+  recursive subroutine AnalogControllerConfigurationEventHandler_jm_removeListener_1(this, j_eventListenerInterface)
+    class(AnalogControllerConfigurationEventHandler), target :: this
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jdiscardBoolean = this%f_list%jm_remove_1(j_eventListenerInterface)
+        call this%BasicEventHandler%jm_removeListener_1(j_eventListenerInterface)
+  end subroutine
 
-procedure TAnalogControllerConfigurationEventHandler.addListener(analogControllerConfigurationEventListenerInterface_: IAnalogControllerConfigurationEventListenerInterface);
-begin
-        if not (Self.list.contains(TJava.Box(analogControllerConfigurationEventListenerInterface_))) then begin
-            Self.list.add(TJava.Box(analogControllerConfigurationEventListenerInterface_));
-        end;
-end;
-    
+  recursive subroutine AnalogControllerConfigurationEventHandler_jm_fireEvent_1(this, j_eventObject)
+    class(AnalogControllerConfigurationEventHandler), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(AnalogControllerConfigurationEventListenerInterface), pointer :: j_playerGameInput
+    integer(4) :: j_index
+    class(EventStrings), pointer :: jtemp1
+    integer(4) :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_index = j_index - 1
+        jtemp2 = j_index
+        j_index = this%f_list%jm_size_0()
+        do while ((jtemp2 >= 0))
+            continue ! try
+                j_playerGameInput => AnalogControllerConfigurationEventListenerInterface_jcast(this%f_list%f_objectArray((j_index) + 1)%v)
+                call j_playerGameInput%jm_onAnalogControllerConfigurationEvent_1(AnalogControllerConfigurationEvent_jcast(j_eventObject))
+        end do
+        call this%BasicEventHandler%jm_fireEvent_1(j_eventObject)
+  end subroutine
 
-procedure TAnalogControllerConfigurationEventHandler.removeAllListeners;
-begin
-        Self.list.clear();
-        inherited removeAllListeners();
-end;
-    
+  recursive subroutine AnalogControllerConfigurationEventHandler_jm_process_2(this, j_eventObject, j_eventListenerInterface)
+    class(AnalogControllerConfigurationEventHandler), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    class(EventListenerInterface), target, optional :: j_eventListenerInterface
+    class(AnalogControllerConfigurationEventListenerInterface), pointer :: j_analogControllerConfigurationEventListenerInterface
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_analogControllerConfigurationEventListenerInterface => AnalogControllerConfigurationEventListenerInterface_jcast(j_eventListenerInterface)
+        call j_analogControllerConfigurationEventListenerInterface%jm_onAnalogControllerConfigurationEvent_1(AnalogControllerConfigurationEvent_jcast(j_eventObject))
+  end subroutine
+end module AnalogControllerConfigurationEventHandler_m
 
-procedure TAnalogControllerConfigurationEventHandler.removeListener(eventListenerInterface_: IEventListenerInterface);
-begin
-        Self.list.remove(TJava.ToObject(eventListenerInterface_));
-        inherited removeListener(eventListenerInterface_);
-end;
-    
-
-// throws Exception
-procedure TAnalogControllerConfigurationEventHandler.fireEvent(eventObject: TAllBinaryEventObject);
-var
-  playerGameInput: IAnalogControllerConfigurationEventListenerInterface;
-  index: Integer;
-begin
-        index := Self.list.size();
-        while (TJava.PreDec(index)) >= (0) do begin
-            try
-                playerGameInput := (TJava.ToObject(Self.list.objectArray[index]) as IAnalogControllerConfigurationEventListenerInterface);
-                playerGameInput.onAnalogControllerConfigurationEvent(TAnalogControllerConfigurationEvent(TJava.ToObject(eventObject)));
-            except
-                on e: SysUtils.Exception do begin
-                Self.logUtil.put(Self.commonStrings.EXCEPTION, TJava.Box(Self), TEventStrings.getInstance().FIRE_EVENT, TJava.Box(e));
-                end;
-            end;
-        end;
-        inherited fireEvent(eventObject);
-end;
-    
-
-// throws Exception
-procedure TAnalogControllerConfigurationEventHandler.process(eventObject: TAllBinaryEventObject; eventListenerInterface_: IEventListenerInterface);
-var
-  analogControllerConfigurationEventListenerInterface_: IAnalogControllerConfigurationEventListenerInterface;
-begin
-        analogControllerConfigurationEventListenerInterface_ := ((TJava.ToObject(eventListenerInterface_) as IAnalogControllerConfigurationEventListenerInterface));
-        analogControllerConfigurationEventListenerInterface_.onAnalogControllerConfigurationEvent(TAnalogControllerConfigurationEvent(TJava.ToObject(eventObject)));
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TAnalogControllerConfigurationEventHandler.instance := TAnalogControllerConfigurationEventHandler.Create();
-  {AB:END}
-
-end.
+function AnalogControllerConfigurationEventHandler_jnew_0_jext() result(this)
+  use AnalogControllerConfigurationEventHandler_m, only: JObject, AnalogControllerConfigurationEventHandler_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => AnalogControllerConfigurationEventHandler_jnew_0()
+end function
 

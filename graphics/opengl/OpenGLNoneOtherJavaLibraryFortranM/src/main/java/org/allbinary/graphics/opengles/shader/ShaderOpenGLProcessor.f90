@@ -1,66 +1,76 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.opengles.shader
-unit ShaderOpenGLProcessor;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.opengles.shader
+module ShaderOpenGLProcessor_m
+  use JR_m
+  use GL10_m
+  use OpenGLProcessor_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(OpenGLProcessor) :: ShaderOpenGLProcessor
+  contains
+    procedure :: jm_process0_1 => ShaderOpenGLProcessor_jm_process0_1
+    procedure :: jm_process1_1 => ShaderOpenGLProcessor_jm_process1_1
+    procedure :: jm_process_1 => ShaderOpenGLProcessor_jm_process_1
+    procedure :: jm_process2_1 => ShaderOpenGLProcessor_jm_process2_1
+    procedure :: jm_process3_1 => ShaderOpenGLProcessor_jm_process3_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, GL10, OpenGLProcessor;
+contains
 
-type
-  {AB:TYPES}
-  TShaderOpenGLProcessor = class(TOpenGLProcessor)
-  public
-        constructor Create;
-        procedure process0(gl: IGL10); virtual;
-        procedure process1(gl: IGL10); virtual;
-        procedure process(gl: IGL10); override;
-        procedure process2(gl: IGL10); virtual;
-        procedure process3(gl: IGL10); virtual;
-  end;
+  function ShaderOpenGLProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ShaderOpenGLProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ShaderOpenGLProcessor)
+      jresult => object
+    end select
+  end function
 
-implementation
+  recursive function ShaderOpenGLProcessor_jnew_0() result(this)
+    class(ShaderOpenGLProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'ShaderOpenGLProcessor'
+        continue
+  end function
 
-{AB:CODE}
-    
+  recursive subroutine ShaderOpenGLProcessor_jm_process0_1(this, j_gl)
+    class(ShaderOpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
 
-constructor TShaderOpenGLProcessor.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive subroutine ShaderOpenGLProcessor_jm_process1_1(this, j_gl)
+    class(ShaderOpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
 
-procedure TShaderOpenGLProcessor.process0(gl: IGL10);
-begin
-end;
-    
+  recursive subroutine ShaderOpenGLProcessor_jm_process_1(this, j_gl)
+    class(ShaderOpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
 
-procedure TShaderOpenGLProcessor.process1(gl: IGL10);
-begin
-end;
-    
+  recursive subroutine ShaderOpenGLProcessor_jm_process2_1(this, j_gl)
+    class(ShaderOpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
 
-procedure TShaderOpenGLProcessor.process(gl: IGL10);
-begin
-end;
-    
+  recursive subroutine ShaderOpenGLProcessor_jm_process3_1(this, j_gl)
+    class(ShaderOpenGLProcessor), target :: this
+    class(GL10), target, optional :: j_gl
+    continue
+  end subroutine
+end module ShaderOpenGLProcessor_m
 
-procedure TShaderOpenGLProcessor.process2(gl: IGL10);
-begin
-end;
-    
-
-procedure TShaderOpenGLProcessor.process3(gl: IGL10);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+function ShaderOpenGLProcessor_jnew_0_jext() result(this)
+  use ShaderOpenGLProcessor_m, only: JObject, ShaderOpenGLProcessor_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => ShaderOpenGLProcessor_jnew_0()
+end function
 

@@ -1,41 +1,38 @@
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.form
-unit CustomDisplayable;
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.form
+module CustomDisplayable_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: CustomDisplayable
+  contains
+    procedure :: jm_setTitle_1 => CustomDisplayable_jm_setTitle_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TCustomDisplayable = class(TObject)
-  public
-    constructor Create;
-        procedure setTitle(title: string); virtual;
-  end;
+  function CustomDisplayable_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CustomDisplayable), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CustomDisplayable)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function CustomDisplayable_jnew_0() result(this)
+    class(CustomDisplayable), pointer :: this
+    allocate(this)
+    this%jclass = 'CustomDisplayable'
+  end function
 
-{AB:CODE}
-
-constructor TCustomDisplayable.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TCustomDisplayable.setTitle(title: string);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine CustomDisplayable_jm_setTitle_1(this, j_title)
+    class(CustomDisplayable), target :: this
+    character(len=*), intent(in) :: j_title
+    continue
+  end subroutine
+end module CustomDisplayable_m
 

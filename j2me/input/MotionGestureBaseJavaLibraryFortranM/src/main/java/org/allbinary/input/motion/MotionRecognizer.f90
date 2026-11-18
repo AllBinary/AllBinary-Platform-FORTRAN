@@ -1,70 +1,73 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.motion
+module MotionRecognizer_m
+  use JR_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.motion
-unit MotionRecognizer;
+  type, extends(JObject) :: MotionRecognizer
+  contains
+    procedure :: jm_processStartMotionEvent_4 => MotionRecognizer_jm_processStartMotionEvent_4
+    procedure :: jm_processEndMotionEvent_4 => MotionRecognizer_jm_processEndMotionEvent_4
+    procedure :: jm_processDraggedMotionEvent_4 => MotionRecognizer_jm_processDraggedMotionEvent_4
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+  function MotionRecognizer_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(MotionRecognizer), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (MotionRecognizer)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TMotionRecognizer = class(TObject)
-  public
-    constructor Create;
-        procedure processStartMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); virtual;
-        procedure processEndMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); virtual;
-        procedure processDraggedMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer); virtual;
-  end;
+  function MotionRecognizer_jnew_0() result(this)
+    class(MotionRecognizer), pointer :: this
+    allocate(this)
+    this%jclass = 'MotionRecognizer'
+  end function
 
-implementation
+  recursive subroutine MotionRecognizer_jm_processStartMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(MotionRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+    continue
+  end subroutine
 
-{AB:CODE}
+  recursive subroutine MotionRecognizer_jm_processEndMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(MotionRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+    continue
+  end subroutine
 
-constructor TMotionRecognizer.Create;
-begin
-  inherited Create;
-end;
-    
-
-// throws Exception
-procedure TMotionRecognizer.processStartMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-end;
-    
-
-// throws Exception
-procedure TMotionRecognizer.processEndMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-end;
-    
-
-// throws Exception
-procedure TMotionRecognizer.processDraggedMotionEvent(x: Integer; y: Integer; deviceId: Integer; modifiers: Integer);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine MotionRecognizer_jm_processDraggedMotionEvent_4(this, j_x, j_y, j_deviceId, j_modifiers)
+    class(MotionRecognizer), target :: this
+    integer(4), value :: j_x
+    integer(4), value :: j_y
+    integer(4), value :: j_deviceId
+    integer(4), value :: j_modifiers
+    continue
+  end subroutine
+end module MotionRecognizer_m
 

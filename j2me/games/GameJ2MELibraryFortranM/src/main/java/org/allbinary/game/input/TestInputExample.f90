@@ -1,113 +1,96 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module TestInputExample_m
+  use JR_m
+  use TestInputInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit TestInputExample;
+  type, extends(TestInputInterface) :: TestInputExample
+    integer(4) :: f_testValue = 0
+  contains
+    procedure :: jm_up_0 => TestInputExample_jm_up_0
+    procedure :: jm_down_0 => TestInputExample_jm_down_0
+    procedure :: jm_left_0 => TestInputExample_jm_left_0
+    procedure :: jm_right_0 => TestInputExample_jm_right_0
+    procedure :: jm_strafeLeft_0 => TestInputExample_jm_strafeLeft_0
+    procedure :: jm_strafeRight_0 => TestInputExample_jm_strafeRight_0
+    procedure :: jm_paint_1 => TestInputExample_jm_paint_1
+    procedure :: jm_paintThreed_1 => TestInputExample_jm_paintThreed_1
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, Graphics, TestInputInterface, PaintableInterface;
+  function TestInputExample_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(TestInputExample), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (TestInputExample)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TTestInputExample = class(TInterfacedObject, ITestInputInterface, IPaintableInterface)
-  public
-    testValue: Integer;
-    procedure InitFields;
-    function JavaObject: TObject;
-    constructor Create;
-        procedure up; virtual;
-        procedure down; virtual;
-        procedure left; virtual;
-        procedure right; virtual;
-        procedure strafeLeft; virtual;
-        procedure strafeRight; virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure paintThreed(graphics_: TGraphics); virtual;
-  end;
-
-implementation
-
-{AB:CODE}
-
-procedure TTestInputExample.InitFields;
-begin
-  
-end;
-
-function TTestInputExample.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TTestInputExample.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  function TestInputExample_jnew_0() result(this)
+    class(TestInputExample), pointer :: this
+    allocate(this)
+    this%jclass = 'TestInputExample'
     
+  end function
 
-procedure TTestInputExample.up;
-begin
-end;
-    
+  recursive subroutine TestInputExample_jm_up_0(this)
+    class(TestInputExample), target :: this
+    continue
+  end subroutine
 
-procedure TTestInputExample.down;
-begin
-end;
-    
+  recursive subroutine TestInputExample_jm_down_0(this)
+    class(TestInputExample), target :: this
+    continue
+  end subroutine
 
-procedure TTestInputExample.left;
-begin
-        Inc(Self.testValue);
-end;
-    
+  recursive subroutine TestInputExample_jm_left_0(this)
+    class(TestInputExample), target :: this
+        this%f_testValue = this%f_testValue + 1
+  end subroutine
 
-procedure TTestInputExample.right;
-begin
-        Dec(Self.testValue);
-end;
-    
+  recursive subroutine TestInputExample_jm_right_0(this)
+    class(TestInputExample), target :: this
+        this%f_testValue = this%f_testValue - 1
+  end subroutine
 
-procedure TTestInputExample.strafeLeft;
-begin
-end;
-    
+  recursive subroutine TestInputExample_jm_strafeLeft_0(this)
+    class(TestInputExample), target :: this
+    continue
+  end subroutine
 
-procedure TTestInputExample.strafeRight;
-begin
-end;
-    
+  recursive subroutine TestInputExample_jm_strafeRight_0(this)
+    class(TestInputExample), target :: this
+    continue
+  end subroutine
 
-procedure TTestInputExample.paint(graphics_: TGraphics);
-begin
-end;
-    
+  recursive subroutine TestInputExample_jm_paint_1(this, j_graphics)
+    class(TestInputExample), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-procedure TTestInputExample.paintThreed(graphics_: TGraphics);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine TestInputExample_jm_paintThreed_1(this, j_graphics)
+    class(TestInputExample), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
+end module TestInputExample_m
 

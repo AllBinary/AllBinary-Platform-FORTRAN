@@ -47,6 +47,16 @@ contains
     jresult => AndroidInfoFactory_jcell_instance
   end function
 
+  subroutine AndroidInfoFactory_jsetstatic_instance(jvalue)
+    class(AndroidInfoFactory), target, optional :: jvalue
+    AndroidInfoFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      AndroidInfoFactory_jcell_instance => jvalue
+    else
+      AndroidInfoFactory_jcell_instance => null()
+    end if
+  end subroutine
+
   function AndroidInfoFactory_jnew_0() result(this)
     class(AndroidInfoFactory), pointer :: this
     allocate(this)

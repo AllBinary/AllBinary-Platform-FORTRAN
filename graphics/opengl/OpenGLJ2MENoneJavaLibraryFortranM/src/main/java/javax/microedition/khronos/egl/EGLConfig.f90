@@ -1,37 +1,31 @@
-// Generated Code Do Not Modify
-// package javax.microedition.khronos.egl
-unit EGLConfig;
+! Generated Code Do Not Modify
+! package javax.microedition.khronos.egl
+module EGLConfig_m
+  use JR_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(JObject) :: EGLConfig
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto;
+contains
 
-type
-  {AB:TYPES}
-  TEGLConfig = class(TObject)
-  public
-        constructor Create;
-  end;
+  function EGLConfig_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(EGLConfig), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (EGLConfig)
+      jresult => object
+    end select
+  end function
 
-implementation
-
-{AB:CODE}
-    
-
-constructor TEGLConfig.Create;
-begin
-    inherited Create;
-        raise SysUtils.Exception.Create('');
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive function EGLConfig_jnew_0() result(this)
+    class(EGLConfig), pointer :: this
+    allocate(this)
+    this%jclass = 'EGLConfig'
+        error stop JR_toString(JR_newJObject('RuntimeException'))
+  end function
+end module EGLConfig_m
 

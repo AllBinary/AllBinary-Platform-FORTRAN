@@ -61,6 +61,16 @@ contains
     jresult => BasicArrayListUtil_jcell_instance
   end function
 
+  subroutine BasicArrayListUtil_jsetstatic_instance(jvalue)
+    class(BasicArrayListUtil), target, optional :: jvalue
+    BasicArrayListUtil_jset_instance = .true.
+    if (present(jvalue)) then
+      BasicArrayListUtil_jcell_instance => jvalue
+    else
+      BasicArrayListUtil_jcell_instance => null()
+    end if
+  end subroutine
+
   function BasicArrayListUtil_jnew_0() result(this)
     class(BasicArrayListUtil), pointer :: this
     allocate(this)

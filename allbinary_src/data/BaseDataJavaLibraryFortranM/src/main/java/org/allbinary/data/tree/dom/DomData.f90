@@ -52,6 +52,12 @@ contains
     jresult = DomData_jcell_ID
   end function
 
+  subroutine DomData_jsetstatic_ID(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DomData_jset_ID = .true.
+    DomData_jcell_ID = jvalue
+  end subroutine
+
   function DomData_jstatic_CHILD() result(jresult)
     character(len=:), allocatable :: jresult
     if (.not. DomData_jset_CHILD) then
@@ -60,6 +66,12 @@ contains
     end if
     jresult = DomData_jcell_CHILD
   end function
+
+  subroutine DomData_jsetstatic_CHILD(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DomData_jset_CHILD = .true.
+    DomData_jcell_CHILD = jvalue
+  end subroutine
 
   function DomData_jstatic_NAME() result(jresult)
     character(len=:), allocatable :: jresult
@@ -70,6 +82,12 @@ contains
     jresult = DomData_jcell_NAME
   end function
 
+  subroutine DomData_jsetstatic_NAME(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DomData_jset_NAME = .true.
+    DomData_jcell_NAME = jvalue
+  end subroutine
+
   function DomData_jstatic_VALUE() result(jresult)
     character(len=:), allocatable :: jresult
     if (.not. DomData_jset_VALUE) then
@@ -79,6 +97,12 @@ contains
     jresult = DomData_jcell_VALUE
   end function
 
+  subroutine DomData_jsetstatic_VALUE(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DomData_jset_VALUE = .true.
+    DomData_jcell_VALUE = jvalue
+  end subroutine
+
   function DomData_jstatic_INDEX() result(jresult)
     character(len=:), allocatable :: jresult
     if (.not. DomData_jset_INDEX) then
@@ -87,6 +111,12 @@ contains
     end if
     jresult = DomData_jcell_INDEX
   end function
+
+  subroutine DomData_jsetstatic_INDEX(jvalue)
+    character(len=*), intent(in) :: jvalue
+    DomData_jset_INDEX = .true.
+    DomData_jcell_INDEX = jvalue
+  end subroutine
 
   recursive function DomData_jnew_0() result(this)
     class(DomData), pointer :: this

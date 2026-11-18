@@ -1,108 +1,111 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.input.gyro
+module SensorGameUpdateProcessor_m
+  use JR_m
+  use NoCompleteMotionGestureInputEventListener_m
+  use AllBinarySensor_m
+  use NoAllBinarySensor_m
+  use AccelerometerSensorFactory_m
+  use GyroSensorFactory_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.input.gyro
-unit SensorGameUpdateProcessor;
-
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
-
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinarySensor;
-
-type
-  {AB:TYPES}
-  TSensorGameUpdateProcessor = class(TObject)
-  public
-    inputSensor: TAllBinarySensor;
-    procedure InitFields;
-    constructor Create;
-        procedure setInputSensor(inputSensor: TAllBinarySensor); virtual;
-        function getInputSensor: TAllBinarySensor; virtual;
-        procedure process(anyType: TObject); virtual;
-        procedure sendNotifications(anyType: TObject); virtual;
-        function isAnySensor: Boolean; virtual;
-        procedure setNoSensors; virtual;
-  end;
-
-implementation
-uses
-  GyroSensorFactory, NoCompleteMotionGestureInputEventListener, NoAllBinarySensor, AccelerometerSensorFactory;
+  type, extends(JObject) :: SensorGameUpdateProcessor
+    class(AllBinarySensor), pointer :: f_inputSensor => null()
+  contains
+    procedure :: jm_setInputSensor_1 => SensorGameUpdateProcessor_jm_setInputSensor_1
+    procedure :: jm_getInputSensor_0 => SensorGameUpdateProcessor_jm_getInputSensor_0
+    procedure :: jm_process_1 => SensorGameUpdateProcessor_jm_process_1
+    procedure :: jm_sendNotifications_1 => SensorGameUpdateProcessor_jm_sendNotifications_1
+    procedure :: jm_isAnySensor_0 => SensorGameUpdateProcessor_jm_isAnySensor_0
+    procedure :: jm_setNoSensors_0 => SensorGameUpdateProcessor_jm_setNoSensors_0
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TSensorGameUpdateProcessor.InitFields;
-begin
-  
-end;
+  function SensorGameUpdateProcessor_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(SensorGameUpdateProcessor), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (SensorGameUpdateProcessor)
+      jresult => object
+    end select
+  end function
 
-constructor TSensorGameUpdateProcessor.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
+  function SensorGameUpdateProcessor_jnew_0() result(this)
+    class(SensorGameUpdateProcessor), pointer :: this
+    allocate(this)
+    this%jclass = 'SensorGameUpdateProcessor'
     
+  end function
 
-procedure TSensorGameUpdateProcessor.setInputSensor(inputSensor: TAllBinarySensor);
-begin
-        Self.inputSensor := inputSensor;
-end;
-    
+  recursive subroutine SensorGameUpdateProcessor_jm_setInputSensor_1(this, j_inputSensor)
+    class(SensorGameUpdateProcessor), target :: this
+    class(AllBinarySensor), target, optional :: j_inputSensor
+        this%f_inputSensor => j_inputSensor
+  end subroutine
 
-function TSensorGameUpdateProcessor.getInputSensor: TAllBinarySensor;
-begin
-        Exit(Self.inputSensor);
-end;
-    
+  recursive function SensorGameUpdateProcessor_jm_getInputSensor_0(this) result(jresult)
+    class(SensorGameUpdateProcessor), target :: this
+    class(AllBinarySensor), pointer :: jresult
+        jresult => this%f_inputSensor
+        return
+  end function
 
-// throws Exception
-procedure TSensorGameUpdateProcessor.process(anyType: TObject);
-begin
-end;
-    
+  recursive subroutine SensorGameUpdateProcessor_jm_process_1(this, j_anyType)
+    class(SensorGameUpdateProcessor), target :: this
+    class(JObject), target, optional :: j_anyType
+    continue
+  end subroutine
 
-// throws Exception
-procedure TSensorGameUpdateProcessor.sendNotifications(anyType: TObject);
-begin
-end;
-    
+  recursive subroutine SensorGameUpdateProcessor_jm_sendNotifications_1(this, j_anyType)
+    class(SensorGameUpdateProcessor), target :: this
+    class(JObject), target, optional :: j_anyType
+    continue
+  end subroutine
 
-function TSensorGameUpdateProcessor.isAnySensor: Boolean;
-begin
-        if (Self.inputSensor) = (TNoAllBinarySensor.getInstance()) then begin
-            Exit(False);
-        end else begin
-            Exit(True);
-        end;
-end;
-    
+  recursive function SensorGameUpdateProcessor_jm_isAnySensor_0(this) result(jresult)
+    class(SensorGameUpdateProcessor), target :: this
+    logical :: jresult
+        if (JR_same(this%f_inputSensor, NoAllBinarySensor_jm_getInstance_0())) then
+            jresult = .false.
+            return
+        else
+            jresult = .true.
+            return
+        end if
+  end function
 
-procedure TSensorGameUpdateProcessor.setNoSensors;
-begin
-        TGyroSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(TNoCompleteMotionGestureInputEventListener.getInstance());
-        TAccelerometerSensorFactory.getInstance().setCompleteMotionGestureInputEventListener(TNoCompleteMotionGestureInputEventListener.getInstance());
-        Self.setInputSensor(TNoAllBinarySensor.getInstance());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine SensorGameUpdateProcessor_jm_setNoSensors_0(this)
+    class(SensorGameUpdateProcessor), target :: this
+    class(GyroSensorFactory), pointer :: jtemp1
+    class(AccelerometerSensorFactory), pointer :: jtemp2
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp1 => GyroSensorFactory_jm_getInstance_0()
+        call jtemp1%jm_setCompleteMotionGestureInputEventListener_1(NoCompleteMotionGestureInputEventListener_jm_getInstance_0())
+        jtemp2 => AccelerometerSensorFactory_jm_getInstance_0()
+        call jtemp2%jm_setCompleteMotionGestureInputEventListener_1(NoCompleteMotionGestureInputEventListener_jm_getInstance_0())
+        call this%jm_setInputSensor_1(NoAllBinarySensor_jm_getInstance_0())
+  end subroutine
+end module SensorGameUpdateProcessor_m
 

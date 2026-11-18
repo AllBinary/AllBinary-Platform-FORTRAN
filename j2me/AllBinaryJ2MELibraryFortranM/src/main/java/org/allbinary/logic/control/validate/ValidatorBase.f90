@@ -1,96 +1,119 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.logic.control.validate
+module ValidatorBase_m
+  use JR_m
+  use StdUtil_m
+  use BooleanFactory_m
+  use StringUtil_m
+  use BasicArrayList_m
+  use BasicArrayListUtil_m
+  use ABHashtable_m
+  use Boolean_m
+  use ValidatorBaseInterface_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.logic.control.validate
-unit ValidatorBase;
+  type, extends(ValidatorBaseInterface) :: ValidatorBase
+  contains
+    procedure :: jm_isValid_0 => ValidatorBase_jm_isValid_0
+    procedure :: jm_validationInfo_0 => ValidatorBase_jm_validationInfo_0
+    procedure :: jm_toHashtable_0 => ValidatorBase_jm_toHashtable_0
+    procedure :: jm_toList_0 => ValidatorBase_jm_toList_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(ValidatorBase), pointer, save :: ValidatorBase_jcell_instance => null()
+  logical, save :: ValidatorBase_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, BasicArrayList, ABHashtable, ValidatorBaseInterface;
+  function ValidatorBase_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ValidatorBase), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ValidatorBase)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  TValidatorBase = class(TInterfacedObject, IValidatorBaseInterface)
-  public
-    class var instance: TValidatorBase;
-    function JavaObject: TObject;
-        class function getInstance: TValidatorBase; static;
-        constructor Create;
-        function isValid: Boolean; virtual;
-        function validationInfo: string; virtual;
-        function toHashtable: TABHashtable<TObject, TObject>; virtual;
-        function toList: TBasicArrayList; virtual;
-  end;
+  function ValidatorBase_jstatic_instance() result(jresult)
+    class(ValidatorBase), pointer :: jresult
+    if (.not. ValidatorBase_jset_instance) then
+      ValidatorBase_jset_instance = .true.
+      ValidatorBase_jcell_instance => ValidatorBase_jnew_0()
+    end if
+    jresult => ValidatorBase_jcell_instance
+  end function
 
-implementation
-uses
-  StdUtil, BooleanFactory, StringUtil, BasicArrayListUtil;
+  subroutine ValidatorBase_jsetstatic_instance(jvalue)
+    class(ValidatorBase), target, optional :: jvalue
+    ValidatorBase_jset_instance = .true.
+    if (present(jvalue)) then
+      ValidatorBase_jcell_instance => jvalue
+    else
+      ValidatorBase_jcell_instance => null()
+    end if
+  end subroutine
 
+  recursive function ValidatorBase_jnew_0() result(this)
+    class(ValidatorBase), pointer :: this
+    allocate(this)
+    this%jclass = 'ValidatorBase'
+        continue
+  end function
 
-{AB:CODE}
+  recursive function ValidatorBase_jm_getInstance_0() result(jresult)
+    class(ValidatorBase), pointer :: jresult
+        jresult => ValidatorBase_jstatic_instance()
+        return
+  end function
 
-function TValidatorBase.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-    
+  recursive function ValidatorBase_jm_isValid_0(this) result(jresult)
+    class(ValidatorBase), target :: this
+    logical :: jresult
+    class(BooleanFactory), pointer :: jtemp1
+        jtemp1 => BooleanFactory_jm_getInstance_0()
+        jresult = jtemp1%f_TRUE
+        return
+  end function
 
-class function TValidatorBase.getInstance: TValidatorBase;
-begin
-        Exit(TValidatorBase.instance);
-end;
-    
+  recursive function ValidatorBase_jm_validationInfo_0(this) result(jresult)
+    class(ValidatorBase), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringUtil), pointer :: jtemp2
+        jtemp2 => StringUtil_jm_getInstance_0()
+        jresult = jtemp2%f_EMPTY_STRING
+        return
+  end function
 
-constructor TValidatorBase.Create;
-begin
-    inherited Create;
-end;
-    
+  recursive function ValidatorBase_jm_toHashtable_0(this) result(jresult)
+    class(ValidatorBase), target :: this
+    class(ABHashtable), pointer :: jresult
+    class(StdUtil), pointer :: jtemp3
+        jtemp3 => StdUtil_jm_getInstance_0()
+        jresult => jtemp3%f_NULL_TABLE
+        return
+  end function
 
-function TValidatorBase.isValid: Boolean;
-begin
-        Exit(TBooleanFactory.getInstance().TRUE_);
-end;
-    
-
-function TValidatorBase.validationInfo: string;
-begin
-        Exit(TStringUtil.getInstance().EMPTY_STRING);
-end;
-    
-
-function TValidatorBase.toHashtable: TABHashtable<TObject, TObject>;
-begin
-        Exit(TStdUtil.getInstance().NULL_TABLE);
-end;
-    
-
-function TValidatorBase.toList: TBasicArrayList;
-begin
-        Exit(TBasicArrayListUtil.getInstance().getImmutableInstance());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TValidatorBase.instance := TValidatorBase.Create();
-  {AB:END}
-
-end.
+  recursive function ValidatorBase_jm_toList_0(this) result(jresult)
+    class(ValidatorBase), target :: this
+    class(BasicArrayList), pointer :: jresult
+    class(BasicArrayListUtil), pointer :: jtemp4
+        jtemp4 => BasicArrayListUtil_jm_getInstance_0()
+        jresult => jtemp4%jm_getImmutableInstance_0()
+        return
+  end function
+end module ValidatorBase_m
 

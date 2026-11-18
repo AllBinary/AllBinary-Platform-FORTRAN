@@ -45,6 +45,16 @@ contains
     jresult => NullThread_jcell_NULL_THREAD
   end function
 
+  subroutine NullThread_jsetstatic_NULL_THREAD(jvalue)
+    class(Thread), target, optional :: jvalue
+    NullThread_jset_NULL_THREAD = .true.
+    if (present(jvalue)) then
+      NullThread_jcell_NULL_THREAD => jvalue
+    else
+      NullThread_jcell_NULL_THREAD => null()
+    end if
+  end subroutine
+
   function NullThread_jnew_0() result(this)
     class(NullThread), pointer :: this
     allocate(this)

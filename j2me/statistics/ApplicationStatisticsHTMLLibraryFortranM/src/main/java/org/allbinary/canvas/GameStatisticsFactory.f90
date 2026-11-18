@@ -1,85 +1,113 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.canvas
+module GameStatisticsFactory_m
+  use JR_m
+  use StringMaker_m
+  use BaseGameStatistics_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.canvas
-unit GameStatisticsFactory;
+  type, extends(BaseGameStatistics) :: GameStatisticsFactory
+    class(StringMaker), pointer :: f_stringBuffer => null()
+  contains
+    procedure :: jm_add_1 => GameStatisticsFactory_jm_add_1
+    procedure :: jm_toString_0 => GameStatisticsFactory_jm_toString_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  class(GameStatisticsFactory), pointer, save :: GameStatisticsFactory_jcell_instance => null()
+  logical, save :: GameStatisticsFactory_jset_instance = .false.
 
-interface
+contains
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, StringMaker, BaseGameStatistics;
+  function GameStatisticsFactory_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(GameStatisticsFactory), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (GameStatisticsFactory)
+      jresult => object
+    end select
+  end function
 
-type
-  {AB:TYPES}
-  // ActualPlatform
-  TGameStatisticsFactory = class(TBaseGameStatistics)
-  public
-    stringBuffer: TStringMaker;
-    class var instance: TGameStatisticsFactory;
-    procedure InitFields;
-    constructor Create;
-        class function getInstance: TGameStatisticsFactory; static;
-        procedure add(string_: string); override;
-        function toString: string; override;
-  end;
+  function GameStatisticsFactory_jstatic_instance() result(jresult)
+    class(GameStatisticsFactory), pointer :: jresult
+    if (.not. GameStatisticsFactory_jset_instance) then
+      GameStatisticsFactory_jset_instance = .true.
+      GameStatisticsFactory_jcell_instance => GameStatisticsFactory_jnew_0()
+    end if
+    jresult => GameStatisticsFactory_jcell_instance
+  end function
 
-implementation
+  subroutine GameStatisticsFactory_jsetstatic_instance(jvalue)
+    class(GameStatisticsFactory), target, optional :: jvalue
+    GameStatisticsFactory_jset_instance = .true.
+    if (present(jvalue)) then
+      GameStatisticsFactory_jcell_instance => jvalue
+    else
+      GameStatisticsFactory_jcell_instance => null()
+    end if
+  end subroutine
 
-{AB:CODE}
+  function GameStatisticsFactory_jnew_0() result(this)
+    class(GameStatisticsFactory), pointer :: this
+    allocate(this)
+    this%jclass = 'GameStatisticsFactory'
+    this%f_stringBuffer => StringMaker_jnew_0()
+  end function
 
-procedure TGameStatisticsFactory.InitFields;
-begin
-  Self.stringBuffer := TStringMaker.Create();
-end;
+  recursive function GameStatisticsFactory_jm_getInstance_0() result(jresult)
+    class(GameStatisticsFactory), pointer :: jresult
+        jresult => GameStatisticsFactory_jstatic_instance()
+        return
+  end function
 
-constructor TGameStatisticsFactory.Create;
-begin
-  inherited Create;
-  InitFields;
-end;
-    
+  recursive subroutine GameStatisticsFactory_jm_add_1(this, j_string)
+    class(GameStatisticsFactory), target :: this
+    character(len=*), intent(in) :: j_string
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((this%f_stringBuffer%jm_length_0() > 12000)) then
+            jdiscardRef => this%f_stringBuffer%jm_delete_2(0, this%f_stringBuffer%jm_length_0())
+            jdiscardRef => this%f_stringBuffer%jm_append_1('Old Stats Cleared')
+        end if
+        jdiscardRef => this%f_stringBuffer%jm_append_1(j_string)
+  end subroutine
 
-class function TGameStatisticsFactory.getInstance: TGameStatisticsFactory;
-begin
-        Exit(TGameStatisticsFactory.instance);
-end;
-    
+  recursive function GameStatisticsFactory_jm_toString_0(this) result(jresult)
+    class(GameStatisticsFactory), target :: this
+    character(len=:), allocatable :: jresult
+    class(StringMaker), pointer :: jtemp1
+    class(StringMaker), pointer :: jtemp2
+    class(StringMaker), pointer :: jtemp3
+        jtemp3 => StringMaker_jnew_0()
+        jtemp2 => jtemp3%jm_append_1(this%BaseGameStatistics%jm_toString_0())
+        jtemp1 => jtemp2%jm_append_1(this%f_stringBuffer%jm_toString_0())
+        jresult = jtemp1%jm_toString_0()
+        return
+  end function
+end module GameStatisticsFactory_m
 
-procedure TGameStatisticsFactory.add(string_: string);
-begin
-        if (Self.stringBuffer.length()) > (12000) then begin
-            Self.stringBuffer.delete_(0, Self.stringBuffer.length());
-            Self.stringBuffer.append('Old Stats Cleared');
-        end;
-        Self.stringBuffer.append(string_);
-end;
-    
-
-function TGameStatisticsFactory.toString: string;
-begin
-        Exit(TStringMaker.Create().append(inherited toString()).append(Self.stringBuffer.toString()).toString());
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  TGameStatisticsFactory.instance := TGameStatisticsFactory.Create();
-  {AB:END}
-
-end.
+function GameStatisticsFactory_jnew_0_jext() result(this)
+  use GameStatisticsFactory_m, only: JObject, GameStatisticsFactory_jnew_0
+  implicit none
+  class(JObject), pointer :: this
+  this => GameStatisticsFactory_jnew_0()
+end function
 

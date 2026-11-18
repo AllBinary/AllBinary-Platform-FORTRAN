@@ -1,332 +1,507 @@
-{
+!
+! AllBinary Open License Version 1
+! Copyright (c) 2011 AllBinary
+! 
+! By agreeing to this license you and any business entity you represent are
+! legally bound to the AllBinary Open License Version 1 legal agreement.
+! 
+! You may obtain the AllBinary Open License Version 1 legal agreement from
+! AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+! 
+! Created By: Travis Berthelot
+!  
+! Generated Code Do Not Modify
+! package org.allbinary.graphics.canvas.transition.progress
+module ProgressCanvas_m
+  use JR_m
+  use NullCanvas_m
+  use NullCommandListener_m
+  use Processor_m
+  use RunnableCanvas_m
+  use GameCommandsFactory_m
+  use BasicColor_m
+  use CanvasStrings_m
+  use MyFontProcessor_m
+  use UpdateMyFontInterface_m
+  use UpdateMyFontProcessor_m
+  use ABCustomGaugeItem_m
+  use NullPaintable_m
+  use Paintable_m
+  use PaintableInterface_m
+  use PreLogUtil_m
+  use SmallIntegerSingletonFactory_m
+  use StringMaker_m
+  use StringUtil_m
+  use AllBinaryMidlet_m
+  use PathFindingThreadPool_m
+  use ThreadPool_m
+  use ProgressPaintable_m
+  use ProgressEndListener_m
+  implicit none
 
-  AllBinary Open License Version 1
-  Copyright (c) 2011 AllBinary
-  
-  By agreeing to this license you and any business entity you represent are
-  legally bound to the AllBinary Open License Version 1 legal agreement.
-  
-  You may obtain the AllBinary Open License Version 1 legal agreement from
-  AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-  
-  Created By: Travis Berthelot
-   
-}
-// Generated Code Do Not Modify
-// package org.allbinary.graphics.canvas.transition.progress
-unit ProgressCanvas;
+  type, extends(RunnableCanvas) :: ProgressCanvas
+    logical :: f_hasPainted = .false.
+    class(BasicColor), pointer :: f_backgroundBasicColor => null()
+    class(Paintable), pointer :: f_GAUGE_PAINTABLE => null()
+    real(4) :: f_maxValue = 0.0
+    class(ABCustomGaugeItem), pointer :: f_gauge => null()
+    character(len=:), allocatable :: f_TEXT_u4
+    class(MyFontProcessor), pointer :: f_updateMyFontProcessor => null()
+    class(MyFontProcessor), pointer :: f_myFontProcessor => null()
+    class(AllBinaryMidlet), pointer :: f_allbinaryMidlet => null()
+    real(4) :: f_value = 0.0
+    character(len=:), allocatable :: f_text_u0
+    logical :: f_background = .false.
+    class(PaintableInterface), pointer :: f_paintable => null()
+    logical :: f_inProgress = .false.
+    class(Processor), pointer :: f_IN_GAME_PROCESSOR => null()
+    class(Processor), pointer :: f_inGameProcessor => null()
+    class(ProgressEndListener), pointer :: f_progressEndListener => null()
+    character(len=:), allocatable :: f_backgroundLabel
+    character(len=:), allocatable :: f_START_BACKGROUND
+    character(len=:), allocatable :: f_ADD_PORTION
+    character(len=:), allocatable :: f_ADD_EARLY_PORTION
+  contains
+    procedure :: jm_updateMeasurement_1 => ProgressCanvas_jm_updateMeasurement_1
+    procedure :: jm_init_1 => ProgressCanvas_jm_init_1
+    procedure :: jm_update_1 => ProgressCanvas_jm_update_1
+    procedure :: jm_initCommands_1 => ProgressCanvas_jm_initCommands_1
+    procedure :: jm_getMaxValue_0 => ProgressCanvas_jm_getMaxValue_0
+    procedure :: jm_start_0 => ProgressCanvas_jm_start_0
+    procedure :: jm_startBackground_1 => ProgressCanvas_jm_startBackground_1
+    procedure :: jm_endActual_0 => ProgressCanvas_jm_endActual_0
+    procedure :: jm_inGame_0 => ProgressCanvas_jm_inGame_0
+    procedure :: jm_end_0 => ProgressCanvas_jm_end_0
+    procedure :: jm_endFromInitialLazyLoadingComplete_0 => ProgressCanvas_jm_endFromInitialLazyLoadingComplete_0
+    procedure :: jm_isInGame_0 => ProgressCanvas_jm_isInGame_0
+    procedure :: jm_endIfPaintedSinceStart_0 => ProgressCanvas_jm_endIfPaintedSinceStart_0
+    procedure :: jm_addEarlyPortion_3 => ProgressCanvas_jm_addEarlyPortion_3
+    procedure :: jm_addPortion_3 => ProgressCanvas_jm_addPortion_3
+    procedure :: jm_addNormalPortion_2 => ProgressCanvas_jm_addNormalPortion_2
+    procedure :: jm_setValue_1 => ProgressCanvas_jm_setValue_1
+    procedure :: jm_paint_1 => ProgressCanvas_jm_paint_1
+    procedure :: jm_paint2_1 => ProgressCanvas_jm_paint2_1
+    procedure :: jm_paintThreed_1 => ProgressCanvas_jm_paintThreed_1
+    procedure :: jm_getValue_0 => ProgressCanvas_jm_getValue_0
+    procedure :: jm_setText_1 => ProgressCanvas_jm_setText_1
+    procedure :: jm_getText_0 => ProgressCanvas_jm_getText_0
+    procedure :: jm_setBackground_1 => ProgressCanvas_jm_setBackground_1
+    procedure :: jm_isBackground_0 => ProgressCanvas_jm_isBackground_0
+  end type
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  ! ProgressCanvas used as a PaintableInterface
+  type, extends(PaintableInterface) :: ProgressCanvas_jas_PaintableInterface
+    class(ProgressCanvas), pointer :: jtarget => null()
+  contains
+    procedure :: jm_paint_1 => ProgressCanvas_jas_PaintableInterface_jm_paint_1
+    procedure :: jm_paintThreed_1 => ProgressCanvas_jas_PaintableInterface_jm_paintThreed_1
+  end type
 
-interface
-
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, CommandListener, Graphics, Processor, RunnableCanvas, BasicColor, MyFontProcessor, UpdateMyFontInterface, ABCustomGaugeItem, Paintable, PaintableInterface, AllBinaryMidlet, ProgressEndListener;
-
-type
-  {AB:TYPES}
-  TProgressCanvas = class(TRunnableCanvas, IPaintableInterface, IUpdateMyFontInterface)
-  public
-    hasPainted: Boolean;
-    backgroundBasicColor: TBasicColor;
-    GAUGE_PAINTABLE: TPaintable;
-    maxValue: Single;
-    gauge: TABCustomGaugeItem;
-    TEXT_: string;
-    updateMyFontProcessor: TMyFontProcessor;
-    myFontProcessor: TMyFontProcessor;
-    allbinaryMidlet: TAllBinaryMidlet;
-    value: Single;
-    text: string;
-    background: Boolean;
-    paintable: IPaintableInterface;
-    inProgress: Boolean;
-    IN_GAME_PROCESSOR: TProcessor;
-    inGameProcessor: TProcessor;
-    progressEndListener: TProgressEndListener;
-    backgroundLabel: string;
-    START_BACKGROUND: string;
-    ADD_PORTION: string;
-    ADD_EARLY_PORTION: string;
-    procedure InitFields;
-    function JavaObject: TObject;
-        constructor Create(title: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-        procedure updateMeasurement(graphics_: TGraphics); virtual;
-        procedure init(gameMidlet: TAllBinaryMidlet); virtual;
-        procedure update(graphics_: TGraphics); virtual;
-        procedure initCommands(cmdListener: ICommandListener); virtual;
-        function getMaxValue: Single;
-        procedure start; virtual;
-        procedure startBackground(background: Boolean); virtual;
-        procedure endActual; virtual;
-        procedure inGame; virtual;
-        procedure end_; virtual;
-        procedure endFromInitialLazyLoadingComplete; virtual;
-        function isInGame: Boolean; virtual;
-        procedure endIfPaintedSinceStart; virtual;
-        procedure addEarlyPortion(value: Integer; text: string; index: Integer); virtual;
-        procedure addPortion(value: Integer; text: string; index: Integer); virtual;
-        procedure addNormalPortion(value: Integer; text: string); virtual;
-        procedure setValue(value: Integer); virtual;
-        procedure paint(graphics_: TGraphics); virtual;
-        procedure paint2(graphics_: TGraphics); virtual;
-        procedure paintThreed(graphics_: TGraphics); virtual;
-        function getValue: Single; virtual;
-        procedure setText(text: string); virtual;
-        function getText: string; virtual;
-        procedure setBackground(background: Boolean); virtual;
-        function isBackground: Boolean; virtual;
-  end;
-
-implementation
-uses
-  ProgressPaintable, Font, NullCanvas, NullCommandListener, GameCommandsFactory, CanvasStrings, UpdateMyFontProcessor, NullPaintable, PreLogUtil, SmallIntegerSingletonFactory, StringMaker, StringUtil, PathFindingThreadPool, ThreadPool;
+  ! ProgressCanvas used as a UpdateMyFontInterface
+  type, extends(UpdateMyFontInterface) :: ProgressCanvas_jas_UpdateMyFontInterface
+    class(ProgressCanvas), pointer :: jtarget => null()
+  contains
+    procedure :: jm_updateMeasurement_1 => ProgressCanvas_jas_UpdateMyFontInterface_jm_updateMeasurement_1
+  end type
 
 
-{AB:CODE}
+contains
 
-procedure TProgressCanvas.InitFields;
-begin
-  
-  
-  Self.GAUGE_PAINTABLE := TProgressPaintable.Create(Self);
-  Self.maxValue := 100.0;
-  
-  Self.TEXT_ := Self.commonStrings.LOADING;
-  Self.updateMyFontProcessor := TUpdateMyFontProcessor.Create(Self);
-  Self.myFontProcessor := Self.updateMyFontProcessor;
-  Self.allbinaryMidlet := TAllBinaryMidlet.getNullInstance();
-  
-  Self.text := Self.TEXT_;
-  Self.background := True;
-  Self.paintable := Self.GAUGE_PAINTABLE;
-  Self.inProgress := False;
-  Self.IN_GAME_PROCESSOR := TProcessor.Create() (* Java anonymous class body: implement it as a named class
-        Self.pathFindingThreadPool := TPathFindingThreadPool.getInstance();
-        
+  function ProgressCanvas_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(ProgressCanvas), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (ProgressCanvas)
+      jresult => object
+    end select
+  end function
 
-    // throws Exception
-    procedure T.process;
-begin
-            Self.pathFindingThreadPool.runAPriorityTask();
-end;
-*);
-  Self.inGameProcessor := TProcessor.getInstance();
-  Self.progressEndListener := TProgressEndListener.instance;
-  Self.backgroundLabel := 'Background AI Game Loading...';
-  Self.START_BACKGROUND := 'startBackground';
-  Self.ADD_PORTION := 'addPortion';
-  Self.ADD_EARLY_PORTION := 'addEarlyPortion';
-end;
+  function ProgressCanvas_jas_PaintableInterface_jnew(object) result(jresult)
+    class(ProgressCanvas), target :: object
+    class(ProgressCanvas_jas_PaintableInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'ProgressCanvas'
+    jresult%jtarget => object
+  end function
 
-function TProgressCanvas.JavaObject: TObject;
-begin
-  Result := Self;
-end;
+  recursive subroutine ProgressCanvas_jas_PaintableInterface_jm_paint_1(this, j_graphics)
+    class(ProgressCanvas_jas_PaintableInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_paint_1(j_graphics)
+  end subroutine
+
+  recursive subroutine ProgressCanvas_jas_PaintableInterface_jm_paintThreed_1(this, j_graphics)
+    class(ProgressCanvas_jas_PaintableInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_paintThreed_1(j_graphics)
+  end subroutine
+
+  function ProgressCanvas_jas_UpdateMyFontInterface_jnew(object) result(jresult)
+    class(ProgressCanvas), target :: object
+    class(ProgressCanvas_jas_UpdateMyFontInterface), pointer :: jresult
+    allocate(jresult)
+    jresult%jclass = 'ProgressCanvas'
+    jresult%jtarget => object
+  end function
+
+  recursive subroutine ProgressCanvas_jas_UpdateMyFontInterface_jm_updateMeasurement_1(this, j_graphics)
+    class(ProgressCanvas_jas_UpdateMyFontInterface), target :: this
+    class(Graphics), target, optional :: j_graphics
+    call this%jtarget%jm_updateMeasurement_1(j_graphics)
+  end subroutine
+
+  recursive function ProgressCanvas_jnew_3(j_title, j_backgroundBasicColor, j_foregroundBasicColor) result(this)
+    character(len=*), intent(in) :: j_title
+    class(BasicColor), target, optional :: j_backgroundBasicColor
+    class(BasicColor), target, optional :: j_foregroundBasicColor
+    class(ProgressCanvas), pointer :: this
+    class(CanvasStrings), pointer :: jtemp1
+    class(StringUtil), pointer :: jtemp2
+    allocate(this)
+    this%jclass = 'ProgressCanvas'
+    this%f_TEXT_u4 = ''
+    this%f_text_u0 = ''
+    this%f_backgroundLabel = ''
+    this%f_START_BACKGROUND = ''
+    this%f_ADD_PORTION = ''
+    this%f_ADD_EARLY_PORTION = ''
     
-
-constructor TProgressCanvas.Create(title: string; backgroundBasicColor: TBasicColor; foregroundBasicColor: TBasicColor);
-begin
-        inherited Create(TNullCommandListener.NULL_COMMAND_LISTENER, TCanvasStrings.getInstance().EMPTY_CHILD_NAME_LIST, False);
-        InitFields;
-        Self.backgroundBasicColor := backgroundBasicColor;
-        Self.gauge := TABCustomGaugeItem.Create(TStringUtil.getInstance().EMPTY_STRING, Integer(Trunc(Self.maxValue)), 0, backgroundBasicColor, foregroundBasicColor);
-end;
     
-
-procedure TProgressCanvas.updateMeasurement(graphics_: TGraphics);
-var
-  font_: TFont;
-begin
-        font_ := graphics_.getFont();
-        Self.gauge.setHeight((font_.getHeight()) + (2));
-        Self.myFontProcessor := TMyFontProcessor.getInstance();
-end;
+    this%f_GAUGE_PAINTABLE => ProgressPaintable_jnew_1(this)
+    this%f_maxValue = 100.0
     
-
-procedure TProgressCanvas.init(gameMidlet: TAllBinaryMidlet);
-begin
-        Self.allbinaryMidlet := gameMidlet;
-end;
+    this%f_TEXT_u4 = this%f_commonStrings%f_LOADING
+    this%f_updateMyFontProcessor => UpdateMyFontProcessor_jnew_1(this)
+    this%f_myFontProcessor => this%f_updateMyFontProcessor
+    this%f_allbinaryMidlet => AllBinaryMidlet_jm_getNullInstance_0()
     
+    this%f_text_u0 = this%f_TEXT_u4
+    this%f_background = .true.
+    this%f_paintable => this%f_GAUGE_PAINTABLE
+    this%f_inProgress = .false.
+    this%f_IN_GAME_PROCESSOR => Processor_jnew_0()
+    this%f_inGameProcessor => Processor_jm_getInstance_0()
+    this%f_progressEndListener => ProgressEndListener_jstatic_instance()
+    this%f_backgroundLabel = 'Background AI Game Loading...'
+    this%f_START_BACKGROUND = 'startBackground'
+    this%f_ADD_PORTION = 'addPortion'
+    this%f_ADD_EARLY_PORTION = 'addEarlyPortion'
+        jtemp1 => CanvasStrings_jm_getInstance_0()
+        continue ! super()
+        this%f_backgroundBasicColor => j_backgroundBasicColor
+        jtemp2 => StringUtil_jm_getInstance_0()
+        this%f_gauge => ABCustomGaugeItem_jnew_5(jtemp2%f_EMPTY_STRING, JR_d2i(real(this%f_maxValue, 8)), 0, j_backgroundBasicColor, j_foregroundBasicColor)
+  end function
 
-// throws Exception
-procedure TProgressCanvas.update(graphics_: TGraphics);
-begin
-end;
-    
+  recursive subroutine ProgressCanvas_jm_updateMeasurement_1(this, j_graphics)
+    class(ProgressCanvas), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(Font), pointer :: j_font
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        j_font => j_graphics%jm_getFont_0()
+        call this%f_gauge%jm_setHeight_1((j_font%jm_getHeight_0() + 2))
+        this%f_myFontProcessor => MyFontProcessor_jm_getInstance_0()
+  end subroutine
 
-procedure TProgressCanvas.initCommands(cmdListener: ICommandListener);
-begin
-end;
-    
+  recursive subroutine ProgressCanvas_jm_init_1(this, j_gameMidlet)
+    class(ProgressCanvas), target :: this
+    class(AllBinaryMidlet), target, optional :: j_gameMidlet
+        this%f_allbinaryMidlet => j_gameMidlet
+  end subroutine
 
-function TProgressCanvas.getMaxValue: Single;
-begin
-        Exit(Self.maxValue);
-end;
-    
+  recursive subroutine ProgressCanvas_jm_update_1(this, j_graphics)
+    class(ProgressCanvas), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-procedure TProgressCanvas.start;
-begin
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.commonStrings.START_METHOD_NAME);
-        Self.setBackground(True);
-        Self.gauge.setHeight(30);
-        Self.gauge.setLabel(Self.commonStrings.PLEASE_WAIT);
-        Self.setText(Self.TEXT_);
-        Self.setValue(0);
-        Self.inGameProcessor := TProcessor.getInstance();
-        Self.paintable := Self.GAUGE_PAINTABLE;
-        Self.inProgress := True;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_initCommands_1(this, j_cmdListener)
+    class(ProgressCanvas), target :: this
+    class(CommandListener), target, optional :: j_cmdListener
+    continue
+  end subroutine
 
-procedure TProgressCanvas.startBackground(background: Boolean);
-begin
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.START_BACKGROUND);
-        Self.setBackground(background);
-        Self.myFontProcessor := Self.updateMyFontProcessor;
-        Self.gauge.setLabel(Self.backgroundLabel);
-        Self.setText(Self.TEXT_);
-        Self.setValue(0);
-        Self.inGameProcessor := TProcessor.getInstance();
-        Self.paintable := Self.GAUGE_PAINTABLE;
-end;
-    
+  recursive function ProgressCanvas_jm_getMaxValue_0(this) result(jresult)
+    class(ProgressCanvas), target :: this
+    real(4) :: jresult
+        jresult = this%f_maxValue
+        return
+  end function
 
-procedure TProgressCanvas.endActual;
-begin
-        Self.allbinaryMidlet.commandAction(TGameCommandsFactory.getInstance().SHOW_GAME_CANVAS, TNullCanvas.NULL_CANVAS);
-        Self.inProgress := False;
-        Self.inGame();
-end;
-    
+  recursive subroutine ProgressCanvas_jm_start_0(this)
+    class(ProgressCanvas), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_commonStrings%f_START_METHOD_NAME)
+        call this%jm_setBackground_1(.true.)
+        call this%f_gauge%jm_setHeight_1(30)
+        call this%f_gauge%jm_setLabel_1(this%f_commonStrings%f_PLEASE_WAIT)
+        call this%jm_setText_1(this%f_TEXT_u4)
+        call this%jm_setValue_1(0)
+        this%f_inGameProcessor => Processor_jm_getInstance_0()
+        this%f_paintable => this%f_GAUGE_PAINTABLE
+        this%f_inProgress = .true.
+  end subroutine
 
-procedure TProgressCanvas.inGame;
-begin
-        Self.progressEndListener.onEndEvent();
-        Self.inGameProcessor := Self.IN_GAME_PROCESSOR;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_startBackground_1(this, j_background)
+    class(ProgressCanvas), target :: this
+    logical, value :: j_background
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_START_BACKGROUND)
+        call this%jm_setBackground_1(j_background)
+        this%f_myFontProcessor => this%f_updateMyFontProcessor
+        call this%f_gauge%jm_setLabel_1(this%f_backgroundLabel)
+        call this%jm_setText_1(this%f_TEXT_u4)
+        call this%jm_setValue_1(0)
+        this%f_inGameProcessor => Processor_jm_getInstance_0()
+        this%f_paintable => this%f_GAUGE_PAINTABLE
+  end subroutine
 
-procedure TProgressCanvas.end_;
-begin
-        Self.logUtil.putF(Self.commonStrings.START, TJava.Box(Self), Self.commonStrings.END_METHOD_NAME);
-        Self.gauge.setValue(Self.getMaxValue());
-        Self.endActual();
-        Self.paintable := TNullPaintable.getInstance();
-end;
-    
+  recursive subroutine ProgressCanvas_jm_endActual_0(this)
+    class(ProgressCanvas), target :: this
+    class(GameCommandsFactory), pointer :: jtemp3
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp3 => GameCommandsFactory_jm_getInstance_0()
+        call this%f_allbinaryMidlet%jm_commandAction_2(jtemp3%f_SHOW_GAME_CANVAS, NullCanvas_jstatic_NULL_CANVAS())
+        this%f_inProgress = .false.
+        call this%jm_inGame_0()
+  end subroutine
 
-procedure TProgressCanvas.endFromInitialLazyLoadingComplete;
-begin
-        Self.progressEndListener.onEndEvent();
-        Self.gauge.setValue(Self.getMaxValue());
-        Self.inGameProcessor := Self.IN_GAME_PROCESSOR;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_inGame_0(this)
+    class(ProgressCanvas), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_progressEndListener%jm_onEndEvent_0()
+        this%f_inGameProcessor => this%f_IN_GAME_PROCESSOR
+  end subroutine
 
-function TProgressCanvas.isInGame: Boolean;
-begin
-        if (Self.inGameProcessor) = (Self.IN_GAME_PROCESSOR) then begin
-            Exit(True);
-        end;
-        Exit(False);
-end;
-    
+  recursive subroutine ProgressCanvas_jm_end_0(this)
+    class(ProgressCanvas), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_logUtil%jm_putF_3(this%f_commonStrings%f_START, this, this%f_commonStrings%f_END_METHOD_NAME)
+        call this%f_gauge%jm_setValue_1(this%jm_getMaxValue_0())
+        call this%jm_endActual_0()
+        this%f_paintable => NullPaintable_jm_getInstance_0()
+  end subroutine
 
-procedure TProgressCanvas.endIfPaintedSinceStart;
-begin
-end;
-    
+  recursive subroutine ProgressCanvas_jm_endFromInitialLazyLoadingComplete_0(this)
+    class(ProgressCanvas), target :: this
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_progressEndListener%jm_onEndEvent_0()
+        call this%f_gauge%jm_setValue_1(this%jm_getMaxValue_0())
+        this%f_inGameProcessor => this%f_IN_GAME_PROCESSOR
+  end subroutine
 
-procedure TProgressCanvas.addEarlyPortion(value: Integer; text: string; index: Integer);
-begin
-        Self.setText(TStringMaker.Create().append(text).append(TSmallIntegerSingletonFactory.getInstance().getAt(index).toString()).toString());
-        Self.gauge.setValue((Self.gauge.getValue()) + ((Self.getMaxValue()) / (value)));
-end;
-    
+  recursive function ProgressCanvas_jm_isInGame_0(this) result(jresult)
+    class(ProgressCanvas), target :: this
+    logical :: jresult
+        if (JR_same(this%f_inGameProcessor, this%f_IN_GAME_PROCESSOR)) then
+            jresult = .true.
+            return
+        end if
+        jresult = .false.
+        return
+  end function
 
-procedure TProgressCanvas.addPortion(value: Integer; text: string; index: Integer);
-begin
-        Self.setText(TStringMaker.Create().append(text).append(TSmallIntegerSingletonFactory.getInstance().getAt(index).toString()).toString());
-        TPreLogUtil.put(Self.text, TJava.Box(Self), Self.ADD_PORTION);
-        Self.gauge.setValue((Self.gauge.getValue()) + ((Self.getMaxValue()) / (value)));
-end;
-    
+  recursive subroutine ProgressCanvas_jm_endIfPaintedSinceStart_0(this)
+    class(ProgressCanvas), target :: this
+    continue
+  end subroutine
 
-procedure TProgressCanvas.addNormalPortion(value: Integer; text: string);
-begin
-        if (Self.text) <> (text) then begin
-            TPreLogUtil.put(text, TJava.Box(Self), Self.ADD_PORTION);
-        end;
-        Self.setText(text);
-        Self.gauge.setValue((Self.gauge.getValue()) + ((Self.getMaxValue()) / (value)));
-end;
-    
+  recursive subroutine ProgressCanvas_jm_addEarlyPortion_3(this, j_value, j_text, j_index)
+    class(ProgressCanvas), target :: this
+    integer(4), value :: j_value
+    character(len=*), intent(in) :: j_text
+    integer(4), value :: j_index
+    class(StringMaker), pointer :: jtemp4
+    class(StringMaker), pointer :: jtemp5
+    class(StringMaker), pointer :: jtemp6
+    class(Integer), pointer :: jtemp7
+    class(SmallIntegerSingletonFactory), pointer :: jtemp8
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp8 => SmallIntegerSingletonFactory_jm_getInstance_0()
+        jtemp7 => jtemp8%jm_getAt_1(j_index)
+        jtemp6 => StringMaker_jnew_0()
+        jtemp5 => jtemp6%jm_append_1(j_text)
+        jtemp4 => jtemp5%jm_append_1(jtemp7%jm_toString_0())
+        call this%jm_setText_1(jtemp4%jm_toString_0())
+        call this%f_gauge%jm_setValue_1((this%f_gauge%jm_getValue_0() + (this%jm_getMaxValue_0() / real(j_value, 4))))
+  end subroutine
 
-procedure TProgressCanvas.setValue(value: Integer);
-begin
-        Self.value := value;
-        Self.gauge.setValue(value);
-end;
-    
+  recursive subroutine ProgressCanvas_jm_addPortion_3(this, j_value, j_text, j_index)
+    class(ProgressCanvas), target :: this
+    integer(4), value :: j_value
+    character(len=*), intent(in) :: j_text
+    integer(4), value :: j_index
+    class(StringMaker), pointer :: jtemp9
+    class(StringMaker), pointer :: jtemp10
+    class(StringMaker), pointer :: jtemp11
+    class(Integer), pointer :: jtemp12
+    class(SmallIntegerSingletonFactory), pointer :: jtemp13
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        jtemp13 => SmallIntegerSingletonFactory_jm_getInstance_0()
+        jtemp12 => jtemp13%jm_getAt_1(j_index)
+        jtemp11 => StringMaker_jnew_0()
+        jtemp10 => jtemp11%jm_append_1(j_text)
+        jtemp9 => jtemp10%jm_append_1(jtemp12%jm_toString_0())
+        call this%jm_setText_1(jtemp9%jm_toString_0())
+        call PreLogUtil_jm_put_3(this%f_text_u0, this, this%f_ADD_PORTION)
+        call this%f_gauge%jm_setValue_1((this%f_gauge%jm_getValue_0() + (this%jm_getMaxValue_0() / real(j_value, 4))))
+  end subroutine
 
-procedure TProgressCanvas.paint(graphics_: TGraphics);
-begin
-        Self.paintable.paint(graphics_);
-end;
-    
+  recursive subroutine ProgressCanvas_jm_addNormalPortion_2(this, j_value, j_text)
+    class(ProgressCanvas), target :: this
+    integer(4), value :: j_value
+    character(len=*), intent(in) :: j_text
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        if ((.not. JR_strEquals(this%f_text_u0, j_text))) then
+            call PreLogUtil_jm_put_3(j_text, this, this%f_ADD_PORTION)
+        end if
+        call this%jm_setText_1(j_text)
+        call this%f_gauge%jm_setValue_1((this%f_gauge%jm_getValue_0() + (this%jm_getMaxValue_0() / real(j_value, 4))))
+  end subroutine
 
-procedure TProgressCanvas.paint2(graphics_: TGraphics);
-begin
-        Self.myFontProcessor.process(graphics_);
-        graphics_.setColor(Self.backgroundBasicColor.intValue());
-        graphics_.fillRect(0, 0, Self.displayInfo.getLastWidth(), Self.displayInfo.getLastHeight());
-        Self.gauge.paintXY(graphics_, 0, 0);
-        Self.hasPainted := True;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_setValue_1(this, j_value)
+    class(ProgressCanvas), target :: this
+    integer(4), value :: j_value
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        this%f_value = real(j_value, 4)
+        call this%f_gauge%jm_setValue_1(real(j_value, 4))
+  end subroutine
 
-procedure TProgressCanvas.paintThreed(graphics_: TGraphics);
-begin
-end;
-    
+  recursive subroutine ProgressCanvas_jm_paint_1(this, j_graphics)
+    class(ProgressCanvas), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_paintable%jm_paint_1(j_graphics)
+  end subroutine
 
-function TProgressCanvas.getValue: Single;
-begin
-        Exit(Self.value);
-end;
-    
+  recursive subroutine ProgressCanvas_jm_paint2_1(this, j_graphics)
+    class(ProgressCanvas), target :: this
+    class(Graphics), target, optional :: j_graphics
+    class(JObject), pointer :: jdiscardRef
+    character(len=:), allocatable :: jdiscardString
+    integer(4) :: jdiscardInt
+    integer(8) :: jdiscardLong
+    real(4) :: jdiscardFloat
+    real(8) :: jdiscardDouble
+    logical :: jdiscardBoolean
+        call this%f_myFontProcessor%jm_process_1(j_graphics)
+        call j_graphics%jm_setColor_1(this%f_backgroundBasicColor%jm_intValue_0())
+        call j_graphics%jm_fillRect_4(0, 0, this%f_displayInfo%jm_getLastWidth_0(), this%f_displayInfo%jm_getLastHeight_0())
+        call this%f_gauge%jm_paintXY_3(j_graphics, 0, 0)
+        this%f_hasPainted = .true.
+  end subroutine
 
-procedure TProgressCanvas.setText(text: string);
-begin
-        Self.text := text;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_paintThreed_1(this, j_graphics)
+    class(ProgressCanvas), target :: this
+    class(Graphics), target, optional :: j_graphics
+    continue
+  end subroutine
 
-function TProgressCanvas.getText: string;
-begin
-        Exit(Self.text);
-end;
-    
+  recursive function ProgressCanvas_jm_getValue_0(this) result(jresult)
+    class(ProgressCanvas), target :: this
+    real(4) :: jresult
+        jresult = this%f_value
+        return
+  end function
 
-procedure TProgressCanvas.setBackground(background: Boolean);
-begin
-        Self.background := background;
-end;
-    
+  recursive subroutine ProgressCanvas_jm_setText_1(this, j_text)
+    class(ProgressCanvas), target :: this
+    character(len=*), intent(in) :: j_text
+        this%f_text_u0 = j_text
+  end subroutine
 
-function TProgressCanvas.isBackground: Boolean;
-begin
-        Exit(Self.background);
-end;
+  recursive function ProgressCanvas_jm_getText_0(this) result(jresult)
+    class(ProgressCanvas), target :: this
+    character(len=:), allocatable :: jresult
+        jresult = this%f_text_u0
+        return
+  end function
 
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
+  recursive subroutine ProgressCanvas_jm_setBackground_1(this, j_background)
+    class(ProgressCanvas), target :: this
+    logical, value :: j_background
+        this%f_background = j_background
+  end subroutine
 
-end.
+  recursive function ProgressCanvas_jm_isBackground_0(this) result(jresult)
+    class(ProgressCanvas), target :: this
+    logical :: jresult
+        jresult = this%f_background
+        return
+  end function
+end module ProgressCanvas_m
 

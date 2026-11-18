@@ -1,53 +1,48 @@
-// Generated Code Do Not Modify
-// package org.allbinary.game.input
-unit CompleteMotionGestureInputEventListener;
+! Generated Code Do Not Modify
+! package org.allbinary.game.input
+module CompleteMotionGestureInputEventListener_m
+  use JR_m
+  use AllBinaryEventObject_m
+  use CompleteMotionGestureInputEventListenerInterface_m
+  use CompleteMotionGestureInputEvent_m
+  implicit none
 
-{$mode delphi}{$H+}
-{$interfaces corba}
-{$modeswitch typehelpers}
+  type, extends(CompleteMotionGestureInputEventListenerInterface) :: CompleteMotionGestureInputEventListener
+  contains
+    procedure :: jm_onEvent_1 => CompleteMotionGestureInputEventListener_jm_onEvent_1
+    procedure :: jm_onCompleteMotionGestureInputEvent_1 => CompleteMotionGestureInputEventListener_jm_onCompleteMotionGestureInputEvent_1
+  end type
 
-interface
 
-uses
-  SysUtils, Classes, Math, DateUtils, StrUtils, Character, JavaLang, JavaUtil, JavaIo, JavaNio, JavaAwtEvent, JavaNet, JavaSecurity, JavaxCrypto, AllBinaryEventObject, CompleteMotionGestureInputEvent, CompleteMotionGestureInputEventListenerInterface, EventListenerInterface;
+contains
 
-type
-  {AB:TYPES}
-  TCompleteMotionGestureInputEventListener = class(TInterfacedObject, ICompleteMotionGestureInputEventListenerInterface, IEventListenerInterface)
-  public
-    function JavaObject: TObject;
-    constructor Create;
-        procedure onEvent(eventObject: TAllBinaryEventObject); virtual;
-        procedure onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent_: TCompleteMotionGestureInputEvent); virtual;
-  end;
+  function CompleteMotionGestureInputEventListener_jcast(object) result(jresult)
+    class(JObject), pointer, intent(in) :: object
+    class(CompleteMotionGestureInputEventListener), pointer :: jresult
+    jresult => null()
+    if (.not. associated(object)) return
+    select type (object)
+    class is (CompleteMotionGestureInputEventListener)
+      jresult => object
+    end select
+  end function
 
-implementation
+  function CompleteMotionGestureInputEventListener_jnew_0() result(this)
+    class(CompleteMotionGestureInputEventListener), pointer :: this
+    allocate(this)
+    this%jclass = 'CompleteMotionGestureInputEventListener'
+  end function
 
-{AB:CODE}
+  recursive subroutine CompleteMotionGestureInputEventListener_jm_onEvent_1(this, j_eventObject)
+    class(CompleteMotionGestureInputEventListener), target :: this
+    class(AllBinaryEventObject), target, optional :: j_eventObject
+    continue
+  end subroutine
 
-function TCompleteMotionGestureInputEventListener.JavaObject: TObject;
-begin
-  Result := Self;
-end;
-
-constructor TCompleteMotionGestureInputEventListener.Create;
-begin
-  inherited Create;
-end;
-    
-
-procedure TCompleteMotionGestureInputEventListener.onEvent(eventObject: TAllBinaryEventObject);
-begin
-end;
-    
-
-procedure TCompleteMotionGestureInputEventListener.onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent_: TCompleteMotionGestureInputEvent);
-begin
-end;
-
-initialization
-  {AB:INITIALIZATION}
-  {AB:END}
-
-end.
+  recursive subroutine CompleteMotionGestureInputEventListener_jm_onCompleteMotionGestureInputEvent_1(this, j_completeMotionGestureInputEvent)
+    class(CompleteMotionGestureInputEventListener), target :: this
+    class(CompleteMotionGestureInputEvent), target, optional :: j_completeMotionGestureInputEvent
+    continue
+  end subroutine
+end module CompleteMotionGestureInputEventListener_m
 
